@@ -1,0 +1,57 @@
+
+
+(function () {
+
+    'use strict';
+
+    var modules = [];
+
+
+    angular
+        .module('factory.account', modules)
+        .factory('account', AccountFactory)
+
+    AccountFactory.$inject = ['$q', 'accountRequest'];
+
+    function AccountFactory($q, accountRequest) {
+
+        function thenFunc(response) {
+            // console.log(response);
+            return response;
+        }
+
+        function errFunc(err){
+            console.log(errFunc);
+        }
+
+        return {
+
+            register: function (data) {
+                var req_register = accountRequest.register(data);
+                return $q.all([req_register])
+                    .then(thenFunc)
+            },
+
+            getQuestions: function () {
+                var req_questions = accountRequest.getQuestions();
+                return $q.all([req_questions])
+                    .then(thenFunc)
+            },
+
+            checkIfExist: function (data, type) {
+                var req_email = accountRequest.checkIfExist(data, type);
+                return $q.all([req_email])
+                    .then(thenFunc, errFunc)
+            },
+
+            login: function(username, password){
+                var req_login= accountRequest.login(username, password);
+                return $q.all([req_login])
+                    .then(thenFunc, errFunc)
+            }
+
+        }
+
+    }
+
+})();

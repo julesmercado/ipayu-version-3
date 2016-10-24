@@ -1,0 +1,23 @@
+
+Oct 22 -------------------------------------
+after login get
+	mall card
+		user mall cards, frequently. lastused
+		transactions and redeemables per card
+		info per card
+
+	shop card
+		user shop cards, frequently. lastused
+		transactions and redeemables per card
+		info per card
+
+	coupon card
+		all coupons, featured, history
+		coupon info
+
+	stamp card
+		all stamp, featured, history
+		stamp info
+
+	redeem history
+		all redeemed items and info

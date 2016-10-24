@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' content-src: http://www.ipayu.co/ data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-default.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-plain.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-custom-width.css">
+        <link rel="stylesheet" type="text/css" href="css/loading-bar.min.css" media='all'/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/sizes/ipad_screen.css">
+        <link rel="stylesheet" type="text/css" href="css/sizes/iphone_screen.css">
+
+        <title>Ipayu</title>
+
+    </head>
+
+    <script type="text/javascript">
+
+        // document.addEventListener('deviceready', function () {
+        //     angular.bootstrap(document, ['app.ipayu']);
+        // }, false);
+        
+    </script>
+
+    <body ng-app="app.ipayu">
+
+        <div ui-view></div>
+
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+
+        <!-- Dependencies -->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="js/loading-bar.min.js"></script>
+        <script type="text/javascript" src="js/ng-dialog.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.js"></script>
+        <script type="text/javascript" src="js/angular-qrcode.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-tpls-2.0.0.min.js"></script>
+
+
+        <script type="text/javascript" src="angular/ipayu/controller/login.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/register.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/dashboard.controller.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/factory/flag.factory.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.request.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.data.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/directive/register.directive.js"></script>
+        <script type="text/javascript" src="angular/ipayu/directive/menu.directive.js"></script>
+        <script type="text/javascript" src="angular/ipayu/directive/routes.directive.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/filter/greet.filter.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/ipayu.route.js"></script>
+        <script type="text/javascript" src="angular/ipayu/ipayu.app.js"></script>
+
+
+        <!-- Wallet -->
+        <!-- Controller -->
+        <script type="text/javascript" src="angular/wallet/controller/mymallcard.controller.js"></script>
+
+        <script type="text/javascript" src="angular/wallet/wallet.app.js"></script>
+
+
+    </body>
+
+</html>
