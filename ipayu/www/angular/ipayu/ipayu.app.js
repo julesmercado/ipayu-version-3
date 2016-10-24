@@ -5,9 +5,9 @@
     'use strict';
 
     var modules = [
-                    'ui.router', 'ui.bootstrap', 'monospaced.qrcode', 'ngDialog', 'angular-loading-bar',
+                    'ui.router', 'ui.bootstrap', 'monospaced.qrcode', 'ngDialog', 'angular-loading-bar', 'ngTouch',
 
-                    'app.wallet',
+                    'app.wallet', 'app.mallinfo',
 
                     'route.ipayu', 
 
