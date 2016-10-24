@@ -30,7 +30,7 @@
         
     </script>
 
-    <body ng-app="app.ipayu">
+    <body ng-app="app.ipayu" ng-controller="mainCtrl">
 
         <div ui-view></div>
 
@@ -46,6 +46,11 @@
         <script type="text/javascript" src="js/ui-bootstrap-tpls-2.0.0.min.js"></script>
 
 
+
+        <script type="text/javascript" src="angular/ipayu/ipayu.app.js"></script>
+        <script type="text/javascript" src="angular/ipayu/ipayu.route.js"></script>
+        
+        <script type="text/javascript" src="angular/ipayu/controller/main.controller.js"></script>
         <script type="text/javascript" src="angular/ipayu/controller/login.controller.js"></script>
         <script type="text/javascript" src="angular/ipayu/controller/register.controller.js"></script>
         <script type="text/javascript" src="angular/ipayu/controller/dashboard.controller.js"></script>
@@ -61,15 +66,15 @@
 
         <script type="text/javascript" src="angular/ipayu/filter/greet.filter.js"></script>
 
-        <script type="text/javascript" src="angular/ipayu/ipayu.route.js"></script>
-        <script type="text/javascript" src="angular/ipayu/ipayu.app.js"></script>
-
-
         <!-- Wallet -->
         <!-- Controller -->
+        <script type="text/javascript" src="angular/wallet/wallet.app.js"></script>
+        
         <script type="text/javascript" src="angular/wallet/controller/mymallcard.controller.js"></script>
 
-        <script type="text/javascript" src="angular/wallet/wallet.app.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/parts.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/routes.directive.js"></script>
+
 
 
     </body>

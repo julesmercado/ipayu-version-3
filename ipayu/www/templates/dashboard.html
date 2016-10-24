@@ -2,18 +2,17 @@
 
 <div id="sp-page" style="overflow-y:hidden">
 <div class="page-main-header" style="background-color:#DF1642"></div>
-<div id="sp-nav" class="animated" 
+<div id="" class="animated "
 		ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
-		style="width:100%;z-index:1;margin-top:70px;"
-		 ng-swipe-left="menuSwipeLeft()">
+		style="width:100%;height:100%;z-index:1;margin-top:50px;position: fixed;"
+		 ng-swipe-left="toggleMenu()">
 
     <menu style="width:80%;height:100%;background:#fff;"
 		    class="animated" 
     		ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
 
 </div>
-<div class="dashboard">
-<div style="background-color: rgba(255,255,255,0.6);padding-bottom: 150px">
+<div style="background-color: rgba(255,255,255,0.6);padding-bottom: 150px" class="dashboard">
 	<nav class="navbar ">
 	    <div class="navbar-header nav-dash">
 	      <a class="navbar-brand" ng-click="toggleMenu()">

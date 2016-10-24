@@ -1,26 +1,15 @@
 
-
-(function () {
-
-	'use strict';
-
-	var modules = [];
-
-	angular
-		.module('directive.menu', modules)
-		.directive('menu', MenuDrctv)
+mainModule.directive('menu', MenuDrctv)
 
 
-	// MenuDrctv.$inject = ['$scope', '$rootScope', 'flags'];
+// MenuDrctv.$inject = ['$scope', '$rootScope', 'flags'];
 
-	function MenuDrctv() {
+function MenuDrctv() {
 
-		return {
-			restrict: 'E',
-			templateUrl: 'templates/menu.html'
-		}
-
+	return {
+		restrict: 'E',
+		templateUrl: 'templates/menu.html'
 	}
 
+}
 
-})();

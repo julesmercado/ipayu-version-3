@@ -1,21 +1,12 @@
 
 
-(function () {
+var modules = [];
 
-	'user strict';
-
-	var modules = [];
-
-	angular
-		.module('controller.mymallcard', modules)
-		.controller('myMallCardCtrl', MyMallCardCtrl)
+walletModule.controller('myMallCardCtrl', MyMallCardCtrl)
 
 
-	MyMallCardCtrl.$inject = ['$scope'];
+MyMallCardCtrl.$inject = ['$scope'];
 
-	function MyMallCardCtrl($scope) {
-		console.log("hi");
-	}
-
-
-})();
+function MyMallCardCtrl($scope) {
+	console.log("hi");
+}

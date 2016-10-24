@@ -340,10 +340,10 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;border:1px so
 div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-color:#DF1642; }
     div.page-footer > img {z-index:10; position:absolute;margin-right:auto;margin-left:auto;left:0;right:0;bottom:50px;height:45px }
     .tab-img{margin:0 auto; display: block}
-    div.page-footer .container .row a img.pf-first-child { height:37px;margin-top:15px;  }
-    div.page-footer .container .row a img.pf-second-child { height:32px;margin-top:20px;}
-    div.page-footer .container .row a img.pf-third-child { height:32px;margin-top:20px; }
-    div.page-footer .container .row a img.pf-last-child { height:48px;margin-top:5px;}
+    div.page-footer .container .row span img.pf-first-child { height:37px;margin-top:15px;  }
+    div.page-footer .container .row span img.pf-second-child { height:32px;margin-top:20px;}
+    div.page-footer .container .row span img.pf-third-child { height:32px;margin-top:20px; }
+    div.page-footer .container .row span img.pf-last-child { height:48px;margin-top:5px;}
 
 
     /* FOOTER FOR SHOP CARDS */

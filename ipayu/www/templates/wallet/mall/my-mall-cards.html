@@ -1,0 +1,82 @@
+
+
+<div id="sp-page" style="overflow:hidden;">
+
+<div class="page-main-header"></div>
+
+<div id="" class="animated fading-menu" 
+    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+    style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+    ng-swipe-left="menuSwipeLeft()">
+
+<menu style="width:80%;height:100%;background:#fff;"
+        class="animated" 
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+  
+  <mall-header></mall-header>
+
+<div class="container-fluid filtered-cards">
+
+    <div class="row filter-option">
+        <div class="col-xs-12 filter-option-ic">
+            <a ui-sref="mymallcardsviewall">
+                VIEW ALL <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </div>
+    </div>
+
+     <p>LAST USED</p>
+
+    <div class="row lu-cards my-cards custom-slider" style=" padding:4px;"">
+         <div class='cs-image-holder' style="margin-right:8px" ng-repeat="l in lastUsed | orderObjectBy:'' | filter:searchCountry as luFilter" ng-click="viewMallCardInfo(l.mall_card_id)">
+            <img class=" animated cs-image" ng-src="{{l.image}}"/>
+        </div>
+       
+        <div ng-if="fetch " class='cs-image-holder' >
+            <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
+        </div>
+       
+         <h6 ng-if="luFilter.length == 0 && !fetch" class="text-gray no-cards">
+             No recently used cards.
+         </h6>
+    </div>
+
+    <p>FREQUENTLY USED</p>
+    <!-- flipInX -->
+    <div class="row fu-cards my-cards custom-slider" style=" padding:4px;">
+         <div class='cs-image-holder' style="margin-right:8px" ng-repeat="f in frequent | orderObjectBy:'' | filter:searchCountry as fuFilter" ng-click="viewMallCardInfo(f.mall_card_id)">
+            <img class="animated cs-image" ng-src="{{f.image}}"  />
+        </div>
+
+       
+        <div ng-if="fetch">
+            <div class='cs-image-holder'>
+                <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
+            </div>
+        </div>
+
+         <h6 ng-if="fuFilter.length == 0 && !fetch" class="text-gray no-cards">
+             No frequently used cards.
+         </h6>
+    </div>
+
+    <p>BY MALL NAMES</p>
+    <div class="row mn-cards my-cards custom-slider" style=" padding:4px;">
+         <div class='cs-image-holder' style="margin-right:8px" ng-repeat="m in mallCards | filter:searchCountry as mnFilter" ng-click="viewMallCardInfo(m.mall_card_id)">
+            <img class="animated cs-image" ng-src="{{m.image}}"   />
+        </div>
+      
+        <div  ng-if="fetch" class='cs-image-holder'>
+            <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
+        </div>
+
+            <h6 ng-if="mnFilter.length == 0 && !fetch" class="text-gray no-cards">No new cards, please <a go-to-malls>add new card</a></h6>
+        
+    </div>
+</div>
+
+    <mall-footer></mall-footer>
+
+</div>

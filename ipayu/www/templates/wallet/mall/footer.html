@@ -1,0 +1,44 @@
+
+
+<div class="page-footer ">
+
+    <img src="images/footer/Mallcards-AddCardButton.png" ng-click="test()">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <span route-mymallcard>
+                    <span class="notification-shits" ng-if="mallNotification.length != 0">{{mallNotification.length}}</span>
+                    <img src="images/footer/Mallcards-Active.png" class="pf-first-child tab-img">
+                     <p class="footer-lang-text">MALL CARDS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3">
+                <span route-myshopcard>
+                    <span class="notification-shits" ng-if="shopNotification.length != 0">{{shopNotification.length}}</span>
+                    <img src="images/footer/Mallcards-Mallcard.png"  class="pf-second-child tab-img">
+                     <p class="footer-lang-text-mall" >SHOP CARDS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3"> <!-- -->
+                <span>
+                    <span class="notification-shits" ng-if="couponNotification.length != 0">{{couponNotification.length}}</span>
+                    <img src="images/footer/Mallcards-Coupon.png" class="pf-third-child tab-img">
+                     <p class="footer-lang-text-mall" >COUPONS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3">
+                <span>
+                    <span class="notification-shits" ng-if="stampNotification.length != 0">{{stampNotification.length}}</span>
+                    <img src="images/footer/Mallcards-Stomp.png" class="pf-last-child tab-img">
+                     <p class="footer-lang-text-mall">STAMP&nbsp;CARDS</p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

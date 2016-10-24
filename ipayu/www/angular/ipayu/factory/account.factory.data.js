@@ -1,39 +1,41 @@
 
+mainModule.factory('accountData', AccountData)
 
-(function () {
+// AccountData.$inject = [];
 
-    'use strict';
+function AccountData() {
 
-    var modules = [];
+    var attempts = 0;
 
+    return {
 
-    angular
-        .module('factory.account.data', modules)
-        .factory('accountData', AccountData)
-
-    // AccountData.$inject = [];
-
-    function AccountData() {
-
-        return {
-
-            setUser: function (data) {
-                if(data == false){
-                    localStorage.removeItem("ipayuuserinfo");
-                }
-                else{
-                    localStorage.setItem('ipayuuserinfo', JSON.stringify(data));
-                }
-                return data;
-            },
-
-            getUser: function () {
-                var retrievedObject = localStorage.getItem('ipayuuserinfo');
-                return JSON.parse(retrievedObject) || [];
+// Setters
+        setUser: function (data) {
+            if(data == false){
+                localStorage.removeItem("ipayuuserinfo");
             }
+            else{
+                localStorage.setItem('ipayuuserinfo', JSON.stringify(data));
+            }
+            return data;
+        },
 
+        setNumberOfAttempts: function (att) {
+            attempts = att;
+        },
+
+
+// Getters
+        getUser: function () {
+            var retrievedObject = localStorage.getItem('ipayuuserinfo');
+            return JSON.parse(retrievedObject) || [];
+        },
+
+        getNumberOfAttempts: function () {
+            return attempts;
         }
 
     }
 
-})();
+}
+
