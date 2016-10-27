@@ -4,15 +4,26 @@
 
 
             mallCardFactory2.fetchMallEvents( $stateParams.mallId ).then( function( response ){
-                console.log( response )
-                //console.log( offlineData.getUser() );
+                $scope.limitText = [];
+                $scope.events = response.all.data;
+                for( var i in $scope.events ){
+                    $scope.limitText[i] = 190;
+                }
+                console.log( $scope.limitText )
             } )
+            
+            mallCardFactory2.getReactionsImage( ).then( function( response ){
+
+                $rootScope.$broadcast( "broadcast-reactions-images" , response.all.data );
+            } )
+
             $rootScope.$on( 'open-modal' , function(){
                 console.log( "opened modal" )
-                mallCardFactory2.getComments( 1 ).then( function( response ){
+                mallCardFactory2.getComments( $stateParams.mallId ).then( function( response ){
                     console.log( response );
                 } );
             } );
+
 
             $scope.comment = function(){
 
@@ -23,5 +34,7 @@
                     console.log( response );
                 } );
             };
+
+            
 
     } )

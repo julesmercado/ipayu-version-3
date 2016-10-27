@@ -37,6 +37,17 @@ mallInfo.factory('mallCardFactory2', function ($rootScope, mallRequest, $q) {
 	                        }
 	                    )
 		},
+		getReactionsImage: function(  ){
+			var req = mallRequest.getReactionsImages( );
+			return $q.all([req])
+	                    .then(
+	                        function(results){
+	                            return {
+	                                all: results[0].data
+	                            };
+	                        }
+	                    )
+		},
 		postReact: function( asset_id, ipayu_id, react_id, date ){
 			var req = mallRequest.requestMallEvents( asset_id, ipayu_id, react_id, date );
 			return $q.all([req])
@@ -69,7 +80,7 @@ mallInfo.factory('mallCardFactory2', function ($rootScope, mallRequest, $q) {
 	                            };
 	                        }
 	                    )
-		}
+		},
 	}
 
 })

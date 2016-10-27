@@ -1,6 +1,6 @@
 
 
-mallInfo.factory('mallRequest', function ($rootScope, $http) {
+mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializerJQLike) {
     var mallInfoUrl = 'http://www.ipayu.co/ipayu_cms/controller/';
     var bringmesmiles = 'http://bringmesmiles.com/ipayu/controller/mall_info_controller.php';
 	return {
@@ -24,9 +24,17 @@ mallInfo.factory('mallRequest', function ($rootScope, $http) {
         requestMallEvents: function(id){
             return $http({
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        params: {'requestType': 'GetEvents_', 'asset_info_id': id}
+                        data: $httpParamSerializerJQLike( {'requestType': 'GetEvents_', 'asset_info_id': id} )
+                    });
+        },
+        getReactionsImages: function(){
+            return $http({
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                        url: bringmesmiles,
+                        data: $httpParamSerializerJQLike( {'requestType': 'GetReactions_'} )
                     });
         },
         postReaction: function(asset_id, ipayu_id, react_id, date){
