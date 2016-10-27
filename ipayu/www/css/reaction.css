@@ -54,40 +54,40 @@
   display: block;
 }
 
-.reaction-joy {
+.reaction-5 {
   left: 10px;
   transition-delay: 0s;
-  background-image: url('../images/reactions/joy.png');
+  /*background-image: url('../images/reactions/1.png');*/
 }
 
-.reaction-happier {
+.reaction-4 {
   left: 68px;
   transition-delay: .05s;
-  background-image: url('../images/reactions/happier.png');
+  /*background-image: url('../images/reactions/2.png');*/
 }
 
-.reaction-happy {
+.reaction-3 {
   left: 126px;
   transition-delay: .1s;
-  background-image: url('../images/reactions/happy.png');
+  /*background-image: url('../images/reactions/3.png');*/
 }
 
-.reaction-sad {
+.reaction-2 {
   left: 184px;
   transition-delay: .15s;
-  background-image: url('../images/reactions/sad.png');
+  /*background-image: url('../images/reactions/4.png');*/
 }
 
-.reaction-saddest {
+.reaction-1 {
   left: 242px;
   transition-delay: .2s;
-  background-image: url('../images/reactions/saddest.png');
+  /*background-image: url('../images/reactions/5.png');*/
 }
 
 .reaction-angry {
   left: 300px;
   transition-delay: .25s;
-  background-image: url('../images/rate-smile.png');
+  /*background-image: url('../images/rate-smile.png');*/
 }
 
 
@@ -117,23 +117,23 @@
 }
 
 
-.like-btn:hover .reaction-joy {
+.like-btn:hover .reaction-5 {
   animation-delay: 0s
 }
 
-.like-btn:hover .reaction-happier {
+.like-btn:hover .reaction-4 {
   animation-delay: .05s
 }
 
-.like-btn:hover .reaction-happy {
+.like-btn:hover .reaction-3 {
   animation-delay: .1s
 }
 
-.like-btn:hover .reaction-sad {
+.like-btn:hover .reaction-2 {
   animation-delay: .15s
 }
 
-.like-btn:hover .reaction-saddest {
+.like-btn:hover .reaction-1 {
   animation-delay: .2s
 }
 
@@ -169,24 +169,24 @@
   opacity: 1
 }
 
-.reaction-joy::before {
+.reaction-5::before {
   content: '5'
 }
 
-.reaction-happier::before {
+.reaction-4::before {
   content: '4'
 }
 
-.reaction-happy::before {
+.reaction-3::before {
   content: '3'
 }
 
-.reaction-sad::before {
+.reaction-2::before {
   content: '2'
 }
 
 
-.reaction-saddest::before {
+.reaction-1::before {
   content: '1'
 }
 
@@ -206,28 +206,28 @@
   background-position: -17px -151px;
 }
 
-.like-btn-happier{
+.like-btn-2{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 0 -168px;
 }
 
-.like-btn-happy{
+.like-btn-3{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 0 -151px;
 }
 
-.like-btn-sad{
+.like-btn-4{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: -17px -185px;
 }
 
-.like-btn-saddest{
+.like-btn-5{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
@@ -244,10 +244,10 @@
 .like-btn-text-like {
   color:rgb(88, 144, 255);
 }
-.like-btn-text-sad,.like-btn-text-happy,.like-btn-text-saddest {
+.like-btn-text-4,.like-btn-text-3,.like-btn-text-5 {
   color:rgb(240, 186, 21)
 }
-.like-btn-text-happier{
+.like-btn-text-2{
   color:rgb(242, 82, 104)
 }
 .like-btn-text-angry{
