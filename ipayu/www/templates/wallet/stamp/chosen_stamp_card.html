@@ -1,0 +1,54 @@
+<div id="sp-nav" >
+    <menu></menu>
+</div>
+
+<div id="sp-page" style="background-image:url(images/cards-background_2.png);background-repeat:no-repeat;background-size:100%">
+    <div class="wrapper_d">
+        <div class="nav nav-dash stamp-card-nav">
+            <nav>
+                <!---->
+
+                <button class="burger-menu" back >
+                    <img src="images/chevron-left.png" class="burger-menu-img"></img>
+                </button>
+
+                <button class="burger-menu" ng-click="$spMenu.toggle()" >
+                    <img src="images/menubar.png" class="burger-menu-img"></img>
+                </button>
+
+                <center>
+                    <div class="dash-mall-header-logo">
+                        Stamp&nbsp;cards
+                    </div>
+                </center>
+
+                 <button class="dash-logout" ui-sref="dashboard">
+                    <img src="images/home-header.png" class="nav-home-img">
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="search-area search-area-stampcard">
+        <div class="search">
+            <div ng-if="!searchResultFlag">
+                <form ng-submit="onSearch(search)">
+                     <span class="search-icon"><img src="images/assets/search.png"></span>
+                    <input placeholder="Search term" ng-model="search">
+                </form>
+            </div>
+            <div class="search-result-text" ng-if="searchResultFlag">
+                SEARCH RESULTS ( {{(mallCards|filter:searchKey).length}} )
+            </div>
+        </div>
+    </div>
+
+
+    <div class="search-card-result-redeem">
+        aweaweawe
+    </div>
+
+
+    <footer-menu></footer-menu>
+
+</div>

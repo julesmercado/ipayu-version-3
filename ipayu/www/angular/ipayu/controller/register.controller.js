@@ -54,10 +54,9 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
     $scope.validate_username = function (reset) {
     	var hasError = false;
     	if(reset){resetError('username');}
-
     	$scope.user_info.username.touched = true;
 
-        if($scope.user_info.username.input_value){
+        if($scope.user_info.username.input_value || $scope.user_info.username.input_value != ''){
         	$scope.user_info.username.showError = false;
 
             if($scope.user_info.username.input_value.length < 8){
@@ -302,7 +301,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 			'birthday'			:  $scope.user_info.birthday.input_value,
 			'gender'			:  $scope.user_info.gender.input_value,
 			'password'			:  $scope.user_info.password.input_value,
-			'date_registered'	:  Math.floor(Date.now() / 1000),
+			'date_registered'	:  Date.parse(new Date()),
 			'question_id'		:  $scope.user_info.question.input_value,
 			'answer'			:  $scope.user_info.answer.input_value
 		}

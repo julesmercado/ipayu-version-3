@@ -9,6 +9,12 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.app.ipayu"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.ipayu"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.app.ipayu"
         }
     },
     "dependent_plugins": {}

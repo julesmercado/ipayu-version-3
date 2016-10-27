@@ -2,9 +2,13 @@
 mainModule.controller('loginCtrl', LoginCtrl)
 
 
-LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData'];
+LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$q', 
+						'account', 'flags', 'stamp', 'coupon', 'wallet',
+						'accountData', 'walletData', 'couponData'];
 
-function LoginCtrl($scope, $rootScope, $state, account, accountData) {
+function LoginCtrl($scope, $rootScope, $state, $q, 
+						account, flags, stamp, coupon, wallet, 
+						accountData, walletData, couponData) {
 	
 	$scope.openToolTip = true;
 
@@ -54,11 +58,9 @@ function LoginCtrl($scope, $rootScope, $state, account, accountData) {
 	$scope.validate_password = function () {
 		var hasError = false;
         $scope.loginData.password.showError = false;
-        $scope.loginData.password.touched = true;
 		if($scope.loginData.password.value == ''){
             $scope.loginData.password.showError = true;
-            $scope.loginData.password.touched = true;
-            $scope.loginData.password.message = 'This field id required';
+            $scope.loginData.password.message = 'This field is required';
             hasError = true;
 		}
 		return hasError;
@@ -70,11 +72,12 @@ function LoginCtrl($scope, $rootScope, $state, account, accountData) {
 			'username'	: $scope.validate_username(),
 			'password'	: $scope.validate_password()
 		}
-
+		$rootScope.doLoading = true;
 		for(var i in $scope.loginData){
 			if(checker.hasOwnProperty(i) && checker[i] == true){
 				$scope.disabled = false;
 				button_init();
+				$rootScope.doLoading = false;
 				return;
 			}
 		}
@@ -82,15 +85,18 @@ function LoginCtrl($scope, $rootScope, $state, account, accountData) {
 				.then(
 						function (response) {
 							button_init();
-							console.log(response[0].data);
 							if(response[0].data.success){
 								accountData.setUser(response[0].data.data[0]);
+								flags.setUpCountryDisplay(response[0].data.data[0].country_code);
+								process_all_data(response[0].data.data[0].ipayu_id)
 							}
 							else{
+								$rootScope.doLoading = false;
 								var attempts = accountData.getNumberOfAttempts();
 									attempts += 1;
 								if(attempts >= 3){
 									alert('Number of attempts = 3');
+									accountData.setNumberOfAttempts(0);
 									$state.go('forgot');
 								}
 								else{
@@ -100,7 +106,43 @@ function LoginCtrl($scope, $rootScope, $state, account, accountData) {
 							}
 						}
 					)
+	}
 
+	function process_all_data(id) {
+
+		var requests = [];
+
+		requests.push(stamp.getUserStamps(id));
+		requests.push(coupon.getUserCoupons(id));
+		requests.push(wallet.getTopThreeFrequent(id));
+		requests.push(wallet.getUserCards({'ipayu_id'	: id, 'type'	: 'mall'}));
+		requests.push(wallet.getUserCards({'ipayu_id'	: id, 'type'	: 'shop'}));
+
+		$q.all(requests)
+                .then(function (resolve) {
+                	$rootScope.doLoading = false;
+					console.log(resolve);
+					// set top three frequent for dashboard display
+                	accountData.setTopThreeFrequent(resolve[2][0].data.data);
+                	// set user cards mall or shop
+                	walletData.setUserCards(resolve[3][0].data.data.all, 'mall');
+                	walletData.setUserCards(resolve[4][0].data.data.all, 'shop');
+                	// set user frequently used cards mall or shop
+                	walletData.setFrequentUserCards(resolve[3][0].data.data.frequently, 'mall');
+                	walletData.setFrequentUserCards(resolve[4][0].data.data.frequently, 'shop');
+                	// set user last used cards mall or shop
+                	walletData.setLastUserCards(resolve[3][0].data.data.last_used, 'mall');
+                	walletData.setLastUserCards(resolve[4][0].data.data.last_used, 'shop');
+                	// set user coupons
+                	couponData.setUserCoupons(resolve[1][0].data.data.allcoupons);
+                	// set featured coupon
+                	couponData.setFeaturedCoupons(resolve[1][0].data.data.featuredcoupons);
+                	// set user used coupon
+                	couponData.setUsedCoupons(resolve[1][0].data.data.usedcoupons);
+					$state.go('dashboard')
+                }, function (reject) {
+					console.log(reject);
+                })
 	}
 
 }

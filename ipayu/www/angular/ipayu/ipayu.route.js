@@ -34,8 +34,13 @@ function Config($stateProvider, $urlRouterProvider) {
             controller: 'dashboardCtrl as vm',
             cache: false
         })
+        .state('process', {
+            url: '/process',
+            controller: 'processCtrl as vm',
+            cache: false
+        })
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/process');
 
 }
 

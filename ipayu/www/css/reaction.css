@@ -54,31 +54,31 @@
   display: block;
 }
 
-.reaction-like {
+.reaction-joy {
   left: 10px;
   transition-delay: 0s;
   background-image: url('../images/reactions/joy.png');
 }
 
-.reaction-love {
+.reaction-happier {
   left: 68px;
   transition-delay: .05s;
   background-image: url('../images/reactions/happier.png');
 }
 
-.reaction-haha {
+.reaction-happy {
   left: 126px;
   transition-delay: .1s;
   background-image: url('../images/reactions/happy.png');
 }
 
-.reaction-wow {
+.reaction-sad {
   left: 184px;
   transition-delay: .15s;
   background-image: url('../images/reactions/sad.png');
 }
 
-.reaction-sad {
+.reaction-saddest {
   left: 242px;
   transition-delay: .2s;
   background-image: url('../images/reactions/saddest.png');
@@ -117,23 +117,23 @@
 }
 
 
-.like-btn:hover .reaction-like {
+.like-btn:hover .reaction-joy {
   animation-delay: 0s
 }
 
-.like-btn:hover .reaction-love {
+.like-btn:hover .reaction-happier {
   animation-delay: .05s
 }
 
-.like-btn:hover .reaction-haha {
+.like-btn:hover .reaction-happy {
   animation-delay: .1s
 }
 
-.like-btn:hover .reaction-wow {
+.like-btn:hover .reaction-sad {
   animation-delay: .15s
 }
 
-.like-btn:hover .reaction-sad {
+.like-btn:hover .reaction-saddest {
   animation-delay: .2s
 }
 
@@ -169,24 +169,24 @@
   opacity: 1
 }
 
-.reaction-like::before {
+.reaction-joy::before {
   content: '5'
 }
 
-.reaction-love::before {
+.reaction-happier::before {
   content: '4'
 }
 
-.reaction-haha::before {
+.reaction-happy::before {
   content: '3'
 }
 
-.reaction-wow::before {
+.reaction-sad::before {
   content: '2'
 }
 
 
-.reaction-sad::before {
+.reaction-saddest::before {
   content: '1'
 }
 
@@ -206,28 +206,28 @@
   background-position: -17px -151px;
 }
 
-.like-btn-love{
+.like-btn-happier{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 0 -168px;
 }
 
-.like-btn-haha{
+.like-btn-happy{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 0 -151px;
 }
 
-.like-btn-wow{
+.like-btn-sad{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: -17px -185px;
 }
 
-.like-btn-sad{
+.like-btn-saddest{
   background-image: url('../images/reaction-small.png');
   background-repeat: no-repeat;
   background-size: auto;
@@ -244,10 +244,10 @@
 .like-btn-text-like {
   color:rgb(88, 144, 255);
 }
-.like-btn-text-wow,.like-btn-text-haha,.like-btn-text-sad {
+.like-btn-text-sad,.like-btn-text-happy,.like-btn-text-saddest {
   color:rgb(240, 186, 21)
 }
-.like-btn-text-love{
+.like-btn-text-happier{
   color:rgb(242, 82, 104)
 }
 .like-btn-text-angry{

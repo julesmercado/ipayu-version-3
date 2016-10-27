@@ -4,7 +4,7 @@
 <div class="page-main-header" style="background-color:#DF1642"></div>
 <div id="" class="animated "
 		ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
-		style="width:100%;height:100%;z-index:1;margin-top:50px;position: fixed;"
+		style="width:100%;height:100%;z-index:1;margin-top:46px;position: fixed;"
 		 ng-swipe-left="toggleMenu()">
 
     <menu style="width:80%;height:100%;background:#fff;"
@@ -60,21 +60,14 @@
             	<!-- | filter:searchCountry  -->
 		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards">
 		            <img class="cs-image" 
-		            	ng-if="card.type_1 == 'mall'" 
-		            	ng-click="viewMallCardInfo(card.card_id)" 
-		            	ng-src="{{card.card_image}}" 
-		            	style="width:88%"/>
-		            <img class="cs-image" 
-		            	ng-if="card.type_1 == 'shop'" 
-		            	ng-click="viewShopCardInfo(card, card.card_id)" 
-		            	ng-src="{{card.card_image}}" 
+		            	ng-src="{{card.image}}" 
 		            	style="width:88%"/>
 		        </div>
-		        <h6 ng-if="filtermycards.length == 0 || !filtermycards[0].card_image" class="text-gray no-cards">No transactions recorded, <a ui-sref="mymallcards">view wallet</a></h6>
+		        <h6 ng-if="!dashboardMyCards[0].image" class="text-gray no-cards">
+		        	No transactions recorded,
+		        	<a ui-sref="mymallcards" style="color:#006dcc;">view wallet</a>
+		        </h6>
 		    </div>
-
-
-
         </div>
    </div>
  
@@ -85,15 +78,15 @@
             <div class="col-xs-4 dash-user-reports-tab-item" ng-repeat="clone in dashboardMyCards"> 
             <!-- single display -->
                 <div ng-if="clone.points_type == 'reward'">
-                	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="clone.points_balance + ' pts'"></div>
+                	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>
                 </div>
                 <div ng-if="clone.points_type == 'rebate'">
                 	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div>
                 </div>
             
             <!-- double display -->
-                <div ng-if="clone.points_type == 'both'">
-                	<div class="tab-element bold two-type-card-dashboard" ng-bind="clone.points_balance + ' pts'"></div>
+                <div ng-if="clone.points_type == 'combo'">
+                	<div class="tab-element bold two-type-card-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>
 	                <div class="tab-element bold two-type-card-dashboard-rebates" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div>
                 </div>
 
@@ -123,7 +116,7 @@
 		            </div>
 		            <div class="col-xs-3 dash-user-footer-tab-item talk-of-town">
 		                <!-- href="talkoftown-home.html" -->
-		                <a ui-sref="malInfoLanding">
+		                <a ui-sref="mallInfoLanding">
 		                    <div class=""><img src="images/talk.png" class="img img-responsive dash-footer-icon"></div>
 		                    <div class="footer-element-small light nbsp ">MALL&nbsp;INFO</div>
 		                </a>

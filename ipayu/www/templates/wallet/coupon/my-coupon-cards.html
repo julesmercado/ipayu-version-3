@@ -1,0 +1,101 @@
+
+<div id="sp-page" style="overflow-x:hidden">
+
+<div class="page-main-header shop-page-main-header"></div>
+
+<div id="" class="animated fading-menu" 
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        ng-swipe-left="menuSwipeLeft()">
+
+<menu style="width:80%;height:100%;background:#fff;"
+        class="animated" 
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+<coupon-header></coupon-header>
+<div class=" filtered-coupons">
+
+            <a ng-click="gotoCouponHistory()" class="history-coupons pull-right">
+                HISTORY <span class="glyphicon glyphicon-play"></span>
+            </a>
+
+     <p>FEATURED COUPONS</p>
+
+    <div class="row lu-cards my-cards custom-slider coupon-holder" style=" padding:6px;">
+       
+        <div class='cs-image-holder coupon-img-holder' ng-repeat="f in featured" ng-click="tapped(f)">
+            <p class="coupon-time dark" 
+                        timer-countdown="{{f.datetime_end}}" 
+                        coupon="f"
+                        timer-type="featuredcoupon">hh:mm:ss</p>
+            <img ng-src="{{f.image}}" class="cs-image" style="height:72px;">
+        </div>
+       
+         <h6 ng-if="featured.length == 0" class="text-gray no-cards" style="color:#fff !important;text-align:center;">
+             No featured coupons.
+         </h6>
+    </div>
+
+
+</div>
+
+<div class="row add-cards-section add-coupon-section">
+    <div class="full-height-container">
+        <div class="container container-mall-card-results coupon-list" >
+            <div class="col-xs-6 col-md-6 orange-container" 
+                    ng-repeat="coupon in coupons"
+                    ng-class="{'dark-filter-coupons' : coupon.couponHasExpired}">
+                <div ng-if="!coupon.booklet_id" class="animated flipInX"
+                        ng-click="proceedCouponInfo(coupon.coupon_id)">
+                    <p class="coupon-time dark" 
+                        timer-countdown="{{coupon.datetime_end}}" 
+                        coupon="coupon"
+                        timer-type="mycoupon">hh:mm:ss</p>
+                    <div class="blue-layer white-layer">
+                        <div class="orange-inner-layer coupon-layer">
+                            <img ng-src="{{coupon.image}}" class="img img-responsive add-this-coupon-img" style="width:151px;height:94px;margin: 0 auto">
+                        </div>
+                    </div>
+                    <p class="add-card-text add-coupon-text">{{coupon.name}}</p>
+                </div>
+
+                 <div ng-if="coupon.booklet_id" class="animated flipInX">
+                    <p class="coupon-time dark" style="visibility:hidden">01:02:00</p>
+                    <div class="blue-layer white-layer coupon-group-item" 
+                            ng-click="proceedCouponGroup(coupon.coupons, coupon.name)">
+                        <div class="orange-inner-layer coupon-layer coupon-group-item" >
+                            <img ng-src="{{coupon.image}}" class="img img-responsive add-this-coupon-img" style="width:151px;height:94px;margin: 0 auto">
+                        </div>
+                    </div>
+                    <p class="add-card-text add-coupon-text">{{coupon.name}}</p>
+                 </div>
+
+            </div>
+
+            <h3 ng-if="coupons.length == 0">No coupons cards to display</h3>
+        </div>
+    </div>
+</div>
+
+
+<coupon-footer></coupon-footer>
+
+</div>
+
+<script type="text/ng-template" id="confirmAlert">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="dashed-dialog text-center">
+                    <h4>
+                        APPLY THIS COUPON?
+                    </h4>
+                    
+                    <button type="button" ng-click="closeThisDialog()">
+                        <img src="images/dark-ok.png" class="img-responsive">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script> 

@@ -36,14 +36,14 @@
         <div class='cs-image-holder' ng-if="fetching == true">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
-        <h6 ng-if="lFilter.length == 0 || lastUsed.length == 0 || !lastUsed" class="text-gray no-cards">No recently used cards </h6>
+        <h6 ng-if="lFilter.length == 0 || !lFilter" class="text-gray no-cards">No recently used cards </h6>
     </div>
 
     <p style="color: #1882A8 ">FREQUENTLY USED</p>
 
     <div class="row fu-cards my-cards custom-slider" style="padding:4px;">
          <div class='cs-image-holder' 
-                ng-repeat="f in frequentlyUsed | filter:searchCountry as fFilter" 
+                ng-repeat="f in frequent | filter:searchCountry as fFilter" 
                 ng-click="viewShopCardInfo(f)"
                 style="margin-right: 8px;">
             <img class="animated cs-image" ng-src="{{f.image}}" />
@@ -51,9 +51,9 @@
         <div class='cs-image-holder' ng-if="fetching == true">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
-        <h6 ng-if="fFilter.length == 0 || frequentlyUsed.length == 0 || !frequentlyUsed" class="text-gray no-cards">No frequently used cards</h6>
-    </div>
+        <h6 ng-if="fFilter.length == 0 || !fFilter" class="text-gray no-cards">No frequently used cards</h6>
 
+    </div>
 
     <p style="color: #1882A8 ">BY SHOP NAMES</p>
     
@@ -67,7 +67,10 @@
         <div class='cs-image-holder' ng-if="fetching == true">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
-        <h6 ng-if="mFilter.length == 0 || shopCards.length == 0 || !shopCards" class="text-gray no-cards">No new cards, please <a ng-click="shopsearch()">add new card</a></h6>
+        <h6 ng-if="mFilter.length == 0 || !mFilter" class="text-gray no-cards">
+            No new cards, please 
+            <a ng-click="shopsearch()" style="color:#006dcc;">add new card</a>
+        </h6>
     </div>
 
 

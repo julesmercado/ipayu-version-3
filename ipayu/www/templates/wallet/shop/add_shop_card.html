@@ -1,0 +1,260 @@
+
+<div id="sp-page" style="overflow-y:hidden">
+<div class="page-main-header shop-page-main-header"></div>
+
+<div id="sp-nav" class="animated fading-menu" 
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+         ng-swipe-left="menuSwipeLeft()"
+        >
+
+    <menu style="width:80%;height:100%;background:#fff;"
+            class="animated" 
+            ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+
+   <ul class="nav nav-tabs page-menu-top shop-nav">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+
+        <li class="col-xs-4"> 
+           <p class="bold header-title-wallet">
+                Shop&nbsp;cards
+            </p>
+        </li>
+ <li class="col-xs-4 pull-right no-padding-right">
+            <button ng-click="toggleShowCountry()" id="flags-nav">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <span>{{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+<div class="container filtered-cards">
+
+    <div class="row add-card-header shop-card-header">
+        <div class="col-xs-12">
+            <p class="text-center" id="add-card-txt">
+                ADD CARD
+            </p>
+        </div>
+    </div>
+
+    <div class="row add-card-form">
+        <div class="col-xs-12">
+            <form>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group shop-forms">
+                            <label for="fn">FULL NAME</label>
+                            <input type="text" ng-focus="setFocus('fn')" 
+                                    ng-model="userData.name.i_value" 
+                                    ng-blur="setBlur()" class="form-control" 
+                                    disabled="true" 
+                                    id="fn">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group shop-forms">
+                            <label for="em">EMAIL</label>
+                            <input type="email" ng-focus="setFocus('em')" 
+                                    ng-model="userData.email.i_value" 
+                                    ng-blur="setBlur()" class="form-control" 
+                                    ng-disabled="true"
+                                    id="em">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group shop-forms">
+                            <label for="mn">MOBILE NUMBER</label>
+                            <select class="input-group-addon input-group-sm  add-card-addon" 
+                                    id="basic-addon1"
+                                    ng-model="phonePrefix.prefix">
+                                        <option value="+60">+60</option>
+                                        <option value="+62">+62</option>
+                                        <option value="+63">+63</option>
+                                        <option value="+65">+65</option>
+                                        <option value="+66">+66</option>
+                                        <option value="+673">+673</option>
+                                        <option value="+84">+84</option>
+                                        <option value="+855">+855</option>
+                                        <option value="+856">+856</option>
+                                        <option value="+95">+95</option>
+                            </select>                            
+                            <input type="number" ng-focus="setFocus('mn')" 
+                                    ng-model="userData.phone.i_value" 
+                                    ng-blur="setBlur()" class="form-control" autofocus="true" 
+                                    ng-keyup="upPhone()"
+                                    id="mn"
+
+                                    uib-tooltip="{{ userData.phone.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.phone.hasError && userData.phone.touched " style="padding-left:54px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group shop-forms">
+                            <label for="add">ADDRESS</label>
+                            <input type="text" ng-focus="setFocus('add')" 
+                                    ng-model="userData.address.i_value" 
+                                    ng-blur="setBlur()" class="form-control" 
+                                    ng-disabled="userData.phone.hasError"
+                                    ng-keyup="upAddress()"
+                                    id="add"
+
+                                    uib-tooltip="{{ userData.address.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.address.hasError && userData.address.touched ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group shop-forms">
+                            <label for="city">CITY</label>
+                            <input type="text" ng-focus="setFocus('city')" 
+                                    ng-model="userData.city.i_value" 
+                                    ng-blur="setBlur()" class="form-control" 
+                                    ng-disabled="userData.address.hasError"
+                                    ng-keyup="upCity()"
+                                    id="city"
+
+                                    uib-tooltip="{{ userData.city.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.city.hasError && userData.city.touched ">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <div class="form-group shop-forms">
+                            <label for="pc">POSTAL CODE</label>
+                            <input type="number" ng-focus="setFocus('pc')" 
+                                    ng-model="userData.postal.i_value" 
+                                    ng-blur="setBlur()" class="form-control" 
+                                    ng-disabled="userData.city.hasError"
+                                    ng-keyup="upPostal()"
+                                    id="pc"
+
+                                    uib-tooltip="{{ userData.postal.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.postal.hasError && userData.postal.touched ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-default blue-text" 
+                                ng-click="addShopCard()"
+                                ng-disabled="disableBtn">
+                            <img src="images/shopcard-icons/blue-check.png">
+                            ADD
+                        </button>
+                        
+                        <button class="btn btn-default dark-blue" back>
+                            <img src="images/shopcard-icons/blue-ex.png">
+                            CANCEL
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <div id="add-card-section" class="wrapper-dash " ng-if="!hasFocusElement">
+
+    <div class="row" style="background-color:#000;opacity:0.5;height:160px" id="aweee" >
+        <div class="col-xs-12">
+            <p style="margin:0px 0px 0px 30px;color:#fff;font-size:14px;margin-top:7px;font-family:HelveticaLight">
+                Featured Cards
+            </p> 
+        </div>
+    </div>
+</div>
+
+ <div class="container" style="position:absolute;z-index:1;bottom:92px; left:0; right:0; margin:auto; display:block" ng-if="!hasFocusElement" id="saywhut">
+        <div class="col-xs-6" style="padding-left: 7px">
+            <div class="border-solid" id="rawr" style="border:1px solid #1882A8;padding:2px;background-color:#fff;height:77px;width:124px;display: block;
+    margin: 0 auto;">
+                <div class="border-dashed" style="padding:2px;border:1px dashed #1882A8;height:100%;">
+                    <img src="http://www.ipayu.co/ipayu_app/assets/cards/shopcards/ph/jollicard.jpg" style="height:100%;width:100%"> 
+                </div>
+            </div> 
+        </div>
+
+        <div class="col-xs-6" >
+            <div class="border-solid" id="rawr" style="border:1px solid #1882A8 ;padding:2px;background-color:#fff;height:77px;width:124px;display: block;  margin: 0 auto;">
+                <div class="border-dashed" style="padding:2px;border:1px dashed #1882A8 ;height:100%;">
+                    <img src="http://www.ipayu.co/ipayu_app/assets/cards/shopcards/ph/ace_hardware.png" style="height:100%;width:100%"> 
+                </div>
+            </div> 
+        </div>
+    </div>
+    </div>
+
+
+ <shop-footer-menu  ng-if="!hasFocusElement"></shop-footer-menu>
+
+</div>
+
+
+    <!-- MODAL TEMPLATE -->
+    <script type="text/ng-template" id="withInlineController1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="dashed-dialog text-center">
+                        <img src="images/dark-big-check.png" class="img-responsive">
+                        <h4>
+                            CARD SUCCESSFULLY ADDED
+                        </h4>
+                        
+                        <button type="button" ng-click="closeThisDialog()">
+                            <img src="images/dark-ok.png" class="img-responsive">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script> 
+
+    <script type="text/ng-template" id="withInlineController2">
+        <div class="ngdialog-addmallcard-message">
+            <div class="ngdialog-addmallcard-message-bottom">
+
+                <div class="ngdialog-addmallcard-sucess" style="clear:both">
+                    <p>Credentials not match</p>
+                    <button type="button" ng-click="closeThisDialog()">OK</button>
+                </div>
+            </div>
+        </div>
+    </script>   

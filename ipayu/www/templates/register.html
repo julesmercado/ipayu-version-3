@@ -1,3 +1,5 @@
+
+<div id="sp-page" style="overflow:hidden;background:#fff;">
 <div class="page-header" style="position:absolute; top:0; border-bottom: 0px; width:100%; height:21px"></div>
 
 <div class="registration wrapper">
@@ -55,16 +57,18 @@
                 
                 <td class="gray input-country" style="position:relative;width:25%;">
                 <label >
-                <img ng-src="{{'images/flags/'+user_info.country.flag}}" ng-if="user_info.country.input_value" class="country-flag" style="margin:-5px 10% 0 0;">
-                <input type="text"
-                        class="input" 
-                        name="country" 
-                        id="country" 
-                        ng-model="user_info.country.input_value"
-                        ng-class="{'text-gray' : user_info.country.showError && user_info.answer.touched}"
-                        readonly ng-click="showCountryList = (showCountryList)?false:true"
-                        style="display:inline;width:30%;" 
-                        ng-disabled="user_info.username.showError && !checking"
+                    <img ng-src="{{'images/flags/'+user_info.country.flag}}" 
+                            ng-if="user_info.country.input_value" class="country-flag" 
+                            style="margin:-5px 10% 0 0;">
+                    <input type="text"
+                            class="input" 
+                            name="country" 
+                            id="country" 
+                            ng-model="user_info.country.input_value"
+                            ng-class="{'text-gray' : user_info.country.showError && user_info.answer.touched}"
+                            readonly ng-click="showCountryList = (showCountryList)?false:true"
+                            style="display:inline;width:30%;" 
+                            ng-disabled="user_info.username.showError || !checking"
                         >
                 </label>
                         <ul ng-if="showCountryList" 
@@ -151,7 +155,7 @@
                             ng-model="user_info.birthday.input_value" 
                             ng-class="{'text-gray' : user_info.birthday.grayText}"
                             ng-change="validate_birthday(true)"
-                            ng-disabled="user_info.email.showError && !checking"
+                            ng-disabled="user_info.email.showError || !checking"
                             uib-tooltip="{{user_info.birthday.message}}" 
                             tooltip-trigger="'none'" 
                             tooltip-placement="bottom" 
@@ -266,4 +270,5 @@
 
     </form>
 
+</div>
 </div>

@@ -2,26 +2,44 @@
 mainModule.controller('mainCtrl', MainCtrl)
 
 
-MainCtrl.$inject = ['$rootScope', '$timeout'];
+MainCtrl.$inject = ['$rootScope', '$timeout', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet'];
 
-function MainCtrl($rootScope, $timeout) {
-	
-	$rootScope.showMenu = false;
-    $rootScope.hasBG = false;
-    $rootScope.menuDisplayed = false;
+function MainCtrl($rootScope, $timeout, flags, ngDialog, $state, accountData, sqliteSet) {
+
+
     var tOut;
+    function init() {
+        $rootScope.doLoading = false;
+        $rootScope.headerCountries = flags.getAll();
+        $rootScope.countryDisplay = flags.getCountryDisplay();
+        $rootScope.countryDisplay.display = false;
+        
+        $rootScope.showMenu = false;
+        $rootScope.hasBG = false;
+        $rootScope.menuDisplayed = false;
+
+        $rootScope.searchCountry = {
+            'country' : $rootScope.countryDisplay.country
+        };
+    }
+    init();
 
     $rootScope.menuSwipeLeft = function(){
-        if($rootScope.showMenu){
-            $timeout.cancel(tOut);
-            $rootScope.showMenu = false;
-            $rootScope.hasBG = false;
-            tOut = $timeout(function() {
-                $rootScope.menuDisplayed = false;
-            }, 900);
-        }
+        alert('Please change to toggleMenu');
     }
 
+// Action event if state changes
+    $rootScope.$on('$stateChangeSuccess', 
+        function(ev, to, toParams, from, fromParams) {
+            $state.previous = { route: from, routeParams: fromParams }
+            ngDialog.closeAll();
+            if(accountData.getUser().length == 0 && (to.name != 'login' && to.name != 'register' && to.name != 'forgot')){
+                $state.go('login');
+            }
+            init();
+    });
+
+// Hide/Show menu
     $rootScope.toggleMenu = function(){
         $timeout.cancel(tOut);
         if(!$rootScope.menuDisplayed){
@@ -36,6 +54,30 @@ function MainCtrl($rootScope, $timeout) {
                 $rootScope.menuDisplayed = false;
             }, 900);
         }
+    }
+
+// Hide/Show country
+    $rootScope.toggleShowCountry = function(){
+        $rootScope.countryDisplay.display = ($rootScope.countryDisplay.display) ? false:true;
+    }
+
+// if user selects a country flag
+    $rootScope.selectCountry = function(c){
+        $rootScope.searchCountry.country = c.name;
+        var countryDisplay = {
+            'country'   : c.name,
+            'flag'      : c.img,
+            'name'      : c.code,
+            'display'   : true
+        }
+        flags.setCountryDisplay(countryDisplay);
+        $rootScope.countryDisplay = flags.getCountryDisplay();
+    }
+
+    $rootScope.logout = function () {
+        sqliteSet.dropTable();
+        localStorage.clear();
+        $state.go('login');
     }
 
 }

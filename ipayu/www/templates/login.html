@@ -29,7 +29,7 @@
                       uib-tooltip="{{loginData.username.message}}" 
                       tooltip-trigger="'none'" 
                       tooltip-placement="bottom" 
-                      tooltip-is-open="openToolTip && loginData.username.showError && loginData.username.touched"
+                      tooltip-is-open="openToolTip && loginData.username.showError"
                       ng-keyup="validate_username()">
               </div>
               <div class="form-group" style="margin-bottom: 5px;">
@@ -37,11 +37,12 @@
                         class="form-control login-credentials" 
                         placeholder="Password" name="password" 
                         ng-model="loginData.password.value" 
-                        ng-disabled="loginData.username.value.length < 8" 
+                        ng-disabled="loginData.username.value.length < 8 || loginData.username.showError" 
                         uib-tooltip="{{loginData.password.message}}" 
                         tooltip-trigger="'none'" 
                         tooltip-placement="bottom" 
-                        tooltip-is-open="openToolTip && loginData.password.showError && loginData.password.touched">
+                        tooltip-is-open="openToolTip && loginData.password.showError"
+                        ng-keyup="validate_password()">
               </div>
 
               <div id="login-options" class="text-center">
@@ -57,7 +58,7 @@
         <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="text-center login-options-label">
                 <a ui-sref="register" style="display:inline" class="condensed">REGISTER</a><br>
-                <p ng-click="goTo(2)" style="display:inline" class="condensed">FORGOT PASSWORD</p>
+                <p ui-sref="forgot" style="display:inline" class="condensed">FORGOT PASSWORD</p>
             </div>
         </div>
     </div>

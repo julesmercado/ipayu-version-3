@@ -44,13 +44,7 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                         })
         },
 
-        checkUsername: function (username) {
-        },
-
         resetPassword: function (data) {
-        },
-
-        getCountries: function () {
         },
 
         getQuestions: function () {
