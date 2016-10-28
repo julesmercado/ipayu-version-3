@@ -34,7 +34,7 @@
 
                             <li ng-repeat="c in headerCountries" 
                                 ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
+                                <img ng-src="{{'images/flags/'+c.img}}"> 
                                     {{c.code}}
                             </li>
                         </ul>
@@ -82,7 +82,7 @@
 
              <div class="col-sm-1 mall-info-search-container">
                 <img src="images/white-magnifying.png" class="img img-responsive shop-search-icon-cat mall-info-search-icon">
-                <span class="mall-info-search-text category-label-text">SEARCH</span>
+                <span class="mall-info-search-text category-label-text" ui-sref="mallDirectories">SEARCH</span>
              </div>
           
         </div>

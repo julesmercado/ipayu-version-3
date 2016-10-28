@@ -8,17 +8,17 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
         requestAllMallCards: function(userId){
             return $http({
                         method: 'GET',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: $rootScope.api_url + 'mall_card_controller.php',
                         params: {'ipayuId':userId, 'requestType': 'getAllMallsWithSort'}
                     });
         },
         requestFeaturedMallsAndNew: function(){
             return $http({
-                        method: 'GET',
-                        headers: { 'Content-Type': 'application/json' },
-                        url: mallInfoUrl + 'card_controller.php',
-                        params: {'requestType': 'getAllFeaturedMall'}
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                        url: bringmesmiles,
+                        data: $httpParamSerializerJQLike( { 'requestType': 'GetMalls_' } )
                     });
         },
         requestMallEvents: function(id){
@@ -40,25 +40,25 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
         postReaction: function(asset_id, ipayu_id, react_id, date){
             return $http({
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        params: {'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'react_id': react_id, 'date': date}
+                        data: httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'react_id': react_id, 'date': date})
                     });
         },
         getComments: function(asset_id){
             return $http({
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        params: {'requestType': 'GetComments_', 'asset_event_id': asset_id}
+                        data: httpParamSerializerJQLike( {'requestType': 'GetComments_', 'asset_event_id': asset_id} )
                     });
         },
         postComments: function(asset_id, ipayu_id, desc, date){
             return $http({
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        params: {'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'description': desc, 'date': date}
+                        data: httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'description': desc, 'date': date})
                     });
         }
 

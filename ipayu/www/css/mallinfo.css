@@ -52,7 +52,7 @@ html{overflow-x: hidden;}
 .mother-of-all-containers-that-is-scrollable{position: absolute;    width: 100%;    height: 88%;    overflow-y: scroll; }
 .mother-of-all-containers-that-is-scrollable::-webkit-scrollbar {display:none;}
 .shop-history-text{font-family: "HelveticaLight"; font-size: 8px; text-align: justify;margin-bottom: 0}
-
+.mall-info-shop-search-icon-cat{border: 2px solid #dacccc;}
 .mall-info-mall-search-featured-malls{height:inherit;}
 
 

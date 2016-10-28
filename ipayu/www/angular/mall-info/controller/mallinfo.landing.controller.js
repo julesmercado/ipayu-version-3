@@ -8,9 +8,10 @@
                 mallCardFactory2.fetchAllMallsFeaturedAndNew().then( function( response ){
 
 
-                    var mallsFeaturedAndNew = response;
-                    $scope.indexFeatured = 0; $scope.indexNewMalls = 0; $scope.featured = eightPerView( mallsFeaturedAndNew.all.featured );
-                    $scope.newMalls = eightPerView( mallsFeaturedAndNew.all.new_malls );
+                    var mallsFeaturedAndNew = response.all.data;
+                    $scope.indexFeatured = 0; $scope.indexNewMalls = 0; $scope.featured = eightPerView( mallsFeaturedAndNew.featured_malls );
+                    $scope.newMalls = eightPerView( mallsFeaturedAndNew.new_post );
+                    console.log( response )
                 } );
 
                 $scope.swipeLeft = swipeLeft;$scope.swipeRight = swipeRight;

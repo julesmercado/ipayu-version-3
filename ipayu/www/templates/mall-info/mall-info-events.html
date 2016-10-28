@@ -26,15 +26,15 @@
             </p>
         </li>
          <li class="col-xs-4 pull-right no-padding-right" style="margin-bottom:-4px">
-            <button ng-click="toggleShowCountry()" id="flags-nav">
+           <button ng-click="toggleShowCountry()" id="flags-nav">
                 <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
-                {{countryDisplay.name}}</span> 
+                <span>{{countryDisplay.name}}</span> 
                     <ul ng-if="countryDisplay.display"
                         class="flagHeader">
 
                             <li ng-repeat="c in headerCountries" 
                                 ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
+                                <img ng-src="{{'images/flags/'+c.img}}"> 
                                     {{c.code}}
                             </li>
                         </ul>

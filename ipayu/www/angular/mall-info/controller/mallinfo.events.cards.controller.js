@@ -31,7 +31,10 @@
                 month: monthNames[dateEnd.getMonth()],
                 year: dateEnd.getFullYear()
             };
-            $scope.day = new Date( $scope.$parent.event.datetime_created )
+            var day = new Date( parseInt( $scope.$parent.event.datetime_created ) );
+            day = day.getDay( day );
+
+            $scope.day = days[ day ];
             $scope.isCollapsed = false;
             function truncateText( text ){
                 if( text.length > 190 ){

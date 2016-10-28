@@ -24,4 +24,10 @@ function Config($stateProvider) {
             controller: 'mallInfoEvents',
             cache: false
         })
+        .state('mallDirectories', {
+            url: '/mall-directories',
+            templateUrl: 'templates/mall-info/mall-info-directories.html/',
+            controller: 'mallInfoDirectories',
+            cache: false
+        })
 }
