@@ -60,9 +60,9 @@
            <!--start of card-->
         <div class="animated container fadeIn">
         <div ng-repeat="event in events" ng-controller="mallInfoEventsCards">
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
+            <p>Mall Event <span class="mall-event-posted-datetime">Posted {{datePosted}} ago </span></p>
                 <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
+                    <img ng-src="{{event.image}}" class="mall-event-post-image">
                        <p class="mall-event-post-title" ng-bind="event.name"></p>
                        <p class="mall-event-post-content collapseable" ng-bind="event.description | limitTo: limitText[$index]">
                              
@@ -106,11 +106,11 @@
                                    <div class="col-xs-4 mall-events-user-actions like-btn">
                                         <img src="images/rate-smile.png">
                                         <span>5.0</span>
-                                        <ul class="reactions-box" reactions-directive> <!-- Reaction buttons container-->
-                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-click="react()" ng-repeat="react in reactions"></li>
+                                        <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
+                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions()"></li>
                                         </ul>
                                     </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
+                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">
                                         <img src="images/comment.png">
                                          <span>4k</span>
                                          <div class="comments-box"></div>

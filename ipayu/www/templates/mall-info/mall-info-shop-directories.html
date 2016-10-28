@@ -25,7 +25,7 @@
                 Mall Info
             </p>
         </li>
-    <li class="col-xs-4 pull-right no-padding-right">
+ <li class="col-xs-4 pull-right no-padding-right">
             <button ng-click="toggleShowCountry()" id="flags-nav">
                 <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
                 <span>{{countryDisplay.name}}</span> 
@@ -34,7 +34,7 @@
 
                             <li ng-repeat="c in headerCountries" 
                                 ng-click="selectCountry(c)"> 
-                                <img ng-src="{{'images/flags/'+c.img}}"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
                                     {{c.code}}
                             </li>
                         </ul>
@@ -53,28 +53,41 @@
         </div>
     </div>
 
-<div class="container filtered-cards" id="allcardssearch" >
+<div class="container filtered-cards mall-info-directories-container" id="allcardssearch" >
    <div class="row add-cards-section"  style="margin-top:10px">
-        <div class="full-height-container"> 
-            <div  id="cardsContainer" ng-repeat="(key, prop) in malls">
-                <div ng-if="prop.length>0">
-                    <span class="letter-heading" id="{{key.toUpperCase()}}" ng-if="key!='num'"> {{key.toUpperCase()}} __________________________ </span>
-                    <span class="letter-heading" id="num" ng-if="key=='num'"> # __________________________ </span>
-                    <div class="container " id="mall-dir-letter-heading">
-                        <div class="col-xs-3 mall-dir-logo-container" ng-click="toMallEvents(mall)" ng-repeat="mall in prop track by asset_id">
-                            <img ng-src="{{mall.image}}" class="mall-dir-mall-icon">
-                            <p class="mall-dir-mall-txt">{{mall.name}}</p>
-                        </div>
-                        
-                    </div>
-                </div>
+        <center>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle mall-info-dropdown" type="button" data-toggle="dropdown">Store Categories &nbsp;&nbsp;&nbsp;
+              <span class="caret mall-info-caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Home outlets</a></li>
+                <li><a href="#">Childrens wear</a></li>
+                <li><a href="#">Entertainment</a></li>
+                <li><a href="#">Skin care</a></li>
+                <li><a href="#">Accessories</a></li>
+              </ul>
             </div>
+        </center>
+        <div class="full-height-container mall-info-full-height-container"> 
+            <div  id="cardsContainer" ng-repeat="(key, prop) in shops">
+                 <div style="position:relative;" ng-if="prop.length>0">
+                    <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="{{key.toUpperCase()}}" ng-if="key!='num'"> {{key.toUpperCase()}} </label>
+                    <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="num" ng-if="key=='num'"> # </label>
+                    <label class="mall-info-underscore" style="border-top:1px solid black;"></label>
+                    </div>
+                    <div class="container " id="mall-dir-letter-heading">
+                        <div class="col-xs-3 mall-dir-logo-container mall-info-mall-dir-log-container" ng-click="toShopInfo(mall)" ng-repeat="mall in prop track by asset_id">
+                            <img ng-src="{{mall.image}}" class="mall-dir-mall-icon mall-info-mall-dir-icon">                            
+                        </div>
+                    </div>
+            </div>
+            
         </div>
     </div>
 </div>
 
     <ul class="listed-alphabet mall-info-alphabet-list">
-        <li><span ng-click="scrollUp('num')">#</span></li>
+        
         <li><span ng-click="scrollUp('A')">A</span></li>
         <li><span ng-click="scrollUp('B')">B</span></li>
         <li><span ng-click="scrollUp('C')">C</span></li>

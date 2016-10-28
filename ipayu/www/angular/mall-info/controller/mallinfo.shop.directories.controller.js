@@ -1,5 +1,5 @@
 
-    mallInfo.controller( 'mallInfoDirectories', 
+    mallInfo.controller( 'mallInfoShopDirectories', 
         function( $scope , $rootScope , mallCardFactory2 , $stateParams , flags , mallData , $state ){ /*, offlineData*/
             var country = $rootScope.searchCountry.country;
             var mallInfo = mallData.setMallInfo();
@@ -26,9 +26,9 @@
 
             };
 
-            $scope.toMallEvents = function( mall ){
-                mallData.setMallInfo( mall );
-                $state.go( 'mallEvents', {mallId: mall.asset_id} )
+            $scope.toShopInfo = function( shop ){
+                mallData.setShopInfo( shop );
+                $state.go( 'shopInMallInfo', {shopId: shop.asset_id} )
             };
 
             $scope.$watch( 'searchCountry.country', function( newValue , oldValue ){
@@ -38,7 +38,7 @@
             } )
 
             function startDirectories(){
-                fetchAllMalls()
+                getShopsInMalls( mallInfo )
             }
             function groupByAlphabet( array ){
                 for( var i in array ){
@@ -47,131 +47,122 @@
                     switch( firstLetter ){
                         case 'a':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'b':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'c':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'd':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'e':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'f':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'g':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'h':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'i':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'j':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'k':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'l':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'm':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'n':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'o':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'p':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'q':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'r':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 's':
                         if( array[i].country == country ){
-                            
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            console.log( firstLetter );
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 't':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'u':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'v':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'w':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'x':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'y':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         case 'z':
                         if( array[i].country == country ){
-                            $scope.malls[ firstLetter ].push( array[i] );}
+                            $scope.shops[ firstLetter ].push( array[i] );}
                             break;
                         default:
-                            $scope.malls["#"].push( array['num'] );
+                            $scope.shops["#"].push( array['num'] );
                     }
                 }
             }
 
             function resetMallsArray(){
-                $scope.malls = {
+                
+                $scope.shops = {
                     a:[],b:[],c:[],d:[],e:[],f:[],g:[],h:[],i:[],j:[],k:[],l:[],m:[],n:[],o:[],p:[],q:[],r:[],s:[],t:[],u:[],v:[],w:[],x:[],y:[],z:[],"num":[]
                 };
             }
-            function fetchAllMalls(){
-
-                mallCardFactory2.fetchAllMallsFeaturedAndNew( ).then( function( response ){
-                    
-                    var malls = response.all.data.all_malls;
-                    alphabeticalOrder( malls );
-                    groupByAlphabet( malls );
-                    
-                    
-                } )
-            }
+            
             function alphabeticalOrder( array ){
                 array.sort( compare )  
                 
@@ -185,5 +176,13 @@
               return 0;
             }
 
-            
+            function getShopsInMalls( mallInfo ){
+                mallCardFactory2.getShopsInMall( mallInfo.asset_id ).then( function( response ){
+                    var shops = response.all.data;
+                    console.log( shops )
+                    alphabeticalOrder( shops );
+                    groupByAlphabet( shops );
+                    console.log( $scope.shops )
+                } )
+            }
     } )

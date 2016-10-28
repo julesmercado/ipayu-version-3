@@ -42,7 +42,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        data: httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'react_id': react_id, 'date': date})
+                        data: $httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'reaction_id': react_id, 'datetime_reacted': date})
                     });
         },
         getComments: function(asset_id){
@@ -50,7 +50,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        data: httpParamSerializerJQLike( {'requestType': 'GetComments_', 'asset_event_id': asset_id} )
+                        data: $httpParamSerializerJQLike( {'requestType': 'GetComments_', 'asset_event_id': asset_id} )
                     });
         },
         postComments: function(asset_id, ipayu_id, desc, date){
@@ -58,7 +58,15 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        data: httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'description': desc, 'date': date})
+                        data: $httpParamSerializerJQLike({'requestType': 'addComment_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'description': desc, 'datetime_commented': date})
+                    });
+        },
+        getShopsInMall: function(asset_id){
+            return $http({
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                        url: bringmesmiles,
+                        data: $httpParamSerializerJQLike({'requestType': 'GetShopsByMall_', 'asset_id': asset_id})
                     });
         }
 

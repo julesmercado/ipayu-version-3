@@ -1,6 +1,6 @@
 
     mallInfo.controller( 'mallInfoEventsCards', 
-        function( $scope ){ /*, offlineData*/
+        function( $scope , mallCardFactory2 , $uibModal , $rootScope , mallData ){ /*, offlineData*/
 
             var monthNames = [
               "JAN", "FEB", "MAR",
@@ -25,7 +25,8 @@
                 start: convert24to12( timeStart ),
                 end: convert24to12( timeEnd )
             };
-
+            $scope.datePosted = timeSince( $scope.$parent.event.datetime_created );
+            
             $scope.dateEnd = {
                 day: dateEnd.getDate(),
                 month: monthNames[dateEnd.getMonth()],
@@ -36,6 +37,8 @@
 
             $scope.day = days[ day ];
             $scope.isCollapsed = false;
+
+            
             function truncateText( text ){
                 if( text.length > 190 ){
                     var cutOff = text.substring( 0 , 190 );
@@ -53,9 +56,22 @@
                     $scope.limitText[ index ] = 190;
                     angular.element( $event.currentTarget ).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
                 }
+            };
+
+            $scope.commentClick = function( ){
+                mallData.setMallCard( $scope.$parent.event )
+                console.log( $scope.$parent.event )
+                $rootScope.$broadcast( 'open-modal', $scope.$parent.event );
+
+                $uibModal.open({
+                      ariaLabelledBy: 'modal-title',
+                      ariaDescribedBy: 'modal-body',
+                      templateUrl: '../templates/modals/comment-modal.html',
+                      controller: 'modalComments'
+                      
+                    })
             }
             if ($scope.$last){
-             console.log("im the last!");
             }
 
             convert24to12( "20:20:00" )
@@ -73,5 +89,32 @@
                        timeStr = 12;
                     }   
                     return time = timeStr + ":" + minutes + (am ? " am" : " pm");
+            }
+            function timeSince(date) {
+
+                var seconds = Math.floor((new Date() - date) / 1000);
+
+                var interval = Math.floor(seconds / 31536000);
+
+                if (interval > 1) {
+                    return interval + " years";
+                }
+                interval = Math.floor(seconds / 2592000);
+                if (interval > 1) {
+                    return interval + " months";
+                }
+                interval = Math.floor(seconds / 86400);
+                if (interval > 1) {
+                    return interval + " days";
+                }
+                interval = Math.floor(seconds / 3600);
+                if (interval > 1) {
+                    return interval + " hours";
+                }
+                interval = Math.floor(seconds / 60);
+                if (interval > 1) {
+                    return interval + " minutes";
+                }
+                return Math.floor(seconds) + " seconds";
             }
     } )

@@ -30,4 +30,16 @@ function Config($stateProvider) {
             controller: 'mallInfoDirectories',
             cache: false
         })
+        .state('shopDirectories', {
+            url: '/shop-directories/:mallId',
+            templateUrl: 'templates/mall-info/mall-info-shop-directories.html/',
+            controller: 'mallInfoShopDirectories',
+            cache: false
+        })
+        .state('shopInMallInfo', {
+            url: '/shopInMallInfo/:shopId',
+            templateUrl: 'templates/mall-info/mall-info-shop-info.html',
+            controller: 'shopInfo',
+            cache: false
+        })
 }

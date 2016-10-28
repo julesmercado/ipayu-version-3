@@ -79,6 +79,7 @@ html{overflow-x: hidden;}
     font-size: 12px;
     margin: 14px;
     border-bottom: 1px solid gray;
+    margin-left: -18px;
 }
 .comment-logo-image{
     width: 16px;
@@ -153,7 +154,7 @@ li.row.comments-container:last-child {
     .mall-event-yyyy{color:rgb(63,135,167)}
     .mall-event-mm-end,.mall-event-yyyy-end{color:#f50000;}
 .mall-event-post-time-container{position: absolute;    padding-left: 2px;}
-.mall-event-post-time-container>span{line-height: 1;    display: block;    font-size: 10px;   }
+.mall-event-post-time-container>span{line-height: 1;    display: block;    font-size: 10px; width:50px;  }
 .mall-event-post-time-container>span>span{font-family: "HelveticaBold"; color:rgb(63,135,167);}
 
 .mall-events-user-actions{margin-bottom: 10px;padding:0;}
@@ -218,7 +219,7 @@ li.row.comments-container:last-child {
 .mall-dir-mall-icon {    height: 70px;    width: 70px;}
 .mall-event-post-title {font-size: 13px}
 .mall-event-post-content {font-size: 12px}
-.mall-event-post-time-container>span{font-size: 11px}
+.mall-event-post-time-container>span{font-size: 11px; width:50px}
 .mall-event-post-image {    height: 110px;    width: 110px;}
 
 .mall-events-mall-banner {height: 180px;}
