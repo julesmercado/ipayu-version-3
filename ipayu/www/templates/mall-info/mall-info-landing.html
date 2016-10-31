@@ -34,7 +34,7 @@
 
                             <li ng-repeat="c in headerCountries" 
                                 ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
+                                <img ng-src="{{'images/flags/'+c.img}}"> 
                                     {{c.code}}
                             </li>
                         </ul>
@@ -50,13 +50,13 @@
             <p class="mall-info-feature-mall-title">FEATURED SHOPS</p>
             <div class="container mall-info-mall-search-featured-malls mall-search-featured-malls featured-shops custom-slider" ng-swipe-left="swipeLeft(featured, 'featured')" ng-swipe-right="swipeRight(featured, 'featured')">
                 <div class="row" style="margin:0;">
-                    <div ng-repeat="mall in featured[indexFeatured][0]" ng-click="toMallEvents(mall.asset_id)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
+                    <div ng-repeat="mall in featured[indexFeatured][0]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
                         <img ng-src="{{mall.image}}" class="img img-responsive featured-malls-mall mall-info-featured-malls-mall">
                         <center><p class="mall-info-featured-malls-mall-name">{{mall.name}}</p></center>
                     </div>
                 </div>
                 <div class="row" style="margin:0;">
-                    <div ng-repeat="mall in featured[indexFeatured][1]" ui-sref="mallEvents" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
+                    <div ng-repeat="mall in featured[indexFeatured][1]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
                         <img ng-src="{{mall.image}}" class="img img-responsive featured-malls-mall mall-info-featured-malls-mall">
                         <center><p class="mall-info-featured-malls-mall-name">{{mall.name}}</p></center>
                     </div>
@@ -82,7 +82,7 @@
 
              <div class="col-sm-1 mall-info-search-container">
                 <img src="images/white-magnifying.png" class="img img-responsive shop-search-icon-cat mall-info-search-icon">
-                <span class="mall-info-search-text category-label-text">SEARCH</span>
+                <span class="mall-info-search-text category-label-text" ui-sref="mallDirectories">SEARCH</span>
              </div>
           
         </div>
@@ -90,7 +90,7 @@
         <div class="container mall-info-new-shops-container" ng-swipe-left="swipeLeft(newMalls, 'malls')" ng-swipe-right="swipeRight(newMalls, 'malls')">
             
             <div class="row" style="margin:0;">
-                <div ng-repeat="mall in newMalls[indexNewMalls][0]" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons mall-info-shop-search-icons-2 shop-search-icons fadeIn" 
+                <div ng-repeat="mall in newMalls[indexNewMalls][0]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons mall-info-shop-search-icons-2 shop-search-icons fadeIn" 
                         ng-click="selectCategory(bottomCat.category_name)">
 
                     <img ng-src="{{mall.image}}" class="img img-responsive shop-search-icon-cat coupon-cat mall-info-shop-search-icon-cat"
@@ -99,8 +99,8 @@
                 </div>
             </div>
             <div class="row" style="margin:0;">
-                <div ng-repeat="mall in newMalls[indexNewMalls][1]" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons mall-info-shop-search-icons-2 shop-search-icons fadeIn" 
-                        ng-click="selectCategory(bottomCat.category_name)">
+                <div ng-repeat="mall in newMalls[indexNewMalls][1]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons mall-info-shop-search-icons-2 shop-search-icons fadeIn" 
+                        >
 
                     <img ng-src="{{mall.image}}" class="img img-responsive shop-search-icon-cat coupon-cat mall-info-shop-search-icon-cat"
                         ng-class="{'coupon-search-icon-cat-active':bottomCat.selected}">

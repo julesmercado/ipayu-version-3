@@ -24,4 +24,22 @@ function Config($stateProvider) {
             controller: 'mallInfoEvents',
             cache: false
         })
+        .state('mallDirectories', {
+            url: '/mall-directories',
+            templateUrl: 'templates/mall-info/mall-info-directories.html/',
+            controller: 'mallInfoDirectories',
+            cache: false
+        })
+        .state('shopDirectories', {
+            url: '/shop-directories/:mallId',
+            templateUrl: 'templates/mall-info/mall-info-shop-directories.html/',
+            controller: 'mallInfoShopDirectories',
+            cache: false
+        })
+        .state('shopInMallInfo', {
+            url: '/shopInMallInfo/:shopId',
+            templateUrl: 'templates/mall-info/mall-info-shop-info.html',
+            controller: 'shopInfo',
+            cache: false
+        })
 }

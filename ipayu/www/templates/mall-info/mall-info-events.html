@@ -26,15 +26,15 @@
             </p>
         </li>
          <li class="col-xs-4 pull-right no-padding-right" style="margin-bottom:-4px">
-            <button ng-click="toggleShowCountry()" id="flags-nav">
+           <button ng-click="toggleShowCountry()" id="flags-nav">
                 <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
-                {{countryDisplay.name}}</span> 
+                <span>{{countryDisplay.name}}</span> 
                     <ul ng-if="countryDisplay.display"
                         class="flagHeader">
 
                             <li ng-repeat="c in headerCountries" 
                                 ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
+                                <img ng-src="{{'images/flags/'+c.img}}"> 
                                     {{c.code}}
                             </li>
                         </ul>
@@ -46,58 +46,59 @@
     </ul>
 
 
-    <div class="mall-events-feed-container" scroll>
-    <div class="row mall-event-header" style="position:relative;" id="fade-on-scroll">
-         <div class="mall-events-backdrop-header">
-             <img src="images/ipayu_logo.png" class="animated mall-events-mall-header-logo bounceIn">
-             <h3>Ion Mall</h3>
-             <p><a ui-sref="shopDirectories">STORE DIRECTORIES <span class="glyphicon glyphicon-play"></span></a></p>
+    <div class="mall-events-feed-container" scroll mall-events>
+        <div class="row mall-event-header" style="position:relative;" id="fade-on-scroll">
+             <div class="mall-events-backdrop-header">
+                 <img src="images/ipayu_logo.png" class="animated mall-events-mall-header-logo bounceIn">
+                 <h3>Ion Mall</h3>
+                 <p><a ui-sref="shopDirectories">STORE DIRECTORIES <span class="glyphicon glyphicon-play"></span></a></p>
+            </div>
+            <img src="images/HD-Wallpapers1.jpeg" class="mall-events-mall-banner">
         </div>
-        <img src="images/HD-Wallpapers1.jpeg" class="mall-events-mall-banner">
-    </div>
 
 
            <!--start of card-->
-        <div class="animated container fadeIn" collapse-directive>
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
+        <div class="animated container fadeIn">
+        <div ng-repeat="event in events" ng-controller="mallInfoEventsCards">
+            <p>Mall Event <span class="mall-event-posted-datetime">Posted {{datePosted}} ago </span></p>
                 <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
-                       <p class="mall-event-post-title">Bruno Mars Concert</p>
-                       <p class="mall-event-post-content collapseable" ng-bind="text">
+                    <img ng-src="{{event.image}}" class="mall-event-post-image">
+                       <p class="mall-event-post-title" ng-bind="event.name"></p>
+                       <p class="mall-event-post-content collapseable" ng-bind="event.description | limitTo: limitText[$index]">
                              
                        </p>
            
                         <div class="row">
                             <div class="container">
                                <div class="col-xs-5" style="padding-left:5px">
-                                    <span class="mall-event-dd">16</span>
+                                    <span class="mall-event-dd" ng-bind="dateStart.day">{{dateStart.day}}</span>
                                         <span class="mall-event-post-date-container">
-                                            <span class="mall-event-MM">AUG</span>
-                                            <span class="mall-event-yyyy">2016</span>
+                                            <span class="mall-event-MM" ng-bind="dateStart.month"></span>
+                                            <span class="mall-event-yyyy" ng-bind="dateStart.year"></span>
                                         </span>
 
                                         <span class="mall-event-post-time-container" style="position: absolute;">
                                            <span><span>START</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
+                                           {{time.start}}<br/>
+                                            {{day}}</span>
                                         </span>
                                </div>
                                <div class="col-xs-5">
-                                    <span class="mall-event-dd">16</span>
+                                    <span class="mall-event-dd" ng-bind="dateEnd.day"></span>
                                     <span class="mall-event-post-date-container">
-                                        <span class="mall-event-MM mall-event-mm-end">AUG</span>
-                                        <span class="mall-event-yyyy mall-event-yyyy-end">2016</span>
+                                        <span class="mall-event-MM mall-event-mm-end" ng-bind="dateEnd.month"></span>
+                                        <span class="mall-event-yyyy mall-event-yyyy-end" ng-bind="dateEnd.year"></span>
                                     </span>
 
                                     <span class="mall-event-post-time-container" style="position: absolute;">
                                             <span><span>END</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
+                                           {{time.end}}<br/>
+                                            {{day}}</span>
                                     </span>
 
                                </div>
-                                <div class="col-xs-2" ng-click="collapseThis()">
-                                    <span class="glyphicon glyphicon-chevron-down collapser"></span>
+                                <div class="col-xs-2 collapseable-chevron">
+                                    <span class="glyphicon glyphicon-chevron-down collapser" ng-click="collapse( $event, $index )"></span>
                                 </div>
                                <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
 
@@ -105,15 +106,11 @@
                                    <div class="col-xs-4 mall-events-user-actions like-btn">
                                         <img src="images/rate-smile.png">
                                         <span>5.0</span>
-                                        <ul class="reactions-box"> <!-- Reaction buttons container-->
-                                            <li class="reaction reaction-joy" data-reaction="1" ng-click="react()"></li>
-                                            <li class="reaction reaction-happier" data-reaction="2" ng-click="react()"></li>
-                                            <li class="reaction reaction-happy" data-reaction="3" ng-click="react()"></li>
-                                            <li class="reaction reaction-saddest" data-reaction="4" ng-click="react()"></li>
-                                            <li class="reaction reaction-sad" data-reaction="5" ng-click="react()"></li>
+                                        <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
+                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions()"></li>
                                         </ul>
                                     </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
+                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">
                                         <img src="images/comment.png">
                                          <span>4k</span>
                                          <div class="comments-box"></div>
@@ -132,330 +129,9 @@
                         </div>
                 </div>
                 <hr style="margin-bottom: 0" />
-        </div>  
-        <!--end of card -->
-
-          <!--start of card-->
-        <div class="animated container fadeIn" collapse-directive>
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
-                <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
-                       <p class="mall-event-post-title">Bruno Mars Concert</p>
-                       <p class="mall-event-post-content collapseable" ng-bind="text">
-                             
-                       </p>
-           
-                        <div class="row">
-                            <div class="container">
-                               <div class="col-xs-5" style="padding-left:5px">
-                                    <span class="mall-event-dd">16</span>
-                                        <span class="mall-event-post-date-container">
-                                            <span class="mall-event-MM">AUG</span>
-                                            <span class="mall-event-yyyy">2016</span>
-                                        </span>
-
-                                        <span class="mall-event-post-time-container" style="position: absolute;">
-                                           <span><span>START</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                        </span>
-                               </div>
-                               <div class="col-xs-5">
-                                    <span class="mall-event-dd">16</span>
-                                    <span class="mall-event-post-date-container">
-                                        <span class="mall-event-MM mall-event-mm-end">AUG</span>
-                                        <span class="mall-event-yyyy mall-event-yyyy-end">2016</span>
-                                    </span>
-
-                                    <span class="mall-event-post-time-container" style="position: absolute;">
-                                            <span><span>END</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                    </span>
-
-                               </div>
-                                <div class="col-xs-2" ng-click="collapseThis()">
-                                    <span class="glyphicon glyphicon-chevron-down collapser"></span>
-                                </div>
-                               <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
-
-                                <div class="col-xs-8">
-                                   <div class="col-xs-4 mall-events-user-actions like-btn">
-                                        <img src="images/rate-smile.png">
-                                        <span>5.0</span>
-                                        <ul class="reactions-box"> <!-- Reactions plus buttons container-->
-                                            <li class="reaction reaction-joy" data-reaction="1"></li>
-                                            <li class="reaction reaction-happier" data-reaction="2"></li>
-                                            <li class="reaction reaction-happy" data-reaction="3"></li>
-                                            <li class="reaction reaction-saddest" data-reaction="4"></li>
-                                            <li class="reaction reaction-sad" data-reaction="5"></li>
-                                        </ul>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
-                                        <img src="images/comment.png">
-                                         <span>4k</span>
-                                         <div class="comments-box"></div>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions">
-                                        <img src="images/share.png">
-                                         <span>Share</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-4">
-                                    <p><a ui-sref="mallEventFull" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <hr style="margin-bottom: 0" />
-        </div>  
-        <!--end of card -->
-
-       
-
-         <!--start of card-->
-        <div class="animated container fadeIn" collapse-directive>
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
-                <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
-                       <p class="mall-event-post-title">Bruno Mars Concert</p>
-                       <p class="mall-event-post-content collapseable" ng-bind="text">
-                             
-                       </p>
-           
-                        <div class="row">
-                            <div class="container">
-                               <div class="col-xs-5" style="padding-left:5px">
-                                    <span class="mall-event-dd">16</span>
-                                        <span class="mall-event-post-date-container">
-                                            <span class="mall-event-MM">AUG</span>
-                                            <span class="mall-event-yyyy">2016</span>
-                                        </span>
-
-                                        <span class="mall-event-post-time-container" style="position: absolute;">
-                                           <span><span>START</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                        </span>
-                               </div>
-                               <div class="col-xs-5">
-                                    <span class="mall-event-dd">16</span>
-                                    <span class="mall-event-post-date-container">
-                                        <span class="mall-event-MM mall-event-mm-end">AUG</span>
-                                        <span class="mall-event-yyyy mall-event-yyyy-end">2016</span>
-                                    </span>
-
-                                    <span class="mall-event-post-time-container" style="position: absolute;">
-                                            <span><span>END</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                    </span>
-
-                               </div>
-                                <div class="col-xs-2" ng-click="collapseThis()">
-                                    <span class="glyphicon glyphicon-chevron-down collapser"></span>
-                                </div>
-                               <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
-
-                                <div class="col-xs-8">
-                                   <div class="col-xs-4 mall-events-user-actions like-btn">
-                                        <img src="images/rate-smile.png">
-                                        <span>5.0</span>
-                                        <ul class="reactions-box"> <!-- Reaction buttons container-->
-                                            <li class="reaction reaction-joy" data-reaction="1" ng-click="react()"></li>
-                                            <li class="reaction reaction-happier" data-reaction="2" ng-click="react()"></li>
-                                            <li class="reaction reaction-happy" data-reaction="3" ng-click="react()"></li>
-                                            <li class="reaction reaction-sad" data-reaction="4" ng-click="react()"></li>
-                                            <li class="reaction reaction-saddest" data-reaction="5" ng-click="react()"></li>
-                                        </ul>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
-                                        <img src="images/comment.png">
-                                         <span>4k</span>
-                                         <div class="comments-box"></div>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions">
-                                        <img src="images/share.png">
-                                         <span>Share</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-4">
-                                    <p><a ui-sref="mallEventFull" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <hr style="margin-bottom: 0" />
-        </div>  
-        <!--end of card -->
-
-       
-
-         <!--start of card-->
-        <div class="animated container fadeIn" collapse-directive>
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
-                <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
-                       <p class="mall-event-post-title">Bruno Mars Concert</p>
-                       <p class="mall-event-post-content collapseable" ng-bind="text">
-                             
-                       </p>
-           
-                        <div class="row">
-                            <div class="container">
-                               <div class="col-xs-5" style="padding-left:5px">
-                                    <span class="mall-event-dd">16</span>
-                                        <span class="mall-event-post-date-container">
-                                            <span class="mall-event-MM">AUG</span>
-                                            <span class="mall-event-yyyy">2016</span>
-                                        </span>
-
-                                        <span class="mall-event-post-time-container" style="position: absolute;">
-                                           <span><span>START</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                        </span>
-                               </div>
-                               <div class="col-xs-5">
-                                    <span class="mall-event-dd">16</span>
-                                    <span class="mall-event-post-date-container">
-                                        <span class="mall-event-MM mall-event-mm-end">AUG</span>
-                                        <span class="mall-event-yyyy mall-event-yyyy-end">2016</span>
-                                    </span>
-
-                                    <span class="mall-event-post-time-container" style="position: absolute;">
-                                            <span><span>END</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                    </span>
-
-                               </div>
-                                <div class="col-xs-2" ng-click="collapseThis()">
-                                    <span class="glyphicon glyphicon-chevron-down collapser"></span>
-                                </div>
-                               <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
-
-                                <div class="col-xs-8">
-                                   <div class="col-xs-4 mall-events-user-actions like-btn">
-                                        <img src="images/rate-smile.png">
-                                        <span>5.0</span>
-                                        <ul class="reactions-box"> <!-- Reaction buttons container-->
-                                            <li class="reaction reaction-happier" data-reaction="1"></li>
-                                            <li class="reaction reaction-happy" data-reaction="2"></li>
-                                            <li class="reaction reaction-saddest" data-reaction="3"></li>
-                                            <li class="reaction reaction-sad" data-reaction="4"></li>
-                                            <li class="reaction reaction-sad" data-reaction="5"></li>
-                                        </ul>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
-                                        <img src="images/comment.png">
-                                         <span>4k</span>
-                                         <div class="comments-box"></div>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions">
-                                        <img src="images/share.png">
-                                         <span>Share</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-4">
-                                    <p><a ui-sref="mallEventFull" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <hr style="margin-bottom: 0" />
-        </div>  
-        <!--end of card -->
-
-       
-
-         <!--start of card-->
-        <div class="animated container fadeIn" collapse-directive>
-            <p>Mall Event <span class="mall-event-posted-datetime">Posted 2 days ago </span></p>
-                <div class="mall-events-announcemnt-con">
-                    <img src="images/ipayu_logo.png" class="mall-event-post-image">
-                       <p class="mall-event-post-title">Bruno Mars Concert</p>
-                       <p class="mall-event-post-content collapseable" ng-bind="text">
-                             
-                       </p>
-           
-                        <div class="row">
-                            <div class="container">
-                               <div class="col-xs-5" style="padding-left:5px">
-                                    <span class="mall-event-dd">16</span>
-                                        <span class="mall-event-post-date-container">
-                                            <span class="mall-event-MM">AUG</span>
-                                            <span class="mall-event-yyyy">2016</span>
-                                        </span>
-
-                                        <span class="mall-event-post-time-container" style="position: absolute;">
-                                           <span><span>START</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                        </span>
-                               </div>
-                               <div class="col-xs-5">
-                                    <span class="mall-event-dd">16</span>
-                                    <span class="mall-event-post-date-container">
-                                        <span class="mall-event-MM mall-event-mm-end">AUG</span>
-                                        <span class="mall-event-yyyy mall-event-yyyy-end">2016</span>
-                                    </span>
-
-                                    <span class="mall-event-post-time-container" style="position: absolute;">
-                                            <span><span>END</span><br/>
-                                           6:30 PM<br/>
-                                            Wednesday</span>
-                                    </span>
-
-                               </div>
-                                <div class="col-xs-2" ng-click="collapseThis()">
-                                    <span class="glyphicon glyphicon-chevron-down collapser"></span>
-                                </div>
-                               <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
-
-                                <div class="col-xs-8">
-                                   <div class="col-xs-4 mall-events-user-actions like-btn">
-                                        <img src="images/rate-smile.png">
-                                        <span>5.0</span>
-                                        <ul class="reactions-box"> <!-- Reaction buttons container-->
-                                            <li class="reaction reaction-happier" data-reaction="1"></li>
-                                            <li class="reaction reaction-happy" data-reaction="2"></li>
-                                            <li class="reaction reaction-saddest" data-reaction="3"></li>
-                                            <li class="reaction reaction-sad" data-reaction="4"></li>
-                                            <li class="reaction reaction-sad" data-reaction="5"></li>
-                                        </ul>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick()">
-                                        <img src="images/comment.png">
-                                         <span>4k</span>
-                                         <div class="comments-box"></div>
-                                    </div>
-                                      <div class="col-xs-4 mall-events-user-actions">
-                                        <img src="images/share.png">
-                                         <span>Share</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-4">
-                                    <p><a ui-sref="mallEventFull" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <hr style="margin-bottom: 0" />
-        </div>  
-        <!--end of card -->
-
-       
-
-       
+        </div>
+        </div>
+        <!--end of card -->     
     
 
     </div>
