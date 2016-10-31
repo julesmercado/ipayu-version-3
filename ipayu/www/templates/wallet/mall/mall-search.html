@@ -54,7 +54,7 @@
         <div class="container mall-search-featured-malls custom-slider">
             <div class="cs-image-holder-featured col-xs-3 col-md-3" 
                     ng-repeat="featCard in featured_malls as featMalls"
-                    ng-click="proceedAssetsMallCard(featCard.asset_id)"
+                    route-all-asset-cards="{{featCard}}"
                     style="float:none;">
                     <img ng-src="{{featCard.image}}" class="animated img img-responsive featured-malls-mall fadeIn">
                     <p class=" animated featured-malls-mall-name fadeIn" ng-bind="featCard.name"></p>
@@ -72,7 +72,7 @@
     <div class="container mall-search-unfeatured-malls" ng-repeat="mall in unfeatured_malls">
         <div class="col-xs-3 col-md-3 unfeatured-malls unfeatured-shops" ng-repeat="m in mall" >
             <div ng-if="m != false && m != true"
-                 ng-click="proceedAssetsMallCard(m.asset_id)">
+                route-all-asset-cards="{{m}}">
                 <img ng-src="{{m.image}}" class="animated img img-responsive featured-malls-mall fadeIn">
                 <p class="animated featured-malls-mall-name unfeatured-mall-name fadeIn" ng-bind="m.name"></p>
             </div>
@@ -80,7 +80,7 @@
                 <img src="images/shopcard-icons/more.png" class="animated img img-responsive shop-search-icon-cat fadeIn" 
                     style="height: 40px;background-color: transparent; width: 40px; margin-top: 14px;">
             </div>
-            <div ng-if="m == true" class="shop-search-icons animated fadeIn" ng-click="gotoMallAllCards()">
+            <div ng-if="m == true" class="shop-search-icons animated fadeIn" route-all-card-search="mall">
                 <img src="images/Search_icon_transparent.png" class="img img-responsive shop-search-icon-cat" style="background-color:transparent">
                 <span class="category-label-text" style="color:black;font-size: 8px;margin-top: -14px;">SEARCH</span>
             </div>
@@ -89,7 +89,7 @@
     </div>
 </div>
 
-    <footer-menu></footer-menu>
+    <mall-footer></mall-footer>
 
 </div>
 

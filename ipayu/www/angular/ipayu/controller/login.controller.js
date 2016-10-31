@@ -67,6 +67,9 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 	}
 
 	$scope.login = function () {
+		if($rootScope.showOffline){
+			return;
+		}
 		button_logging_in();
 		var checker = {
 			'username'	: $scope.validate_username(),

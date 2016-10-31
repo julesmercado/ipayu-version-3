@@ -16,6 +16,7 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
 
     var initial_screen_size = window.innerHeight;
     $rootScope.doLoading = false;
+    $rootScope.showOffline = false;
 
     document.addEventListener('online', onOnline, false);
     document.addEventListener('offline', onOffline, false);

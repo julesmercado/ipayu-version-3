@@ -2,10 +2,13 @@
 
 walletModule.directive('mallHeader', MallHeaderDrctv)
 walletModule.directive('mallFooter', MallFooterDrctv)
+
 walletModule.directive('shopHeader', ShopHeaderDrctv)
 walletModule.directive('shopFooter', ShopFooterDrctv)
+
 walletModule.directive('couponHeader', CouponHeaderDrctv)
 walletModule.directive('couponFooter', CouponFooterDrctv)
+
 walletModule.directive('stampHeader', StampHeaderDrctv)
 walletModule.directive('stampFooter', StampFooterDrctv)
 

@@ -45,8 +45,12 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                     })
         },
 
-        getAllCardAvailable: function (data) {
-            data.requestType = 'GetCardsAllAssets_';
+        getAllCardAvailable: function (ipayu_id, card_type) {
+            var data = {
+                'ipayu_id'      : ipayu_id,
+                'card_type'     : card_type,
+                'requestType'   : 'GetCardsAllAssets_'
+            };
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',
@@ -55,8 +59,12 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                         })
         },
 
-        getAllCardAvailableInEstablishment: function (data) {
-            data.requestType = 'GetCardsAssets_';
+        getAllCardAvailableInEstablishment: function (ipayu_id, asset_id) {
+            var data = {
+                'ipayu_id'      : ipayu_id,
+                'asset_id'      : asset_id,
+                'requestType'   : 'GetCardsAssets_'
+            };
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',

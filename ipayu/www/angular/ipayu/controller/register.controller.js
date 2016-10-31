@@ -305,15 +305,15 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 			'question_id'		:  $scope.user_info.question.input_value,
 			'answer'			:  $scope.user_info.answer.input_value
 		}
-    	console.log(registrationData);
         account.register(registrationData)
         		.then(function (response) {
         			$scope.processRegister = false;
-        			alert(response[0].data.message)
-        			if(response[0].data.success){
-        				$state.go('login');
-        			}
-					console.log(response);
+                    if(resolve && resolve.length){
+                        alert(response[0].data.message)
+                        if(response[0].data.success){
+                            $state.go('login');
+                        }
+                    }
         		})
 
 	}

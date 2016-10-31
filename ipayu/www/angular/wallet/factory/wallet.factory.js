@@ -6,12 +6,12 @@ WalletFactory.$inject = ['$q', 'walletRequest'];
 function WalletFactory($q, walletRequest) {
 
     function thenFunc(response) {
-        // console.log(response);
+        console.log(response);
         return response;
     }
 
     function errFunc(err){
-        console.log(errFunc);
+        console.log(err);
     }
 
     return {
@@ -25,6 +25,30 @@ function WalletFactory($q, walletRequest) {
         getUserCards: function(data){
             var req_cards = walletRequest.getUserCards(data);
             return $q.all([req_cards])
+                .then(thenFunc, errFunc)
+        },
+
+        getAllHasCardAssets: function(type){
+            var req_assets = walletRequest.getAllHasCardAssets(type);
+            return $q.all([req_assets])
+                .then(thenFunc, errFunc)
+        },
+
+        getAssetCategories: function(){
+            var req_categories = walletRequest.getAssetCategories();
+            return $q.all([req_categories])
+                .then(thenFunc, errFunc)
+        },
+
+        getAllCardAvailable: function(ipayu_id, card_type){
+            var req_available_cards = walletRequest.getAllCardAvailable(ipayu_id, card_type);
+            return $q.all([req_available_cards])
+                .then(thenFunc, errFunc)
+        },
+
+        getAllCardAvailableInEstablishment: function(ipayu_id, asset_id){
+            var req_available_cards = walletRequest.getAllCardAvailableInEstablishment(ipayu_id, asset_id);
+            return $q.all([req_available_cards])
                 .then(thenFunc, errFunc)
         }
 

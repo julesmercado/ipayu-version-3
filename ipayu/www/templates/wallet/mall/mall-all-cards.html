@@ -86,7 +86,7 @@
             </div>
         </div>
         
-        <!-- <h4 ng-if="noResults" style="text-align:center;">No results found.</h4> -->
+        <h4 ng-if="searchResult == 0" style="text-align:center;">No results found.</h4>
 
     </div>
 </div>
@@ -122,7 +122,8 @@
         <li><span ng-click="scrollUp('Z')">Z</span></li>
     </ul>
 
-  <footer-menu ng-if="!hasFocusElement"></footer-menu>
+    <mall-footer></mall-footer>
+    
 </div>
 
 <script type="text/ng-template" id="confirmAlert">

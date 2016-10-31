@@ -5,6 +5,8 @@ walletModule.factory('walletData', WalletData)
 
 function WalletData() {
 
+    var all_available_cards = [];
+
     return {
 
 // Setters
@@ -15,7 +17,7 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayushopcards', JSON.stringify(data));
             }
-            return;
+            return data;
         },
 
         setFrequentUserCards: function (data, type) {
@@ -25,7 +27,7 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayufrequentshopcards', JSON.stringify(data));
             }
-            return;
+            return data;
         },
 
         setLastUserCards: function (data, type) {
@@ -35,7 +37,12 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayulastshopcards', JSON.stringify(data));
             }
-            return;
+            return data;
+        },
+
+        setAllAvailableCards: function(data){
+            all_available_cards = data;
+            return data;
         },
 
 
@@ -62,6 +69,10 @@ function WalletData() {
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
+        },
+
+        getAllAvailableCards: function(){
+            return all_available_cards;
         },
 
         getLastUserCards: function (type) {
@@ -95,6 +106,7 @@ function WalletData() {
                 return 0;
             });
             localStorage.setItem(t, JSON.stringify(retrievedObject));
+            return data;
         },
 
         getTimeRemaining: function(endtime){
