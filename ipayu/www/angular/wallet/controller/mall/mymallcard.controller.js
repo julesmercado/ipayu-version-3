@@ -5,6 +5,7 @@ walletModule.controller('myMallCardCtrl', MyMallCardCtrl)
 walletModule.controller('myMallCardViewCtrl', MyMallCardViewCtrl)
 walletModule.controller('mallCardSearch', MallCardSearch)
 walletModule.controller('allMallCardSearch', AllMallCardSearch)
+walletModule.controller('mallCardInfoCtrl', MallCardInfoCtrl)
 
 
 MyMallCardCtrl.$inject = ['$scope', 'walletData'];
@@ -166,3 +167,21 @@ function AllMallCardSearch($scope, $rootScope, walletData, customService) {
     	)
 
 }
+
+
+MallCardInfoCtrl.$inject = ['$scope', '$rootScope', 'walletData'];
+
+function MallCardInfoCtrl($scope, $rootScope, walletData) {
+
+	$scope.card = walletData.getCardInfo();
+	console.log($scope.card)
+
+}
+
+
+
+
+
+
+
+

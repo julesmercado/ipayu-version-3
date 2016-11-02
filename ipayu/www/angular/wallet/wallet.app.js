@@ -31,12 +31,22 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/mall/mall-all-cards.html',
             controller: 'allMallCardSearch'
         })
+        .state('mallcardinfo', {
+            url: '/mallcardinfo',
+            templateUrl: 'templates/wallet/mall/mall-card-info.html',
+            controller: 'mallCardInfoCtrl'
+        })
 
     // shop cards
         .state('myshopcards', {
             url: '/myshopcards',
             templateUrl: 'templates/wallet/shop/my-shop-cards.html',
             controller: 'myShopCardCtrl'
+        })
+        .state('myshopcardsviewall', {
+            url: '/myshopcardsviewall',
+            templateUrl: 'templates/wallet/shop/my-shop-cards-va.html',
+            controller: 'myShopCardViewCtrl'
         })
 
     // coupon cards

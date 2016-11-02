@@ -58,7 +58,8 @@
         <div class="card-row">
             <div class="row mn-cards custom-slider" style="overflow-x: hidden;">
             	<!-- | filter:searchCountry  -->
-		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards">
+		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards"
+		         		route-card-info="{{card}}" no-data="true">
 		            <img class="cs-image" 
 		            	ng-src="{{card.image}}" 
 		            	style="width:88%"/>
@@ -102,7 +103,7 @@
   			<div class="row dash-footer-tabs">
 		        <div class="dash-reports-row">
 		            <div class="col-xs-3 dash-user-footer-tab-item">
-		                <span route-mymallcard>
+		                <span route-mycard="mall">
 		                    <div class=""><img src="images/wallet.png" class="img img-responsive dash-footer-icon"></div>
 		                    <div class="footer-element-small light">WALLET</div>
 		                </span>

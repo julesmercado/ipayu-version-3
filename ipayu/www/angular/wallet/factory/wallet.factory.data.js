@@ -5,7 +5,7 @@ walletModule.factory('walletData', WalletData)
 
 function WalletData() {
 
-    var all_available_cards = [];
+    var all_available_cards = [], card_info = [];
 
     return {
 
@@ -42,6 +42,11 @@ function WalletData() {
 
         setAllAvailableCards: function(data){
             all_available_cards = data;
+            return data;
+        },
+
+        setCardInfo: function(data){
+            card_info = data;
             return data;
         },
 
@@ -85,6 +90,10 @@ function WalletData() {
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
+        },
+
+        getCardInfo: function(){
+            return card_info;
         },
 
 

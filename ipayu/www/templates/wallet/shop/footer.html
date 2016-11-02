@@ -3,13 +3,13 @@
 
 <div class="page-footer" style=" background-color: #1882A8 !important; ">
 
-    <img src="images/footer/Shopcards-AddCardButton.png" ng-click="shopsearch()">
+    <img src="images/footer/Shopcards-AddCardButton.png" route-card-search="shop">
  
 
     <div class="container">
         <div class="row">
             <div class="col-xs-3">
-                <span route-mymallcard>
+                <span route-mycard="mall">
                     <span class="notification-shits" ng-if="mallNotification.length != 0">{{mallNotification.length}}</span>
                     <img src="images/footer/Shopcards-Mallcard.png" class="pf-first-child tab-img">
                      <p class="footer-lang-text-shop">MALL&nbsp;CARDS</p>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-xs-3">
-                <span route-myshopcard>
+                <span route-mycard="shop">
                     <span class="notification-shits" ng-if="shopNotification.length != 0">{{shopNotification.length}}</span>
                     <img src="images/footer/Shopcards-Active.png"  class="pf-second-child tab-img">
                      <p class="footer-lang-text">SHOP&nbsp;CARDS</p>

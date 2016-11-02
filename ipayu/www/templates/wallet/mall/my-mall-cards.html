@@ -31,7 +31,7 @@
     <div class="row lu-cards my-cards custom-slider" style=" padding:4px;"">
          <div class='cs-image-holder' style="margin-right:8px" 
                 ng-repeat="l in lastUsed | filter:searchCountry as luFilter" 
-                ng-click="viewMallCardInfo(l.mall_card_id)">
+                route-card-info="{{l}}">
             <img class=" animated cs-image" ng-src="{{l.image}}"/>
         </div>
        
@@ -49,7 +49,7 @@
     <div class="row fu-cards my-cards custom-slider" style=" padding:4px;">
          <div class='cs-image-holder' style="margin-right:8px" 
               ng-repeat="f in frequent | filter:searchCountry as fuFilter" 
-              ng-click="viewMallCardInfo(f.mall_card_id)">
+              route-card-info="{{f}}">
             <img class="animated cs-image" ng-src="{{f.image}}"  />
         </div>
 
@@ -69,7 +69,7 @@
     <div class="row mn-cards my-cards custom-slider" style=" padding:4px;">
          <div class='cs-image-holder' style="margin-right:8px" 
               ng-repeat="m in mallCards | filter:searchCountry as mnFilter" 
-              ng-click="viewMallCardInfo(m.mall_card_id)">
+              route-card-info="{{m}}">
             <img class="animated cs-image" ng-src="{{m.image}}"   />
         </div>
       
@@ -79,7 +79,7 @@
 
             <h6 ng-if="mnFilter.length == 0 || !mnFilter" class="text-gray no-cards">
               No new cards, please 
-              <a go-to-malls style="color:#006dcc;">add new card</a>
+              <a route-mallcard-search style="color:#006dcc;">add new card</a>
             </h6>
     </div>
 </div>

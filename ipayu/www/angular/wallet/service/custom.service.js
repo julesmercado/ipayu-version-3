@@ -15,7 +15,7 @@ function CustomService() {
                     button_text || 'Ok'
                 );
             }
-            else{ alert(message)}
+            else{ alert(message) }
         },
 
 	    filterByCountry: function(cards, country, chunk, chunkSize){

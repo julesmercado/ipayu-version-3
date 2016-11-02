@@ -155,7 +155,7 @@
                             ng-model="user_info.birthday.input_value" 
                             ng-class="{'text-gray' : user_info.birthday.grayText}"
                             ng-change="validate_birthday(true)"
-                            ng-disabled="user_info.email.showError || !checking"
+                            ng-disabled="user_info.email.showError || checking"
                             uib-tooltip="{{user_info.birthday.message}}" 
                             tooltip-trigger="'none'" 
                             tooltip-placement="bottom" 
