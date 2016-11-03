@@ -56,12 +56,12 @@
 <div class="container filtered-cards" id="allcardssearch" >
    <div class="row add-cards-section"  style="margin-top:10px">
         <div class="full-height-container"> 
-            <div  id="cardsContainer" ng-repeat="(key, prop) in malls">
-                <div ng-if="prop.length>0">
-                    <span class="letter-heading" id="{{key.toUpperCase()}}" ng-if="key!='num'"> {{key.toUpperCase()}} __________________________ </span>
+            <div  id="cardsContainer" ng-repeat="malls in all_malls">
+                <div ng-if="malls[1].length>0">
+                    <span class="letter-heading" id="{{malls[0].toUpperCase()}}" ng-if="malls[0]!='num'"> {{malls[0].toUpperCase()}} __________________________ </span>
                     <span class="letter-heading" id="num" ng-if="key=='num'"> # __________________________ </span>
                     <div class="container " id="mall-dir-letter-heading">
-                        <div class="col-xs-3 mall-dir-logo-container" ng-click="toMallEvents(mall)" ng-repeat="mall in prop">
+                        <div class="col-xs-3 mall-dir-logo-container" ng-click="toMallEvents(mall)" ng-repeat="mall in malls[1]">
                             <img ng-src="{{mall.image}}" class="mall-dir-mall-icon">
                             <p class="mall-dir-mall-txt">{{mall.name}}</p>
                         </div>
