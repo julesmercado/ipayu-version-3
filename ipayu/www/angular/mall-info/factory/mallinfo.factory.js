@@ -93,6 +93,17 @@ mallInfo.factory('mallCardFactory2', function ($rootScope, mallRequest, $q) {
 	                            };
 	                        }
 	                    )
+		},
+		getCategoriesInShops: function( ){
+			var req = mallRequest.getCategoriesInShops(  );
+			return $q.all([req])
+	                    .then(
+	                        function(results){
+	                            return {
+	                                all: results[0].data
+	                            };
+	                        }
+	                    )
 		}
 
 	}
