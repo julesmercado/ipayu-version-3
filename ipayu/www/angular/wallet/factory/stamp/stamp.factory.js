@@ -11,7 +11,7 @@ function StampFactory($q, stampRequest) {
     }
 
     function errFunc(err){
-        console.log(errFunc);
+        console.log(err);
     }
 
     return {

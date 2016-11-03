@@ -8,8 +8,8 @@ function MainCtrl($rootScope, $timeout, flags, ngDialog, $state, accountData, sq
 
 
     var tOut;
+    $rootScope.doLoading = false;
     function init() {
-        $rootScope.doLoading = false;
         $rootScope.headerCountries = flags.getAll();
         $rootScope.countryDisplay = flags.getCountryDisplay();
         $rootScope.countryDisplay.display = false;

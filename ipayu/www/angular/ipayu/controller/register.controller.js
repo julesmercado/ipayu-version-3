@@ -244,8 +244,8 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 	$scope.checkEmail = function (email) {
 		$scope.checking = true;
 		account.checkIfExist(email, 'email')
-			.then(function (response) {
-				if(!response[0].data.message){
+			.then(function (resolve) {
+				if(resolve[0].data.message == false){
 	                $scope.user_info.email.showError = true;
 	                $scope.user_info.email.message = 'Email not available';
 				}
@@ -256,8 +256,8 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 	$scope.checkUsername = function (username) {
 		$scope.checking = true;
 		account.checkIfExist(username, 'username')
-			.then(function (response) {
-				if(!response[0].data.message){
+			.then(function (resolve) {
+				if(resolve[0].data.message == false){
 	                $scope.user_info.username.showError = true;
 	                $scope.user_info.username.message = 'Username not available';
 				}
@@ -305,15 +305,15 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 			'question_id'		:  $scope.user_info.question.input_value,
 			'answer'			:  $scope.user_info.answer.input_value
 		}
-    	console.log(registrationData);
         account.register(registrationData)
-        		.then(function (response) {
+        		.then(function (resolve) {
         			$scope.processRegister = false;
-        			alert(response[0].data.message)
-        			if(response[0].data.success){
-        				$state.go('login');
-        			}
-					console.log(response);
+                    if(resolve && resolve.length){
+                        alert(resolve[0].data.message)
+                        if(resolve[0].data.success){
+                            $state.go('login');
+                        }
+                    }
         		})
 
 	}

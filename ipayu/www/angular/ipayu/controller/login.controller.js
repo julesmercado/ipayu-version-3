@@ -15,7 +15,7 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 	function button_init() {
 		$scope.button = {
 			'disabled'	: false,
-			'text'		: 'Login'
+			'text'		: 'LOG-IN'
 		}
 	}
 
@@ -67,6 +67,9 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 	}
 
 	$scope.login = function () {
+		if($rootScope.showOffline){
+			return;
+		}
 		button_logging_in();
 		var checker = {
 			'username'	: $scope.validate_username(),

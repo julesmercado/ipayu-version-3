@@ -1,42 +1,58 @@
 
 
-walletModule.directive('routeMymallcard', Mymallcard)
-walletModule.directive('routeMyshopcard', Myshopcard)
-walletModule.directive('routeMycouponcard', Mycouponcard)
-walletModule.directive('routeMystampcard', Mystampcard)
+// User Cards
+walletModule.directive('routeMycard', Mycard)					//	state = mymallcards OR myshopcards
+walletModule.directive('routeMycouponcard', Mycouponcard)		//	state = mycouponcards
+walletModule.directive('routeMystampcard', Mystampcard)			//	state = mystampcards
 
-Mymallcard.$inject = ['$state'];
-function Mymallcard($state) {
+// Search Card
+walletModule.directive('routeCardSearch', CardSearch)			//	state = mallsearch OR shopsearch
+walletModule.directive('routeAllCardSearch', AllCardSearch)		//	state = allmallsearch OR allshopsearch
+walletModule.directive('routeAllAssetCards', AllAssetCards)		//	state = allmallsearch OR allshopsearch
+
+// Card Info
+walletModule.directive('routeCardInfo', CardInfo)				// state = mallcardinfo OR shopcardinfo
+
+
+
+// User Cards
+Mycard.$inject = ['$state', '$rootScope', 'preloaderMethod', 'accountData', 'wallet', 'walletData'];
+function Mycard($state, $rootScope, preloaderMethod, accountData, wallet, walletData) {
 	return {
 	    restrict: 'A',
-	    scope: '',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
-				$state.go('mymallcards');
+
+	    		var	type = attrs.routeMycard,
+	    			route = (type == 'mall')? 'mymallcards':'myshopcards',
+	    			ipayu_info = accountData.getUser();
+
+	    		if($rootScope.showOffline){
+					$state.go(route);
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: type})
+	    				.then(function (resolve) {
+	    					if(resolve){
+		    					var u = walletData.setUserCards(resolve[0].data.data.all, type);
+		    					var f = walletData.setFrequentUserCards(resolve[0].data.data.frequently, type);
+		    					var l = walletData.setLastUserCards(resolve[0].data.data.last_used, type);
+								$state.go(route);
+								preloaderMethod.preloadImage([u, f, l]);
+	    					}
+	    					else{$rootScope.doLoading = false;}
+	    				})
+	    		}
 	    	})
 	    }
 	  }
 }
 
-Myshopcard.$inject = ['$state'];
-function Myshopcard($state) {
+Mycouponcard.$inject = ['$state', '$rootScope'];
+function Mycouponcard($state, $rootScope) {
 	return {
 	    restrict: 'A',
-	    scope: '',
-	    link: function(scope, element, attrs, ctrl) {
-	    	element.bind('click', function () {
-				$state.go('myshopcards');
-	    	})
-	    }
-	  }
-}
-
-
-Mycouponcard.$inject = ['$state'];
-function Mycouponcard($state) {
-	return {
-	    restrict: 'A',
-	    scope: '',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 				$state.go('mycouponcards');
@@ -45,12 +61,10 @@ function Mycouponcard($state) {
 	  }
 }
 
-
-Mystampcard.$inject = ['$state'];
-function Mystampcard($state) {
+Mystampcard.$inject = ['$state', '$rootScope'];
+function Mystampcard($state, $rootScope) {
 	return {
 	    restrict: 'A',
-	    scope: '',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 				$state.go('mystampcards');
@@ -58,4 +72,123 @@ function Mystampcard($state) {
 	    }
 	  }
 }
+
+
+// Search Card
+CardSearch.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'walletData', 'customService'];
+function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, customService) {
+	return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs, ctrl) {
+	    	element.bind('click', function () {
+
+	    		var	type = attrs.routeCardSearch,
+	    			route = (type == 'mall')? 'mallsearch':'shopsearch';
+
+	    		if($rootScope.showOffline){
+	    			customService.alert('No internet connection', 'Oops!', 'Ok');
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			wallet.getAllHasCardAssets(type)
+	    					.then(function (resolve) {
+								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured)
+								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured)
+								var c = walletData.setCategories(resolve[1].data.data)
+	    						$state.go(route);
+								preloaderMethod.preloadImage([f, n, c]);
+	    					})
+	    		}
+	    	})
+	    }
+	  }
+}
+
+
+
+AllCardSearch.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'walletData', 'customService', 'accountData'];
+function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, customService, accountData) {
+	return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs, ctrl) {
+	    	element.bind('click', function () {
+	    		var user = accountData.getUser(),
+	    			type = attrs.routeAllCardSearch,
+	    			route = (type == 'mall')?'allmallsearch':'allshopsearch';
+
+	    		if($rootScope.showOffline){
+	    			customService.alert('No internet connection', 'Oops!', 'Ok');
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			wallet.getAllCardAvailable(user.ipayu_id, type)
+	    					.then(function (resolve) {
+	    						if(resolve){
+	    							var a = walletData.setAllAvailableCards(resolve[0].data.data);
+	    							$state.go(route);
+									preloaderMethod.preloadImage([a]);
+	    						}
+	    						else{$rootScope.doLoading = false;}
+								console.log(resolve);
+	    					})
+	    		}
+	    	})
+	    }
+	  }
+}
+
+
+AllAssetCards.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'customService', 'accountData', 'walletData'];
+function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customService, accountData, walletData) {
+	return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs, ctrl) {
+	    	element.bind('click', function () {
+	    		var user = accountData.getUser(),
+	    			card = JSON.parse(attrs.routeAllAssetCards),
+	    			route = (card.type == 'mall')? 'allmallsearch':'allshopsearch';
+
+	    		if($rootScope.showOffline){
+	    			customService.alert('No internet connection', 'Oops!', 'Ok');
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id)
+	    					.then(function (resolve) {
+	    						if(resolve){
+	    							var a = walletData.setAllAvailableCards(resolve[0].data.data);
+	    							$state.go(route);
+									preloaderMethod.preloadImage([a]);
+	    						}
+	    						else{$rootScope.doLoading = false;}
+								console.log(resolve);
+	    					})
+	    		}
+	    	})
+	    }
+	  }
+}
+
+// Card Info
+CardInfo.$inject = ['$state', '$rootScope', 'walletData'];
+function CardInfo($state, $rootScope, walletData) {
+	return {
+	    restrict: 'A',
+	    link: function(scope, element, attrs, ctrl) {
+	    	element.bind('click', function () {
+
+	    		var data = JSON.parse(attrs.routeCardInfo),
+	    			route = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
+	    			cards 	= walletData.getUserCards(attrs.cardType),
+    				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
+    				card 	= cards[key];
+
+				walletData.setCardInfo(card)
+				$state.go(route);
+
+	    	})
+	    }
+	  }
+}
+
 

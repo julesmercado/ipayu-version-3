@@ -19,13 +19,13 @@ function AccountFactory($q, accountRequest) {
         register: function (data) {
             var req_register = accountRequest.register(data);
             return $q.all([req_register])
-                .then(thenFunc)
+                .then(thenFunc, errFunc)
         },
 
         getQuestions: function () {
             var req_questions = accountRequest.getQuestions();
             return $q.all([req_questions])
-                .then(thenFunc)
+                .then(thenFunc, errFunc)
         },
 
         checkIfExist: function (data, type) {

@@ -5,6 +5,12 @@ walletModule.factory('walletData', WalletData)
 
 function WalletData() {
 
+    var all_available_cards = [], 
+        card_info = [],
+        featured_assets = [],
+        non_featured_assets = [],
+        categories = [];
+
     return {
 
 // Setters
@@ -15,7 +21,7 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayushopcards', JSON.stringify(data));
             }
-            return;
+            return data;
         },
 
         setFrequentUserCards: function (data, type) {
@@ -25,7 +31,7 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayufrequentshopcards', JSON.stringify(data));
             }
-            return;
+            return data;
         },
 
         setLastUserCards: function (data, type) {
@@ -35,7 +41,29 @@ function WalletData() {
             else if(type == 'shop'){
                 localStorage.setItem('ipayulastshopcards', JSON.stringify(data));
             }
-            return;
+            return data;
+        },
+
+        setAllAvailableCards: function(data){
+            all_available_cards = data;
+            return data;
+        },
+
+        setCardInfo: function(data){
+            card_info = data;
+            return data;
+        },
+        setAssetsFeatured: function (data) {
+            featured_assets = data;
+            return data;
+        },
+        setAssetsNonFeatured: function (data) {
+            non_featured_assets = data;
+            return data;
+        },
+        setCategories: function(data){
+            categories = data;
+            return data;
         },
 
 
@@ -64,6 +92,10 @@ function WalletData() {
             return JSON.parse(retrievedObject) || [];
         },
 
+        getAllAvailableCards: function(){
+            return all_available_cards;
+        },
+
         getLastUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
@@ -74,6 +106,19 @@ function WalletData() {
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
+        },
+
+        getCardInfo: function(){
+            return card_info;
+        },
+        getAssetsFeatured: function () {
+            return featured_assets;
+        },
+        getAssetsNonFeatured: function () {
+            return non_featured_assets;
+        },
+        getCategories: function(){
+            return categories;
         },
 
 
@@ -95,6 +140,7 @@ function WalletData() {
                 return 0;
             });
             localStorage.setItem(t, JSON.stringify(retrievedObject));
+            return data;
         },
 
         getTimeRemaining: function(endtime){

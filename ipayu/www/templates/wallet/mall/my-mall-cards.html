@@ -14,8 +14,8 @@
         ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
 
 </div>
-  
-  <mall-header></mall-header>
+
+<mall-header></mall-header>
 
 <div class="container-fluid filtered-cards">
     <div class="row filter-option">
@@ -31,11 +31,11 @@
     <div class="row lu-cards my-cards custom-slider" style=" padding:4px;"">
          <div class='cs-image-holder' style="margin-right:8px" 
                 ng-repeat="l in lastUsed | filter:searchCountry as luFilter" 
-                ng-click="viewMallCardInfo(l.mall_card_id)">
+                route-card-info="{{l}}" card-type="mall">
             <img class=" animated cs-image" ng-src="{{l.image}}"/>
         </div>
        
-        <div ng-if="fetch " class='cs-image-holder' >
+        <div class='cs-image-holder' ng-if="luFilter.length == 0 || !luFilter">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
        
@@ -49,15 +49,12 @@
     <div class="row fu-cards my-cards custom-slider" style=" padding:4px;">
          <div class='cs-image-holder' style="margin-right:8px" 
               ng-repeat="f in frequent | filter:searchCountry as fuFilter" 
-              ng-click="viewMallCardInfo(f.mall_card_id)">
+              route-card-info="{{f}}" card-type="mall">
             <img class="animated cs-image" ng-src="{{f.image}}"  />
         </div>
 
-       
-        <div ng-if="fetch">
-            <div class='cs-image-holder'>
-                <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
-            </div>
+        <div class='cs-image-holder' ng-if="fuFilter.length == 0 || !fuFilter">
+            <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
 
          <h6 ng-if="fuFilter.length == 0 || !fuFilter" class="text-gray no-cards">
@@ -69,17 +66,17 @@
     <div class="row mn-cards my-cards custom-slider" style=" padding:4px;">
          <div class='cs-image-holder' style="margin-right:8px" 
               ng-repeat="m in mallCards | filter:searchCountry as mnFilter" 
-              ng-click="viewMallCardInfo(m.mall_card_id)">
+              route-card-info="{{m}}" card-type="mall">
             <img class="animated cs-image" ng-src="{{m.image}}"   />
         </div>
       
-        <div  ng-if="fetch" class='cs-image-holder'>
+        <div class='cs-image-holder' ng-if="mnFilter.length == 0 || !mnFilter">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
 
             <h6 ng-if="mnFilter.length == 0 || !mnFilter" class="text-gray no-cards">
               No new cards, please 
-              <a go-to-malls style="color:#006dcc;">add new card</a>
+              <a route-card-search="mall" style="color:#006dcc;">add new card</a>
             </h6>
     </div>
 </div>
