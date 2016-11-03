@@ -1,20 +1,26 @@
 
 
-walletModule.directive('redeemModal', RedeemModal)
-walletModule.directive('addCardConfirmModal', AddCardConfirmModal)
+walletModule.directive('redeemModal', Redeem)
+walletModule.directive('addCardConfirmModal', AddCardConfirm)
+walletModule.directive('cardSuccessfullyAddedModal', CardSuccessfullyAdded)
 
-// Mall
-function RedeemModal() {
+function Redeem() {
 	return {
 		restrict: 'E',
 		templateUrl: 'templates/wallet/modal/redeem.html'
 	}
 }
 
-// Mall
-function AddCardConfirmModal() {
+function AddCardConfirm() {
 	return {
 		restrict: 'E',
 		templateUrl: 'templates/wallet/modal/confirm-add-card.html'
+	}
+}
+
+function CardSuccessfullyAdded() {
+	return {
+		restrict: 'E',
+		templateUrl: 'templates/wallet/modal/card-successfully-added.html'
 	}
 }

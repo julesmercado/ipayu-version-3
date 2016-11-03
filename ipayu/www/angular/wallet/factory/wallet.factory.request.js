@@ -74,7 +74,6 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
         },
 
         addCard: function (data) {
-            data.requestType = 'AddUserCard_';
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',

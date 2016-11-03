@@ -9,7 +9,8 @@ function WalletData() {
         card_info = [],
         featured_assets = [],
         non_featured_assets = [],
-        categories = [];
+        categories = [],
+        card_to_add = false;
 
     return {
 
@@ -23,7 +24,6 @@ function WalletData() {
             }
             return data;
         },
-
         setFrequentUserCards: function (data, type) {
             if(type == 'mall'){
                 localStorage.setItem('ipayufrequentmallcards', JSON.stringify(data));
@@ -33,7 +33,6 @@ function WalletData() {
             }
             return data;
         },
-
         setLastUserCards: function (data, type) {
             if(type == 'mall'){
                 localStorage.setItem('ipayulastmallcards', JSON.stringify(data));
@@ -43,7 +42,6 @@ function WalletData() {
             }
             return data;
         },
-
         setAllAvailableCards: function(data){
             all_available_cards = data;
             return data;
@@ -65,6 +63,10 @@ function WalletData() {
             categories = data;
             return data;
         },
+        setCardToAdd: function(data){
+            card_to_add = data;
+            return data;
+        },
 
 
 // Getters
@@ -79,7 +81,6 @@ function WalletData() {
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
         },
-
         getFrequentUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
@@ -91,11 +92,9 @@ function WalletData() {
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
         },
-
         getAllAvailableCards: function(){
             return all_available_cards;
         },
-
         getLastUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
@@ -107,7 +106,6 @@ function WalletData() {
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
         },
-
         getCardInfo: function(){
             return card_info;
         },
@@ -119,6 +117,9 @@ function WalletData() {
         },
         getCategories: function(){
             return categories;
+        },
+        getCardToAdd: function(){
+            return card_to_add;
         },
 
 

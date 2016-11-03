@@ -26,7 +26,8 @@
                     <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} __________________________ </span>
                     <div class="container container-mall-card-results" ng-repeat="cardPerRow in alphabet[1] track by $index" >
                         <div ng-repeat="card in cardPerRow track by $index">
-                            <div class="animated col-xs-6 col-md-6 orange-container flipInX" ng-if="card.available == 'true'" ng-click="tapped(card)">
+                            <div class="animated col-xs-6 col-md-6 orange-container flipInX" 
+                            ng-if="!card.already_added" ng-click="tapped(card)">
                                 <div class="blue-layer" >
                                     <div class="orange-inner-layer">
                                         <p class="add-card-text"> + TAP TO ADD </p>
@@ -35,7 +36,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="animated col-xs-6 col-md-6 orange-container flipInX" ng-if="card.available != 'true'" style="opacity:.5;" ng-click="alreadyAdded()">
+                            <div class="animated col-xs-6 col-md-6 orange-container flipInX" 
+                            ng-if="card.already_added" style="opacity:.5;" ng-click="alreadyAdded()">
                                 <div class="blue-layer" >
                                     <div class="orange-inner-layer">
                                         <p class="add-card-text"> ALREADY ADDED </p>
@@ -81,22 +83,6 @@
         <li><span ng-click="scrollUp('Y')">Y</span></li>
         <li><span ng-click="scrollUp('Z')">Z</span></li>
     </ul>
+    <add-card-confirm-modal></add-card-confirm-modal>
     <shop-footer></shop-footer>
 </div>
-<script type="text/ng-template" id="confirmAlert">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="dashed-dialog text-center">
-                <h4>
-                APPLY THIS CARD?
-                </h4>
-                
-                <button type="button" ng-click="closeThisDialog()">
-                <img src="images/dark-ok.png" class="img-responsive">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-</script>

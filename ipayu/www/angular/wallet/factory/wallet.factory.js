@@ -51,6 +51,12 @@ function WalletFactory($q, walletRequest) {
             var req_available_cards = walletRequest.getAllCardAvailableInEstablishment(ipayu_id, asset_id);
             return $q.all([req_available_cards])
                 .then(thenFunc, errFunc)
+        },
+
+        addCard: function(data){
+            var req_add_card = walletRequest.addCard(data);
+            return $q.all([req_add_card])
+                .then(thenFunc, errFunc)
         }
 
     }
