@@ -3,7 +3,7 @@
         function( $scope, $state, $stateParams , mallCardFactory2 , $rootScope , mallData ){ /*, offlineData*/
 
 
-            mallCardFactory2.fetchMallEvents( $stateParams.mallId ).then( function( response ){
+            mallCardFactory2.fetchMallEvents( parseInt( $stateParams.mallId ) ).then( function( response ){
                 $scope.limitText = [];
                 $scope.events = response.all.data;
                 for( var i in $scope.events ){
