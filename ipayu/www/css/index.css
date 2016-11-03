@@ -243,6 +243,9 @@ form#registration button.register {
         padding-left:10%;
     }
 }
+
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+.red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
 .navbar{margin-bottom: 5px !important}
 .boldCond{font-family: "HelveticaBoldCond"}
 .asd{    background-color: rgba(255,255,255,0.5);    padding-bottom: 100px;}
@@ -803,7 +806,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
         .mci-rb-txt{margin-top: -4px !important; margin-bottom: -8px !important}
         .mci-ced{font-size: 9px; font-family: "HelveticaLight"; text-align: center; margin: 5px auto; display: block; color: white}
 
-    .mci-cd{position: absolute;     left: 36px;    top: 110px;line-height: 14px;width: 70px}
+    .mci-cd{position: absolute;     left: 18px;    top: 110px;line-height: 14px;width: 70px}
         #mci-cn-text{font-size: 9px; font-family: "HelveticaBold";color: gray}
 
     .rh-img{    width: 83px;    height: 83px;    border: 1px solid gray;}

@@ -15,7 +15,7 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 	function button_init() {
 		$scope.button = {
 			'disabled'	: false,
-			'text'		: 'Login'
+			'text'		: 'LOG-IN'
 		}
 	}
 

@@ -23,7 +23,7 @@
             <form name="loginForm" ng-submit="login()">
               <div class="form-group" style="margin-bottom: 5px;">
                 <input type="text" id="username" 
-                      class="form-control login-credentials" 
+                      class="form-control login-credentials red-tooltip" 
                       placeholder="Ipayu username" name="phone" 
                       ng-model="loginData.username.value" 
                       uib-tooltip="{{loginData.username.message}}" 
@@ -34,7 +34,7 @@
               </div>
               <div class="form-group" style="margin-bottom: 5px;">
                 <input type="password" id="password" 
-                        class="form-control login-credentials" 
+                        class="form-control login-credentials red-tooltip" 
                         placeholder="Password" name="password" 
                         ng-model="loginData.password.value" 
                         ng-disabled="loginData.username.value.length < 8 || loginData.username.showError" 
@@ -57,7 +57,7 @@
     <div class="row login-options" style="line-height:25px;">
         <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="text-center login-options-label">
-                <a ui-sref="register" style="display:inline" class="condensed">REGISTER</a><br>
+                <p ui-sref="register" style="display:inline" class="condensed">REGISTER</p><br>
                 <p ui-sref="forgot" style="display:inline" class="condensed">FORGOT PASSWORD</p>
             </div>
         </div>
