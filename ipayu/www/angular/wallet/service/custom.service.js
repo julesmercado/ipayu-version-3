@@ -104,7 +104,6 @@ function CustomService() {
 			var tempFirstLetter = '';
 
 			for (var i = 0; i < data.length; i++) {
-
 				var checkFirstLetter = data[i].name.substr(0, 1).toUpperCase().match('[A-Z]');
 				if(!checkFirstLetter){
 					tempFirstLetter = 'num';

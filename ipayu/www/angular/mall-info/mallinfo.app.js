@@ -1,7 +1,7 @@
 
 
 
-var modules = [];
+var modules = [ 'app.wallet' ];
 var mallInfo = angular.module('app.mallinfo', modules)
 	
 mallInfo.config(Config)
