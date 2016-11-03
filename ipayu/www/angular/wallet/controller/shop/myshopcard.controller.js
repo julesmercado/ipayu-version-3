@@ -4,6 +4,7 @@ walletModule.controller('myShopCardCtrl', MyShopCardCtrl)
 walletModule.controller('myShopCardViewCtrl', MyShopCardViewCtrl)
 walletModule.controller('shopCardSearchCtrl', ShopCardSearch)
 walletModule.controller('allShopCardSearchCtrl', AllShopCardSearch)
+walletModule.controller('shopCardInfoCtrl', ShopCardInfoCtrl)
 
 
 MyShopCardCtrl.$inject = ['$scope', 'walletData'];
@@ -86,8 +87,7 @@ function ShopCardSearch($scope, $rootScope, walletData, customService, accountDa
 				$scope.categories[i].selected = false;
 			}
 		}
-		console.log($scope.categories)
-		// selectedCategory = value;
+		selectedCategory = value;
 		currentPage = 0;
 		$scope.featured_shops = get_featured();
 		$scope.unfeatured_shops = get_unfeatured();
@@ -190,3 +190,47 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService) {
     		}
     	)
 }
+
+
+ShopCardInfoCtrl.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog'];
+function ShopCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog) {
+
+	$scope.card = walletData.getCardInfo();
+	$scope.transactions = $scope.card.transactions;
+	$scope.redeems = $scope.card.redeemables;
+    $scope.redeem = true;
+    $scope.transaction = false;
+
+    console.log($scope.card)
+    console.log($scope.transactions)
+    console.log($scope.redeems)
+
+    var dateNow = new Date(),
+    	d = dateNow.getDate(),
+    	m = dateNow.getMonth() + 1,
+    	y = dateNow.getFullYear();
+
+    $scope.dateFilter = {
+        'mindate' : m-1+'/'+d+'/'+y,
+        'maxdate' : m+'/'+d+'/'+y,
+    }
+
+    $scope.redeemItem = function (item) {
+        ngDialog.open({
+            template: 'redeemmodal',
+            className: 'ngdialog-theme-plain profile-cutom-bg',
+            controller: 'redeemModalCtrl',
+            resolve: {
+		        redeemable: function () {
+		            return item;
+		        }
+		    },
+            overlay: true
+        });
+    }
+
+    $scope.seeInfo = function (tran) {
+    	console.log(tran)
+    }
+}
+

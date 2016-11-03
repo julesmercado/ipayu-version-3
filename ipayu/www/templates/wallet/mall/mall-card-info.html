@@ -13,24 +13,26 @@
     <mall-header></mall-header>
     <div class="container-fluid mc-info-fh" ng-if="redeem">
         <div class="row">
-            <div class="container no-padding col-xs-12">
-                <div class="col-xs-3 no-padding">
-                    <div class="mci-cd">
-                        <img ng-src="{{card.image}}" style="width:100%; display: block; border-radius:4px">
-                        <span class="card-info-changeables" id="mci-cn-text">CARD&nbsp;NAME</span>
-                        <span class="card-info-changeables">{{card.name}}</span>
+            <div class="row">
+                <div class="container no-padding col-xs-12">
+                    <div class="col-xs-3 no-padding">
+                        <div class="mci-cd">
+                            <img ng-src="{{card.image}}" style="width:100%; display: block; border-radius:4px">
+                            <span class="card-info-changeables" id="mci-cn-text">CARD&nbsp;NAME</span>
+                            <span class="card-info-changeables">{{card.name}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-9 no-padding">
-                    <div class="animated mci-orange-circle tada">
-                        <div class="mci-white-dashed-border">
-                            <span class="mci-tp-txt">TOTAL POINTS</span>
-                            <hr class="hr-mci-tp" />
-                            <span class="mci-rp">&nbsp;{{card.rewards_balance}}&nbsp;</span>
-                            <span class="mci-tp-txt mci-rb-txt" >REBATES</span>
-                            <span class="mci-rp">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
-                            <hr class="hr-mci-tp" />
-                            <span class="mci-ced">  Expiring on {{card.date_end}} </span>
+                    <div class="col-xs-9 no-padding">
+                        <div class="animated mci-orange-circle tada">
+                            <div class="mci-white-dashed-border">
+                                <span class="mci-tp-txt">TOTAL POINTS</span>
+                                <hr class="hr-mci-tp" />
+                                <span class="mci-rp">&nbsp;{{card.rewards_balance}}&nbsp;</span>
+                                <span class="mci-tp-txt mci-rb-txt" >REBATES</span>
+                                <span class="mci-rp">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
+                                <hr class="hr-mci-tp" />
+                                <span class="mci-ced">  Expiring on {{card.datetime_end}} </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,26 +136,12 @@
     <div class="row" ng-if="transaction" id="transactions-table" >
         <div class="col-xs-12 col-md-12 col-lg-12">
             <table class="transaction-table">
-                <tr style="font-size:9px;background-color:#808080;color:#fff;    font-family: 'HelveticaLight';">
-                    <td style="text-align:center;padding:5px">
-                        Sales/Redemption <br>
-                        Date
-                    </td>
-                    <td style="text-align:center;">
-                        Shop <br>
-                        Name
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Sales <br>
-                        Amount
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Rebates/ <br>
-                        Redemption
-                    </td>
-                    <td style="text-align:center;">
-                        Balance
-                    </td>
+                <tr style="font-size:9px;background-color:#808080;color:#fff;font-family: 'HelveticaLight';">
+                    <td style="text-align:center;padding:5px">Sales/Redemption <br>Date</td>
+                    <td style="text-align:center;">Shop <br>Name</td>
+                    <td style="text-align:center; padding-right:4px">Sales <br>Amount</td>
+                    <td style="text-align:center; padding-right:4px">Rebates/ <br>Redemption</td>
+                    <td style="text-align:center;">Balance</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr class="animated transaction-data-row flipInX"
@@ -194,6 +182,7 @@
             <td>No recent transactions</td>
         </tr>
     </table>
+
     <redeem-modal></redeem-modal>
     <mall-footer></mall-footer>
 </div>
