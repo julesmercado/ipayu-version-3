@@ -1,5 +1,5 @@
 <div id="sp-page" style="overflow:hidden;">
-    <div class="page-main-header shop-page-main-header"></div>
+    <div class="page-main-header"></div>
     <div id="" class="animated fading-menu"
         ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
         style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
@@ -8,10 +8,9 @@
         class="animated"
         ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
     </div>
-    
-    <shop-header></shop-header>
+    <mall-header></mall-header>
     <div class="container filtered-cards">
-        <div class="row add-card-header shop-card-header">
+        <div class="row add-card-header">
             <div class="col-xs-12">
                 <p class="text-center" id="add-card-txt">
                     ADD CARD
@@ -23,11 +22,9 @@
                 <form>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="fn">FULL NAME</label>
-                                <input type="text" ng-focus="setFocus('fn')"
-                                ng-model="userData.name.i_value"
-                                ng-blur="setBlur()" class="form-control"
+                                <input type="text" ng-model="userData.name.i_value" class="form-control"
                                 disabled="true"
                                 id="fn">
                             </div>
@@ -35,36 +32,31 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="em">EMAIL</label>
-                                <input type="email" ng-focus="setFocus('em')"
-                                ng-model="userData.email.i_value"
-                                ng-blur="setBlur()" class="form-control"
+                                <input type="email"
+                                ng-model="userData.email.i_value" class="form-control"
                                 ng-disabled="true"
                                 id="em">
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="mn">MOBILE NUMBER</label>
                                 <select class="input-group-addon input-group-sm  add-card-addon"
                                     id="basic-addon1"
                                     ng-model="phonePrefix.prefix">
-                                    <option value="+60">+60</option>
-                                    <option value="+62">+62</option>
-                                    <option value="+63">+63</option>
-                                    <option value="+65">+65</option>
-                                    <option value="+66">+66</option>
-                                    <option value="+673">+673</option>
-                                    <option value="+84">+84</option>
-                                    <option value="+855">+855</option>
-                                    <option value="+856">+856</option>
-                                    <option value="+95">+95</option>
+                                    <option value="+60" >+60</option>
+                                    <option value="+63" >+63</option>
+                                    <option value="+65" >+65</option>
+                                    <option value="+66" >+66</option>
+                                    <option value="+673" >+673</option>
+                                    <option value="+84" >+84</option>
+                                    <option value="+855" >+855</option>
+                                    <option value="+95" >+95</option>
                                 </select>
-                                <input type="number" ng-focus="setFocus('mn')"
-                                ng-model="userData.phone.i_value"
-                                ng-blur="setBlur()" class="form-control" autofocus="true"
-                                ng-keyup="upPhone()"
+                                <input type="number" ng-model="userData.phone.i_value" class="form-control" autofocus="true"
+                                ng-keyup="upPhone(true)"
                                 id="mn"
                                 uib-tooltip="{{ userData.phone.message }}"
                                 tooltip-trigger="'none'"
@@ -75,13 +67,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="add">ADDRESS</label>
-                                <input type="text" ng-focus="setFocus('add')"
-                                ng-model="userData.address.i_value"
-                                ng-blur="setBlur()" class="form-control"
+                                <input type="text" ng-model="userData.address.i_value" class="form-control"
                                 ng-disabled="userData.phone.hasError"
-                                ng-keyup="upAddress()"
+                                ng-keyup="upAddress(true)"
                                 id="add"
                                 uib-tooltip="{{ userData.address.message }}"
                                 tooltip-trigger="'none'"
@@ -92,13 +82,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-8">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="city">CITY</label>
-                                <input type="text" ng-focus="setFocus('city')"
-                                ng-model="userData.city.i_value"
-                                ng-blur="setBlur()" class="form-control"
+                                <input type="text" ng-model="userData.city.i_value" class="form-control"
                                 ng-disabled="userData.address.hasError"
-                                ng-keyup="upCity()"
+                                ng-keyup="upCity(true)"
                                 id="city"
                                 uib-tooltip="{{ userData.city.message }}"
                                 tooltip-trigger="'none'"
@@ -107,13 +95,11 @@
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <div class="form-group shop-forms">
+                            <div class="form-group">
                                 <label for="pc">POSTAL CODE</label>
-                                <input type="number" ng-focus="setFocus('pc')"
-                                ng-model="userData.postal.i_value"
-                                ng-blur="setBlur()" class="form-control"
+                                <input type="number" ng-model="userData.postal.i_value" class="form-control"
                                 ng-disabled="userData.city.hasError"
-                                ng-keyup="upPostal()"
+                                ng-keyup="upPostal(true)"
                                 id="pc"
                                 uib-tooltip="{{ userData.postal.message }}"
                                 tooltip-trigger="'none'"
@@ -124,15 +110,15 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <button type="submit" class="btn btn-default blue-text"
-                            ng-click="addShopCard()"
+                            <button type="submit" class="btn btn-default"
+                            ng-click="addMallCard()"
                             ng-disabled="disableBtn">
-                            <img src="images/shopcard-icons/blue-check.png">
+                            <img src="images/assets/red-check.png">
                             ADD
                             </button>
                             
-                            <button class="btn btn-default dark-blue" back>
-                            <img src="images/shopcard-icons/blue-ex.png">
+                            <button class="btn btn-default" back>
+                            <img src="images/assets/red-ex.png">
                             CANCEL
                             </button>
                         </div>
@@ -151,50 +137,23 @@
         </div>
         <div class="container" style="position:absolute;z-index:1;bottom:92px; left:0; right:0; margin:auto; display:block" ng-if="!hasFocusElement" id="saywhut">
             <div class="col-xs-6" style="padding-left: 7px">
-                <div class="border-solid" id="rawr" style="border:1px solid #1882A8;padding:2px;background-color:#fff;height:77px;width:124px;display: block;
+                <div class="border-solid" id="rawr" style="border:1px solid #DF1642;padding:2px;background-color:#fff;height:77px;width:124px;display: block;
                     margin: 0 auto;">
-                    <div class="border-dashed" style="padding:2px;border:1px dashed #1882A8;height:100%;">
-                        <img src="http://www.ipayu.co/ipayu_app/assets/cards/shopcards/ph/jollicard.jpg" style="height:100%;width:100%">
+                    <div class="border-dashed" style="padding:2px;border:1px dashed #DF1642;height:100%;">
+                        <img ng-src="images/mallcards/sm.png" style="height:100%;width:100%">
                     </div>
                 </div>
             </div>
             <div class="col-xs-6" >
-                <div class="border-solid" id="rawr" style="border:1px solid #1882A8 ;padding:2px;background-color:#fff;height:77px;width:124px;display: block;  margin: 0 auto;">
-                    <div class="border-dashed" style="padding:2px;border:1px dashed #1882A8 ;height:100%;">
-                        <img src="http://www.ipayu.co/ipayu_app/assets/cards/shopcards/ph/ace_hardware.png" style="height:100%;width:100%">
+                <div class="border-solid" id="rawr" style="border:1px solid #DF1642;padding:2px;background-color:#fff;height:77px;width:124px;display: block;  margin: 0 auto;">
+                    <div class="border-dashed" style="padding:2px;border:1px dashed #DF1642;height:100%;">
+                        <img src="images/mallcards/monmouth.png" style="height:100%;width:100%">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <shop-footer></shop-footer>
+    <card-successfully-added-modal></card-successfully-added-modal>
+    <mall-footer></mall-footer>
+    
 </div>
-<!-- MODAL TEMPLATE -->
-<script type="text/ng-template" id="withInlineController1">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="dashed-dialog text-center">
-                <img src="images/dark-big-check.png" class="img-responsive">
-                <h4>
-                CARD SUCCESSFULLY ADDED
-                </h4>
-                
-                <button type="button" ng-click="closeThisDialog()">
-                <img src="images/dark-ok.png" class="img-responsive">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-</script>
-<script type="text/ng-template" id="withInlineController2">
-<div class="ngdialog-addmallcard-message">
-    <div class="ngdialog-addmallcard-message-bottom">
-        <div class="ngdialog-addmallcard-sucess" style="clear:both">
-            <p>Credentials not match</p>
-            <button type="button" ng-click="closeThisDialog()">OK</button>
-        </div>
-    </div>
-</div>
-</script>

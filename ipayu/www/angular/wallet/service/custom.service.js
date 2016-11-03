@@ -96,6 +96,7 @@ function CustomService() {
 	    },
 
     	groupByFirstLetter: function(allCards, country, searchData, mallInfo){
+    		var thisService = this;
 			var data = allCards;
 			var all = [];
 
@@ -115,14 +116,14 @@ function CustomService() {
 				if(tempFirstLetter != firstLetter && data[i].country == country) {
 					if(searchData == '') {
 						firstLetter = tempFirstLetter;
-						var alpha = this.getAlpha(firstLetter, mallInfo);
+						var alpha = thisService.getAlpha(firstLetter, mallInfo);
 						all.push(alpha);
 					}
 					else {
 						var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
 						if(pos == 0){
 							firstLetter = tempFirstLetter;
-							var alpha = this.getAlpha(firstLetter, mallInfo);
+							var alpha = thisService.getAlpha(firstLetter, mallInfo);
 							all.push(alpha);
 						}
 					}
@@ -139,7 +140,6 @@ function CustomService() {
     	},
 
     	getAlpha: function(firstLetter, mallInfo){
-    		console.log(mallInfo)
     		var alpha = new Array();
     		if(mallInfo){
 				alpha[0] = firstLetter;

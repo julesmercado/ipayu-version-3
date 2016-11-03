@@ -1,11 +1,12 @@
 
 
 
-walletModule.controller('redeemModalCtrl', RedeemModalCtrl)
-walletModule.controller('addCardModalCtrl', AddCardModalCtrl)
+walletModule.controller('redeemModalCtrl', RedeemModal)
+walletModule.controller('addCardModalCtrl', AddCardModal)
+walletModule.controller('cardSuccessfullyAddedCtrl', CardSuccessfullyAdded)
 
-RedeemModalCtrl.$inject = ['$scope', '$timeout', 'accountData', 'walletData', 'redeemable'];
-function RedeemModalCtrl($scope, $timeout, accountData, walletData, redeemable) {
+RedeemModal.$inject = ['$scope', '$timeout', 'accountData', 'walletData', 'redeemable'];
+function RedeemModal($scope, $timeout, accountData, walletData, redeemable) {
 
     $scope.card = walletData.getCardInfo();
     var ipayu_info 	= accountData.getUser(),
@@ -144,13 +145,30 @@ function RedeemModalCtrl($scope, $timeout, accountData, walletData, redeemable) 
 
 }
 
-AddCardModalCtrl.$inject = ['$scope', '$rootScope', 'card', 'destination'];
-function AddCardModalCtrl($scope, $rootScope, card, destination) {
-	card.country_code = $rootScope.countryDisplay.name;
-	card.country = $rootScope.searchCountry.country;
-	$rootScope.mallCardTapped =  card;
-	$state.go(destination);
+AddCardModal.$inject = ['$scope', '$state', '$rootScope', 'walletData', 'card', 'destination'];
+function AddCardModal($scope, $state, $rootScope, walletData, card, destination) {
+    $scope.proceed = function(){
+        card.country_code = $rootScope.countryDisplay.name;
+        card.country = $rootScope.searchCountry.country;
+        walletData.setCardToAdd(card);
+        $state.go(destination);
+    }
 }
+
+CardSuccessfullyAdded.$inject = ['$scope', '$state', '$rootScope', 'ngDialog', 'result', 'destination'];
+function CardSuccessfullyAdded($scope, $state, $rootScope, ngDialog, result, destination) {
+    $scope.result = result;
+    $scope.ok = function(){
+        if(result.success){
+            $state.go(destination);
+        }
+        else{
+            ngDialog.closeAll();
+        }
+    }
+}
+
+
 
 
 

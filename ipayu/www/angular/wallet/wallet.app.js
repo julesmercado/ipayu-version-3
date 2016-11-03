@@ -36,6 +36,11 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/mall/mall-card-info.html',
             controller: 'mallCardInfoCtrl'
         })
+        .state('addmallcard', {
+            url: '/addmallcard',
+            templateUrl: 'templates/wallet/mall/add-mall-card.html',
+            controller: 'addMallCardCtrl'
+        })
 
     // shop cards
         .state('myshopcards', {
@@ -62,6 +67,11 @@ function Config($stateProvider) {
             url: '/shopcardinfo',
             templateUrl: 'templates/wallet/shop/shop-card-info.html',
             controller: 'shopCardInfoCtrl'
+        })
+        .state('addshopcard', {
+            url: '/addshopcard',
+            templateUrl: 'templates/wallet/shop/add-shop-card.html',
+            controller: 'addShopCardCtrl'
         })
 
     // coupon cards
