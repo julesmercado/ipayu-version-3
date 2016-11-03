@@ -1,6 +1,6 @@
 
     mallInfo.controller( 'mallInfoEvents', 
-        function( $scope, $state, $stateParams , mallCardFactory2 , $rootScope ){ /*, offlineData*/
+        function( $scope, $state, $stateParams , mallCardFactory2 , $rootScope , mallData ){ /*, offlineData*/
 
 
             mallCardFactory2.fetchMallEvents( $stateParams.mallId ).then( function( response ){
@@ -13,7 +13,10 @@
             } )
             
             
-
+            $scope.toMallEventsFull = function toMallEventsFull( mallEvent ){
+                mallData.setMallEvent( mallEvent );
+                $state.go( 'mallEventFull' );
+            }
 
             $scope.comment = function(){
 
@@ -21,7 +24,7 @@
             $scope.react = function(){
                 var thisDate = new Date();
                 mallCardFactory2.postReact( 1, 141 , 1 , thisDate  ).then( function( response ){
-                    
+                    console.log( response )
                 } );
             };
 

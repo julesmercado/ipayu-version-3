@@ -18,6 +18,7 @@ function ReactionsDirective( $rootScope , $scope , mallCardFactory2 , mallData ,
     	var date = new Date();
     	mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) ).then( function( response ){
             console.log( response );
+            console.log($scope)
         } );
     }
 

@@ -5,6 +5,7 @@ mallInfo.factory('mallData', function ($rootScope) {
 	var mallInfo = {};
 	var shopInfo = {};
 	var mallCard = {};
+	var mallEvent = {};
 	return {
 		setMallInfo: function( mall ){
 			if( mall ){
@@ -12,6 +13,14 @@ mallInfo.factory('mallData', function ($rootScope) {
 				
 			}else{
 				return mallInfo;
+			}
+		},
+		setMallEvent: function( mallEvents ){
+			if( mallEvents ){
+				mallEvent = mallEvents;
+				
+			}else{
+				return mallEvent;
 			}
 		},
 		setShopInfo: function( shop ){
