@@ -33,7 +33,8 @@
 
             <div  class="row" ng-repeat="malls in mallCards">
                 <div class="col-xs-6" ng-repeat="m in malls">
-                    <div class="animated solid-border-va flipInX " ng-click="viewMallCardInfo(m.mall_card_id)">
+                    <div class="animated solid-border-va flipInX"
+                            route-card-info="{{m}}" card-type="mall">
                         <div class="dashed-border-va">
                             <img ng-src="{{m.image}}" class="img-responsive img-card-view-all ">
                         </div>
@@ -41,7 +42,10 @@
                 </div>
             </div>
 
-            <h6 ng-if="mallCards.length == 0 && !fetch" class="text-gray no-cards" style="z-index:5;">No new cards, please <a go-to-malls>add new card</a></h6>
+            <h6 ng-if="mallCards.length == 0 && !fetch" class="text-gray no-cards" style="z-index:5;">
+                No new cards, please 
+                <a route-card-search="mall" style="color:#006dcc;">add new card</a>
+            </h6>
         </div>  
     </div>
 

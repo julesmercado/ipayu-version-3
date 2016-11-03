@@ -62,7 +62,7 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
         getAllCardAvailableInEstablishment: function (ipayu_id, asset_id) {
             var data = {
                 'ipayu_id'      : ipayu_id,
-                'asset_id'      : asset_id,
+                'asset_info_id' : asset_id,
                 'requestType'   : 'GetCardsAssets_'
             };
             return $http({

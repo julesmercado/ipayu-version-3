@@ -5,7 +5,11 @@ walletModule.factory('walletData', WalletData)
 
 function WalletData() {
 
-    var all_available_cards = [], card_info = [];
+    var all_available_cards = [], 
+        card_info = [],
+        featured_assets = [],
+        non_featured_assets = [],
+        categories = [];
 
     return {
 
@@ -47,6 +51,18 @@ function WalletData() {
 
         setCardInfo: function(data){
             card_info = data;
+            return data;
+        },
+        setAssetsFeatured: function (data) {
+            featured_assets = data;
+            return data;
+        },
+        setAssetsNonFeatured: function (data) {
+            non_featured_assets = data;
+            return data;
+        },
+        setCategories: function(data){
+            categories = data;
             return data;
         },
 
@@ -94,6 +110,15 @@ function WalletData() {
 
         getCardInfo: function(){
             return card_info;
+        },
+        getAssetsFeatured: function () {
+            return featured_assets;
+        },
+        getAssetsNonFeatured: function () {
+            return non_featured_assets;
+        },
+        getCategories: function(){
+            return categories;
         },
 
 

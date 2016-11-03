@@ -258,7 +258,7 @@ form#registration button.register {
 .menu-logout{margin-top:-9px;}
 .add-card-addon{width: 49px; font-size: 9px; position: absolute; padding: 3px; height: 37%;border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important; border:none;bottom: 10px}
-.no-cards{z-index: 9;height: 60px;    text-align: center;    padding-top: 8%;width: 100%;position: absolute;top: 0;font-family: "HelveticaBold"; color: black; text-transform: uppercase}
+.no-cards{z-index: 9; text-align: center;    padding-top: 8%;width: 98%;position: absolute;top: 0;font-family: "HelveticaBold"; color: black; text-transform: uppercase}
 .dash-user-img{height: 60px;    margin: 0 auto;    display: block;}
 .dash-user-img canvas{height: 60px;    margin: 0 auto;    display: block; margin-top: 2%;}
 

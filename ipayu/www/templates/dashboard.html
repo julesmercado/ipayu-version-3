@@ -59,7 +59,7 @@
             <div class="row mn-cards custom-slider" style="overflow-x: hidden;">
             	<!-- | filter:searchCountry  -->
 		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards"
-		         		route-card-info="{{card}}" no-data="true">
+		         		route-card-info="{{card}}" card-type="{{card.card_type}}">
 		            <img class="cs-image" 
 		            	ng-src="{{card.image}}" 
 		            	style="width:88%"/>

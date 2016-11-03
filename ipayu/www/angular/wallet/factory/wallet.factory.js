@@ -30,7 +30,8 @@ function WalletFactory($q, walletRequest) {
 
         getAllHasCardAssets: function(type){
             var req_assets = walletRequest.getAllHasCardAssets(type);
-            return $q.all([req_assets])
+            var req_categories = walletRequest.getAssetCategories();
+            return $q.all([req_assets, req_categories])
                 .then(thenFunc, errFunc)
         },
 

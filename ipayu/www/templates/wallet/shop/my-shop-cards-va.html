@@ -37,7 +37,10 @@
                 </div>
             </div>
 
-            <h6 ng-if="shopCards.length == 0 && !fetch" class="text-gray no-cards" style="z-index:5;">No new cards, please <a ng-click="shopsearch()">add new card</a></h6>
+            <h6 ng-if="shopCards.length == 0 && !fetch" class="text-gray no-cards" style="z-index:5;">
+                No new cards, please 
+                <a route-card-search="shop" style="color:#006dcc;">add new card</a>
+            </h6>
         </div>  
     </div>
 

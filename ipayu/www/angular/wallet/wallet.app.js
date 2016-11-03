@@ -24,12 +24,12 @@ function Config($stateProvider) {
         .state('mallsearch', {
             url: '/mallsearch',
             templateUrl: 'templates/wallet/mall/mall-search.html',
-            controller: 'mallCardSearch'
+            controller: 'mallCardSearchCtrl'
         })
         .state('allmallsearch', {
             url: '/allmallsearch',
             templateUrl: 'templates/wallet/mall/mall-all-cards.html',
-            controller: 'allMallCardSearch'
+            controller: 'allMallCardSearchCtrl'
         })
         .state('mallcardinfo', {
             url: '/mallcardinfo',
@@ -47,6 +47,16 @@ function Config($stateProvider) {
             url: '/myshopcardsviewall',
             templateUrl: 'templates/wallet/shop/my-shop-cards-va.html',
             controller: 'myShopCardViewCtrl'
+        })
+        .state('shopsearch', {
+            url: '/shopsearch',
+            templateUrl: 'templates/wallet/shop/shop-search.html',
+            controller: 'shopCardSearchCtrl'
+        })
+        .state('allshopsearch', {
+            url: '/allshopsearch',
+            templateUrl: 'templates/wallet/shop/shop-all-cards.html',
+            controller: 'allShopCardSearchCtrl'
         })
 
     // coupon cards

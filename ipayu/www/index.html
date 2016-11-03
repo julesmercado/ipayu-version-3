@@ -20,6 +20,10 @@
         <link rel="stylesheet" type="text/css" href="css/mallinfo.css">
         <link rel="stylesheet" type="text/css" href="css/reaction.css">
         <link rel="stylesheet" type="text/css" href="css/reaction-style.css">
+        <link rel="stylesheet" type="text/css" href="css/angular-range-slider.css">
+        
+        <link rel="stylesheet" id="themeCSS" href="css/daterange/classic.css"> 
+        <link rel="stylesheet" href="css/daterange/style.css">
 
         <title>Ipayu</title>
 
@@ -52,8 +56,12 @@
 
 
         <!-- Dependencies -->
-        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
+
+        <!-- Angular -->
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript" src="js/angular-touch.min.js"></script>
         <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
@@ -99,7 +107,11 @@
         <!-- Wallet Directives -->
         <script type="text/javascript" src="angular/wallet/directive/parts.directive.js"></script>
         <script type="text/javascript" src="angular/wallet/directive/routes.directive.js"></script>
-        <script type="text/javascript" src="angular/wallet/directive/timer.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/custom.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/modals.directive.js"></script>
+
+        <!-- Wallet Filters -->
+        <script type="text/javascript" src="angular/wallet/filter/custom.filter.js"></script>
 
         <!-- Wallet Factories -->
         <script type="text/javascript" src="angular/wallet/factory/wallet.factory.data.js"></script>
@@ -108,6 +120,7 @@
 
         <!-- Wallet Services -->
         <script type="text/javascript" src="angular/wallet/service/custom.service.js"></script>
+        <script type="text/javascript" src="angular/wallet/service/excel.service.js"></script>
 
         <!-- Wallet->Mall Controllers -->
         <script type="text/javascript" src="angular/wallet/controller/mall/mymallcard.controller.js"></script>

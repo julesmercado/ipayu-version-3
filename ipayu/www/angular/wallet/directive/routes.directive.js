@@ -75,8 +75,8 @@ function Mystampcard($state, $rootScope) {
 
 
 // Search Card
-CardSearch.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'mallCardData', 'customService'];
-function CardSearch($state, $rootScope, preloaderMethod, wallet, mallCardData, customService) {
+CardSearch.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'walletData', 'customService'];
+function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, customService) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
@@ -92,11 +92,11 @@ function CardSearch($state, $rootScope, preloaderMethod, wallet, mallCardData, c
 	    			$rootScope.doLoading = true;
 	    			wallet.getAllHasCardAssets(type)
 	    					.then(function (resolve) {
-								console.log(resolve);
-								var f = mallCardData.setAssetsFeatured(resolve[0].data.data.featured)
-								var n = mallCardData.setAssetsNonFeatured(resolve[0].data.data.not_featured)
+								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured)
+								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured)
+								var c = walletData.setCategories(resolve[1].data.data)
 	    						$state.go(route);
-								preloaderMethod.preloadImage([f, n]);
+								preloaderMethod.preloadImage([f, n, c]);
 	    					})
 	    		}
 	    	})
@@ -177,14 +177,11 @@ function CardInfo($state, $rootScope, walletData) {
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 
-	    		var card = JSON.parse(attrs.routeCardInfo),
-	    			route = (card.card_type == 'mall')? 'mallcardinfo':'shopcardinfo';
-
-	    		if(attrs.noData){
-	    			var cards 	= walletData.getUserCards(card.card_type),
-	    				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == card.card_id)}),
-	    				card 	= cards[key];
-	    		}
+	    		var data = JSON.parse(attrs.routeCardInfo),
+	    			route = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
+	    			cards 	= walletData.getUserCards(attrs.cardType),
+    				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
+    				card 	= cards[key];
 
 				walletData.setCardInfo(card)
 				$state.go(route);

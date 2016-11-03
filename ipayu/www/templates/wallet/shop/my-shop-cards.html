@@ -29,11 +29,11 @@
     <div class="row lu-cards my-cards custom-slider" style="padding:4px;">
          <div class='cs-image-holder' 
                 ng-repeat="l in lastUsed | filter:searchCountry as lFilter" 
-                ng-click="viewShopCardInfo(l)"
+                route-card-info="{{l}}" card-type="shop"
                 style="margin-right: 8px;">
             <img class="animated cs-image" ng-src="{{l.image}}" />
         </div>
-        <div class='cs-image-holder' ng-if="fetching == true">
+        <div class='cs-image-holder' ng-if="lFilter.length == 0 || !lFilter">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
         <h6 ng-if="lFilter.length == 0 || !lFilter" class="text-gray no-cards">No recently used cards </h6>
@@ -44,11 +44,11 @@
     <div class="row fu-cards my-cards custom-slider" style="padding:4px;">
          <div class='cs-image-holder' 
                 ng-repeat="f in frequent | filter:searchCountry as fFilter" 
-                ng-click="viewShopCardInfo(f)"
+                route-card-info="{{f}}" card-type="shop"
                 style="margin-right: 8px;">
             <img class="animated cs-image" ng-src="{{f.image}}" />
         </div>
-        <div class='cs-image-holder' ng-if="fetching == true">
+        <div class='cs-image-holder' ng-if="fFilter.length == 0 || !fFilter">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
         <h6 ng-if="fFilter.length == 0 || !fFilter" class="text-gray no-cards">No frequently used cards</h6>
@@ -60,16 +60,16 @@
     <div class="row mn-cards my-cards custom-slider" style="padding:4px;">
          <div class='cs-image-holder' 
                 ng-repeat="m in shopCards | filter:searchCountry as mFilter" 
-                ng-click="viewShopCardInfo(m)"
+                route-card-info="{{m}}" card-type="shop"
                 style="margin-right: 8px;">
             <img class="animated cs-image" ng-src="{{m.image}}" />
         </div>
-        <div class='cs-image-holder' ng-if="fetching == true">
+        <div class='cs-image-holder' ng-if="mFilter.length == 0 || !mFilter">
             <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
         </div>
         <h6 ng-if="mFilter.length == 0 || !mFilter" class="text-gray no-cards">
             No new cards, please 
-            <a ng-click="shopsearch()" style="color:#006dcc;">add new card</a>
+            <a route-card-search="shop" style="color:#006dcc;">add new card</a>
         </h6>
     </div>
 

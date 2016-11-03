@@ -38,16 +38,17 @@ function CustomService() {
 	        );
 	    },
 
-	    paginate: function (data, cols, rows, currentPage, pageSize) {
+	    paginate: function (data, cols, rows, currentPage, pageSize, for_shop) {
 			var hasMore = false,
 				start = currentPage*pageSize,
 				data = data.slice(start),
 				returnData = [],
 				temp = [],
-				remove_last_column = false;
+				remove_last_column = false,
+				full = false;
 
 			for (var i = 0; i < data.length; i++) {
-				if(temp.length != cols-1){
+				if(temp.length != cols){
 					temp.push(data[i]);
 					remove_last_column = false;
 				}
@@ -60,28 +61,35 @@ function CustomService() {
 				if(i == data.length-1){
 					returnData.push(temp);
 				}
-				if(returnData.length == rows-1) {
-					if(returnData[rows-1].length == cols-1){
-						returnData[rows-1][col-2] = false;
+				if(returnData.length == rows) {
+					if(returnData[rows-1].length == cols){
+						if(!for_shop){
+							returnData[rows-1][cols-2] = false;
+						}
+						returnData[rows-1][cols-1] = true;
 						hasMore = true;
-						remove_last_column = true;
+						full = true;
 						break;
 					}
 				}
 			}
 
 			var last_row = returnData.slice(-1)[0];
-
-			if(last_row){
+			if(last_row && !full && !for_shop){
 				var last_col = returnData[returnData.indexOf(last_row)].slice(-1)[0];
 				if(remove_last_column){
 					returnData[returnData.indexOf(last_row)][last_row.indexOf(last_col)] = true;
 				}
 				else{
-					returnData[returnData.indexOf(last_row)][last_row.indexOf(last_col) + 1] = true;
+					if(last_row.length == cols){
+						returnData.push(new Array(true))
+					}
+					else{
+						returnData[returnData.indexOf(last_row)][last_row.indexOf(last_col) + 1] = true;
+					}
 				}
 			}
-			else{
+			else if(!full && !for_shop){
 				returnData.push(new Array(true))
 			}
 			return {'data':returnData, 'has_more':hasMore};
@@ -132,7 +140,27 @@ function CustomService() {
 		    })
 			return all.reverse();
 
-    	}
+    	},
+
+		filterByCategory: function(data, cat){
+			if(cat == '') {
+				return data;
+			}
+			var returnData = [];
+			for (var i = 0; i < data.length; i++) {
+			var checker = false;
+				for (var x = 0; x < data[i].category.length; x++) {
+					var value = data[i].category[x].category_name;
+					if(value == cat) {
+						checker = true;
+					}
+				}
+				if(checker) {
+					returnData.push(data[i]);
+				}
+			}
+			return returnData;
+		}
 	}
 
 }
