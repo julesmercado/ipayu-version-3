@@ -95,7 +95,7 @@ function CustomService() {
 			return {'data':returnData, 'has_more':hasMore};
 	    },
 
-    	groupByFirstLetter: function(allCards, country, searchData){
+    	groupByFirstLetter: function(allCards, country, searchData, mallInfo){
 			var data = allCards;
 			var all = [];
 
@@ -114,19 +114,15 @@ function CustomService() {
 
 				if(tempFirstLetter != firstLetter && data[i].country == country) {
 					if(searchData == '') {
-						var alpha = new Array();
 						firstLetter = tempFirstLetter;
-						alpha[0] = firstLetter;
-						alpha[1] = [[]];
+						var alpha = this.getAlpha(firstLetter, mallInfo);
 						all.push(alpha);
 					}
 					else {
 						var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
 						if(pos == 0){
-							var alpha = new Array();
 							firstLetter = tempFirstLetter;
-							alpha[0] = firstLetter;
-							alpha[1] = [[]];
+							var alpha = this.getAlpha(firstLetter, mallInfo);
 							all.push(alpha);
 						}
 					}
@@ -142,6 +138,20 @@ function CustomService() {
 
     	},
 
+    	getAlpha: function(firstLetter, mallInfo){
+    		console.log(mallInfo)
+    		var alpha = new Array();
+    		if(mallInfo){
+				alpha[0] = firstLetter;
+				alpha[1] = [];
+    		}
+    		else{
+				alpha[0] = firstLetter;
+				alpha[1] = [[]];
+    		}
+    		return alpha;
+    	},
+
 		filterByCategory: function(data, cat){
 			if(cat == '') {
 				return data;
@@ -149,8 +159,8 @@ function CustomService() {
 			var returnData = [];
 			for (var i = 0; i < data.length; i++) {
 			var checker = false;
-				for (var x = 0; x < data[i].category.length; x++) {
-					var value = data[i].category[x].category_name;
+				for (var x = 0; x < data[i].category_name.length; x++) {
+					var value = data[i].category_name[x].name;
 					if(value == cat) {
 						checker = true;
 					}

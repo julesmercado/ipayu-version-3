@@ -57,8 +57,8 @@ function StringToTimestamp(walletData){
 }
 
 
-DownloadExcel.$inject = ['excel'];
-function DownloadExcel(Excel){
+DownloadExcel.$inject = ['excel', 'accountData'];
+function DownloadExcel(excel, accountData){
     return {
         restrict: 'A',
         link: function(scope, element, attr, ctrl) {

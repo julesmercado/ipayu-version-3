@@ -3,9 +3,7 @@ mainModule.controller('mainCtrl', MainCtrl)
 
 
 MainCtrl.$inject = ['$rootScope', '$timeout', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet'];
-
 function MainCtrl($rootScope, $timeout, flags, ngDialog, $state, accountData, sqliteSet) {
-
 
     var tOut;
     $rootScope.doLoading = false;

@@ -58,6 +58,11 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/shop/shop-all-cards.html',
             controller: 'allShopCardSearchCtrl'
         })
+        .state('shopcardinfo', {
+            url: '/shopcardinfo',
+            templateUrl: 'templates/wallet/shop/shop-card-info.html',
+            controller: 'shopCardInfoCtrl'
+        })
 
     // coupon cards
         .state('mycouponcards', {

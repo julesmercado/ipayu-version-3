@@ -1,209 +1,145 @@
-
 <div id="sp-page" style="overflow:hidden;">
-<div class="page-main-header shop-page-main-header"></div>
-<div id="" class="animated fading-menu" 
-        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+    <div class="page-main-header shop-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
         style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
-        ng-swipe-left="menuSwipeLeft()">
-
-<menu style="width:80%;height:100%;background:#fff;"
-        class="animated" 
-        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
-
-</div>
-  
-  <shop-header></shop-header>
-   <div class="container-fluid mc-info-fh" ng-if="redeem">
-         <div class="row" >
-             <div class="row">
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    
+    <shop-header></shop-header>
+    <div class="container-fluid mc-info-fh" ng-if="redeem">
+        <div class="row" >
+            <div class="row">
                 <div class="container no-padding">
                     <div class="col-xs-12 no-padding">
                         <div class="col-xs-3 no-padding">
                             <div class="mci-cd">
-                                <img ng-src="{{cardInfo.image}}" style="width:100%; display: block; border-radius:4px">
-                                 <span class="card-info-changeables" id="mci-cn-text">CARD&nbsp;NAME</span>
-                                 <span class="card-info-changeables">{{cardInfo.name}}</span>
-                             </div>
+                                <img ng-src="{{card.image}}" style="width:100%; display: block; border-radius:4px">
+                                <span class="card-info-changeables" id="mci-cn-text">CARD&nbsp;NAME</span>
+                                <span class="card-info-changeables">{{card.name}}</span>
+                            </div>
                         </div>
-
+                        
                         <div class="col-xs-9 no-padding">
                             <div class="animated mci-orange-circle tada sci-circle">
                                 <div class="mci-white-dashed-border">
                                     <span class="mci-tp-txt">TOTAL POINTS</span>
+                                    <hr class="hr-mci-tp"/>
+                                    <span class="mci-rp only-one-is-shown">&nbsp;{{card.rewards_balance}}&nbsp;</span>
+                                    <span class="mci-tp-txt mci-rb-txt no-show-text" >REBATES</span>
+                                    <span class="mci-rp no-show-text">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
                                     <hr class="hr-mci-tp" />
-                                        <span class="mci-rp only-one-is-shown">&nbsp;{{cardInfo.points_balance}}&nbsp;</span>
-                                     <span class="mci-tp-txt mci-rb-txt no-show-text" >REBATES</span>
-                                      <span class="mci-rp no-show-text">&nbsp;{{cardInfo.rebates_balance}}$&nbsp;</span>
-                                    <hr class="hr-mci-tp" />
-                                    <span class="mci-ced">  Expiring on {{cardInfo.date_end}} </span>
+                                    <span class="mci-ced">  Expiring on {{card.datetime_end}} </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div> 
+        </div>
         
     </div>
-
     <div class="container-fluid" style="background-color:#f5f5f5;padding-left:30px;padding-right:30px" ng-if="transaction">
         <div class="row" style="background:#1882A8 ; margin-top:20px;margin-bottom:20px;border-radius: 20px;padding: 2px; height:110px" id="red-container-transaction">
             <div style="border:1px dashed white;border-radius: 20px;width:100%;height:100%">
                 <div class="container">
                     <div class="col-xs-4 col-md-4 col-lg-4" style="padding-left:0">
-                        <img ng-src="{{cardInfo.image}}" class="solo-card-img" style="margin-top:20px;margin-left:0px;height: 40px;width: auto;border-radius: 6px">
+                        <img ng-src="{{card.image}}" class="solo-card-img" style="margin-top:20px;margin-left:0px;height: 40px;width: auto;border-radius: 6px">
                     </div>
-                     <div class="col-xs-8 col-md-8 col-lg-8 no-padding-left">
-                        <script src="scripts/jquery_dependencies/jQAllRangeSliders-min.js"></script>
-                        <script src="scripts/jquery_dependencies/ruler.js"></script>
-                        <script src="scripts/jquery_dependencies/range.js"></script>
+                    <div class="col-xs-8 col-md-8 col-lg-8 no-padding-left">
+                        <script src="js/jquery/jQAllRangeSliders-min.js"></script>
+                        <script src="js/jquery/ruler.js"></script>
+                        <script src="js/jquery/range.js"></script>
                         <div class="date-range-slider-trans" id="forDateRanger"></div>
                     </div>
                 </div>
-
-                <div class="row container">                     
+                <div class="row container">
                     <div class="col-xs-5 col-md-5 col-lg-5" style="font-size:8px;color:#fff; padding-top:6px">
                         <span style="font-size:8px;display:block" class="bold-title-card-info">CARD NAME</span>
-
-                        <span style="font-size:10px" class="condense-subtitle-card-info">{{cardInfo.name}}</span>
+                        <span style="font-size:10px" class="condense-subtitle-card-info">{{card.name}}</span>
                     </div>
-
                     <div class="col-xs-3 col-md-3 col-lg-3" style="padding-left: 0;">
                         <div class="pull-left" style="font-size:8px;color:#fff;padding-left:0px;margin-top:7px;visibility:hidden;">
                             <span style="font-size:8px;font-weight:bold" class="bold-title-card-info">EXPIRATION</span><br>
-
-                            <span style="font-size:10px" class="condense-subtitle-card-info">{{cardInfo.date_end}}</span>
+                            <span style="font-size:10px" class="condense-subtitle-card-info">{{card.date_end}}</span>
                         </div>
-                      
                     </div>
-                     <div class="col-xs-4">
-                      <img src="images/download.png" 
-                            class="" 
-                            style="float:right"
-                            onclick="OpenLink()"
-                            id="dlimg" 
-                             />
-                            <!-- ng-click="exportTable()" -->
-
-                     </div>
-                </div>
-
-               
+                    <div class="col-xs-4">
+                        <img src="images/download.png"
+                        class=""
+                        style="float:right"
+                        download-excel
+                        id="dlimg"
+                        />
+                    </div>
                 </div>
             </div>
-            </div>
-
+        </div>
+    </div>
     <input type="text" style="display:none;" id="mindate" ng-model="dateFilter.mindate" name="">
     <input type="text" style="display:none;" id="maxdate" ng-model="dateFilter.maxdate" name="">
     <div class="row text-center mc-info-tab">
-      <div class="col-xs-12">
-        <div class="col-xs-4" ng-click="redeem=true ; transaction=false" ng-class="{'active-s': redeem==true, 'inactive-s': transaction==true}">
-            <p>REDEEM</p>
-        </div>
-        <div class="col-xs-4" ng-click="transaction=true ; redeem=false" ng-class="{'active-s': transaction==true, 'inactive-s': redeem==true}">
-            <p>TRANSACTIONS</p>
-        </div>
-         <div class="col-xs-4 inactive-s" >
-            <p>SPENDING&nbsp;ANALYSIS</p>
-        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-4" ng-click="redeem=true ; transaction=false" ng-class="{'active-s': redeem==true, 'inactive-s': transaction==true}">
+                <p>REDEEM</p>
+            </div>
+            <div class="col-xs-4" ng-click="transaction=true ; redeem=false" ng-class="{'active-s': transaction==true, 'inactive-s': redeem==true}">
+                <p>TRANSACTIONS</p>
+            </div>
+            <div class="col-xs-4 inactive-s" >
+                <p>SPENDING&nbsp;ANALYSIS</p>
+            </div>
         </div>
     </div>
-
     <!-- redeem tab -->
     <div class="row mc-info-redeem-tab redeemables-list" ng-if="redeem" style="overflow-x: hidden">
         <div class="col-xs-12 col-md-12 col-lg-12" style="overflow-x: hidden">
             <ul class="list-group" style="overflow-x: hidden">
-                <!--  | redeemfilter:cardInfo.points_balance as filtResult -->
-                <!-- <li class="list-group-item" ng-repeat="rg in r_gifts">
-                    <div class="row">
-                        <div class="col-xs-6 cold-md-6 col-lg-6">
-                            <div class="row">
-                                <div class="animated col-xs-6 cold-md-6 col-lg-6 mc-info-redeem-img bounceIn">
-                                    <img ng-src="{{ rg.image }}" class="img img-responsive img-item-redeemable ">
-                                </div>
-
-                                <div class="animated col-xs-6 cold-md-6 col-lg-12 mc-info-redeem-desc bounceIn">
-                                    <p>{{ rg.point_value }} Pts.</p>
-                                    <p>{{ rg.item_name }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="animated col-xs-6 cold-md-6 col-lg-12 mc-info-redeem-button bounceIn">
-                            <button type="submit" ng-click="redeemItem(rg.rewardsgift_id,rg.item_name,rg.point_value,rg.item_quantity,rg.quantity_remaining,rg.image)">
-
-                                <img src="images/redeem-btn.png" class="img img-responsive">
-                            </button>
-                        </div>
-                    </div>
-                </li> -->
-
-                <li lass="list-group-item" ng-repeat="rg in r_gifts" style="overflow-x: hidden">
+                <li lass="list-group-item" ng-repeat="rg in redeems" style="overflow-x: hidden">
                     <div class="row">
                         <div class="col-xs-12">
                             <div style="padding-right:10px" class="col-xs-3 mc-info-redeem-img ">
                                 <img ng-src="{{rg.image}}" class="animated img img-responsive img-item-redeemable bounceIn">
                             </div>
                             <div style="padding-left:0" class="col-xs-4 mc-info-redeem-desc">
-                                 <div class=" animated  bounceIn">
-                                      <p class="mci-itn">{{ rg.item_name }}</p>
-                                      <p class="condensed-redeem">Redeem this offer and get <span class="bold">1000 PHP</span> worth for</p>
+                                <div class=" animated  bounceIn">
+                                    <p class="mci-itn">{{ rg.item_name }}</p>
+                                    <p class="condensed-redeem">Redeem this offer and get <span class="bold">1000 PHP</span> worth for</p>
                                 </div>
                             </div>
                             <div style="padding-left:0" class="animated  col-xs-2  mc-info-redeem-desc bounceIn">
-                                    <p class="item-pt-mc">{{ rg.point_value }}&nbsp;points</p>
+                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp;points</p>
                             </div>
                             <div style="padding-left:0;padding-right:0" class="col-xs-3 mc-info-redeem-button">
-                                 <button type="submit" ng-click="redeemItem(rg.rewardsgift_id,rg.item_name,rg.point_value,rg.item_quantity,rg.quantity_remaining,rg.image)">
-
+                                <button type="submit" ng-click="redeemItem(rg)">
                                 <img src="images/redeem-btn.png" class="img img-responsive">
-                            </button>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </li>
-
-                <h6 ng-if="r_gifts.length == 0 || filtResult.length == 0" style="font-size: 1em">Sorry, you have nothing to redeem here.</h6>
+                <h6 ng-if="redeems.length == 0" style="font-size: 1em">Sorry, you have nothing to redeem here.</h6>
             </ul>
-
-        </div> 
+        </div>
     </div>
-
-
-    <div class="row" id="transactions-table" > 
+    <div class="row" id="transactions-table" >
         <div class="col-xs-12 col-md-12 col-lg-12" ng-if="transaction">
             <table class="transaction-table">
                 <tr style="font-size:7px;background-color:#808080;color:#fff">
-
-                    <td style="text-align:center;padding:5px">
-                        Sales/Redemption <br>
-                        Date
-                    </td>
-                    <td style="text-align:center;">
-                        Shop <br>
-                        Name
-                    </td>
-                    <td style="text-align:center;">
-                        Mall
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Sales <br> 
-                        Amount
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Rebates/ <br>
-                        Redemption
-                    </td>
-                    <td style="text-align:center;">
-                        Balance
-                    </td>
-                    <td> </td>
+                    <td style="text-align:center;padding:5px">Sales/Redemption <br>Date</td>
+                    <td style="text-align:center;">Shop <br> Name</td>
+                    <td style="text-align:center;">Mall</td>
+                    <td style="text-align:center; padding-right:4px">Sales <br> Amount</td>
+                    <td style="text-align:center; padding-right:4px">Rebates/ <br>Redemption</td>
+                    <td style="text-align:center;">Balance</td>
+                    <td>&nbsp;</td>
                 </tr>
-                <tr class="animated transaction-data-row flipInX" 
-                    ng-if="cardTransactions.length != 0 || cardTransactions != false" 
-                    ng-repeat="tran in cardTransactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
-
+                <tr class="animated transaction-data-row flipInX"
+                    ng-if="transactions.length != 0"
+                    ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
                     <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
                     <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
                     <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
@@ -212,200 +148,39 @@
                     <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
                     <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
                     <td>{{tran.balance}}</td>
-                    <!-- <td class="bold" style="font-size:8px" ng-click="seeInfo(tran.transaction_date,tran.image,tran.r_image,tran.point_value,tran.item_name,tran.type,tran.shop_name,tran.quantity)" ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td> -->
                     <td class="bold" style="font-size:8px" ng-click="seeInfo(tran)" ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
                     <td style="font-size:9px" ng-if="tran.type == 'transaction' ">&nbsp;</td>
                 </tr>
             </table>
-
-            <h6 ng-if="!cardTransactions || cardTransactions.length == 0">No recent transactions</h6>
+            <h6 ng-if="transactions.length == 0">No recent transactions</h6>
         </div>
     </div>
-
     <table class="transaction-table" id="table-transaction" style="display:none;">
-                <tr>
-                    <td style="text-align:center;padding:5px">
-                        Sales/Redemption Date
-                    </td>
-                    <td style="text-align:center;">
-                        Shop Name
-                    </td>
-                    <td style="text-align:center;">
-                        Mall
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Sales Amount
-                    </td>
-                    <td style="text-align:center; padding-right:4px">
-                        Rebates/Redemption
-                    </td>
-                    <td style="text-align:center;">
-                        Balance
-                    </td>
-                </tr>
-                <tr class="transaction-data-row" 
-                    ng-if="cardTransactions.length != 0 || cardTransactions != false" 
-                    ng-repeat="tran in cardTransactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
-
-                    <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
-                    <td class="uppercase" style="text-align:center;">{{ tran.shop_name || 'N/A' }}</td>
-                    <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
-                    <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
-                    <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-                    <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
-                    <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
-                    <td>{{tran.balance}}</td>
-                </tr>
-                <tr ng-if="cardTransactions.length == 0">
-                    <td>No recent transactions</td>
-                </tr>
-            </table>
+        <tr>
+            <td style="text-align:center;padding:5px">Sales/Redemption Date</td>
+            <td style="text-align:center;">Shop Name</td>
+            <td style="text-align:center;">Mall</td>
+            <td style="text-align:center; padding-right:4px">Sales Amount</td>
+            <td style="text-align:center; padding-right:4px">Rebates/Redemption</td>
+            <td style="text-align:center;">Balance</td>
+        </tr>
+        <tr class="transaction-data-row"
+            ng-if="transactions.length != 0"
+            ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
+            <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
+            <td class="uppercase" style="text-align:center;">{{ tran.shop_name || 'N/A' }}</td>
+            <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
+            <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
+            <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
+            <td ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
+            <td ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
+            <td>{{tran.balance}}</td>
+        </tr>
+        <tr ng-if="transactions.length == 0">
+            <td>No recent transactions</td>
+        </tr>
+    </table>
     
-    <!-- MODAL TEMPLATE -->
-    <script type="text/ng-template" id="widthInlineController2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12 col-lg-12">
-                    <div class="dashed-dialog" style="padding-top:5px">
-                        <div class="container">
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    
-                                    <h4 class="text-center bold" style="margin-top:0px;margin-bottom:15px">{{ transaction_date | date: 'longDate' }}</h4>
-
-                                    <div class="row" style="margin-bottom:15px">
-                                     
-
-                                        <div class="col-xs-6 col-md-4 col-lg-4 pull-left" style="padding-right:0">
-                                            <img ng-src="{{ rewards_image }}" class="img-responsive pull-right" style="height:60px;width:60px;border-radius:100%">
-                                        </div>
-
-                                         <div class="col-xs-2 pull-left" style="font-size:15px;line-height:15px;padding-top:16px; padding-right:0px; padding-left:0px">
-                                                    <p class="bold" style="margin:0px">{{ points_value }}</p>
-                                                    <p class="condensed-redeem" style="margin:0px">{{ item_name }}</p>
-                                         </div>
-                                   
-
-                                        <div class="col-xs-2 pull-left" style="padding-left:16px;padding-right:0px; padding-top:9px">
-                                                     <input type="number" ng-model="quantity" 
-                                                     style="width:100%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center; font-weight:bold" disabled>
-                                                </div>
-                                    </div>
-
-                                    <div class="container" >
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-6 col-lg-6" style="padding-right:0px">
-                                            <img ng-src="{{ mall_image }}" class="img-responsive redeem-history-card-img">
-                                        </div>
-
-                                        <div class="col-xs-6 col-md-6 col-lg-6" style="padding-top:7px;font-size:17px;line-height:18px;">
-                                            <p class="bold">{{ shop_name }}</p>
-                                            <p class="condensed-redeem">Redemption</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/ng-template" id="withInlineController">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12 col-lg-12">
-                    <div class="dashed-dialog" style="border-color:#07A5CA">
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-xs-7 col-md-6 col-lg-6 ">
-                                    <img ng-src="{{ image }}" class=" mci-cri pull-left">
-
-                                    
-                                    <span class="pull-left">
-                                     <span class="redeemable-card-type">
-                                            {{ type }}
-                                        </span>
-                                        <span class="redeemable-points">
-                                            {{ point_value }} Pts.
-                                        </span>
-                                        
-                                       
-                                    </span>
-                                </div>
-
-                                <div class="col-xs-5 col-md-6 col-lg-6" style="padding-left:5px;padding-right:5px">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 col-lg-4" style="padding:5px 0px 0px 0px" ng-if="!isClick && !isRedeemed">
-                                                <button type="button" ng-click="decrement()" ng-disabled="belowZero" class="pull-right">
-                                                    <img src="images/dark-btn-minus.png" class="img-responsive" style="height:30px">
-                                                </button>
-                                            </div>
-
-                                            <div class="col-xs-4 col-md-4 col-lg-4" style="padding:0px">
-                                                <input type="number" ng-model="counter" class="ipt-qty-it" disabled>
-                                            </div>
-
-                                            <div class="col-xs-4 col-md-4 col-lg-4" style="padding:5px 0px 0px 0px" ng-if="!isClick && !isRedeemed">
-                                                <button type="button"  ng-click="increment()" ng-disabled="moreThanQuantity">
-                                                    <img src="images/dark-btn-plus.png" class="img-responsive" style="height:30px">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                    
-                                    <div class="redeem-btn" ng-if="!isClick && !isRedeemed">
-                                        <button type="button" ng-click="redeem()">
-                                            <img src="images/redeem-btn.png">
-                                        </button>
-                                    </div>
-
-                                    <div class="container" ng-if="isClick">
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-6 col-lg-6">
-                                                ARE YOU SURE?
-                                            </div>
-                                            <div class="col-xs-6 col-md-6 col-lg-6">
-                                                <button type="button" ng-click="confirmRedeem()" ng-disabled="isLoading">
-                                                    <img src="images/dark-yes.png" class="img-responsive">
-                                                </button>
-
-                                                <button type="button" ng-click="cancelRedeem()">
-                                                    <img src="images/dark-no.png" class="img-responsive">
-                                                </button>
-                                            </div>
-                                        </div>    
-                                    </div>
-
-                                    <div class="redeem-successful" ng-if="!isclick && isRedeemed">
-                                        <img src="images/dark-big-check.png">
-                                        <p>
-                                            ITEM SUCCESSFULLY REDEEMED
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script> 
-
+    <redeem-modal></redeem-modal>
     <shop-footer></shop-footer>
-
-
 </div>
