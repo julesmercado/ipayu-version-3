@@ -18,10 +18,13 @@
             	var data = mallData.setMallCard();
             	var user = accountData.getUser();
             	var date = new Date();
-            	mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) ).then( function( response ){
-                    $scope.commentModel = "";
-                    getComment( data );
-                } );
+                if( $scope.commentModel ){
+                    mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) ).then( function( response ){
+                        $scope.commentModel = "";
+                        getComment( data );
+                    } );
+                }
+            	
             }
 
             function getComment( value ){
