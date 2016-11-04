@@ -2,7 +2,7 @@
     mallInfo.controller( 'mallInfoEvents', 
         function( $scope, $state, $stateParams , mallCardFactory2 , $rootScope , mallData ){ /*, offlineData*/
 
-
+            $scope.mallInfo = mallData.setMallInfo();
             mallCardFactory2.fetchMallEvents( parseInt( $stateParams.mallId ) ).then( function( response ){
                 $scope.limitText = [];
                 $scope.events = response.all.data;
