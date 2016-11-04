@@ -1,0 +1,45 @@
+
+
+
+<div class="page-footer" style=" background-color: rgb(13,73,123)!important; ">
+
+    <img src="images/footer/stamp-add.png" ng-click="stampSearch()">
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <span route-mycard="mall">
+                    <span class="notification-shits" ng-if="mallNotification.length != 0">{{mallNotification.length}}</span>
+                    <img src="images/footer/stamp3.png" class="pf-first-child tab-img">
+                     <p class="footer-lang-text-shop">MALL&nbsp;CARDS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3">
+                <span route-mycard="shop">
+                    <span class="notification-shits" ng-if="shopNotification.length != 0">{{shopNotification.length}}</span>
+                    <img src="images/footer/stamp1.png"  class="pf-second-child tab-img">
+                     <p class="footer-lang-text-shop">SHOP&nbsp;CARDS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3" > <!-- -->
+                <span route-mycouponcard>
+                    <span class="notification-shits" ng-if="couponNotification.length != 0">{{couponNotification.length}}</span>
+                    <img src="images/footer/stamp2.png" class="pf-third-child tab-img">
+                     <p class="footer-lang-text-shop">COUPONS</p>
+                </span>
+            </div>
+
+            <div class="col-xs-3">
+                <span route-mystampcard>
+                    <span class="notification-shits" ng-if="stampNotification.length != 0">{{stampNotification.length}}</span>
+                    <img src="images/footer/stamp-active.png" class="pf-last-child tab-img">
+                     <p class="footer-lang-text ">STAMP&nbsp;CARDS</p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

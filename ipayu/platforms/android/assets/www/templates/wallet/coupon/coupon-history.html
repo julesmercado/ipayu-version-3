@@ -1,0 +1,84 @@
+
+<div id="sp-page" style="overflow:hidden;">
+<div class="page-main-header shop-page-main-header"></div>
+<div id="sp-nav" class="animated fading-menu" 
+    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+         ng-swipe-left="menuSwipeLeft()">
+
+<menu style="width:80%;height:100%;background:#fff;"
+        class="animated" 
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+  <ul class="nav nav-tabs page-menu-top coupon-nav">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+
+        <li class="col-xs-4"> 
+           <p class="bold header-title-wallet">
+                Coupon&nbsp;cards
+            </p>
+        </li>
+
+       <li class="col-xs-4 pull-right no-padding-right">
+            <button ng-click="toggleShowCountry()" id="flags-nav">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <span>{{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+
+    </ul>
+<div class="container filtered-cards" style="height:100%">
+
+            <a ng-click="gotoMyCouponCards()" class="coupon-history-viewAll-txt">
+               <span class="glyphicon glyphicon-triangle-left"></span> VIEW ALL
+            </a>
+
+
+          <!--   <a ng-click="gotoCouponHistory()" class="history-label">HISTORY</a> -->
+
+    <div class=" view-all-cards" style="overflow-x:hidden; margin-top:30px">
+        <div class="col-xs-12 no-padding">
+
+
+            <div  class="row" ng-repeat="coupons in usedCoupons" >
+                <div class="col-xs-6 dark-filter-coupons" 
+                        ng-repeat="coupon in coupons" 
+                        ng-click="proceedCouponInfo(coupon.coupon_id)">
+                    <div class="solid-border-va" >
+                        <div class="dashed-border-va">
+                            <img ng-src="{{coupon.image}}" class="img-responsive img-card-view-all">
+                        </div>
+
+                    </div>
+                     <p class="add-card-text add-coupon-text"> {{coupon.name}}</p>
+                </div>     
+            </div>
+
+            <h6 ng-if="usedCoupons.length == 0" class="text-gray no-cards" style="z-index:5;">No used coupons</h6>
+        </div>  
+    </div>
+
+</div>
+
+    <coupon-footer-menu></coupon-footer-menu>
+
+</div>

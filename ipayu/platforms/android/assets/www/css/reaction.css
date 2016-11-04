@@ -1,0 +1,271 @@
+.facebook-reaction{
+  max-width:100%;
+  margin:150px auto;
+  padding:0 60px;
+  position: relative;
+}
+
+
+
+.like-btn-default {
+  background-image: url('../images/facebook.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -277px -446px;
+}
+
+.like-btn-emo {
+  display: inline-block;
+  margin: 0 6px -3px 0;
+  width: 16px;
+  height: 16px;
+}
+
+.reactions-box {
+  height: 79px;
+  width: 316px;
+  padding: 10px;
+  position: absolute;
+  top: -81px;
+  left: -14px;
+  box-shadow: 1px 1px 2px #cccccc, -1px 0px 2px #eeeeee;
+  border-radius: 44px 44px;
+  display: none;
+  background-color: #f2f2f2;
+}
+
+.reaction {
+  list-style-type: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 8px;
+  opacity: 0;
+  transform: scale(1, 1);
+  transition: opacity .5s ease-in-out 1s, transform .07s ease-in-out 0s, top .07s ease-in-out 0s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center
+}
+
+.like-btn:hover .reactions-box {
+  display: block;
+}
+
+.reaction-5 {
+  left: 10px;
+  transition-delay: 0s;
+  /*background-image: url('../images/reactions/1.png');*/
+}
+
+.reaction-4 {
+  left: 68px;
+  transition-delay: .05s;
+  /*background-image: url('../images/reactions/2.png');*/
+}
+
+.reaction-3 {
+  left: 126px;
+  transition-delay: .1s;
+  /*background-image: url('../images/reactions/3.png');*/
+}
+
+.reaction-2 {
+  left: 184px;
+  transition-delay: .15s;
+  /*background-image: url('../images/reactions/4.png');*/
+}
+
+.reaction-1 {
+  left: 242px;
+  transition-delay: .2s;
+  /*background-image: url('../images/reactions/5.png');*/
+}
+
+.reaction-angry {
+  left: 300px;
+  transition-delay: .25s;
+  /*background-image: url('../images/rate-smile.png');*/
+}
+
+
+
+.like-btn:hover .reaction {
+  opacity: 1;
+  animation-name: reaction_delay;
+  animation-duration: .5s;
+}
+
+@keyframes reaction_delay {
+  0% {
+    width: 48px;
+    height: 48px;
+    top: 60px;
+  }
+  48% {
+    width: 56px;
+    height: 56px;
+    top: 5px;
+  }	
+  100% {
+    width: 48px;
+    height: 48px;
+    top: 8px;
+  }
+}
+
+
+.like-btn:hover .reaction-5 {
+  animation-delay: 0s
+}
+
+.like-btn:hover .reaction-4 {
+  animation-delay: .05s
+}
+
+.like-btn:hover .reaction-3 {
+  animation-delay: .1s
+}
+
+.like-btn:hover .reaction-2 {
+  animation-delay: .15s
+}
+
+.like-btn:hover .reaction-1 {
+  animation-delay: .2s
+}
+
+.like-btn:hover .reaction-angry {
+  animation-delay: .25s
+}
+
+.reaction:hover {
+  transform: scale(1.3, 1.3);
+  top: 2px
+}
+
+
+
+.reaction::before {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  line-height: 17px;
+  font-size: 0.9em;
+  width: 80%;
+  height: 14px;
+  margin-left: 10%;
+  background-color: rgb(242, 242, 242);
+  border-radius: 20px;
+  position: absolute;
+  top: 49px;
+  opacity: 0;
+  transition: opacity .2s ease-in-out 0s
+}
+
+.reaction:hover::before {
+  opacity: 1
+}
+
+.reaction-5::before {
+  content: '5'
+}
+
+.reaction-4::before {
+  content: '4'
+}
+
+.reaction-3::before {
+  content: '3'
+}
+
+.reaction-2::before {
+  content: '2'
+}
+
+
+.reaction-1::before {
+  content: '1'
+}
+
+.reaction-angry::before {
+  content: 'Angry'
+}
+
+.like-stat {
+  margin-top: 10px;
+}
+
+
+.like-btn-like{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -17px -151px;
+}
+
+.like-btn-2{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 0 -168px;
+}
+
+.like-btn-3{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 0 -151px;
+}
+
+.like-btn-4{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -17px -185px;
+}
+
+.like-btn-5{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -17px -168px;
+}
+
+.like-btn-angry{
+  background-image: url('../images/reaction-small.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -17px -117px;
+}
+
+.like-btn-text-like {
+  color:rgb(88, 144, 255);
+}
+.like-btn-text-4,.like-btn-text-3,.like-btn-text-5 {
+  color:rgb(240, 186, 21)
+}
+.like-btn-text-2{
+  color:rgb(242, 82, 104)
+}
+.like-btn-text-angry{
+  color:rgb(247, 113, 75);
+}
+
+.like-emo > span{
+    display: inline-block;
+    margin: 0 -3px -3px 0px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #EEE;
+    border-radius: 50%;
+
+}
+
+.like-details{
+  margin-left:10px;
+  color:#9197a3;
+  font-size:12px;
+}
