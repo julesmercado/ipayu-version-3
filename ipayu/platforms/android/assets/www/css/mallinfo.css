@@ -53,7 +53,7 @@ html{overflow-x: hidden;}
 .mall-info-underscore{margin-bottom: 22px;font-weight: 100;margin-top: 20px;margin-left: 55px;width: 84%;}
 
 .mall-event-single-post-image{width: 100%;height: auto;margin:0 auto;}
-.mall-event-single-post-content{margin:20px 0!important;}
+.mall-event-single-post-content{margin:20px 10px!important;}
 .mall-event-single-post-title{font-size: 14px !important; font-family: "HelveticaBold" !important; color: black;line-height: 4px;padding-top: 10px}
 .mall-event-single-post-posted{font-size: 11px;    color: gray; font-family: "HelveticaLight"}
 
@@ -112,19 +112,19 @@ li.row.comments-container:last-child {border-bottom: none;}
 
 .mall-event-post-date-container{    border-right: 1px solid blue;    position: relative;    padding-top: 18px;    padding-right: 5px;}
     .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#f50000}
-    .mall-event-MM{position: absolute;margin-bottom:0;line-height: 1;color:rgb(63,135,167)}
-    .mall-event-yyyy{color:rgb(63,135,167)}
+    .mall-event-MM{position: absolute;margin-bottom:0;line-height: 1;color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
+    .mall-event-yyyy{color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
     .mall-event-mm-end,.mall-event-yyyy-end{color:#f50000;}
 .mall-event-post-time-container{position: absolute;    padding-left: 2px;}
 .mall-event-post-time-container>span{line-height: 1;    display: block;    font-size: 10px; width:50px;  }
 .mall-event-post-time-container>span>span{font-family: "HelveticaBold"; color:rgb(63,135,167);}
 
-.mall-events-user-actions{margin-bottom: 10px;padding:0;}
+.mall-events-user-actions{margin-bottom: 10px;padding:0; padding-top: 5px}
 .mall-events-user-actions>img{height: 18px}
-.mall-events-user-actions>span{color:rgb(210,102,60);font-family: "HelveticaLight";font-size: 12px}
+.mall-events-user-actions>span{color:rgb(210,102,60);font-family: "HelveticaLight";font-size: 11px}
 .mall-events-see-brochure-text{    font-size: 9px;    font-family: "HelveticaCond";    margin-top: 5px;color:gray;}
 .mall-events-see-brochure-text:focus, .mall-events-see-brochure-text:visited:, .mall-events-see-brochure-text:active{color:gray;}
-.pdf-export-btn-img{    height: 32px;    position: absolute;    right: 2px;    top: -6px;}
+.pdf-export-btn-img{    height: 32px;    position: absolute;    right: -4px;    top: 3px;}
 
 }
 

@@ -3,6 +3,7 @@
         function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal ){ /*, offlineData*/
 
             $scope.info = mallData.setMallEvent();
+            $scope.mallInfo = mallData.setMallInfo();
             $scope.time_created = timeSince( $scope.info.datetime_created );
             $scope.limitText = 190;
 
@@ -70,7 +71,7 @@
                 $uibModal.open({
                       ariaLabelledBy: 'modal-title',
                       ariaDescribedBy: 'modal-body',
-                      templateUrl: '../templates/modals/comment-modal.html',
+                      templateUrl: '../www/templates/modals/comment-modal.html',
                       controller: 'modalComments'
                       
                     })

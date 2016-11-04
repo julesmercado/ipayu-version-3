@@ -15,6 +15,9 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.app.ipayu"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.app.ipayu"
         }
     },
     "dependent_plugins": {}

@@ -1,6 +1,6 @@
 
     mallInfo.controller( 'mallInfoEventsCards', 
-        function( $scope , mallCardFactory2 , $uibModal , $rootScope , mallData ){ /*, offlineData*/
+        function( $scope , mallCardFactory2 , $uibModal , $rootScope , mallData , $cordovaSocialSharing ){ /*, offlineData*/
 
             var monthNames = [
               "JAN", "FEB", "MAR",
@@ -38,6 +38,9 @@
             $scope.day = days[ day ];
             $scope.isCollapsed = false;
 
+            $scope.shareAnywhere = function() {
+                $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
+            }
             
             function truncateText( text ){
                 if( text.length > 190 ){
@@ -66,7 +69,7 @@
                 $uibModal.open({
                       ariaLabelledBy: 'modal-title',
                       ariaDescribedBy: 'modal-body',
-                      templateUrl: '../templates/modals/comment-modal.html',
+                      templateUrl: '../www/templates/modals/comment-modal.html',
                       controller: 'modalComments'
                       
                     })

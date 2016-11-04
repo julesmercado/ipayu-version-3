@@ -1,7 +1,7 @@
 
 
 
-var modules = [ 'app.wallet' ];
+var modules = [ 'app.wallet' , 'ngCordova' ];
 var mallInfo = angular.module('app.mallinfo', modules)
 	
 mallInfo.config(Config)
