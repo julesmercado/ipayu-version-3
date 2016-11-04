@@ -49,11 +49,11 @@
     <div class="mall-events-feed-container" scroll>
         <div class="mall-event-header" style="position:relative;" id="fade-on-scroll">
              <div class="mall-events-backdrop-header">
-                 <img src="images/ipayu_logo.png" class="animated mall-events-mall-header-logo bounceIn">
-                 <h3>Ion Mall</h3>
+                 <img ng-src="{{mallInfo.image}}" class="animated mall-events-mall-header-logo bounceIn">
+                 <h3 ng-bind="mallInfo.name">Ion Mall</h3>
                  <p ui-sref="shopDirectories"><a >STORE DIRECTORIES <span class="glyphicon glyphicon-play"></span></a></p>
             </div>
-            <img src="images/HD-Wallpapers1.jpeg" class="mall-events-mall-banner">
+            <img ng-src="{{mallInfo.image_banner}}" class="mall-events-mall-banner">
         </div>
 
                <!--start of card-->

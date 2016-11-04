@@ -3,6 +3,7 @@
         function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal ){ /*, offlineData*/
 
             $scope.info = mallData.setMallEvent();
+            $scope.mallInfo = mallData.setMallInfo();
             $scope.time_created = timeSince( $scope.info.datetime_created );
             $scope.limitText = 190;
 
