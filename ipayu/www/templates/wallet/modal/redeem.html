@@ -10,7 +10,7 @@
                   </div>
 
                 <div class="row" ng-if="!isClick && !isRedeemed">
-                    <div class="col-xs-10" ng-if="!isClick && !isRedeemed">
+                    <div class="col-xs-8 no-padding-right" ng-if="!isClick && !isRedeemed">
                         <div class="container">
                              {{ type }}
                             <h5 class="redeemable-item-body-text-ngdialog" ng-if="thisCoupon.description != ''" style="width:100%" >Fine Print: </h5>
@@ -22,6 +22,12 @@
                                 Rate is per person
                             </h5>
                         </div>
+                    </div>
+
+                     <div class="col-xs-4 no-padding-left">
+                                <span class="ci-info-price">
+                                  {{ point_value }}&nbsp;Points
+                                 </span>
                     </div>
                 </div>
                 <div class="row" style="margin-top:20px">
@@ -51,7 +57,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                         
-                        <div class="row" style="background-color:#333333; color:white; margin:0" class="redeem-btn" ng-if="!isClick && !isRedeemed" >              
+                        <div class="row" style="background-color:#333333; color:white; margin:0;margin-bottom: -22px;" class="redeem-btn" ng-if="!isClick && !isRedeemed" >              
                                <div>
                                     <button type="button" ng-click="redeem()" class="ng-dialog-redeem-btn">
                                         <img src="images/redeem-btn.png" >
