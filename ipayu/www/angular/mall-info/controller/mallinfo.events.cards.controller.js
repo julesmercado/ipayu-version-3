@@ -66,7 +66,7 @@
                 $uibModal.open({
                       ariaLabelledBy: 'modal-title',
                       ariaDescribedBy: 'modal-body',
-                      templateUrl: '../templates/modals/comment-modal.html',
+                      templateUrl: '../www/templates/modals/comment-modal.html',
                       controller: 'modalComments'
                       
                     })
