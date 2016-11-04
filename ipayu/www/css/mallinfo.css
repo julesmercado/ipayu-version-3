@@ -25,7 +25,7 @@ html{overflow-x: hidden;}
 .mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 10px;  margin-top: 13px;}
 .mall-info-shop-search-categories {}
 .mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;}
-.mall-info-dark-bg-shop{background-color: black;opacity: 0.3;;} 
+.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.3)} 
 .mall-info-featured-malls-mall-name{color: white;font-size: 11px; }
 .mall-info-divider{border-bottom: 1px solid white;width: 39px;position: absolute;top: 201px;left: 44%;}
 .mall-info-search-container{width:83px;}
