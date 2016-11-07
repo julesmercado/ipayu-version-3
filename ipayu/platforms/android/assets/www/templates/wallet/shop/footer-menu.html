@@ -1,0 +1,46 @@
+
+
+
+<div class="page-footer-shop" style=" background-color: #1882A8 !important; ">
+
+    <img src="images/footer/Shopcards-AddCardButton.png" ng-click="shopsearch()">
+ 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <a ui-sref="mymallcards">
+                    <span class="notification-shits" ng-if="mallNotification.length != 0">{{mallNotification.length}}</span>
+                    <img src="images/footer/Shopcards-Mallcard.png" class="pf-first-child tab-img">
+                     <p class="footer-lang-text-shop">MALL CARDS</p>
+                </a>
+            </div>
+
+            <div class="col-xs-3">
+                <a ng-click="gotoMyShopCards()">
+                    <span class="notification-shits" ng-if="shopNotification.length != 0">{{shopNotification.length}}</span>
+                    <img src="images/footer/Shopcards-Active.png"  class="pf-second-child tab-img">
+                     <p class="footer-lang-text">SHOP CARDS</p>
+                </a>
+            </div>
+
+            <div class="col-xs-3" > <!-- -->
+                <a ng-click="gotoMyCouponCards()">
+                    <span class="notification-shits" ng-if="couponNotification.length != 0">{{couponNotification.length}}</span>
+                    <img src="images/footer/Shopcards-Coupon.png" class="pf-third-child tab-img">
+                     <p class="footer-lang-text-shop">COUPONS</p>
+                </a>
+            </div>
+
+            <div class="col-xs-3">
+                <a ui-sref="mystampcards">
+                    <span class="notification-shits" ng-if="stampNotification.length != 0">{{stampNotification.length}}</span>
+                    <img src="images/footer/Shopcards-Stomp.png" class="pf-last-child tab-img">
+                     <p class="footer-lang-text-shop">STAMP&nbsp;CARDS</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

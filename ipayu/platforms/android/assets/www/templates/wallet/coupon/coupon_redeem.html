@@ -1,0 +1,113 @@
+<div id="sp-nav" >
+    <menu></menu>
+</div>
+
+<div id="sp-page" style="background-image:url(images/cards-background_2.png);background-repeat:no-repeat;background-size:100%">
+    <div class="wrapper_d">
+        <div class="nav nav-dash">
+            <nav>
+                <!--ng-click="$spMenu.toggle()"-->
+
+                <button class="burger-menu" ng-if="!searchResultFlag" >
+                    <img src="images/chevron-left.png" class="burger-menu-img"></img>
+                </button back>
+
+                <button class="burger-menu" ng-if="searchResultFlag" ng-click="cancelSearch()" back>
+                    <img src="images/chevron-left.png" class="burger-menu-img"></img>
+                </button>
+
+                <button class="burger-menu" ng-click="$spMenu.toggle()">
+                    <img src="images/menubar.png" class="burger-menu-img"></img>
+                </button>
+
+                <center>
+                    <div class="dash-mall-header-logo">
+                        Coupons
+                    </div>
+                </center>
+
+                <button class="dash-logout"  ui-sref="dashboard">
+                    <img src="images/home-header.png" class="nav-home-img">
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="search-area">
+       
+    </div>
+ <div class="search">
+            <div ng-if="!searchResultFlag">
+                <form ng-submit="onSearch(search)">
+                    <span class="search-icon" ng-click="onSearch(search)"><img src="images/assets/search.png"></span>
+                    <input placeholder="Search term" ng-model="search">
+                </form>
+            </div>
+            <div class="search-result-text" ng-if="searchResultFlag">
+                SEARCH RESULTS ( {{(mallCards|filter:searchKey).length}} )
+            </div>
+        </div>
+
+    <div class="search-card-result-redeem">
+        <div class="coupon-redeem-top">
+            <img src="images/card3.png" />
+
+            <div class="coupon-description">
+                <p>Get -$1 for a Burger at B-Bop in Parkway parade. More Options Available.</p>
+
+                <ul>
+                    <li>
+                        LESS -$1
+                    </li>
+                    <li>
+                        <p>Discount</p>
+                        <p>10%</p>
+                    </li>
+                    <li>
+                        <p>Bought</p>
+                        <p>300+</p>
+                    </li>
+                    <li>
+                        <p>
+                            Limited <br>
+                            Availability
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="coupon-redeem-bottom">
+            <button type="button" ng-click="redeemItem()">
+                <img src="images/redeem-btn.png"/>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL TEMPLATE -->
+    <script type="text/ng-template" id="withInlineController">
+        <div class="ngdialog-message" ng-if="!isRedeemed">
+            <p class="coupon-dialog-message">DO YOU WANT TO REDEEM THIS ITEM?</p>
+            <p class="coupon-dialog-options">
+                <a ng-click="redeem()">
+                    <img src="images/dark-check.png"/>
+                </a>
+                <a ng-click="closeModal()">
+                    <img src="images/dark-cancel.png"/>
+                </a>
+            </p>
+        </div>
+
+        <div class="ngdialog-message-success" ng-if="isRedeemed">
+            <div class="coupon-success-dialog">
+                <img src="images/dark-big-check.png" />
+                <p>ITEM SUCESSFULLY REDEEMED</p>
+                <a ng-click="closeModal()">
+                    <img src="images/dark-ok.png"/>
+                </a>
+            </div>
+        </div>
+    </script>
+
+    <footer-menu></footer-menu>
+</div>

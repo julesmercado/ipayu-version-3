@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' content-src: http://www.ipayu.co/ data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-default.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-plain.min.css">
+        <link rel="stylesheet" type="text/css" href="css/ngDialog-custom-width.css">
+        <link rel="stylesheet" type="text/css" href="css/loading-bar.min.css" media='all'/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/sizes/ipad_screen.css">
+        <link rel="stylesheet" type="text/css" href="css/sizes/iphone_screen.css">
+        <link rel="stylesheet" type="text/css" href="css/mallinfo.css">
+        <link rel="stylesheet" type="text/css" href="css/reaction.css">
+        <link rel="stylesheet" type="text/css" href="css/reaction-style.css">
+        <link rel="stylesheet" type="text/css" href="css/angular-range-slider.css">
+        
+        <link rel="stylesheet" id="themeCSS" href="css/daterange/classic.css"> 
+        <link rel="stylesheet" href="css/daterange/style.css">
+
+        <title>Ipayu</title>
+
+    </head>
+
+    <script type="text/javascript">
+
+        // document.addEventListener('deviceready', function () {
+        //     angular.bootstrap(document, ['app.ipayu']);
+        // }, false);
+        
+    </script>
+
+    <body ng-app="app.ipayu">
+
+        <div ng-controller="mainCtrl">
+            <loading style="position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            z-index: 199;
+                            overflow: hidden;
+                            margin:auto;
+                            opacity:.9;
+                            background:#fff;"
+                    ng-if="doLoading"></loading>
+            <div ui-view></div>
+        </div>
+
+
+        <!-- Dependencies -->
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
+
+        <!-- Angular -->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-touch.min.js"></script>
+        <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="js/loading-bar.min.js"></script>
+        <script type="text/javascript" src="js/ng-dialog.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.js"></script>
+        <script type="text/javascript" src="js/angular-qrcode.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-tpls-2.0.0.min.js"></script>
+        
+        <script type="text/javascript" src="js/ng-cordova.js"></script>
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+
+
+        <!-- Ipayu Main -->  
+        <script type="text/javascript" src="angular/ipayu/ipayu.app.js"></script>
+        <script type="text/javascript" src="angular/ipayu/ipayu.route.js"></script>
+        
+        <script type="text/javascript" src="angular/ipayu/controller/main.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/login.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/register.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/dashboard.controller.js"></script>
+        <script type="text/javascript" src="angular/ipayu/controller/process.controller.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/factory/flag.factory.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.request.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.js"></script>
+        <script type="text/javascript" src="angular/ipayu/factory/account.factory.data.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/directive/register.directive.js"></script>
+        <script type="text/javascript" src="angular/ipayu/directive/menu.directive.js"></script>
+        <script type="text/javascript" src="angular/ipayu/directive/routes.directive.js"></script>
+        <script type="text/javascript" src="angular/ipayu/directive/parts.directive.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/filter/greet.filter.js"></script>
+
+        <script type="text/javascript" src="angular/ipayu/service/http-interceptor.service.js"></script>
+        <script type="text/javascript" src="angular/ipayu/service/preloader-image.service.js"></script>
+        <script type="text/javascript" src="angular/ipayu/service/preloader.service.js"></script>
+
+        <!-- Wallet -->
+        <script type="text/javascript" src="angular/wallet/wallet.app.js"></script>
+
+        <!-- Wallet Directives -->
+        <script type="text/javascript" src="angular/wallet/directive/parts.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/routes.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/custom.directive.js"></script>
+        <script type="text/javascript" src="angular/wallet/directive/modals.directive.js"></script>
+
+        <!-- Wallet Filters -->
+        <script type="text/javascript" src="angular/wallet/filter/custom.filter.js"></script>
+
+        <!-- Wallet Factories -->
+        <script type="text/javascript" src="angular/wallet/factory/wallet.factory.data.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/wallet.factory.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/wallet.factory.request.js"></script>
+
+        <!-- Wallet Services -->
+        <script type="text/javascript" src="angular/wallet/service/custom.service.js"></script>
+        <script type="text/javascript" src="angular/wallet/service/excel.service.js"></script>
+
+        <!-- Wallet->Mall Controllers -->
+        <script type="text/javascript" src="angular/wallet/controller/mall/mymallcard.controller.js"></script>
+        <script type="text/javascript" src="angular/wallet/controller/mall/modal.controller.js"></script>
+
+        <!-- Wallet->Mall Factories -->
+        <script type="text/javascript" src="angular/wallet/factory/mall/mall.factory.data.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/mall/mall.factory.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/mall/mall.factory.request.js"></script>
+
+        <!-- Wallet->Shop Controllers -->
+        <script type="text/javascript" src="angular/wallet/controller/shop/myshopcard.controller.js"></script>
+
+        <!-- Wallet->Coupon Controllers -->
+        <script type="text/javascript" src="angular/wallet/controller/coupon/mycoupon.controller.js"></script>
+
+        <!-- Wallet->Coupon Factories -->
+        <script type="text/javascript" src="angular/wallet/factory/coupon/coupon.factory.data.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/coupon/coupon.factory.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/coupon/coupon.factory.request.js"></script>
+
+        <!-- Wallet->Stamp Factories -->
+        <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.data.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.request.js"></script>
+
+
+        <!-- SQLite -->
+        <script type="text/javascript" src="angular/wallet/factory/sqlite/sqlite.setters.js"></script>
+        <script type="text/javascript" src="angular/wallet/factory/sqlite/sqlite.getters.js"></script>
+
+
+        <!-- Mall Info -->
+        <script type="text/javascript" src="angular/mall-info/mallinfo.app.js"></script>
+
+        <!-- Factory -->
+        <script type="text/javascript" src="angular/mall-info/factory/mallinfo.factory.request.js"></script>
+        <script type="text/javascript" src="angular/mall-info/factory/mallinfo.factory.js"></script>
+        <script type="text/javascript" src="angular/mall-info/factory/mallinfo.factory.data.js"></script>
+        <!-- Service -->
+
+        <!-- Controller -->
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.landing.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.events.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.events.cards.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.directories.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.shop.directories.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.shopinfo.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.modal.comment.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.reactions.controller.js"></script>
+        <script type="text/javascript" src="angular/mall-info/controller/mallinfo.events.full.controller.js"></script>
+
+        <!-- Directive -->
+        <script type="text/javascript" src="angular/mall-info/directive/mallinfo.scroll.directive.js"></script>
+        <script type="text/javascript" src="angular/mall-info/directive/mallinfo.collapse.directive.js"></script>
+        <script type="text/javascript" src="angular/mall-info/directive/mallinfo.modal.directive.js"></script>
+        <script type="text/javascript" src="angular/mall-info/directive/mallinfo.reactions.directive.js"></script>
+        <script type="text/javascript" src="angular/mall-info/directive/mallinfo.events.directive.js"></script>
+
+
+        <script type="text/javascript" src="js/reaction.js"></script>
+    </body>
+
+</html>

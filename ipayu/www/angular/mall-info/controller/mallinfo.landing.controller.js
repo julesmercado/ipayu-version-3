@@ -2,15 +2,14 @@
 
     mallInfo.controller('mallinfolanding', mall_info_controller)
 
-    	function mall_info_controller( $scope , $timeout , $state , mallCardFactory2 , mallData  ){
+    	function mall_info_controller( $scope , $timeout , $state , mallCardFactory2 , mallData , customService , $rootScope  ){
         
+                startInfoLanding();
 
-                mallCardFactory2.fetchAllMallsFeaturedAndNew().then( function( response ){
-                    var mallsFeaturedAndNew = response.all.data;
-                    $scope.indexFeatured = 0; $scope.indexNewMalls = 0; $scope.featured = eightPerView( mallsFeaturedAndNew.featured_malls );
-                    $scope.newMalls = eightPerView( mallsFeaturedAndNew.new_post );
-                    
-                } );
+                $scope.$watch( 'searchCountry.country', function( newValue , oldValue ){
+                    //resetMallsArray()
+                    startInfoLanding()
+                } )
 
                 $scope.swipeLeft = swipeLeft;$scope.swipeRight = swipeRight;
 
@@ -20,6 +19,23 @@
                     $state.go( 'mallEvents', {mallId: mall.asset_id})
                 };
 
+                function startInfoLanding(){
+                    mallCardFactory2.fetchAllMallsFeaturedAndNew().then( function( response ){
+
+
+                        var mallsFeaturedAndNew = response.all.data;
+                        var featured = customService.filterByCountry( mallsFeaturedAndNew.featured_malls , $rootScope.countryDisplay.country );
+                        var newMalls = customService.filterByCountry( mallsFeaturedAndNew.new_post , $rootScope.countryDisplay.country );
+
+                        console.log( featured )
+                        console.log( newMalls )
+                        $scope.indexFeatured = 0; $scope.indexNewMalls = 0; 
+
+                        $scope.featured = eightPerView( featured );
+                        $scope.newMalls = eightPerView( newMalls );
+                        
+                    } );
+                }
                 function swipeLeft( array , constrain ){
 
                     

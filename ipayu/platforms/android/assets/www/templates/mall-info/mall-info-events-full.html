@@ -1,0 +1,139 @@
+<div id="sp-page" style="overflow:hidden;background-image:none; background-color:#F2F2F2">
+<div class="page-main-header mall-info-header"></div>
+
+<div id="sp-nav" class="animated fading-menu" 
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+         ng-swipe-left="menuSwipeLeft()"        >
+
+    <menu style="width:80%;height:100%;background:#fff;"
+            class="animated" 
+            ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+
+   <ul class="nav nav-tabs page-menu-top">
+        <li class="col-xs-4 no-padding" style="margin-bottom:-4px">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+        <li class="col-xs-4" style="margin-bottom:-4px"> 
+           <p class="bold header-title-wallet">
+                Mall Info
+            </p>
+        </li>
+         <li class="col-xs-4 pull-right no-padding-right" style="margin-bottom:-4px">
+            <button ng-click="toggleShowCountry()" id="flags-nav">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                {{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+
+
+    <div class="mall-events-feed-container" scroll>
+        <div class="mall-event-header" style="position:relative;" id="fade-on-scroll">
+             <div class="mall-events-backdrop-header">
+                 <img ng-src="{{mallInfo.image}}" class="animated mall-events-mall-header-logo bounceIn">
+                 <h3 ng-bind="mallInfo.name">Ion Mall</h3>
+                 <p ui-sref="shopDirectories"><a >STORE DIRECTORIES <span class="glyphicon glyphicon-play"></span></a></p>
+            </div>
+            <img ng-src="{{mallInfo.image_banner}}" class="mall-events-mall-banner">
+        </div>
+
+               <!--start of card-->
+        <div class="animated container fadeIn">
+         <p class="mall-event-single-post-title" ng-bind="info.name">Bruno Mars Concert</p>
+            <span class="mall-event-single-post-posted">Posted {{time_created}} ago </span>
+                <div class="mall-events-announcemnt-con" style="border:none">
+                    <img ng-src="{{info.image}}" class="mall-event-single-post-image">
+                       <p class="mall-event-post-content mall-event-single-post-content" ng-bind="info.description | limitTo: limitText">
+                            You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser. 
+                       </p>           
+                        <div class="row">
+                            <div class="container">
+                               <div class="col-xs-5" style="padding-left:5px">
+                                    <span class="mall-event-dd" ng-bind="dateStart.day">{{dateStart.day}}</span>
+                                        <span class="mall-event-post-date-container">
+                                            <span class="mall-event-MM" ng-bind="dateStart.month"></span>
+                                            <span class="mall-event-yyyy" ng-bind="dateStart.year"></span>
+                                        </span>
+
+                                        <span class="mall-event-post-time-container" style="position: absolute;">
+                                           <span><span>START</span><br/>
+                                           {{time.start}}<br/>
+                                            {{day}}</span>
+                                        </span>
+                               </div>
+                               <div class="col-xs-5">
+                                    <span class="mall-event-dd" ng-bind="dateEnd.day"></span>
+                                    <span class="mall-event-post-date-container">
+                                        <span class="mall-event-MM mall-event-mm-end" ng-bind="dateEnd.month"></span>
+                                        <span class="mall-event-yyyy mall-event-yyyy-end" ng-bind="dateEnd.year"></span>
+                                    </span>
+
+                                    <span class="mall-event-post-time-container" style="position: absolute;">
+                                            <span><span>END</span><br/>
+                                           {{time.end}}<br/>
+                                            {{day}}</span>
+                                    </span>
+
+                               </div>
+                                <div class="col-xs-2 collapseable-chevron">
+                                    <span class="glyphicon glyphicon-chevron-down collapser" ng-click="collapse( $event, $index )"></span>
+                                </div>
+                               <hr style="width: 94%; border-top:1px solid #969494;margin-bottom: 10px"/>
+
+                                <div class="col-xs-8">
+                                   <div class="col-xs-4 mall-events-user-actions like-btn">
+                                        <img src="images/rate-smile.png">
+                                        <span>5.0</span>
+                                        <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
+                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions()"></li>
+                                        </ul>
+                                    </div>
+                                      <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">
+                                        <img src="images/comment.png">
+                                         <span>4k</span>
+                                         <div class="comments-box"></div>
+                                    </div>
+                                      <div class="col-xs-4 mall-events-user-actions">
+                                        <img src="images/share.png">
+                                         <span>Share</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <p><a ng-click="toMallEventsFull(event)" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
+                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <hr style="margin-bottom: 0" />
+        </div>  
+        <!--end of card -->
+
+    </div>
+      
+
+
+
+
+
+</div>
