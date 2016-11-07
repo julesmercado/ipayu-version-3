@@ -80,12 +80,42 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/coupon/my-coupon-cards.html',
             controller: 'myCouponCtrl'
         })
+        .state('coupongroup', {
+            url: '/coupongroup/{name}',
+            templateUrl: 'templates/wallet/coupon/coupon-group.html',
+            controller: 'couponGroupCtrl'
+        })
+        .state('couponinfo', {
+            url: '/couponinfo/{id}/{type}',
+            templateUrl: 'templates/wallet/coupon/coupon-info.html',
+            controller: 'couponInfoCtrl'
+        })
+        .state('couponhistory', {
+            url: '/couponhistory',
+            templateUrl: 'templates/wallet/coupon/coupon-history.html',
+            controller: 'couponHistoryCtrl'
+        })
+        .state('couponsearch', {
+            url: '/couponsearch',
+            templateUrl: 'templates/wallet/coupon/coupon-search.html',
+            controller: 'couponCardSearchCtrl'
+        })
+        .state('allcouponsearch', {
+            url: '/allcouponsearch',
+            templateUrl: 'templates/wallet/coupon/coupon-all-card.html',
+            controller: 'allCouponCardSearchCtrl'
+        })
+        .state('addcouponcard', {
+            url: '/addcouponcard',
+            templateUrl: 'templates/wallet/coupon/add-coupon-card.html',
+            controller: 'addCouponCardCtrl'
+        })
 
     // stamp cards
         .state('mystampcards', {
             url: '/mystampcards',
             templateUrl: 'templates/wallet/stamp/my-stamp-cards.html',
-            controller: 'myMallCardCtrl'
+            controller: 'myStampCtrl'
         })
 
 }

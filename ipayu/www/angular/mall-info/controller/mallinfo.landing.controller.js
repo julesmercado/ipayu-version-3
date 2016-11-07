@@ -6,8 +6,6 @@
         
 
                 mallCardFactory2.fetchAllMallsFeaturedAndNew().then( function( response ){
-
-
                     var mallsFeaturedAndNew = response.all.data;
                     $scope.indexFeatured = 0; $scope.indexNewMalls = 0; $scope.featured = eightPerView( mallsFeaturedAndNew.featured_malls );
                     $scope.newMalls = eightPerView( mallsFeaturedAndNew.new_post );
@@ -19,7 +17,7 @@
 
                 $scope.toMallEvents = function( mall ){
                     mallData.setMallInfo( mall );
-                    $state.go( 'mallEvents', {mallId: mall.asset_id} )
+                    $state.go( 'mallEvents', {mallId: mall.asset_id})
                 };
 
                 function swipeLeft( array , constrain ){

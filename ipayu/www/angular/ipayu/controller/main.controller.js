@@ -2,8 +2,8 @@
 mainModule.controller('mainCtrl', MainCtrl)
 
 
-MainCtrl.$inject = ['$rootScope', '$timeout', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet'];
-function MainCtrl($rootScope, $timeout, flags, ngDialog, $state, accountData, sqliteSet) {
+MainCtrl.$inject = ['$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet'];
+function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet) {
 
     var tOut;
     $rootScope.doLoading = false;
@@ -76,6 +76,10 @@ function MainCtrl($rootScope, $timeout, flags, ngDialog, $state, accountData, sq
         sqliteSet.dropTable();
         localStorage.clear();
         $state.go('login');
+    }
+
+    $rootScope.readable_date = function(date){
+        return $filter('date')(new Date(parseInt(date)), 'yyyy-MM-dd');
     }
 
 }

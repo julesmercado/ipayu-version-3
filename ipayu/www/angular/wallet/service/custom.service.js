@@ -157,19 +157,39 @@ function CustomService() {
 			}
 			var returnData = [];
 			for (var i = 0; i < data.length; i++) {
-			var checker = false;
-				for (var x = 0; x < data[i].category_name.length; x++) {
-					var value = data[i].category_name[x].name;
-					if(value == cat) {
-						checker = true;
-					}
-				}
-				if(checker) {
-					returnData.push(data[i]);
-				}
+                if(data[i].category_name){
+                    var checker = false;
+                    for (var x = 0; x < data[i].category_name.length; x++) {
+                        var value = data[i].category_name[x].name;
+                        if(value == cat) {
+                            checker = true;
+                        }
+                    }
+                    if(checker) {
+                        returnData.push(data[i]);
+                    }
+                }
 			}
 			return returnData;
-		}
+		},
+
+        getTimeRemaining: function(endtime){
+            endtime = parseInt(endtime);
+            var now = Date.parse(new Date());
+            var t = endtime - now;
+
+            var seconds = Math.floor( (t/1000) % 60 );
+            var minutes = Math.floor( (t/1000/60) % 60 );
+            var hours = Math.floor( (t/(1000*60*60)) % 24 );
+            var days = Math.floor( t/(1000*60*60*24) );
+            return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
 	}
 
 }

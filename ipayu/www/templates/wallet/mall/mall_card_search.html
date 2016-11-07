@@ -54,25 +54,6 @@
     </div>
 </div>
 
-
-
-<!--
-    <div class="search-card-result" style="">
-        <ul>
-            <li ng-repeat="card in mallCards" ng-click="tapped(card)">
-                <div class="orange" >
-                    <div class="dotted">
-                        <p>CARD NAME : {{card.name}}</p>
-                        <img ng-src="{{card.image}}" class="search-card-img card-result" />
-                        <p >+ TAP TO ADD</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-
- -->
-
-    <mall-footer></mall-footer>
+    <mall-footer ng-if="!hasFocusElement"></mall-footer>
 
 </div>

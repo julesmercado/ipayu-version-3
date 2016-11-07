@@ -1,49 +1,14 @@
-<div id="sp-page"  style="overflow-x:hidden">
-<div class="page-main-header shop-page-main-header"></div>
-<div id="sp-nav" class="animated fading-menu" 
-    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
-         ng-swipe-left="menuSwipeLeft()" >
-
-    <menu style="width:80%;height:100%;background:#fff;"
-        class="animated" 
-        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
-
-</div>
-    <ul class="nav nav-tabs page-menu-top coupon-nav">
-        <li class="col-xs-4 no-padding">
-            <button back>
-                <img src="images/back-btn.png" class="back-button-header-img">
-            </button>
-            <button ng-click="toggleMenu()">
-             <img src="images/menubar.png" >
-            </button>
-        </li>
-
-        <li class="col-xs-4"> 
-           <p class="bold header-title-wallet">
-                Coupon&nbsp;cards
-            </p>
-        </li>
-
-       <li class="col-xs-4 pull-right no-padding-right">
-            <button ng-click="toggleShowCountry()" id="flags-nav">
-                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
-                <span>{{countryDisplay.name}}</span> 
-                    <ul ng-if="countryDisplay.display"
-                        class="flagHeader">
-
-                            <li ng-repeat="c in headerCountries" 
-                                ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
-                                    {{c.code}}
-                            </li>
-                        </ul>
-            </button>
-             <button class="btn-top-with-flag" ui-sref="dashboard">
-                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
-             </button >
-        </li>
-    </ul>
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header shop-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
 
 
 <div class="container filtered-cards">
@@ -56,16 +21,14 @@
         </div>
     </div>
 
-    <div class="row add-card-form">
+    <div class="row add-card-form" add-card-form>
         <div class="col-xs-12">
             <form>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group coupon-forms" >
                             <label for="fn">FULL NAME</label>
-                            <input type="text" ng-focus="setFocus('fn')" 
-                                    ng-model="userData.name.i_value" 
-                                    ng-blur="setBlur()" class="form-control" 
+                            <input type="text" ng-model="userData.name.i_value" class="form-control" 
                                     disabled="true" 
                                     id="fn">
                         </div>
@@ -76,9 +39,7 @@
                     <div class="col-xs-6">
                         <div class="form-group coupon-forms" >
                             <label for="em">EMAIL</label>
-                            <input type="email" ng-focus="setFocus('em')" 
-                                    ng-model="userData.email.i_value" 
-                                    ng-blur="setBlur()" class="form-control" 
+                            <input type="email" ng-model="userData.email.i_value" class="form-control" 
                                     ng-disabled="true"
                                     id="em">
                         </div>
@@ -91,22 +52,16 @@
                                     id="basic-addon1"
                                     ng-model="phonePrefix.prefix">
                                         <option value="+60" >+60</option>
-                                        <option value="+62" >+62</option>
                                         <option value="+63" >+63</option>
                                         <option value="+65" >+65</option>
                                         <option value="+66" >+66</option>
                                         <option value="+673" >+673</option>
                                         <option value="+84" >+84</option>
                                         <option value="+855" >+855</option>
-                                        <option value="+856" >+856</option>
                                         <option value="+95" >+95</option>
                             </select>
-                            <input type="number" ng-focus="setFocus('mn')" 
-                                    ng-model="userData.phone.i_value" 
-                                    ng-blur="setBlur()" class="form-control" autofocus="true" 
-                                    ng-keyup="upPhone()"
-                                    id="mn"
-
+                            <input type="number" ng-model="userData.phone.i_value" class="form-control" autofocus="true" 
+                                    ng-keyup="upPhone(true)" id="mn"
                                     uib-tooltip="{{ userData.phone.message }}" 
                                     tooltip-trigger="'none'" 
                                     tooltip-placement="bottom" 
@@ -119,16 +74,12 @@
                     <div class="col-xs-12">
                         <div class="form-group coupon-forms" >
                             <label for="add">ADDRESS</label>
-                            <input type="text" ng-focus="setFocus('add')" 
-                                    ng-model="userData.address.i_value" 
-                                    ng-blur="setBlur()" class="form-control" 
+                            <input type="text" ng-model="userData.address.i_value" class="form-control" 
                                     ng-disabled="userData.phone.hasError"
-                                    ng-keyup="upAddress()"
-                                    id="add"
-
-                                    uib-tooltip="{{ userData.address.message }}" 
-                                    tooltip-trigger="'none'" 
-                                    tooltip-placement="bottom" 
+                                    ng-keyup="upAddress(true)" id="add"
+                                    uib-tooltip="{{ userData.address.message }}"
+                                    tooltip-trigger="'none'"
+                                    tooltip-placement="bottom"
                                     tooltip-is-open="openToolTip && userData.address.hasError && userData.address.touched ">
                         </div>
                     </div>
@@ -138,30 +89,22 @@
                     <div class="col-xs-8">
                         <div class="form-group coupon-forms" >
                             <label for="city">CITY</label>
-                            <input type="text" ng-focus="setFocus('city')" 
-                                    ng-model="userData.city.i_value" 
-                                    ng-blur="setBlur()" class="form-control" 
-                                    ng-disabled="userData.address.hasError"
-                                    ng-keyup="upCity()"
-                                    id="city"
-
-                                    uib-tooltip="{{ userData.city.message }}" 
-                                    tooltip-trigger="'none'" 
-                                    tooltip-placement="bottom" 
-                                    tooltip-is-open="openToolTip && userData.city.hasError && userData.city.touched ">
+                            <input type="text" ng-model="userData.city.i_value" class="form-control" 
+                                    ng-disabled="userData.address.hasError" 
+                                    ng-keyup="upCity(true)" id="city"
+                                    uib-tooltip="{{ userData.address.message }}"
+                                    tooltip-trigger="'none'"
+                                    tooltip-placement="bottom"
+                                    tooltip-is-open="openToolTip && userData.address.hasError && userData.address.touched ">
                         </div>
                     </div>
 
                     <div class="col-xs-4">
                         <div class="form-group coupon-forms" >
                             <label for="pc">POSTAL CODE</label>
-                            <input type="number" ng-focus="setFocus('pc')" 
-                                    ng-model="userData.postal.i_value" 
-                                    ng-blur="setBlur()" class="form-control" 
+                            <input type="number" ng-model="userData.postal.i_value" class="form-control" 
                                     ng-disabled="userData.city.hasError"
-                                    ng-keyup="upPostal()"
-                                    id="pc"
-
+                                    ng-keyup="upPostal(true)" id="pc"
                                     uib-tooltip="{{ userData.postal.message }}" 
                                     tooltip-trigger="'none'" 
                                     tooltip-placement="bottom" 
@@ -173,7 +116,7 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <button type="submit" class="btn btn-default blue-text" 
-                                ng-click="addCouponCard()"
+                                ng-click="addCard()"
                                 ng-disabled="disableBtn"
                                 style="color:rgb(130,0,13) !important;">
                             <img src="images/assets/maroon-check.png">
@@ -221,41 +164,6 @@
         </div>
     </div>
     </div>
-
-
- <coupon-footer-menu  ng-if="!hasFocusElement"></coupon-footer-menu>
-
+    <card-successfully-added-modal></card-successfully-added-modal>
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
 </div>
-
-
-    <!-- MODAL TEMPLATE -->
-    <script type="text/ng-template" id="withInlineController1">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="dashed-dialog text-center">
-                        <img src="images/dark-big-check.png" class="img-responsive">
-                        <h4>
-                            CARD SUCCESSFULLY ADDED
-                        </h4>
-                        
-                        <button type="button" ng-click="closeThisDialog()">
-                            <img src="images/dark-ok.png" class="img-responsive">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script> 
-
-    <script type="text/ng-template" id="withInlineController2">
-        <div class="ngdialog-addmallcard-message">
-            <div class="ngdialog-addmallcard-message-bottom">
-
-                <div class="ngdialog-addmallcard-sucess" style="clear:both">
-                    <p>Credentials not match</p>
-                    <button type="button" ng-click="closeThisDialog()">OK</button>
-                </div>
-            </div>
-        </div>
-    </script>   

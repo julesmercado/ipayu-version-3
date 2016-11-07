@@ -13,7 +13,7 @@ function WalletData() {
         card_to_add = false;
 
     return {
-
+        
 // Setters
         setUserCards: function (data, type) {
             if(type == 'mall'){
@@ -142,26 +142,7 @@ function WalletData() {
             });
             localStorage.setItem(t, JSON.stringify(retrievedObject));
             return data;
-        },
-
-        getTimeRemaining: function(endtime){
-            endtime = parseInt(endtime);
-            var now = Date.parse(new Date());
-            var t = endtime - now;
-
-            var seconds = Math.floor( (t/1000) % 60 );
-            var minutes = Math.floor( (t/1000/60) % 60 );
-            var hours = Math.floor( (t/(1000*60*60)) % 24 );
-            var days = Math.floor( t/(1000*60*60*24) );
-            return {
-                'total': t,
-                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
-            };
         }
-
     }
 
 }

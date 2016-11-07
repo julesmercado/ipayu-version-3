@@ -2,31 +2,28 @@
 walletModule.directive('timerCountdown', TimerDirective)
 walletModule.directive('stringToTimestamp', StringToTimestamp)
 walletModule.directive('downloadExcel', DownloadExcel)
+walletModule.directive('addCardForm', AddCardForm)
 
 
-TimerDirective.$inject = ['walletData'];
-function TimerDirective(walletData){
+TimerDirective.$inject = ['customService'];
+function TimerDirective(customService){
 
     return {
             restrict: 'A',
             scope: {
-                thisCoupon: '=coupon'
+                thisCard: '=card'
             },
             link : function(scope, element, attrs){
                 var de = attrs.timerCountdown;
+                
+                countdown();
+                
                 function countdown(){
-
                     heheTimer = setInterval(function(){
-                        theTimer = walletData.getTimeRemaining(de);
-                        // console.log(theTimer)
+                        theTimer = customService.getTimeRemaining(de);
                         if(theTimer.total<=0){
-                            scope.thisCoupon.couponHasExpired = true;
-                            if(attrs.timerType == 'featuredcoupon'){
-                                scope.$emit('hasExpiredFeaturedCoupon', scope.thisCoupon);
-                            }
-                            else if(attrs.timerType == 'mycoupon'){
-                                scope.$emit('hasExpiredCoupon', scope.thisCoupon);
-                            }
+                            scope.thisCard.hasExpired = true;
+                            scope.$emit(attrs.timerEmit, scope.thisCard);
                         }
                         else{
                             var days = (theTimer.days == 0)?'':theTimer.days+'d',
@@ -37,7 +34,6 @@ function TimerDirective(walletData){
                         }
                       },1000);
                 }
-                countdown();
 
              }
         }
@@ -57,8 +53,8 @@ function StringToTimestamp(walletData){
 }
 
 
-DownloadExcel.$inject = ['excel', 'accountData'];
-function DownloadExcel(excel, accountData){
+DownloadExcel.$inject = ['excel', 'accountData', 'wallet'];
+function DownloadExcel(excel, accountData, wallet){
     return {
         restrict: 'A',
         link: function(scope, element, attr, ctrl) {
@@ -69,24 +65,166 @@ function DownloadExcel(excel, accountData){
                     link = excel.tableToExcel(tableId,'sheet name'),
                     from = scope.dateFilter.mindate.replace(/\//g, "-"),
                     to = scope.dateFilter.maxdate.replace(/\//g, "-"),
-                    uniq = new Date(),
-                    uniq = uniq.getTime(),
-                    filename = 'Ipayu_'+ipayu_info.firstname+' '+ipayu_info.lastname+'_Transaction_From_'+from+'_To_'+to+'_'+uniq+'.xls',
+                    uniq = new Date().getTime(),
+                    filename = 'Ipayu_'+ipayu_info.firstname+'_'+ipayu_info.lastname+'_Transaction_From_'+from+'_To_'+to+'_'+uniq+'.xls',
                     as = link.split(',');
 
-                userFactory.exportTransaction(ipayu_info.email, as[1], filename)
-                                    .then(
-                                            function(response){
-                                                console.log(response);
-                                                window.open( $rootScope.api_url+response.data.filename, '_system');
-                                            },
-                                            function(error){
-                                                console.log(error);
-                                            }
-                                        )
+                var dataToSend = {
+                    'datetime_created'  : Date.parse(new Date()),
+                    'file'              : {
+                        'Base64'    : as[1],
+                        'filename'  : filename
+                    }
+                }
+                
+                wallet.sendExportedTable(dataToSend)
+                    .then(
+                            function(response){
+                                window.open(response[0].data.dataPATH_URL, '_system');
+                            },
+                            function(error){
+                                console.log(error);
+                            }
+                        )
 
             })
         }
     }
 }
 
+
+AddCardForm.$inject = [];
+function AddCardForm(){
+    return {
+        restrict:   'A',
+        scope: false,
+        controller: function($scope, flags, accountData){
+            var ipayu_info = accountData.getUser();
+            
+            $scope.phonePrefix = flags.getFlagByCode($scope.thisCard.country_code);
+            $scope.disableBtn = false;
+            $scope.openToolTip = false;
+
+            $scope.userData = {
+                'name' : {'i_value': ipayu_info.firstname + ' ' + ipayu_info.lastname},
+                'email': {'i_value': ipayu_info.email},
+                'phone': {'i_value': '', 'hasError': true, 'touched': false, 'message' : ''},
+                'address': {'i_value': '', 'hasError': true, 'touched': false, 'message' : ''},
+                'city': {'i_value': '', 'hasError': true, 'touched': false, 'message' : ''},
+                'postal': {'i_value': '', 'hasError': true, 'touched': false, 'message' : ''}
+            };
+
+            $scope.$watch('phonePrefix.prefix',
+                    function(newValue){
+                        $scope.phonePrefix = flags.getFlagByPrefix(newValue);
+                    }
+                )
+
+            $scope.upPhone = function (reset) {
+                if(reset){resetError('phone');}
+                var hasError = false;
+                $scope.userData.phone.touched = true;
+                if(typeof $scope.userData.phone.i_value != 'undefined' && $scope.userData.phone.i_value != '' && $scope.userData.phone.i_value != null){
+                    if($scope.userData.phone.i_value.toString().length == $scope.phonePrefix.limit){
+                        $scope.userData.phone.hasError = false;
+                    }
+                    else{
+                        hasError = true;
+                        $scope.userData.phone.hasError = true;
+                        $scope.userData.phone.message = 'Mobile number must contain '+$scope.phonePrefix.limit+' digits';
+                    }
+                }
+                else {
+                    $scope.userData.phone.hasError = true;
+                    $scope.userData.phone.message = 'This field is required';
+                    hasError = true;
+                }
+                return hasError;
+            }
+
+            $scope.upAddress = function(reset){
+                if(reset){resetError('address');}
+                var hasError = false;
+                $scope.userData.address.touched = true;
+                if(typeof $scope.userData.address.i_value != 'undefined' && $scope.userData.address.i_value != ''){
+                    $scope.userData.address.hasError = false;
+                }
+                else{
+                    hasError = true;
+                    $scope.userData.address.hasError = true;
+                    $scope.userData.address.message = 'This field is required';
+                }
+                return hasError;
+            }
+
+            $scope.upCity = function(reset){
+                if(reset){resetError('city');}
+                var hasError = false;
+                $scope.userData.city.touched = true;
+                if(typeof $scope.userData.city.i_value != 'undefined' && $scope.userData.city.i_value != ''){
+                    $scope.userData.city.hasError = false;
+                }
+                else{
+                    hasError = true;
+                    $scope.userData.city.hasError = true;
+                    $scope.userData.city.message = 'This field is required';
+                }
+                return hasError;
+            }
+
+            $scope.upPostal = function(reset){
+                if(reset){resetError('postal');}
+                var hasError = false;
+                $scope.userData.postal.touched = true;
+                if(typeof $scope.userData.postal.i_value != 'undefined' && $scope.userData.postal.i_value != ''){
+                    $scope.userData.postal.hasError = false;
+                }
+                else{
+                    hasError = true;
+                    $scope.userData.postal.hasError = true;
+                    $scope.userData.postal.message = 'This field is required';
+                }
+                return hasError;
+            }
+
+            function resetError(index){
+            $scope.openToolTip = true;
+                for (var i in $scope.userData) {
+                    if ($scope.userData.hasOwnProperty(i) && i != index) {
+                        $scope.userData[i].touched = false;
+                    }
+                }
+            }
+            
+            $scope.addCard = function(){
+                var checker = {
+                    'phone'		: $scope.upPhone(),
+                    'address'	: $scope.upAddress(),
+                    'city'		: $scope.upCity(),
+                    'postal'	: $scope.upPostal()
+                }
+                for(var i in checker){
+                    if(checker.hasOwnProperty(i) && checker[i] == true){
+                        $scope.openToolTip = true;
+                        console.log($scope.userData)
+                        return;
+                    }
+                }
+                $scope.disableBtn = true;
+
+                var cardDetails = {
+                    'requestType'	: 'AddUserCard_',
+                    'ipayu_id'		: ipayu_info.ipayu_id,
+                    'card_id'		: $scope.thisCard.card_id,
+                    'address'		: $scope.userData.address.i_value,
+                    'city'			: $scope.userData.city.i_value,
+                    'postal_code'	: $scope.userData.postal.i_value,
+                    'phone'			: $scope.userData.phone.i_value,
+                    'datetime_added': Date.parse(new Date()),
+                    'type'			: $scope.cardType
+                }
+                $scope.$emit($scope.emitMessage, cardDetails);
+            }
+        }
+    }
+}

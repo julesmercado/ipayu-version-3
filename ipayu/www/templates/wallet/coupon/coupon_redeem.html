@@ -1,37 +1,14 @@
-<div id="sp-nav" >
-    <menu></menu>
-</div>
-
-<div id="sp-page" style="background-image:url(images/cards-background_2.png);background-repeat:no-repeat;background-size:100%">
-    <div class="wrapper_d">
-        <div class="nav nav-dash">
-            <nav>
-                <!--ng-click="$spMenu.toggle()"-->
-
-                <button class="burger-menu" ng-if="!searchResultFlag" >
-                    <img src="images/chevron-left.png" class="burger-menu-img"></img>
-                </button back>
-
-                <button class="burger-menu" ng-if="searchResultFlag" ng-click="cancelSearch()" back>
-                    <img src="images/chevron-left.png" class="burger-menu-img"></img>
-                </button>
-
-                <button class="burger-menu" ng-click="$spMenu.toggle()">
-                    <img src="images/menubar.png" class="burger-menu-img"></img>
-                </button>
-
-                <center>
-                    <div class="dash-mall-header-logo">
-                        Coupons
-                    </div>
-                </center>
-
-                <button class="dash-logout"  ui-sref="dashboard">
-                    <img src="images/home-header.png" class="nav-home-img">
-                </button>
-            </nav>
-        </div>
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header shop-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
     </div>
+    <coupon-header></coupon-header>
 
     <div class="search-area">
        
@@ -109,5 +86,5 @@
         </div>
     </script>
 
-    <footer-menu></footer-menu>
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
 </div>

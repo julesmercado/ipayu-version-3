@@ -4,23 +4,27 @@ mainModule.factory('couponData', CouponData)
 // CouponData.$inject = [];
 
 function CouponData() {
-
+    
+    var coupon_group = [];
+    
     return {
 
 // Setters
         setUserCoupons: function (data) {
             localStorage.setItem('ipayucouponcards', JSON.stringify(data));
-            return;
+            return data;
         },
-
-        setFeaturedCoupons: function (data, type) {
+        setFeaturedCoupons: function (data) {
             localStorage.setItem('ipayufeaturedcoupons', JSON.stringify(data));
-            return;
+            return data;
         },
-
-        setUsedCoupons: function (data, type) {
+        setUsedCoupons: function (data) {
             localStorage.setItem('ipayuusedcoupons', JSON.stringify(data));
-            return;
+            return data;
+        },
+        setCouponGroup: function (data) {
+            coupon_group = data;
+            return data;
         },
 
 
@@ -29,15 +33,16 @@ function CouponData() {
             var retrievedObject = localStorage.getItem('ipayucouponcards');
             return JSON.parse(retrievedObject) || [];
         },
-
         getFeaturedCoupons: function () {
             var retrievedObject = localStorage.getItem('ipayufeaturedcoupons');
             return JSON.parse(retrievedObject) || [];
         },
-
         getUsedCoupons: function () {
             var retrievedObject = localStorage.getItem('ipayuusedcoupons');
             return JSON.parse(retrievedObject) || [];
+        },
+        getCouponGroup: function () {
+            return coupon_group;
         },
 
 
