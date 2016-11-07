@@ -49,7 +49,7 @@
 <div class="mother-of-all-scrollables">
     <div class="row" style="background-color:white">
         <div class="col-xs-12">
-            <img ng-src="{{thisSTamp.image}}" class="img img-responsive stamp-img" >
+            <img ng-src="{{thisStamp.image}}" class="img img-responsive stamp-img" >
         </div>
     </div>
 
@@ -57,7 +57,7 @@
         <div class="stamp-circles-container-inner">
             <div>
                 <div class="stamps-circle" 
-                        ng-repeat="c in thisSTamp.display_stamp.circles" 
+                        ng-repeat="c in thisStamp.display_stamp.circles" 
                         ng-class="{'stamps-circle-shaded' : c.shade}"></div>
             </div>
         </div>
@@ -66,9 +66,9 @@
    <div class="row" style="background-color:white">
             <div class="col-xs-12 ">
                 <div class="container">
-                    <h5 class="coupon-info-text coupon-info-body" ng-if="thisSTamp.description != ''">Fine Print: </h5>
+                    <h5 class="coupon-info-text coupon-info-body" ng-if="thisStamp.description != ''">Fine Print: </h5>
                    
-                    <h5 class="coupon-info-text coupon-info-body"><!--{{thisSTamp.description}}-->
+                    <h5 class="coupon-info-text coupon-info-body"><!--{{thisStamp.description}}-->
                         Voucher Validity: June 22, 2016 to December 20, 2030 <br>
                         Not valid on holidays 
                         Please present to store staff for confirmations
@@ -82,34 +82,23 @@
 
         <div class="row" style="background-color:white">
             <div class="col-xs-7">
-                    <p class="coupon-info-text" style="font-weight: bold; font-family:'HelveticaLight';text-align:left;padding-left:25px;font-size:20px;color:black;margin-top:12px; text-transform: uppercase">SN: {{thisSTamp.serial_number}}</p>
+                    <p class="coupon-info-text" style="font-weight: bold; font-family:'HelveticaLight';text-align:left;padding-left:25px;font-size:20px;color:black;margin-top:12px; text-transform: uppercase">SN: {{thisStamp.serial_number}}</p>
             </div>      
             <div class="col-xs-5">
-<<<<<<< HEAD
-            <!-- < barcode type="code39" render="img" string="{{thisSTamp.serial_number}}" class="bcode-ci"></barcode> -->
-=======
-<!--                      <img src="images/bcode.png" class="bcode-ci">
- -->                  <!-- <img src="images/dashboard/qr-code.png" class="ci-qr-code"> -->
->>>>>>> 48b6d2a74e8b49171da8d461a4ca88e354b13112
-                  <qrcode data="{{thisSTamp.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
+                <barcode type="code39" render="img" string="{{thisStamp.serial_number}}" class="bcode-ci"></barcode> 
+                <qrcode data="{{thisStamp.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
             </div>
 
         </div>
-
-           
        
         <div class="row" style=" color:white; margin:0" >
             <div class="container" style="background-color:#333333;">
-                <center>
-                    <h6 ng-if="current_state=='mystamps'">USE TERMINAL AT THE SHOP TO REDEEM</h6>
-                    <h6 ng-if="current_state=='usedstamp'">STAMP USED</h6>
-                </center>
+                <center ng-if="!thisStamp.hasExpired && !thisStamp.alreadyAdded"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
+                <center ng-if="thisStamp.hasExpired"><h6>STAMP EXPIRED</h6></center>
+                <center ng-if="thisStamp.alreadyAdded"><h6>STAMP USED</h6></center>
             </div>
         </div>
 </div>
 
-
-
   <stamp-footer></stamp-footer>
-
 </div>

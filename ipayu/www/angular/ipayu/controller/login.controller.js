@@ -4,11 +4,11 @@ mainModule.controller('loginCtrl', LoginCtrl)
 
 LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$q', 
 						'account', 'flags', 'stamp', 'coupon', 'wallet',
-						'accountData', 'walletData', 'couponData'];
+						'accountData', 'walletData', 'couponData', 'stampData'];
 
 function LoginCtrl($scope, $rootScope, $state, $q, 
 						account, flags, stamp, coupon, wallet, 
-						accountData, walletData, couponData) {
+						accountData, walletData, couponData, stampData) {
 	
 	$scope.openToolTip = true;
 
@@ -88,25 +88,27 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 				.then(
 						function (response) {
 							button_init();
-							if(response[0].data.success){
-								accountData.setUser(response[0].data.data[0]);
-								flags.setUpCountryDisplay(response[0].data.data[0].country_code);
-								process_all_data(response[0].data.data[0].ipayu_id)
-							}
-							else{
-								$rootScope.doLoading = false;
-								var attempts = accountData.getNumberOfAttempts();
-									attempts += 1;
-								if(attempts >= 3){
-									alert('Number of attempts = 3');
-									accountData.setNumberOfAttempts(0);
-									$state.go('forgot');
-								}
-								else{
-									accountData.setNumberOfAttempts(attempts);
-									alert(response[0].data.message);
-								}
-							}
+							if(response){
+                                if(response[0].data.success){
+                                    accountData.setUser(response[0].data.data[0]);
+                                    flags.setUpCountryDisplay(response[0].data.data[0].country_code);
+                                    process_all_data(response[0].data.data[0].ipayu_id)
+                                }
+                                else{
+                                    $rootScope.doLoading = false;
+                                    var attempts = accountData.getNumberOfAttempts();
+                                        attempts += 1;
+                                    if(attempts >= 3){
+                                        alert('Number of attempts = 3');
+                                        accountData.setNumberOfAttempts(0);
+                                        $state.go('forgot');
+                                    }
+                                    else{
+                                        accountData.setNumberOfAttempts(attempts);
+                                        alert(response[0].data.message);
+                                    }
+                                }
+                            }
 						}
 					)
 	}
@@ -142,6 +144,13 @@ function LoginCtrl($scope, $rootScope, $state, $q,
                 	couponData.setFeaturedCoupons(resolve[1][0].data.data.featuredcoupons);
                 	// set user used coupon
                 	couponData.setUsedCoupons(resolve[1][0].data.data.usedcoupons);
+                	
+                	// set user stamp
+                	stampData.setUserStamps(resolve[0][0].data.data.allstamps);
+                	// set featured stamp
+                	stampData.setFeaturedStamps(resolve[0][0].data.data.featuredstamps);
+                	// set user used stamp
+                	stampData.setUsedStamps(resolve[0][0].data.data.usedstamps);
 					$state.go('dashboard')
                 }, function (reject) {
 					console.log(reject);
