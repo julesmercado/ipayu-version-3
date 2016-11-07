@@ -1,51 +1,15 @@
-<div id="sp-page"  style="overflow:hidden">
-<div class="page-main-header shop-page-main-header"></div>
-<div id="sp-nav" class="animated fading-menu" 
-    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
-         ng-swipe-left="menuSwipeLeft()" >
-
-    <menu style="width:80%;height:100%;background:#fff;"
-        class="animated" 
-        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
-
-</div>
-    <ul class="nav nav-tabs page-menu-top stamp-nav">
-        <li class="col-xs-4 no-padding">
-            <button back>
-                <img src="images/back-btn.png" class="back-button-header-img">
-            </button>
-            <button ng-click="toggleMenu()">
-             <img src="images/menubar.png" >
-            </button>
-        </li>
-
-        <li class="col-xs-4"> 
-           <p class="bold header-title-wallet">
-                  Stamp&nbsp;cards
-            </p>
-        </li>
-
-       <li class="col-xs-4 pull-right no-padding-right">
-            <button ng-click="toggleShowCountry()" id="flags-nav">
-                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
-                <span>{{countryDisplay.name}}</span> 
-                    <ul ng-if="countryDisplay.display"
-                        class="flagHeader">
-
-                            <li ng-repeat="c in headerCountries" 
-                                ng-click="selectCountry(c)"> 
-                                <img ng-src="images/flags/{{c.img}}"> 
-                                    {{c.code}}
-                            </li>
-                        </ul>
-            </button>
-             <button class="btn-top-with-flag" ui-sref="dashboard">
-                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
-             </button >
-        </li>
-    </ul>
-
-
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header shop-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    
+    <stamp-header></stamp-header>
 <div class="row">
     <div class="container">
         <div class=" page-header dark-bg dark-bg-shop">
@@ -53,43 +17,41 @@
         </div>
 
         <div class="container mall-search-featured-malls featured-shops custom-slider">
-
-                <div class="animated cs-image-holder-featured col-xs-3 col-md-3  shop-search-icons fadeIn" 
-                    ng-repeat="featCard in featured as featShops"
-                    ng-click="proceedStampCardList(featCard.asset_id, featCard.shop_id, featCard.type)"
-                    style="float:none;">
-                    <img ng-src="{{featCard.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
-                    <p class="featured-malls-mall-name" ng-bind="featCard.name"></p>
+                <div class="animated cs-image-holder-featured col-xs-3 col-md-3  shop-search-icons fadeIn" style="float:none;" 
+                     ng-repeat="feat in featured as f"
+                     route-all-asset-cards="{{feat}}" type="stamp">
+                    <img ng-src="{{feat.image}}" class="img img-responsive featured-malls-mall">
+                    <p class="featured-malls-mall-name" ng-bind="feat.name"></p>
                 </div>
-                <center><h4 ng-if="featShops.length == 0">No featured malls or shops so far</h4></center>
-
+                <center><h4 ng-if="f.length == 0">Nothing to display</h4></center>
         </div>
     </div>
 </div>
 
 <div class="row">
 
-    <div class="container mall-search-unfeatured-malls" ng-repeat="shop in unfeatured | limitTo:2" >
-       
-        <div class="animated col-xs-3 col-md-3 unfeatured-malls unfeatured-shops fadeIn" ng-repeat="s in shop" >
-            <div ng-if="s != false"
-                 ng-click="proceedStampCardList(s.asset_id, s.shop_id, s.type)">
-                <img ng-src="{{s.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
-                <p class="featured-malls-mall-name unfeatured-mall-name" ng-bind="s.name"></p>
+    <div class="container mall-search-unfeatured-malls" 
+        ng-repeat="unfeat in unfeatured | limitTo:2"
+        ng-swipe-left="swipeLeft()"
+        ng-swipe-right="moreIsClicked()">
+        
+        <div class="animated col-xs-3 col-md-3 unfeatured-malls unfeatured-shops fadeIn" 
+             ng-repeat="u in unfeat" >
+            <div ng-if="u != true"
+                route-all-asset-cards="{{u}}" type="stamp">
+                <img ng-src="{{u.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
+                <p class="featured-malls-mall-name unfeatured-mall-name" ng-bind="u.name"></p>
             </div>
-            <div ng-if="!s" ng-click="moreIsClicked()">
+            <div ng-if="f == true" ng-click="moreIsClicked()">
                 <img src="images/shopcard-icons/more.png" class="img img-responsive  shop-search-icon-cat" 
                     style="height: 40px;background-color: transparent; width: 40px; margin-top: 14px;">
             </div>
-
         </div>
-
     </div>
     
     <div class="container mall-search-unfeatured-malls">
-        <center><h4 ng-if="!unfeatured[0][0].image">No mall or shops so far</h4></center>
+        <center><h4 ng-if="!unfeatured[0][0].image">Nothing to display</h4></center>
     </div>
-    
 </div>
 
      
@@ -100,28 +62,28 @@
 
         <div class="container shop-search-categories">
             <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
-                ng-repeat="topCat in stampCategories | limitTo:4" 
-                ng-click="selectCategory(topCat.category_name)">
+                ng-repeat="topCat in categories | limitTo:4" 
+                ng-click="selectCategory(topCat.name)">
 
                 <img ng-src="{{topCat.image}}" class="img img-responsive shop-search-icon-cat stamp-nav"
                     ng-class="{'stamp-nav-active':topCat.selected}">
-                 <span class="category-label-text">{{topCat.category_name}}</span>
+                 <span class="category-label-text">{{topCat.name}}</span>
             </div>
 
         </div>
 
         <div class="container shop-search-categories-2">
             <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
-                    ng-repeat="bottomCat in stampCategories" 
+                    ng-repeat="bottomCat in categories" 
                     ng-if="$index > 3"
-                    ng-click="selectCategory(bottomCat.category_name)">
+                    ng-click="selectCategory(bottomCat.name)">
 
                 <img ng-src="{{bottomCat.image}}" class="img img-responsive shop-search-icon-cat stamp-nav"
                     ng-class="{'stamp-nav-active':bottomCat.selected}">
-            <span class="category-label-text">{{bottomCat.category_name}}</span>
+            <span class="category-label-text">{{bottomCat.name}}</span>
             </div>
 
-            <div class="animated col-xs-3 col-md-3  shop-search-icons flipInX" ng-click="gotoStampAllCards()">
+            <div class="animated col-xs-3 col-md-3  shop-search-icons flipInX" route-all-card-search="stamp">
 
               <img src="images/Search_icon_transparent.png" class="img img-responsive shop-search-icon-cat" style="background-color:transparent">
                 <span class="category-label-text" style="color:black">SEARCH</span>
@@ -133,7 +95,6 @@
 
     </div>
 
-
-    <stamp-footer></stamp-footer>
+    <stamp-footer ng-if="!hasFocusElement"></stamp-footer>
 
 </div>

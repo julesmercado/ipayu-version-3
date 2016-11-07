@@ -262,8 +262,8 @@ function CardInfo($state, $rootScope, walletData) {
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 
-	    		var data = JSON.parse(attrs.routeCardInfo),
-	    			route = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
+	    		var data= JSON.parse(attrs.routeCardInfo),
+	    			route   = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
 	    			cards 	= walletData.getUserCards(attrs.cardType),
     				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
     				card 	= cards[key];
@@ -283,7 +283,16 @@ function CardHistory ($state) {
         restrict:   'A',
         link:   function (scope, element, attrs, ctrl) {
             element.bind('click', function () {
-                var route = (attrs.routeCardHistory == 'coupon')?'couponhistory':'stamphistory';
+                var type = attrs.routeCardHistory,
+                    route = '';
+                switch(type){
+                    case 'coupon':
+                        route = 'couponhistory'; break;
+                    case 'stamp':
+                        route = 'stamphistory'; break;
+                    default:
+                        alert('Undefined type'); break;
+                }
                 $state.go(route);
             })
         }

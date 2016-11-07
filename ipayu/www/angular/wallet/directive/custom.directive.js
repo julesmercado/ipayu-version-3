@@ -146,7 +146,7 @@ function AddCardForm(){
                 if(reset){resetError('address');}
                 var hasError = false;
                 $scope.userData.address.touched = true;
-                if(typeof $scope.userData.address.i_value != 'undefined' && $scope.userData.address.i_value != ''){
+                if($scope.userData.address.i_value && $scope.userData.address.i_value != ''){
                     $scope.userData.address.hasError = false;
                 }
                 else{
@@ -161,7 +161,7 @@ function AddCardForm(){
                 if(reset){resetError('city');}
                 var hasError = false;
                 $scope.userData.city.touched = true;
-                if(typeof $scope.userData.city.i_value != 'undefined' && $scope.userData.city.i_value != ''){
+                if($scope.userData.city.i_value && $scope.userData.city.i_value != ''){
                     $scope.userData.city.hasError = false;
                 }
                 else{
@@ -176,7 +176,7 @@ function AddCardForm(){
                 if(reset){resetError('postal');}
                 var hasError = false;
                 $scope.userData.postal.touched = true;
-                if(typeof $scope.userData.postal.i_value != 'undefined' && $scope.userData.postal.i_value != ''){
+                if($scope.userData.postal.i_value && $scope.userData.postal.i_value != ''){
                     $scope.userData.postal.hasError = false;
                 }
                 else{
@@ -210,6 +210,7 @@ function AddCardForm(){
                         return;
                     }
                 }
+                console.log(checker)
                 $scope.disableBtn = true;
 
                 var cardDetails = {

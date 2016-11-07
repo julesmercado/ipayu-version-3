@@ -11,13 +11,13 @@
     
     <stamp-header></stamp-header>
     <div class="filtered-coupons">
-        <a ui-sref="stamphistory" class="history-coupons pull-right">
+        <a route-card-history="stamp" class="history-coupons pull-right">
             HISTORY <span class="glyphicon glyphicon-play"></span>
         </a>
         <p style="color:rgb(52,104,152)">FEATURED STAMPS</p>
-        <div class="row lu-cards my-cards custom-slider coupon-holder" style=" padding:6px;"">
+        <div class="row lu-cards my-cards custom-slider coupon-holder" style=" padding:6px;">
             
-            <div class='cs-image-holder coupon-img-holder' ng-repeat="f in featured" ng-click="tapped(f)">
+            <div class="cs-image-holder coupon-img-holder" ng-repeat="f in featured" ng-click="tapped(f)">
                 <p class="coupon-time dark"
                     timer-countdown="{{f.datetime_end}}"
                 coupon="f">hh:mm:ss</p>
@@ -39,7 +39,7 @@
                 <div class="col-xs-6 col-md-6 orange-container"
                     ng-repeat="stamp in stamps"
                     ng-class="{'dark-filter-coupons' : stamp.couponHasExpired}"
-                    ng-click="proceedStampInfo(stamp.stamp_card_id)">
+                    ng-click="proceedStampInfo(stamp.stamp_id)">
                     <p class="coupon-time dark"
                         timer-countdown="{{stamp.datetime_end}}"
                     coupon="stamp">hh:mm:ss</p>
@@ -52,27 +52,10 @@
                 </div>
                 <h6 ng-if="stamps.length == 0" class="no-cards-ct">
                 NO NEW STAMPS. <br/> PLEASE
-                <span style="color:#337ab7;">ADD NEW STAMP</span>
+                <span style="color:#337ab7;" route-card-search="stamp">ADD NEW STAMP</span>
                 </h6>
             </div>
         </div>
     </div>
-    <stamp-footer></stamp-footer>
-</div>
-<script type="text/ng-template" id="confirmAlert">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="dashed-dialog text-center">
-                <h4>
-                APPLY THIS STAMP?
-                </h4>
-                
-                <button type="button" ng-click="closeThisDialog()">
-                <img src="images/dark-ok.png" class="img-responsive">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-</script>
+    <add-card-confirm-modal></add-card-confirm-modal>
+    <stamp-footer ng-if="!hasFocusElement"></stamp-footer>

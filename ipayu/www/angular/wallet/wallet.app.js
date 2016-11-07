@@ -117,5 +117,30 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/stamp/my-stamp-cards.html',
             controller: 'myStampCtrl'
         })
+        .state('stampinfo', {
+            url: '/stampinfo/{id}/{type}',
+            templateUrl: 'templates/wallet/stamp/stamp-info.html',
+            controller: 'stampInfoCtrl'
+        })
+        .state('stamphistory', {
+            url: '/stamphistory',
+            templateUrl: 'templates/wallet/stamp/stamp-history.html',
+            controller: 'stampHistoryCtrl'
+        })
+        .state('stampsearch', {
+            url: '/stampsearch',
+            templateUrl: 'templates/wallet/stamp/stamp-search.html',
+            controller: 'stampCardSearchCtrl'
+        })
+        .state('allstampsearch', {
+            url: '/allstampsearch',
+            templateUrl: 'templates/wallet/stamp/stamp-all-card.html',
+            controller: 'allStampCardSearchCtrl'
+        })
+        .state('addstampcard', {
+            url: '/addstampcard',
+            templateUrl: 'templates/wallet/stamp/add-stamp-card.html',
+            controller: 'addStampCardCtrl'
+        })
 
 }

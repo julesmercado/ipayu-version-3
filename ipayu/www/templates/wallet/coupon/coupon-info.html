@@ -63,11 +63,9 @@
 
         </div>
         <div class="row" style="background-color:#333333; color:white; margin:0" >
-           
-                <center ng-if="!thisCoupon.couponHasExpired && !thisCoupon.couponHasUsed"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
-                <center ng-if="thisCoupon.couponHasExpired"><h6>COUPON EXPIRED</h6></center>
-                <center ng-if="thisCoupon.couponHasUsed"><h6>COUPON USED</h6></center>
-        
+                <center ng-if="!thisCoupon.hasExpired && !thisCoupon.alreadyAdded"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
+                <center ng-if="thisCoupon.hasExpired"><h6>COUPON EXPIRED</h6></center>
+                <center ng-if="thisCoupon.alreadyAdded"><h6>COUPON USED</h6></center>
         </div>
     </div>
 </div>

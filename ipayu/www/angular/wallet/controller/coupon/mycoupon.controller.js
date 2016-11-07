@@ -128,6 +128,7 @@ function CouponInfo($scope, $rootScope, couponData, customService, $stateParams)
     else if($stateParams.type == 'usedcoupons'){
         allCoupons = couponData.getUsedCoupons();
     }
+    $scope.thisCoupon = getThisCoupon();
 
     function getThisCoupon(){
         for (var i = 0; i < allCoupons.length; i++) {
@@ -143,7 +144,6 @@ function CouponInfo($scope, $rootScope, couponData, customService, $stateParams)
             }
         }
     }
-    $scope.thisCoupon = getThisCoupon();
 
     $scope.$on('hasExpiredCoupon', function (evt, value) {
         $scope.$apply(function () {
@@ -161,8 +161,6 @@ function CouponHistory ($scope, $rootScope, $state, couponData, customService) {
       $state.go('couponinfo', {'id':coupon_id, 'type':'usedcoupons'});
     }
 }
-
-
 
 
 CouponCardSearch.$inject = ['$scope', '$rootScope', 'walletData', 'customService', 'accountData'];

@@ -88,25 +88,27 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 				.then(
 						function (response) {
 							button_init();
-							if(response[0].data.success){
-								accountData.setUser(response[0].data.data[0]);
-								flags.setUpCountryDisplay(response[0].data.data[0].country_code);
-								process_all_data(response[0].data.data[0].ipayu_id)
-							}
-							else{
-								$rootScope.doLoading = false;
-								var attempts = accountData.getNumberOfAttempts();
-									attempts += 1;
-								if(attempts >= 3){
-									alert('Number of attempts = 3');
-									accountData.setNumberOfAttempts(0);
-									$state.go('forgot');
-								}
-								else{
-									accountData.setNumberOfAttempts(attempts);
-									alert(response[0].data.message);
-								}
-							}
+							if(response){
+                                if(response[0].data.success){
+                                    accountData.setUser(response[0].data.data[0]);
+                                    flags.setUpCountryDisplay(response[0].data.data[0].country_code);
+                                    process_all_data(response[0].data.data[0].ipayu_id)
+                                }
+                                else{
+                                    $rootScope.doLoading = false;
+                                    var attempts = accountData.getNumberOfAttempts();
+                                        attempts += 1;
+                                    if(attempts >= 3){
+                                        alert('Number of attempts = 3');
+                                        accountData.setNumberOfAttempts(0);
+                                        $state.go('forgot');
+                                    }
+                                    else{
+                                        accountData.setNumberOfAttempts(attempts);
+                                        alert(response[0].data.message);
+                                    }
+                                }
+                            }
 						}
 					)
 	}
