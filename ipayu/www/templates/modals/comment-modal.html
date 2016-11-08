@@ -26,15 +26,15 @@
 	</div>
 </div>
 <div class="comments-container-box">
-	<ul>
+	<ul class="comment-list-modal">
 		<li class="row comments-container" ng-repeat="comment in comments">
 			<div class="col-sm-2 comment-photo">
 				<img ng-src="{{comment.image}}" style="width: 50px;">
 			</div>
 			<div class="col-sm-10 comment-name-body-container">
 				<div class="name-container">
-					<p class="commenter-name" ng-bind="comment.fullname">Christian Walker</p>
-					<p class="comment-body" ng-bind="comment.comment">Went to this sale and it was great</p>
+					<p class="commenter-name" ng-bind="comment.fullname"></p>
+					<p class="comment-body" ng-bind="comment.comment"></p>
 				</div>
 			</div>
 		</li>

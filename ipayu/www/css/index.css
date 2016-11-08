@@ -241,6 +241,7 @@ form#registration button.register {
         padding-left:10%;
     }
 }
+.rl-l-img{    display: block;    margin: 12px auto;    padding-top: 10px;    width: 26%;}
 
 .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
 .red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
@@ -897,6 +898,8 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .add-this-coupon-img{ width: 100%; min-height: 86px; }
 .featured-malls-mall{height: 58px;width: 58px}
 .mother-of-all-scrollables{height: 572px}
+form#registration td label{height: 40px !important;}
+
 }
 /* IPHONE 5 */
 @media screen and (width:320px) { 
