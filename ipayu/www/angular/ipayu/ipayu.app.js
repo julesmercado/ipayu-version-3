@@ -66,6 +66,9 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
 
         return;
     }
+        sqliteSet.setUpDatabase();
+        sqliteSet.createTable();
+        // sqliteSet.dropTable();
     
     document.addEventListener('deviceready', function () {
 
@@ -77,9 +80,6 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
         document.addEventListener('offline', onOffline, false);
         document.addEventListener("backbutton", backButtonIsTapped, false);
         window.addEventListener("resize", onResize, false);
-        sqliteSet.setUpDatabase();
-        sqliteSet.createTable();
-        // sqliteSet.dropTable();
         
      }, true);
 

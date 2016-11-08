@@ -85,16 +85,16 @@
                 	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div>
                 </div> -->
 
-                 <div class="" ng-if="clone.points_type == 'reward'">
-                	<span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance"></span>
-                	<hr class="separator-dash" />
-                	<span class="only-one-card-type-dashboard pts-label-dashboard">Points</span>	
+                <div class="" ng-if="clone.points_type == 'reward'">
+                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance"></span>
+                    <hr class="separator-dash" />
+                    <span class="only-one-card-type-dashboard pts-label-dashboard">Points</span>	
                 </div>
-            	
-            	 <div class="" ng-if="clone.points_type == rebate'">
-                	<span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rebates_balance"></span>
-                	<hr class="separator-dash" />
-                	<span class="only-one-card-type-dashboard pts-label-dashboard">USD</span>	
+
+                <div class="" ng-if="clone.points_type == 'rebate'">
+                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rebates_balance"></span>
+                    <hr class="separator-dash" />
+                    <span class="only-one-card-type-dashboard pts-label-dashboard">USD</span>	
                 </div>
             
             <!-- double display -->
@@ -114,6 +114,7 @@
             <!-- no data -->
                 <div ng-if="!clone.points_type">
                 	<div class="tab-element bold only-one-card-type-dashboard">&nbsp;</div>
+                    <span class="only-one-card-type-dashboard pts-label-dashboard">&nbsp;</span>
                 </div>
             </div>
 

@@ -2,9 +2,8 @@
 mainModule.controller('dashboardCtrl', DashboardCtrl)
 
 
-DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData'];
-
-function DashboardCtrl($scope, $rootScope, $state, account, accountData) {
+DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData', 'ngDialog'];
+function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialog) {
 	
 	$scope.date = new Date();
 	
@@ -16,11 +15,7 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData) {
         ngDialog.open({
             template: 'largeQR',
             className: 'ngdialog-theme-plain add-card-custom',
-            controller: ['$scope', 'offlineData', function ($scope, offlineData) {
-                
-                $scope.ipayu_info = offlineData.getUser();
-
-            }],
+            controller: '',
             overlay: true
         });
     }

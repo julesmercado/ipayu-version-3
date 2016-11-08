@@ -233,8 +233,7 @@
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
                                 tooltip-is-open="openToolTip && user_info.question.showError && user_info.question.touched"
-                                required style="height:100%;margin-top:0px" 
-                                />
+                                required style="height:100%;margin-top:0px">
                             <option value="" disabled selected>Secret question</option>
                             <option ng-repeat="question in questions" value="{{question.question_id}}" ng-bind="question.content"></option>
                         </select>
