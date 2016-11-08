@@ -9,23 +9,23 @@
 @font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; } 
 html{overflow-x: hidden;}
 .mall-info-header{background-color: #DF1642; border:1px solid #DF1642}
-.mall-dir-mall-icon{height: 40px; width: 40px; border:1px solid gainsboro; border-radius: 10px;padding:3px;}
-.mall-dir-logo-container{padding-top: 10px}
+.mall-dir-mall-icon{height: 55px; width: 55px; border:3px solid gainsboro; border-radius: 10px;padding:3px; background-color: white}
+.mall-dir-logo-container{padding:5px}
 .mall-info-alphabet-list{font-size: 10px; line-height: 16px;}
-.mall-dir-mall-txt{    text-align: center;    font-size: 10px;    padding-top: 6px;font-family: "HelveticaLight"}
+.mall-dir-mall-txt{    text-align: center;    font-size: 10px;    padding-top: 6px;font-family: "HelveticaLight"; padding-right: 12px;color: black;    font-weight: bolder;}
 .mall-events-mall-banner{    width: 100%;    height: 125px;}
 .mall-events-backdrop-header{background-color: rgba(0,0,0,0.5); height: 70px; width:270px;position: absolute;    right: 0;    top: 45px;}
     .mall-events-backdrop-header>h3{color:white; font-family: "HelveticaLight";margin-bottom: 0;text-align: center;}
     .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLightCond";padding-left: 10px;font-size: 12px}
-.mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%;}
-
-.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  }
+.mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%; background-color: white;}
+    .mall-info-letter-bar{border-color: gray; padding-bottom: 5px; width: 82%}
+.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  font-family: "HelveticaLight"}
 .mall-info-featured-shops-container{background-color: #808080;}
 .mall-info-shop-search-icons{display:inline-block;}
 .mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 10px;  margin-top: 13px;}
 .mall-info-shop-search-categories {}
-.mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;}
-.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.3)} 
+.mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;    border: 4px solid white;}
+.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.4)} 
 .mall-info-featured-malls-mall-name{color: white;font-size: 11px; }
 .mall-info-divider{border-bottom: 1px solid white;width: 39px;position: absolute;top: 201px;left: 44%;}
 .mall-info-search-container{width:83px;}
