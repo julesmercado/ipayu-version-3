@@ -16,7 +16,7 @@ html{overflow-x: hidden;}
 .mall-events-mall-banner{    width: 100%;    height: 125px;}
 .mall-events-backdrop-header{background-color: rgba(0,0,0,0.5); height: 70px; width:270px;position: absolute;    right: 0;    top: 45px;}
     .mall-events-backdrop-header>h3{color:white; font-family: "HelveticaLight";margin-bottom: 0;text-align: center;}
-    .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLightCond";padding-left: 10px;font-size: 12px}
+    .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLight";padding-left: 10px;font-size: 12px}
 .mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%; background-color: white;}
     .mall-info-letter-bar{border-color: gray; padding-bottom: 5px; width: 82%}
 .mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  font-family: "HelveticaLight"}
@@ -113,10 +113,10 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-info-shop-search-icon-cat {height: 50px ;width: 50px ;}
 
 .mall-event-post-date-container{    border-right: 1px solid blue;    position: relative;    padding-top: 18px;    padding-right: 5px;}
-    .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#f50000}
+    .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#DE4547}
     .mall-event-MM{position: absolute;margin-bottom:0;line-height: 1;color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
     .mall-event-yyyy{color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
-    .mall-event-mm-end,.mall-event-yyyy-end{color:#f50000;}
+    .mall-event-mm-end,.mall-event-yyyy-end{color:#DE4547;}
 .mall-event-post-time-container{position: absolute;    padding-left: 2px;}
 .mall-event-post-time-container>span{line-height: 1;    display: block;    font-size: 10px; width:50px;  }
 .mall-event-post-time-container>span>span{font-family: "HelveticaBold"; color:rgb(63,135,167);}
