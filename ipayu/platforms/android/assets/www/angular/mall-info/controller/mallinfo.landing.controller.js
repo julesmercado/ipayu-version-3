@@ -4,11 +4,9 @@
 
     	function mall_info_controller( $scope , $timeout , $state , mallCardFactory2 , mallData , customService , $rootScope  ){
         
-
                 startInfoLanding();
 
                 $scope.$watch( 'searchCountry.country', function( newValue , oldValue ){
-                    
                     //resetMallsArray()
                     startInfoLanding()
                 } )
@@ -18,7 +16,7 @@
 
                 $scope.toMallEvents = function( mall ){
                     mallData.setMallInfo( mall );
-                    $state.go( 'mallEvents', {mallId: mall.asset_id} )
+                    $state.go( 'mallEvents', {mallId: mall.asset_id})
                 };
 
                 function startInfoLanding(){

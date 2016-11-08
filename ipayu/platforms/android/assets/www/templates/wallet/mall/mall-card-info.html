@@ -31,7 +31,7 @@
                                 <span class="mci-tp-txt mci-rb-txt" >REBATES</span>
                                 <span class="mci-rp">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
                                 <hr class="hr-mci-tp" />
-                                <span class="mci-ced">  Expiring on {{card.datetime_end}} </span>
+                                <span class="mci-ced">  Expiring on {{readable_date(card.datetime_end)}} </span>
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                     <td  ng-if="tran.type == 'transaction'">{{tran.rebate || 0}}</td>
                     <td  ng-if="tran.type == 'redeem'">-{{tran.rebate || 0}}</td>
                     <td>{{tran.balance}}</td>
-                    <td class="bold" style="font-size:8px" ng-click="seeInfo(tran)" ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
+                    <td class="bold" style="font-size:8px" ng-click="seeInfo(tran)" ng-if="tran.type == 'redeem'">See&nbsp;info&nbsp;></td>
                     <td style="font-size:9px" ng-if="tran.type == 'transaction' ">&nbsp;</td>
                 </tr>
             </table>
@@ -168,8 +168,7 @@
             <td style="text-align:center; padding-right:4px"> Rebates/Redemption </td>
             <td style="text-align:center;"> Balance </td>
         </tr>
-        <tr ng-if="transactions.length != 0"
-            ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
+        <tr ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
             <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
             <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
@@ -184,5 +183,5 @@
     </table>
 
     <redeem-modal></redeem-modal>
-    <mall-footer></mall-footer>
+    <mall-footer ng-if="!hasFocusElement"></mall-footer>
 </div>

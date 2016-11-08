@@ -80,12 +80,67 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/coupon/my-coupon-cards.html',
             controller: 'myCouponCtrl'
         })
+        .state('coupongroup', {
+            url: '/coupongroup/{name}',
+            templateUrl: 'templates/wallet/coupon/coupon-group.html',
+            controller: 'couponGroupCtrl'
+        })
+        .state('couponinfo', {
+            url: '/couponinfo/{id}/{type}',
+            templateUrl: 'templates/wallet/coupon/coupon-info.html',
+            controller: 'couponInfoCtrl'
+        })
+        .state('couponhistory', {
+            url: '/couponhistory',
+            templateUrl: 'templates/wallet/coupon/coupon-history.html',
+            controller: 'couponHistoryCtrl'
+        })
+        .state('couponsearch', {
+            url: '/couponsearch',
+            templateUrl: 'templates/wallet/coupon/coupon-search.html',
+            controller: 'couponCardSearchCtrl'
+        })
+        .state('allcouponsearch', {
+            url: '/allcouponsearch',
+            templateUrl: 'templates/wallet/coupon/coupon-all-card.html',
+            controller: 'allCouponCardSearchCtrl'
+        })
+        .state('addcouponcard', {
+            url: '/addcouponcard',
+            templateUrl: 'templates/wallet/coupon/add-coupon-card.html',
+            controller: 'addCouponCardCtrl'
+        })
 
     // stamp cards
         .state('mystampcards', {
             url: '/mystampcards',
             templateUrl: 'templates/wallet/stamp/my-stamp-cards.html',
-            controller: 'myMallCardCtrl'
+            controller: 'myStampCtrl'
+        })
+        .state('stampinfo', {
+            url: '/stampinfo/{id}/{type}',
+            templateUrl: 'templates/wallet/stamp/stamp-info.html',
+            controller: 'stampInfoCtrl'
+        })
+        .state('stamphistory', {
+            url: '/stamphistory',
+            templateUrl: 'templates/wallet/stamp/stamp-history.html',
+            controller: 'stampHistoryCtrl'
+        })
+        .state('stampsearch', {
+            url: '/stampsearch',
+            templateUrl: 'templates/wallet/stamp/stamp-search.html',
+            controller: 'stampCardSearchCtrl'
+        })
+        .state('allstampsearch', {
+            url: '/allstampsearch',
+            templateUrl: 'templates/wallet/stamp/stamp-all-card.html',
+            controller: 'allStampCardSearchCtrl'
+        })
+        .state('addstampcard', {
+            url: '/addstampcard',
+            templateUrl: 'templates/wallet/stamp/add-stamp-card.html',
+            controller: 'addStampCardCtrl'
         })
 
 }

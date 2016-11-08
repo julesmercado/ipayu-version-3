@@ -32,7 +32,7 @@
                                     <span class="mci-tp-txt mci-rb-txt no-show-text" >REBATES</span>
                                     <span class="mci-rp no-show-text">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
                                     <hr class="hr-mci-tp" />
-                                    <span class="mci-ced">  Expiring on {{card.datetime_end}} </span>
+                                    <span class="mci-ced">  Expiring on {{readable_date(card.datetime_end)}} </span>
                                 </div>
                             </div>
                         </div>
@@ -182,5 +182,5 @@
     </table>
     
     <redeem-modal></redeem-modal>
-    <shop-footer></shop-footer>
+    <shop-footer ng-if="!hasFocusElement"></shop-footer>
 </div>

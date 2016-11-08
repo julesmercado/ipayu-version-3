@@ -6,13 +6,15 @@ walletModule.directive('routeMycouponcard', Mycouponcard)		//	state = mycouponca
 walletModule.directive('routeMystampcard', Mystampcard)			//	state = mystampcards
 
 // Search Card
-walletModule.directive('routeCardSearch', CardSearch)			//	state = mallsearch OR shopsearch
+walletModule.directive('routeCardSearch', CardSearch)			//	state = mallsearch OR shopsearch OR couponsearch OR stampsearch
 walletModule.directive('routeAllCardSearch', AllCardSearch)		//	state = allmallsearch OR allshopsearch
 walletModule.directive('routeAllAssetCards', AllAssetCards)		//	state = allmallsearch OR allshopsearch
 
 // Card Info
 walletModule.directive('routeCardInfo', CardInfo)				// state = mallcardinfo OR shopcardinfo
 
+// Card Info
+walletModule.directive('routeCardHistory', CardHistory)     // state = couponhistory OR stamphistory
 
 
 // User Cards
@@ -49,25 +51,60 @@ function Mycard($state, $rootScope, preloaderMethod, accountData, wallet, wallet
 	  }
 }
 
-Mycouponcard.$inject = ['$state', '$rootScope'];
-function Mycouponcard($state, $rootScope) {
+Mycouponcard.$inject = ['$state', '$rootScope', 'coupon', 'couponData', 'preloaderMethod', 'accountData'];
+function Mycouponcard($state, $rootScope, coupon, couponData, preloaderMethod, accountData) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
-				$state.go('mycouponcards');
+	    		var ipayu_info = accountData.getUser();
+	    		if($rootScope.showOffline){
+					$state.go('mycouponcards');
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			coupon.getUserCoupons(ipayu_info.ipayu_id)
+	    				.then(function (resolve) {
+                        console.log(resolve)
+	    					if(resolve){
+			                	var m = couponData.setUserCoupons(resolve[0].data.data.allcoupons);
+			                	var f = couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
+			                	var u = couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
+								$state.go('mycouponcards');
+								preloaderMethod.preloadImage([m, f, u]);
+	    					}
+	    					else{$rootScope.doLoading = false;}
+	    				})
+	    		}
 	    	})
 	    }
 	  }
 }
 
-Mystampcard.$inject = ['$state', '$rootScope'];
-function Mystampcard($state, $rootScope) {
+Mystampcard.$inject = ['$state', '$rootScope', 'stamp', 'stampData', 'preloaderMethod', 'accountData'];
+function Mystampcard($state, $rootScope, stamp, stampData, preloaderMethod, accountData) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
-				$state.go('mystampcards');
+				var ipayu_info = accountData.getUser();
+	    		if($rootScope.showOffline){
+					$state.go('mystampcards');
+	    		}
+	    		else{
+	    			$rootScope.doLoading = true;
+	    			stamp.getUserStamps(ipayu_info.ipayu_id)
+	    				.then(function (resolve) {
+	    					if(resolve){
+			                	var m = stampData.setUserStamps(resolve[0].data.data.allstamps);
+			                	var f = stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
+			                	var u = stampData.setUsedStamps(resolve[0].data.data.usedstamps);
+								$state.go('mystampcards');
+								preloaderMethod.preloadImage([m, u, f]);
+	    					}
+	    					else{$rootScope.doLoading = false;}
+	    				})
+	    		}
 	    	})
 	    }
 	  }
@@ -83,7 +120,25 @@ function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, cus
 	    	element.bind('click', function () {
 
 	    		var	type = attrs.routeCardSearch,
-	    			route = (type == 'mall')? 'mallsearch':'shopsearch';
+                    route = '';
+                
+                switch(type) {
+                    case 'mall':
+                        route = 'mallsearch'; break;
+                    case 'shop':
+                        route = 'shopsearch'; break;
+                    case 'coupon':
+                        route = 'couponsearch';
+                        type = '';
+                        break;
+                    case 'stamp':
+                        route = 'stampsearch';
+                        type = '';
+                        break;
+                    default:
+                        alert('undefined type');
+                        return;
+                }
 
 	    		if($rootScope.showOffline){
 	    			customService.alert('No internet connection', 'Oops!', 'Ok');
@@ -114,7 +169,20 @@ function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, 
 	    	element.bind('click', function () {
 	    		var user = accountData.getUser(),
 	    			type = attrs.routeAllCardSearch,
-	    			route = (type == 'mall')?'allmallsearch':'allshopsearch';
+	    			route = '';
+                
+                switch(type) {
+                    case 'mall':
+                        route = 'allmallsearch'; break;
+                    case 'shop':
+                        route = 'allshopsearch'; break;
+                    case 'coupon':
+                        route = 'allcouponsearch'; break;
+                    case 'stamp':
+                        route = 'allstampsearch'; break;
+                    default:
+                        alert('undefined type'); return;
+                }
 
 	    		if($rootScope.showOffline){
 	    			customService.alert('No internet connection', 'Oops!', 'Ok');
@@ -146,14 +214,31 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
 	    	element.bind('click', function () {
 	    		var user = accountData.getUser(),
 	    			card = JSON.parse(attrs.routeAllAssetCards),
-	    			route = (card.type == 'mall')? 'allmallsearch':'allshopsearch';
+                    type = attrs.type,
+	    			route = '';
+                
+                switch(type) {
+                    case 'mall':
+                        route = 'allmallsearch'; break;
+                    case 'shop':
+                        route = 'allshopsearch'; break;
+                    case 'coupon':
+                        route = 'allcouponsearch';
+                        break;
+                    case 'stamp':
+                        route = 'allstampsearch';
+                        break;
+                    default:
+                        alert('undefined type');
+                        return;
+                }
 
 	    		if($rootScope.showOffline){
 	    			customService.alert('No internet connection', 'Oops!', 'Ok');
 	    		}
 	    		else{
 	    			$rootScope.doLoading = true;
-	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id)
+	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id, type)
 	    					.then(function (resolve) {
 	    						if(resolve){
 	    							var a = walletData.setAllAvailableCards(resolve[0].data.data);
@@ -177,8 +262,8 @@ function CardInfo($state, $rootScope, walletData) {
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 
-	    		var data = JSON.parse(attrs.routeCardInfo),
-	    			route = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
+	    		var data= JSON.parse(attrs.routeCardInfo),
+	    			route   = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
 	    			cards 	= walletData.getUserCards(attrs.cardType),
     				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
     				card 	= cards[key];
@@ -189,6 +274,29 @@ function CardInfo($state, $rootScope, walletData) {
 	    	})
 	    }
 	  }
+}
+
+// Coupon History
+CardHistory.$inject = ['$state'];
+function CardHistory ($state) {
+    return {
+        restrict:   'A',
+        link:   function (scope, element, attrs, ctrl) {
+            element.bind('click', function () {
+                var type = attrs.routeCardHistory,
+                    route = '';
+                switch(type){
+                    case 'coupon':
+                        route = 'couponhistory'; break;
+                    case 'stamp':
+                        route = 'stamphistory'; break;
+                    default:
+                        alert('Undefined type'); break;
+                }
+                $state.go(route);
+            })
+        }
+    }
 }
 
 
