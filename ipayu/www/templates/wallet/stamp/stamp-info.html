@@ -85,7 +85,7 @@
                     <p class="coupon-info-text" style="font-weight: bold; font-family:'HelveticaLight';text-align:left;padding-left:25px;font-size:20px;color:black;margin-top:12px; text-transform: uppercase">SN: {{thisStamp.serial_number}}</p>
             </div>      
             <div class="col-xs-5">
-                <barcode type="code39" render="img" string="{{thisStamp.serial_number}}" class="bcode-ci"></barcode> 
+                <barcode type="code128b" render="img" string="{{thisStamp.serial_number}}" class="bcode-ci"></barcode>
                 <qrcode data="{{thisStamp.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
             </div>
 
@@ -93,9 +93,9 @@
        
         <div class="row" style=" color:white; margin:0" >
             <div class="container" style="background-color:#333333;">
-                <center ng-if="!thisStamp.hasExpired && !thisStamp.alreadyAdded"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
-                <center ng-if="thisStamp.hasExpired"><h6>STAMP EXPIRED</h6></center>
-                <center ng-if="thisStamp.alreadyAdded"><h6>STAMP USED</h6></center>
+                <center ng-if="!thisStamp.expired && !thisStamp.has_used"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
+                <center ng-if="thisStamp.expired"><h6>STAMP EXPIRED</h6></center>
+                <center ng-if="thisStamp.has_used"><h6>STAMP USED</h6></center>
             </div>
         </div>
 </div>

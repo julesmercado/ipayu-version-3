@@ -44,7 +44,7 @@
 	    </div>
 	  <!-- <img src="images/dashboard/qr-code.png" class="dash-user-img">   -->
 	  <div style="text-align:center;">
-	  	<qrcode data="{{ipayu_info.phone}}" version="3" class="dash-user-img" ng-click="showLargeQr()"></qrcode>	
+	  	<qrcode data="{{ipayu_info.username}}" version="3" class="dash-user-img" ng-click="showLargeQr()"></qrcode>	
 	  </div>
 	</div>
 	</div>
@@ -129,20 +129,6 @@
 
 		        </div>
    		 </div>
- 
 	</div>
-
-
-<script type="text/ng-template" id="largeQR">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="dashed-dialog text-center">
-					  <div style="text-align:center;">
-					  	<qrcode data="{{ipayu_info.phone}}" version="3" class="large-qr"></qrcode>	
-					  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</script> 
+    
+    <large-qr-modal></large-qr-modal>

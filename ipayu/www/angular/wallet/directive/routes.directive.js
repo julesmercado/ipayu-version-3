@@ -95,6 +95,7 @@ function Mystampcard($state, $rootScope, stamp, stampData, preloaderMethod, acco
 	    			$rootScope.doLoading = true;
 	    			stamp.getUserStamps(ipayu_info.ipayu_id)
 	    				.then(function (resolve) {
+                        console.log(resolve)
 	    					if(resolve){
 			                	var m = stampData.setUserStamps(resolve[0].data.data.allstamps);
 			                	var f = stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);

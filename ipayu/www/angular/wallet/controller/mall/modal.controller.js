@@ -5,8 +5,8 @@ walletModule.controller('redeemModalCtrl', RedeemModal)
 walletModule.controller('addCardModalCtrl', AddCardModal)
 walletModule.controller('cardSuccessfullyAddedCtrl', CardSuccessfullyAdded)
 
-RedeemModal.$inject = ['$scope', '$timeout', 'accountData', 'walletData', 'redeemable'];
-function RedeemModal($scope, $timeout, accountData, walletData, redeemable) {
+RedeemModal.$inject = ['$scope', '$rootScope', '$timeout', 'accountData', 'walletData', 'redeemable', 'wallet'];
+function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, redeemable, wallet) {
 
     $scope.card = walletData.getCardInfo();
     var ipayu_info 	= accountData.getUser(),
@@ -72,39 +72,14 @@ function RedeemModal($scope, $timeout, accountData, walletData, redeemable) {
         }
     };
 
-    function doRedeem(){
-    	console.log('do redeem')
-        // mallCardFactory.addRedeemRewardsGift(ipayu_info.ipayu_id, $scope.redeemData)
-        // .then(
-        //     function success(response) {
-        //         if(response.data.success) {
-        //             $scope.isClick = false;
-        //             $scope.isRedeemed = true;
-        //             $scope.isLoading = false;
-        //             $scope.card.rewards_balance = newPointsBalance($scope.card.rewards_balance, $scope.redeemData.point_value, $scope.counter);
-        //             dataManager.addCardInfo($scope.card);
-
-        //             mallCardFactory.updateUserHasCardsPoints($scope.redeemData.user_has_card_id,$scope.t)
-        //             .then(
-        //                 function success(res) {
-        //                     getTransactionsFromDB($stateParams.cardId);
-        //                     // getTransactions($stateParams.cardId);
-        //                     // getCards();
-        //                     // getDashboardData();
-        //                 },
-        //                 function error(res){
-        //                     console.log(res);
-        //                 }
-        //             )
-        //         }
-        //         else {
-        //            console.log(response);
-        //         }
-        //     },
-        //     function error(response){
-        //         console.log(response);
-        //     }
-        // )
+    function doRedeem(dataToSend) {
+        wallet.redeem(dataToSend)
+            .then(function(resolve){
+                $rootScope.$broadcast('updateData');
+                $scope.isClick = false;
+                $scope.isRedeemed = true;
+                $scope.isLoading = false;
+            })
     }
 
     function newPointsBalance(points_balance, point_value, counter){
@@ -112,31 +87,31 @@ function RedeemModal($scope, $timeout, accountData, walletData, redeemable) {
     }
 
     $scope.confirmRedeem = function () {
-    	console.log('confirmRedeem')
-        // mallCardFactory.getTransactionInfo(ipayu_info.ipayu_id, cardId)
-        //     .then(
-        //             function success(response){
-        //                 $scope.card = response.data.cardData;
-        //                 $scope.redeemData.rewardsgift_id    = $scope.rewardsID;
-        //                 $scope.redeemData.mall_card_id      = $scope.cardId;
-        //                 $scope.redeemData.type              = $scope.type;
-        //                 $scope.redeemData.point_value       = parseFloat($scope.point_value);
-        //                 $scope.redeemData.quantity          = parseInt($scope.counter);
-        //                 $scope.redeemData.items_remaining   = parseInt($scope.q_remaining - $scope.counter);
-        //                 $scope.redeemData.date_redeemed     = (new Date()).toISOString().substring(0, 10);
-        //                 $scope.redeemData.user_has_card_id  = $scope.card.user_has_card_id;
-        //                 $scope.redeemData.balance           = $scope.card.rewards_balance - ($scope.redeemData.point_value * $scope.counter);
-        //                 $scope.redeemData.points_redeem     = $scope.redeemData.point_value * $scope.counter;
-        //                 $scope.redeemData.timestamp         = new Date();
-        //                 $scope.t = newPointsBalance($scope.card.rewards_balance, $scope.redeemData.point_value, $scope.counter);
-        //                 $scope.isLoading = true;
-        //                 doRedeem();
-        //             },
-        //             function(error){
-
-        //             }
-        //         )
-
+        wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: $scope.type})
+            .then(function(resolve){
+                if(resolve){
+                    var cards = resolve[0].data.data.all;
+                    var card = {};
+                    for(var i = 0; i < cards.length; i++){
+                        if(cards[i].card_id == $scope.cardId){
+                            card = cards[i];
+                            break;
+                        }
+                    }
+                    var card_balance = (redeemable.points_type == 'reward')?card.rewards_balance:card.rebates_balance;
+                    var dataToSend = {
+                        'ipayu_id' : ipayu_info.ipayu_id,
+                        'redeemable_id' : $scope.rewardsID,
+                        'datetime_redeemed' : Date.parse(new Date()),
+                        'balance'   : card_balance - ($scope.point_value * $scope.counter),
+                        'quantity'  : parseInt($scope.counter),
+                        'points_used'   : parseInt($scope.point_value)
+                    }
+                    $scope.t = newPointsBalance(card_balance, $scope.point_value, $scope.counter);
+                    $scope.isLoading = true;
+                    doRedeem(dataToSend);
+                }
+            })
     };
 
     $scope.cancelRedeem = function () {

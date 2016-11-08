@@ -9,13 +9,13 @@ function Config($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: '/login',
             templateUrl: 'templates/login.html',
-            controller: 'loginCtrl as vm',
+            controller: 'loginCtrl',
             cache: false
         })
         .state('register', {
             url: '/register',
             templateUrl: 'templates/register.html',
-            controller: 'registerCtrl as vm',
+            controller: 'registerCtrl',
             resolve: {
                 questions: function (account) {
                     return account.getQuestions();
@@ -24,19 +24,25 @@ function Config($stateProvider, $urlRouterProvider) {
             cache: false
         })
         .state('forgot', {
-            url: '/forgot',
+            url: '/forgot/{user}',
             templateUrl: 'templates/forgot.html',
+            controller: 'forgotCtrl',
+            resolve: {
+                questions: function (account) {
+                    return account.getQuestions();
+                }
+            },
             cache: false
         })
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'templates/dashboard.html',
-            controller: 'dashboardCtrl as vm',
+            controller: 'dashboardCtrl',
             cache: false
         })
         .state('process', {
             url: '/process',
-            controller: 'processCtrl as vm',
+            controller: 'processCtrl',
             cache: false
         })
 

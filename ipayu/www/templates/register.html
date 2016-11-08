@@ -203,9 +203,8 @@
                 <td class="pink"><label for="rpassword" class="i6-resize"><img src="images/password.png" /> </label></td>
                 <td class="gray">                
                     <label for="rpassword"> 
-                        <input type="password" 
-                                id="rpassword"
-                                name="rpassword" ng-model="user_info.repeat_password.input_value" 
+                        <input type="password" id="rpassword" name="rpassword" 
+                                ng-model="user_info.repeat_password.input_value" 
                                 placeholder="Repeat Password" required 
                                 ng-keyup="validate_repeat_password(true)"
                                 ng-blur="user_info.repeat_password.showTip = false"
@@ -223,11 +222,9 @@
                 <td class="pink"><label for="question" class="i6-resize"><img src="images/password.png" /> </label></td>
                 <td class="gray">
                     <label for="question">
-                        <select class="input" id="question" 
-                                class="input" name="question" 
+                        <select class="input" id="question" name="question" 
                                 ng-model="user_info.question.input_value" 
                                 ng-change="validate_question(true)"
-                                required 
                                 ng-class="{'text-gray' : user_info.question.grayText }"
                                 ng-change="upQuestion()"
                                 ng-disabled="user_info.repeat_password.showError"
@@ -236,7 +233,7 @@
                                 tooltip-placement="bottom" 
                                 tooltip-is-open="openToolTip && user_info.question.showError && user_info.question.touched"
                                 required style="height:100%;margin-top:0px" 
-                                >
+                                />
                             <option value="" disabled selected>Secret question</option>
                             <option ng-repeat="question in questions" value="{{question.question_id}}" ng-bind="question.content"></option>
                         </select>

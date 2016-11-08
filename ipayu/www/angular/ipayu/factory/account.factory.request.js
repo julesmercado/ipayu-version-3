@@ -15,7 +15,6 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
         },
-
         login: function (username, password) {
             var dataToSend = {
                 'requestType'   : 'Login_',
@@ -29,7 +28,6 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
         },
-
         checkIfExist: function (data, type) {
             var dataToSend = {
                 'type'  : type,
@@ -43,16 +41,21 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
         },
-
-        resetPassword: function (data) {
-        },
-
         getQuestions: function () {
             return $http({
                             'method'    : 'GET',
                             'headers'   : {'Content-Type': 'application/json'},
                             'url'       : API_ROOT_URL + 'question_controller.php',
                             'params'    : {'requestType':'GetQuestions_'}
+                        })
+        },
+        resetPassword: function (data) {
+            data.requestType = 'ForgotPassword_'
+            return $http({
+                            'method'    : 'POST',
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                            'url'       : API_ROOT_URL + 'user_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
                         })
         }
 

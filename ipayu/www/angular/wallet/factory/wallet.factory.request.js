@@ -81,6 +81,15 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
         },
+        redeem: function (data) {
+            data.requestType = 'AddRedeem_';
+            return $http({
+                            'method'    : 'POST',
+                            'url'       : API_ROOT_URL + 'card_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                        })
+        },
         getUserCards: function (data) {
             data.requestType = 'GetMyUserCards_';
             return $http({
