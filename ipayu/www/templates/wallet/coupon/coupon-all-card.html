@@ -23,7 +23,7 @@
     <div class="full-height-container">
         
         <div ng-if="allCouponCards.length != 0" ng-repeat="alphabet in allCouponCards track by $index" id="cardsContainer">
-            <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} __________________________ </span>
+            <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} <hr class="letter-bar-search" />  </span>
             <div class="container container-mall-card-results" ng-repeat="cardPerRow in alphabet[1] track by $index" >
                 <div ng-repeat="card in cardPerRow track by $index">
                     <div class="col-xs-6 col-md-6 orange-container" ng-if="!card.already_added" ng-click="tapped(card)">

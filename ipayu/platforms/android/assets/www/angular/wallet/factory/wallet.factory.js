@@ -47,8 +47,8 @@ function WalletFactory($q, walletRequest) {
                 .then(thenFunc, errFunc)
         },
 
-        getAllCardAvailableInEstablishment: function(ipayu_id, asset_id){
-            var req_available_cards = walletRequest.getAllCardAvailableInEstablishment(ipayu_id, asset_id);
+        getAllCardAvailableInEstablishment: function(ipayu_id, asset_id, type){
+            var req_available_cards = walletRequest.getAllCardAvailableInEstablishment(ipayu_id, asset_id, type);
             return $q.all([req_available_cards])
                 .then(thenFunc, errFunc)
         },
@@ -56,6 +56,12 @@ function WalletFactory($q, walletRequest) {
         addCard: function(data){
             var req_add_card = walletRequest.addCard(data);
             return $q.all([req_add_card])
+                .then(thenFunc, errFunc)
+        },
+        
+        sendExportedTable: function (data){
+            var req_export = walletRequest.sendExportedTable(data);
+            return $q.all([req_export])
                 .then(thenFunc, errFunc)
         }
 

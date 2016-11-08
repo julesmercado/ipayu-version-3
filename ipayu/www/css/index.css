@@ -12,10 +12,8 @@ html,body{overflow-x: hidden;}
 @font-face { font-family: 'HelveticaLightCond'; src: url(./Fonts/HelveticaLTStd-LightCond_0.otf); font-weight: normal; font-style: normal; } 
 @font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; } 
 .navbar{border:none;}
-#sp-page{background-image:url(../images/cards-background_2.png);background-repeat:no-repeat; background-size:cover; background-position: center center; background-color: white; overflow: hidden;position: absolute;
-    width: 100%;    height: 100%;    float: right;    z-index: 10;    -webkit-transform: translateX(0);    transform: translateX(0);    -webkit-transition-duration: 0.3s; transition-duration: 0.3s;}
+#sp-page{background-image:url(../images/cards-background_2.png);background-repeat:no-repeat; background-size:cover; background-position: center center; background-color: white; overflow: hidden;position: absolute;top:0; bottom:0;left:0;right: 0}
 #sp-nav{width: 100%; overflow:hidden;margin-top:60px !important;}
-.nav-tabs{border:none !important;}
 hr{margin:0 !important;}
 a:active, a:visited , a:link, a:active, a:hover{text-decoration: none}
 button:focus {
@@ -243,6 +241,7 @@ form#registration button.register {
         padding-left:10%;
     }
 }
+.rl-l-img{    display: block;    margin: 12px auto;    padding-top: 10px;    width: 26%;}
 
 .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
 .red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
@@ -300,7 +299,10 @@ form#registration button.register {
 .dash-user-reports-tabs{ background-color: #D9E8F5; width: 100%; width: 100%; bottom: 11%}
         .dash-reports-row{min-height: 75px}
         .dash-user-reports-tab-item{display: inline-block; border-right: 2px solid; height: 100%; border-color: #FFFFFF; padding: 0;}
-        .only-one-card-type-dashboard{padding: 19% 0}
+        .only-one-card-type-dashboard{    margin: 0 auto;       display: block;    text-align: center;    color: #39739E; }
+            .points-dashboard{font-size: 20px;    padding-top: 16%;font-family: "HelveticaBold"}
+            .pts-label-dashboard{font-size: 10px; font-family: "HelveticaLight";padding-bottom: 20%}
+            .separator-dash{    width: 70%;    margin: 0 auto !important;   border-color:rgba(57,115,185,.5);}
         .two-type-card-dashboard{border-bottom: 1px solid rgba(57,115,158,0.3); width: 80%;margin: 0 auto;}
         .two-type-card-dashboard-rebates{padding-top:6%;}
         .tab-element{line-height:38px; font-size:15px; color: #39739E; text-align: center;}
@@ -309,7 +311,7 @@ form#registration button.register {
 
 .dash-footer-tabs{background-color: #DF1642; width: 100%; margin-left: 0px; margin-right: 0px}
         .footer-element-small{font-size:10px; color: #FFFFFF; text-align: center; margin-bottom:25%; margin-right:1px;}
-        .dash-footer-icon{height:auto; width:70%; margin:auto;display: block; margin-top:15%; margin-bottom:10px;}
+        .dash-footer-icon{height:auto; width:60%; margin:auto;display: block; margin-top:15%; margin-bottom:10px;}
         .dash-user-footer-tab-item{display: inline-block; border-right: 1px solid; border-color: #FFFFFF; margin-bottom: -15px}
          .dash-footer-solo-tab{border:none;}
         .solo-tab{margin: auto; display: block;}
@@ -338,7 +340,7 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:10px;font-family: "HelveticaLight"; }
         .no-padding{padding:0;}
         .no-padding-right{padding-right: 0;    padding-left: 5%;}
-        .header-title-wallet{color:white; text-align: center; margin-top:9px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
+        .header-title-wallet{color:white; text-align: center; margin-top:5px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
       .btn-top-with-flag{width: 50px; position: absolute;right: -10px; top: -5px;}
   .back-button-header-img{height: 20px !important}
 /*end of header*/
@@ -462,7 +464,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .filtered-cards .fu-cards div.col-xs-6:nth-of-type(2),
 .filtered-cards .mn-cards div.col-xs-6:nth-of-type(2) { padding-left:5px; }
 
-.ci-info-price{    font-size: 16px;    font-family: "HelveticaLight";    color: #A5BF0C;}
+.ci-info-price{    font-size: 18px;    font-family: "HelveticaBold";    color: #A5BF0C;}
 /* END OF MALL PAGE FOR FILTER */
 
 /* MALL PAGE FOR VIEW ALL */
@@ -553,12 +555,12 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 
 /* dialog */
 .ngdialog.ngdialog-theme-plain .ngdialog-content { width: 95%; }
-.ngdialog.ngdialog-theme-plain .ngdialog-content { padding:0px; border-radius: 25px; min-height: 170px;margin-top: 11%}
+.ngdialog.ngdialog-theme-plain .ngdialog-content { padding:0px; border-radius: 25px; margin-top: 11%}
 /* end of dialog */
 
 /* add card dialog */
 .ngdialog-theme-plain .container .row .col-xs-12 { padding:5px }
-.ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog { border:1px dashed #df1642;border-radius:25px;padding:25px 0px 5px 0px;height: 160px }
+.ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog { border:1px dashed #df1642;border-radius:25px;padding:25px 0px 5px 0px; }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog > img { margin-left:auto;margin-right:auto;display:block;height:35px;width:auto; }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog > h4 { font-size:14px;font-family:"HelveticaBold";color:#808080; }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog > button img { height:45px;width:auto; }
@@ -896,6 +898,8 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .add-this-coupon-img{ width: 100%; min-height: 86px; }
 .featured-malls-mall{height: 58px;width: 58px}
 .mother-of-all-scrollables{height: 572px}
+form#registration td label{height: 40px !important;}
+
 }
 /* IPHONE 5 */
 @media screen and (width:320px) { 
@@ -1004,6 +1008,8 @@ and (max-device-width : 736px) {
 .mci-cd{top:130px;}
 .mother-of-all-scrollables{height: 602px}
 .coupon-img-holder>img {    height: 90px !important;}
+
+.coupon-img-container {    max-height: 200px;}
 }
 
 @media screen and (width: 384px){

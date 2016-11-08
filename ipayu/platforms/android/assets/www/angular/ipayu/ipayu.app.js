@@ -42,6 +42,7 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
     function backButtonIsTapped(e){
         $rootScope.$apply(function(){
             $rootScope.hasFocusElement = false;
+            $rootScope.doLoading = false;
         })
 
         var state = $state.current.name;

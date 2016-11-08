@@ -26,7 +26,7 @@
         <div class="container mall-search-featured-malls custom-slider">
             <div class="cs-image-holder-featured col-xs-3 col-md-3" 
                     ng-repeat="featCard in featured_malls as featMalls"
-                    route-all-asset-cards="{{featCard}}"
+                    route-all-asset-cards="{{featCard}}" type="mall"
                     style="float:none;">
                     <img ng-src="{{featCard.image}}" class="animated img img-responsive featured-malls-mall fadeIn">
                     <p class=" animated featured-malls-mall-name fadeIn" ng-bind="featCard.name"></p>
@@ -44,7 +44,7 @@
     <div class="container mall-search-unfeatured-malls" ng-repeat="mall in unfeatured_malls">
         <div class="col-xs-3 col-md-3 unfeatured-malls unfeatured-shops" ng-repeat="m in mall" >
             <div ng-if="m != false && m != true"
-                route-all-asset-cards="{{m}}">
+                route-all-asset-cards="{{m}}" type="mall">
                 <img ng-src="{{m.image}}" class="animated img img-responsive featured-malls-mall fadeIn">
                 <p class="animated featured-malls-mall-name unfeatured-mall-name fadeIn" ng-bind="m.name"></p>
             </div>
@@ -62,7 +62,7 @@
     </div>
 </div>
 
-    <mall-footer></mall-footer>
+    <mall-footer ng-if="!hasFocusElement"></mall-footer>
 
 </div>
 

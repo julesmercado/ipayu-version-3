@@ -2,7 +2,6 @@
 walletModule.factory('walletRequest', WalletFactoryRequest)
 
 WalletFactoryRequest.$inject = ['$http', 'API_ROOT_URL', '$httpParamSerializerJQLike'];
-
 function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
 
     return {
@@ -23,7 +22,7 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
         getAllHasCardAssets: function (type) {
             var dataToSend = {};
             dataToSend.requestType = 'GetAssets_';
-            if(type){
+            if(type != '' && type){
                 dataToSend.type  = type;
             }
             return $http({
@@ -59,10 +58,11 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                         })
         },
 
-        getAllCardAvailableInEstablishment: function (ipayu_id, asset_id) {
+        getAllCardAvailableInEstablishment: function (ipayu_id, asset_id, type) {
             var data = {
                 'ipayu_id'      : ipayu_id,
                 'asset_info_id' : asset_id,
+                'type'          : type,
                 'requestType'   : 'GetCardsAssets_'
             };
             return $http({
@@ -83,6 +83,15 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
         },
         getUserCards: function (data) {
             data.requestType = 'GetMyUserCards_';
+            return $http({
+                            'method'    : 'POST',
+                            'url'       : API_ROOT_URL + 'card_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                        })
+        },
+        sendExportedTable: function (data) {
+            data.requestType = 'SendExportedTable_';
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',
