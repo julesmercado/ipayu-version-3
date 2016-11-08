@@ -17,10 +17,6 @@ mainModule.config(Config)
 Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
 function Run(sqliteSet, accountData, $rootScope, $state) {
 
-    var initial_screen_size = window.innerHeight;
-    $rootScope.doLoading = false;
-    $rootScope.showOffline = false;
-
     function onOnline(){
         $rootScope.showOffline = false;
     }
@@ -71,15 +67,21 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
         return;
     }
     
-    
+    document.addEventListener('deviceready', function () {
 
-    document.addEventListener('online', onOnline, false);
-    document.addEventListener('offline', onOffline, false);
-    document.addEventListener("backbutton", backButtonIsTapped, false);
-    window.addEventListener("resize", onResize, false);
-    sqliteSet.setUpDatabase();
-    sqliteSet.createTable();
-    // sqliteSet.dropTable();
+        var initial_screen_size = window.innerHeight;
+        $rootScope.doLoading = false;
+        $rootScope.showOffline = false;
+        
+        document.addEventListener('online', onOnline, false);
+        document.addEventListener('offline', onOffline, false);
+        document.addEventListener("backbutton", backButtonIsTapped, false);
+        window.addEventListener("resize", onResize, false);
+        sqliteSet.setUpDatabase();
+        sqliteSet.createTable();
+        // sqliteSet.dropTable();
+        
+     }, true);
 
 }
 
