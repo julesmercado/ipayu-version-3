@@ -6,6 +6,7 @@
             mallCardFactory2.fetchMallEvents( parseInt( $stateParams.mallId ) ).then( function( response ){
                 $scope.limitText = [];
                 $scope.events = response.all.data;
+                console.log($scope.events)
                 for( var i in $scope.events ){
                     $scope.limitText[i] = 190;
                 }
