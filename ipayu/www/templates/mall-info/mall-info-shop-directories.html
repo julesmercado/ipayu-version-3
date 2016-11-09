@@ -77,8 +77,8 @@
         <div class="full-height-container mall-info-full-height-container"> 
             <div  id="cardsContainer" ng-repeat="shops in all_shops">
                  <div style="position:relative;" ng-if="shops.length>0">
-                    <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="{{shops[0].toUpperCase()}}" ng-if="shops[0]!='num'"> {{shops[0].toUpperCase()}} </label>
-                    <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="num" ng-if="shops[0]=='num'"> # </label>
+                    <label class="letter-heading mall-info-letter-heading" id="{{shops[0].toUpperCase()}}" ng-if="shops[0]!='num'"> {{shops[0].toUpperCase()}} </label>
+                    <label class="letter-heading mall-info-letter-heading" id="num" ng-if="shops[0]=='num'"> # </label>
                     <hr class="letter-bar-search mall-info-letter-bar" /> 
                     <!-- <label class="mall-info-underscore" style="border-top:1px solid black;"></label> -->
                     </div>

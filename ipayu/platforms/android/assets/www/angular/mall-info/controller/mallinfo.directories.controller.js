@@ -28,7 +28,7 @@
 
             $scope.toMallEvents = function( mall ){
                 mallData.setMallInfo( mall );
-                $state.go( 'mallEvents', {mallId: mall.asset_id} )
+                $state.go( 'mallEvents', {mallId: mall.asset_info_id} )
             };
 
             $scope.$watch( 'searchCountry.country', function( newValue , oldValue ){

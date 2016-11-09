@@ -122,6 +122,7 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 		requests.push(wallet.getTopThreeFrequent(id));
 		requests.push(wallet.getUserCards({'ipayu_id'	: id, 'type'	: 'mall'}));
 		requests.push(wallet.getUserCards({'ipayu_id'	: id, 'type'	: 'shop'}));
+		requests.push(wallet.redeemHistory({'ipayu_id'	: id}));
 
 		$q.all(requests)
                 .then(function (resolve) {
@@ -151,7 +152,12 @@ function LoginCtrl($scope, $rootScope, $state, $q,
                 	stampData.setFeaturedStamps(resolve[0][0].data.data.featuredstamps);
                 	// set user used stamp
                 	stampData.setUsedStamps(resolve[0][0].data.data.usedstamps);
+            
+                    // set redeem history
+                	walletData.setRedeemHistory(resolve[5][0].data.data);
+                    
 					$state.go('dashboard')
+                    
                 }, function (reject) {
 					console.log(reject);
                 })

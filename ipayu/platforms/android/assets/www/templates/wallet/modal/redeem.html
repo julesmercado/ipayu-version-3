@@ -5,12 +5,17 @@
 
 
     <div class="white-bg animated fadeIn redeemable-item-container">
-                 <div class="col-xs-12" ng-if="!isClick && !isRedeemed">
-                       <img ng-src="{{image}}" class="img img-responsive coupon-img-container">
+                  <div class="col-xs-12 no-padding" ng-if="!isClick && !isRedeemed">
+                       <img ng-src="{{image}}" class="img img-responsive coupon-img-container" style="margin-top:0">
                   </div>
+                <div class="col-xs-12"  ng-if="!isClick && !isRedeemed">
+                    <span class="ci-info-price pull-right">
+                      {{ point_value }}&nbsp;Points
+                    </span>
+                </div>
 
                 <div class="row" ng-if="!isClick && !isRedeemed">
-                    <div class="col-xs-8 no-padding-right" ng-if="!isClick && !isRedeemed">
+                    <div class="col-xs-12" ng-if="!isClick && !isRedeemed">
                         <div class="container">
                              {{ type }}
                             <h5 class="redeemable-item-body-text-ngdialog" ng-if="thisCoupon.description != ''" style="width:100%" >Fine Print: </h5>
@@ -23,12 +28,7 @@
                             </h5>
                         </div>
                     </div>
-
-                     <div class="col-xs-4 no-padding-left">
-                                <span class="ci-info-price">
-                                  {{ point_value }}&nbsp;Points
-                                 </span>
-                    </div>
+                    
                 </div>
                 <div class="row" style="margin-top:20px">
                     <div class="container">

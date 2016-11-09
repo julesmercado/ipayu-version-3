@@ -14,6 +14,7 @@ html,body{overflow-x: hidden;}
 .navbar{border:none;}
 #sp-page{background-image:url(../images/cards-background_2.png);background-repeat:no-repeat; background-size:cover; background-position: center center; background-color: white; overflow: hidden;position: absolute;top:0; bottom:0;left:0;right: 0}
 #sp-nav{width: 100%; overflow:hidden;margin-top:60px !important;}
+.nav-tabs{border:none !important;}
 hr{margin:0 !important;}
 a:active, a:visited , a:link, a:active, a:hover{text-decoration: none}
 button:focus {
@@ -341,7 +342,7 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:10px;font-family: "HelveticaLight"; }
         .no-padding{padding:0;}
         .no-padding-right{padding-right: 0;    padding-left: 5%;}
-        .header-title-wallet{color:white; text-align: center; margin-top:5px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
+        .header-title-wallet{color:white; text-align: center; margin-top:8px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
       .btn-top-with-flag{width: 50px; position: absolute;right: -10px; top: -5px;}
   .back-button-header-img{height: 20px !important}
 /*end of header*/
@@ -621,7 +622,7 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 .custom-slider .cs-image-holder .cs-image{
     height: auto;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 5px;
     padding-right: 0;
 

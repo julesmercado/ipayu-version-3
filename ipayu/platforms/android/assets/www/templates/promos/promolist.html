@@ -1,0 +1,84 @@
+﻿<div id="sp-page"  style="overflow:hidden">
+<div class="page-main-header promo-page-main-header"></div>
+<div id="sp-nav" class="animated fading-menu" 
+    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+         ng-swipe-left="menuSwipeLeft()" >
+
+    <menu style="width:80%;height:100%;background:#fff;"
+        class="animated" 
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+    <ul class="nav nav-tabs page-menu-top promo-nav">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+
+        <li class="col-xs-3 no-padding-right"> 
+           <p class="bold header-title-wallet">
+                Promos
+            </p>
+        </li>
+
+       <li class="col-xs-5 pull-right no-padding-right">
+       <img src="images/promo-R.png" class="promo-btn-reserve-head" ui-sref="promolist">
+            <button ng-click="toggleShowCountry()" id="flags-nav" class="promo-flag-list">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <span>{{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="row add-card-header reserved-item-header">
+            <div class="col-xs-12">
+                <p class="text-center" >
+                    Reserved items (9)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mother-of-all-scrollables ">
+    <ul class="no-style-list bar">
+        <div class="container">
+
+            <div class="row top15 foo">
+                <div class="col-xs-2 pd-d-c">
+                 <span class="pl-d-dd">16</span>
+                 <span class="pl-d-mm">Aug</span>
+                 <span class="pl-d-yyy">2016</span>
+                </div>
+
+                <div class="col-xs-10 pd-r-c" >
+                <img src="http://2.bp.blogspot.com/_QfVWU-2pVL4/TLOWOzz8tKI/AAAAAAAAPws/PLgZWDXeFDM/s1600/kfc-bin-laden-halal-chicken.jpg" class="promo-reserved-img" ui-sref="promo-solo-page">
+                    <span class="pl-i-pr"> P 9999 </span> <br/>
+                    <span class="pl-i-des">Get our Promo Sale </span> <br/>
+                    by <span class="pl-i-ow">Rustan's</span>
+
+                    <span class="pull-right pl-it-qty"> [1]</span>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</div>
+
