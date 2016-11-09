@@ -10,7 +10,9 @@ function WalletData() {
         featured_assets = [],
         non_featured_assets = [],
         categories = [],
-        card_to_add = false;
+        card_to_add = false,
+        item_location = [],
+        item_info = [];
 
     return {
         
@@ -67,6 +69,16 @@ function WalletData() {
             card_to_add = data;
             return data;
         },
+        setRedeemHistory: function(data){
+            localStorage.setItem('ipayuredeemhistory', JSON.stringify(data));
+            return data;
+        },
+        setItemLocation: function(data){
+            item_location = data;
+        },
+        setItemInfo: function(data){
+            item_info = data;
+        },
 
 
 // Getters
@@ -120,6 +132,16 @@ function WalletData() {
         },
         getCardToAdd: function(){
             return card_to_add;
+        },
+        getRedeemHistory: function(data){
+            var retrievedObject = localStorage.getItem('ipayuredeemhistory');
+            return JSON.parse(retrievedObject) || [];
+        },
+        getItemLocation: function(){
+            return item_location;
+        },
+        getItemInfo: function(){
+            return item_info;
         },
 
 

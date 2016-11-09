@@ -16,6 +16,10 @@ walletModule.directive('routeCardInfo', CardInfo)				// state = mallcardinfo OR 
 // Card Info
 walletModule.directive('routeCardHistory', CardHistory)     // state = couponhistory OR stamphistory
 
+// Redeem History
+walletModule.directive('routeRedeemHistory', RedeemHistory)     // state = redeemhistory
+walletModule.directive('routeItemLocation', ItemLocation)     // state = itemlocation
+
 
 // User Cards
 Mycard.$inject = ['$state', '$rootScope', 'preloaderMethod', 'accountData', 'wallet', 'walletData'];
@@ -296,6 +300,65 @@ function CardHistory ($state) {
                         alert('Undefined type'); break;
                 }
                 $state.go(route);
+            })
+        }
+    }
+}
+
+// Redeem History
+RedeemHistory.$inject = ['$state', '$rootScope', 'customService', 'accountData', 'wallet', 'walletData', 'preloaderMethod'];
+function RedeemHistory ($state, $rootScope, customService, accountData, wallet, walletData, preloaderMethod) {
+    return {
+        restrict:   'A',
+        link:   function (scope, element, attrs, ctrl) {
+            element.bind('click', function () {
+                
+	    		var user = accountData.getUser();
+                
+	    		if($rootScope.showOffline){
+                    $state.go('redeemhistory');
+	    		}
+                else{
+                    $rootScope.doLoading = true;
+                    wallet.redeemHistory({'ipayu_id'	: user.ipayu_id})
+                        .then(function(resolve){
+                            if(resolve){
+                                var r = walletData.setRedeemHistory(resolve[0].data.data);
+                                preloaderMethod.preloadImage([r] || []);
+                                $state.go('redeemhistory');
+                            }
+                        })
+                }
+                
+                
+            })
+        }
+    }
+}
+
+
+// Item Location
+ItemLocation.$inject = ['$state', 'wallet', 'walletData', '$rootScope'];
+function ItemLocation ($state, wallet, walletData, $rootScope) {
+    return {
+        restrict:   'A',
+        link: function (scope, element, attrs, ctrl) {
+            element.bind('click', function () {
+                var asset_id = attrs.routeItemLocation,
+                    item = JSON.parse(attrs.item);
+                walletData.setItemInfo(item);
+                if($rootScope.showOffline){
+                    customService.alert('No internet connection', 'Oops!', 'Ok');
+                }
+                else{
+                    wallet.redeemBranches({'asset_info_id':asset_id})
+                            .then(function(resolve){
+                                if(resolve){
+                                    walletData.setItemLocation(resolve[0].data.data);
+                                    $state.go('itemlocation', {'id':item.redeemable_id})
+                                }
+                            })
+                }
             })
         }
     }
