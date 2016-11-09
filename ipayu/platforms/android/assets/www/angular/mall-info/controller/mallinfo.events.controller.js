@@ -3,6 +3,13 @@
         function( $scope, $state, $stateParams , mallCardFactory2 , $rootScope , mallData ){ /*, offlineData*/
 
             $scope.mallInfo = mallData.setMallInfo();
+            
+        
+        $rootScope.$on('get_events', function(){
+            get_events();
+        })
+        
+        function get_events(){
             mallCardFactory2.fetchMallEvents( parseInt( $stateParams.mallId ) ).then( function( response ){
                 $scope.limitText = [];
                 $scope.events = response.all.data;
@@ -11,7 +18,10 @@
                     $scope.limitText[i] = 190;
                 }
                 
-            } )
+            })
+        }
+        
+        get_events();
             
             
             $scope.toMallEventsFull = function toMallEventsFull( mallEvent ){

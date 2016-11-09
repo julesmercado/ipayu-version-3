@@ -69,7 +69,7 @@ html{overflow-x: hidden;}
 /*Comments Modal*/
 .modal-dialog{margin: 0;}
 .modal-header {padding-top: 10px;display: flex;flex-direction: row;justify-content: space-around;height: 44px;font-size: 10px;margin-left: -25px;}
-.comment-logo{ width: 20px;height: 14px;margin-top: 0px;}
+.comment-logo{ width: 20px;height: 14px;margin-top: 0px; margin-right: 5px}
 .comments-container{display: flex;font-size: 12px;margin: 14px;border-bottom: 1px solid gray; margin-left: -18px;}
 .comment-logo-image{width: 16px;height: 16px; margin-top: -5px; position: relative;}
 .comment-photo{ margin-right: 0;padding-right: 0;margin-left: 0;padding-left: 0; width: 50px; height: 50px; margin-right: 10px;}
@@ -80,11 +80,12 @@ html{overflow-x: hidden;}
 .input-message{width: 79%;}
 .num-comments {display: flex;}
 .comment-smileys-container{list-style-type: none;display: flex;margin-left: -60px;}
-#comment-wrapper{padding-left: 0;}
+#comment-wrapper{padding-left: 20px;}
 ul.comment-smileys-container li{margin: 2px;}
 li.row.comments-container:last-child {border-bottom: none;}
 .comment-list-modal{max-height: 490px;overflow-y: scroll;}
 .comment-body{word-break: break-all;}
+.close-btn-comment-modal{    font-size: 21px;    position: absolute;    right: 13px;    top: 0;}
 
 
 
@@ -113,7 +114,7 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-info-featured-malls-mall {height: 50px ; width: 50px ;}
 .mall-info-shop-search-icon-cat {height: 50px ;width: 50px ;}
 
-.mall-event-post-date-container{    border-right: 1px solid blue;    position: relative;    padding-top: 18px;    padding-right: 5px;}
+.mall-event-post-date-container{    border-right: 2px solid rgb(63,135,167);;    position: relative;    padding-top: 18px;    padding-right:2px;}
     .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#DE4547}
     .mall-event-MM{position: absolute;margin-bottom:0;line-height: 1;color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
     .mall-event-yyyy{color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
