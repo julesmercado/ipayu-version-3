@@ -29,7 +29,10 @@ function CardSuccessfullyAdded() {
 function LargeQrModal() {
 	return {
 		restrict: 'E',
-		templateUrl: 'templates/wallet/modal/large-qr.html'
+		templateUrl: 'templates/wallet/modal/large-qr.html',
+        controller: function($scope, accountData){
+            $scope.ipayu_info = accountData.getUser();
+        }
 	}
 }
 

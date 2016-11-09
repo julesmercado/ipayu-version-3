@@ -20,8 +20,6 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
     
     document.addEventListener('deviceready', function () {
 
-        alert('device is ready')
-        
         function onOnline(){
             $rootScope.showOffline = false;
         }
