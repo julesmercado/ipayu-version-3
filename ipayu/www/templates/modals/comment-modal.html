@@ -1,10 +1,11 @@
 <div class="modal-header row">
 	<div class="col-sm-2 num-comments">
-		<img src="images/comment.png" class="comment-logo"><p>5k</p>
+		<img src="images/comment.png" class="comment-logo"><p ng-bind="comment_length"></p>
 	</div>
 	<div class="col-sm-2 smiley-text">
 		<p>Count of smileys</p>
 	</div>
+    
 	<div class="col-sm-2">
 		<ul id="comment-wrapper" class="comment-smileys-container">
 			<li>
@@ -24,9 +25,10 @@
             </li>
 		</ul>
 	</div>
+    <div class="pull-right" ng-click="closeModal()" style="font-size:18px;">&times;</div>
 </div>
 <div class="comments-container-box">
-	<ul class="comment-list-modal">
+	<ul id="comments-container-box" class="comment-list-modal">
 		<li class="row comments-container" ng-repeat="comment in comments">
 			<div class="col-sm-2 comment-photo">
 				<img ng-src="{{comment.image}}" style="width: 50px;">
