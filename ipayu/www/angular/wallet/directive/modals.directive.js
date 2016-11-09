@@ -30,8 +30,9 @@ function LargeQrModal() {
 	return {
 		restrict: 'E',
 		templateUrl: 'templates/wallet/modal/large-qr.html',
-        controller: function($scope, accountData){
-            $scope.ipayu_info = accountData.getUser();
+        controller: function($rootScope, accountData){
+            $rootScope.large_qr = accountData.getUser();
+            console.log($rootScope.large_qr)
         }
 	}
 }
