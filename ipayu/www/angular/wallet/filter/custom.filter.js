@@ -2,6 +2,9 @@
 
 walletModule.filter('redeemfilter', Redeemfilter)
 walletModule.filter('daterangefilter', Daterangefilter)
+walletModule.filter('capitalize', Capitalize)
+walletModule.filter('readabledate', ReadableDate)
+
 
 Redeemfilter.$inject = [];
 function Redeemfilter(){
@@ -44,5 +47,19 @@ function Daterangefilter(excel){
 		excel.setCurrentFilter(result);
 		return result;
 	};
+}
+
+Redeemfilter.$inject = [];
+function Capitalize(){
+    return function(input) {
+        return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+}
+
+ReadableDate.$inject = ['$filter'];
+function ReadableDate($filter){
+    return function(date){
+        return $filter('date')(date, 'MMMM dd, yyyy');
+    }
 }
 

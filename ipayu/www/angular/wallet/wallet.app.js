@@ -142,5 +142,17 @@ function Config($stateProvider) {
             templateUrl: 'templates/wallet/stamp/add-stamp-card.html',
             controller: 'addStampCardCtrl'
         })
+    
+        // redeem history
+        .state('redeemhistory', {
+            url: '/redeemhistory',
+            templateUrl: 'templates/wallet/redeem-history/items-history.html',
+            controller: 'redeemHistoryCtrl'
+        })
+        .state('itemlocation', {
+            url: '/itemlocation/{id}',
+            templateUrl: 'templates/wallet/redeem-history/item-location.html',
+            controller: 'itemLocationCtrl'
+        })
 
 }
