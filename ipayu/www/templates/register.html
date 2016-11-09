@@ -1,5 +1,5 @@
 
-<div id="sp-page" style="overflow:hidden;background:#fff;">
+<div id="sp-page" style="overflow:auto;background:#fff;">
 <div class="page-header" style="position:absolute; top:0; border-bottom: 0px; width:100%; height:21px;background-color:#DF1642"></div>
 
 <div class="registration wrapper">
@@ -260,12 +260,10 @@
                 </td>
             </tr>
         </table>
-
         <center>
             <button class="register" type="submit" ng-disabled="processRegister">REGISTER</button>
         </center>
-
     </form>
-
+    <div style="height:200px;" ng-if="hasFocusElement"></div>
 </div>
 </div>
