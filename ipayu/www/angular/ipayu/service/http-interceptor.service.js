@@ -25,7 +25,7 @@ function HttpInterceptor($q, $location, $rootScope) {
         return {
 
             request: function(config) {
-              config.timeout = 10000;
+              config.timeout = 25000;
               return config;
             },
 
