@@ -36,7 +36,7 @@
             } )
             $scope.toShopInfo = function( shop ){
                 mallData.setShopInfo( shop );
-                $state.go( 'shopInMallInfo', {shopId: shop.asset_id} )
+                $state.go( 'shopInMallInfo', {shopId: shop.asset_info_id} )
             };
 
             $scope.$watch( 'searchCountry.country', function( newValue , oldValue ){
@@ -58,7 +58,7 @@
             }
 
             function getShopsInMalls( mallInfo ){
-                mallCardFactory2.getShopsInMall( mallInfo.asset_id ).then( function( response ){
+                mallCardFactory2.getShopsInMall( mallInfo.asset_info_id ).then( function( response ){
                     var shops = response.all.data;
                     shops = customService.filterByCategory(shops, $scope.selectedCat);
                     shops = customService.filterByCountry(shops, $rootScope.countryDisplay.country);

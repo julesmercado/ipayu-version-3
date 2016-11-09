@@ -1,0 +1,67 @@
+
+<div id="sp-page" style="background-image:none !important;">
+<div class="page-main-header"></div>
+<div id="sp-nav" class="animated fading-menu" 
+    ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
+         ng-swipe-left="menuSwipeLeft()" style="">
+
+<menu style="width:80%;height:100%;background:#fff;"
+        class="animated" 
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+
+</div>
+  <ul class="nav nav-tabs page-menu-top">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+        </li>
+
+        <li class="col-xs-4 no-padding"> 
+           <p class="bold header-title-wallet">
+                REDEEM&nbsp;HISTORY
+            </p>
+        </li>
+
+       
+
+    </ul>
+<div class="item-list-container-ih">
+<ul class="list group item-holder-ih" style="overflow-x:hidden;">
+    <li class="list-item" ng-repeat="item in items"  style="overflow-x:hidden;">
+        <div class="row ">
+            <div class="col-xs-12" style="margin-top:-20px">
+                <div class="col-xs-4 pull-left no-padding-right" >
+                  <center>  
+                    <span class="condensed-redeem ih-dd" ng-bind="item.datetime_redeemed | readabledate"></span>
+                   </center>
+                    <center><img ng-src="{{item.image}}" class="animated img img-responsive img-item-ih flipInX rh-img"></center>
+                </div>
+
+                <div class="col-xs-5 pull-left no-padding" id="item-desc-ih">
+                    <p class="bold rh-it">{{item.item_name}}</p>
+                    <!-- <p class="condensed-redeem">{{item.description || '(No Description)'}}</p> -->
+                    <p class="condensed-redeem">
+                        Redeem this offer and get 
+                        <span class="bold">1000 PHP</span> 
+                        worth for 45 points
+                    </p>
+                    <p class="animated rubberBand" 
+                        ng-class="{'item-status-ih-unredeemed':item.status=='unredeemed','item-status-ih-redeemed':item.status=='redeemed'}">{{item.status | capitalize }}</p>
+                </div>
+
+                <div class="col-xs-3 pull-left no-padding-right">
+               
+                    <span class="condensed-redeem ih-sd" 
+                          route-item-location="{{item.asset_info_id}}" item={{item}}>See&nbsp;Details</span>
+               
+                   <center>  <p class="bold" style="padding-top:20px; color:gray;font-size:12px">Qty.</p></center> 
+                   <center>  <p class="animated bold ih-item-qty tada" style=" margin-top: -12px;">{{item.quantity}}</p></center> 
+                </div>
+            </div>
+        </div>
+    </li>   
+    <h3 style="text-align:center;" ng-if="items.length == 0">No items to display.</h3>  
+</ul>
+</div>
+</div>

@@ -86,7 +86,7 @@
                 </div> -->
 
                 <div class="" ng-if="clone.points_type == 'reward'">
-                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance"></span>
+                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rewards_balance"></span>
                     <hr class="separator-dash" />
                     <span class="only-one-card-type-dashboard pts-label-dashboard">Points</span>	
                 </div>
@@ -102,7 +102,7 @@
                 	<!-- <div class="tab-element bold two-type-card-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>
 	                <div class="tab-element bold two-type-card-dashboard-rebates" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div> -->
 
-	                 <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance" style="font-size:17px;padding-top:3%"></span>
+	                 <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rewards_balance" style="font-size:17px;padding-top:3%"></span>
                 	<hr class="separator-dash" />
                 	<span class="only-one-card-type-dashboard pts-label-dashboard" style="padding-bottom:0;">Points</span>	
 
@@ -143,7 +143,7 @@
 		                    <div class="footer-element-small light nbsp ">MALL&nbsp;INFO</div>
 		                </a>
 		            </div>
-		            <div class="col-xs-3 dash-user-footer-tab-item" ng-click="proceedItemsHistory()">
+		            <div class="col-xs-3 dash-user-footer-tab-item" route-redeem-history>
 		                <div class=""><img src="images/dashboard/redeem-icon.png" class="img img-responsive dash-footer-icon"></div>
 		                    <p class="footer-element-small light">REDEEM HISTORY</p>
 		            </div>
