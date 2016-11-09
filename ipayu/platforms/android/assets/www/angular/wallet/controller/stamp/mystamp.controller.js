@@ -84,7 +84,7 @@ function StampInfo($scope, $rootScope, stampData, customService, $stateParams) {
                 break;
             }
         }
-        temp.display_stamp = construct_stamps_display(temp.no_of_stamps, temp.no_of_user_stamps || 5);
+        temp.display_stamp = construct_stamps_display(temp.no_of_stamps, temp.no_of_user_stamps || 0);
         return temp;
     }
     

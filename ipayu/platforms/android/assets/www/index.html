@@ -29,17 +29,24 @@
 
     </head>
 
+<!--
     <script type="text/javascript">
 
-        // document.addEventListener('deviceready', function () {
-        //     angular.bootstrap(document, ['app.ipayu']);
-        // }, false);
+         document.addEventListener('deviceready', function () {
+             angular.bootstrap(document, ['app.ipayu']);
+         }, false);
         
     </script>
-
+-->
     <body ng-app="app.ipayu">
 
         <div ng-controller="mainCtrl">
+            
+            <div class="no-net-alert animated slideInDown" 
+                    ng-if="showOffline" 
+                    ng-class="{'slideInDown': showOffline, 'display-none' : !showOffline}" 
+                    show-offline-message>  
+            </div>
             <loading style="position: absolute;
                             top: 0;
                             bottom: 0;
@@ -69,10 +76,11 @@
         <script type="text/javascript" src="js/ng-dialog.min.js"></script>
         <script type="text/javascript" src="js/qrcode.js"></script>
         <script type="text/javascript" src="js/angular-qrcode.js"></script>
+        <script type="text/javascript" src="js/angular-barcode.js"></script>
         <script type="text/javascript" src="js/ui-bootstrap-tpls-2.0.0.min.js"></script>
         
         <script type="text/javascript" src="js/ng-cordova.js"></script>
-        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+         <script type="text/javascript" src="cordova.js"></script> 
 
 
         <!-- Ipayu Main -->  

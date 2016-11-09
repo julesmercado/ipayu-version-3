@@ -4,22 +4,22 @@
 and (min-width : 320px) 
 and (max-width : 568px) {
 
-	header#reg-header h2 { font-size: 110%; }
+	header#reg-header h2 { font-size: 15px; }
 
-	header img { margin-top: 23px;width: 16%; }
+	header img { margin-top: 23px;width: 13%; }
 
 	form#registration { padding-bottom:10px; }
 	form#registration table.gender label img { width:23%; }
-	form#registration table.gender input[type="radio"] { margin-top:11%; }
+	form#registration table.gender input[type="radio"] { margin-top:8.5%; }
 	form#registration table.form tr.double td.input-fname { width: 875px; }
 	form#registration table.form tr.double td.input-country { width:500px; }
 	form#registration table.form tr.double td.input-country > select { margin-top:0; }
 	form#registration table.form tr { padding-bottom:5px; }
 	form#registration table.form tr>td img { max-height: 20px;max-width: 30px; margin:8px auto; }
-	form#registration td label { padding:0;padding-left:5%;height: 40px }
+	form#registration td label { padding:0;padding-left:5%;height: 32px }
 	form#registration td label.label-fname { padding-left:9%; }
 	form#registration table.gender { margin:10px auto;margin-bottom:0px; }
-	form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input { font-size:80%; margin-top:15px; }
+	form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input { font-size:12px; margin-top:10px; }
 
 	form#registration button.register { margin-top:5px; font-size: 100%; padding: 4px 14px 4px 14px; }
 
@@ -65,10 +65,9 @@ and (max-width : 667px) {
 
 	form#registration { padding-bottom:10px; }
 	form#registration table.gender label img { width:25%; }
-	form#registration table.gender input[type="radio"] { margin-top:14.5%; }
+	form#registration table.gender input[type="radio"] { margin-top:8.5%; }
 	form#registration table.form tr.double td.input-fname { width: 875px; }
 	form#registration table.form tr.double td.input-country { width:500px; }
-	form#registration table.form tr { padding-bottom:10px; }
 	form#registration td label { padding:0;padding-left:5%; }
 	form#registration td label.label-fname { padding-left:9%; }
 	form#registration table.gender { margin:10px auto; }

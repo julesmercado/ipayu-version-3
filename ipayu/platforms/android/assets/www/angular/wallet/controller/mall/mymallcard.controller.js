@@ -161,8 +161,8 @@ function AllMallCardSearch($scope, $rootScope, walletData, customService, ngDial
 }
 
 
-MallCardInfoCtrl.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog'];
-function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog) {
+MallCardInfoCtrl.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog', 'wallet', 'accountData'];
+function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wallet, accountData) {
 
 	$scope.card = walletData.getCardInfo();
 	$scope.transactions = $scope.card.transactions;
@@ -170,7 +170,8 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog) {
     $scope.redeem = true;
     $scope.transaction = false;
 
-    var dateNow = new Date(),
+    var ipayu_info 	= accountData.getUser(),
+        dateNow = new Date(),
     	d = dateNow.getDate(),
     	m = dateNow.getMonth() + 1,
     	y = dateNow.getFullYear();
@@ -197,6 +198,30 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog) {
     $scope.seeInfo = function (tran) {
     	console.log(tran)
     }
+    
+    $rootScope.$on('updateData', function(event){
+        console.log(event);
+        wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'mall'})
+            .then(function(resolve){
+                if(resolve){
+                    var cards = resolve[0].data.data.all;
+                    var card = {};
+                    for(var i = 0; i < cards.length; i++){
+                        if(cards[i].card_id == $scope.card.card_id){
+                            card = cards[i];
+                            break;
+                        }
+                    }
+                    $scope.card = card;
+                    $scope.transactions = card.transactions;
+                    $scope.redeems = card.redeemables;
+                    
+                	walletData.setUserCards(resolve[0].data.data.all, card.card_type);
+                	walletData.setFrequentUserCards(resolve[0].data.data.frequently, card.card_type);
+                	walletData.setLastUserCards(resolve[0].data.data.last_used, card.card_type);
+                }
+            })
+    })
 }
 
 

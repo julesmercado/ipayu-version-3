@@ -3,6 +3,7 @@
 walletModule.directive('redeemModal', Redeem)
 walletModule.directive('addCardConfirmModal', AddCardConfirm)
 walletModule.directive('cardSuccessfullyAddedModal', CardSuccessfullyAdded)
+walletModule.directive('largeQrModal', LargeQrModal)
 
 function Redeem() {
 	return {
@@ -24,3 +25,12 @@ function CardSuccessfullyAdded() {
 		templateUrl: 'templates/wallet/modal/card-successfully-added.html'
 	}
 }
+
+function LargeQrModal() {
+	return {
+		restrict: 'E',
+		templateUrl: 'templates/wallet/modal/large-qr.html'
+	}
+}
+
+

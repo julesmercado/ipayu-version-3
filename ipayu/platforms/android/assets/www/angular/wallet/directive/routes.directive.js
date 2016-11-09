@@ -37,11 +37,11 @@ function Mycard($state, $rootScope, preloaderMethod, accountData, wallet, wallet
 	    			wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: type})
 	    				.then(function (resolve) {
 	    					if(resolve){
-		    					var u = walletData.setUserCards(resolve[0].data.data.all, type);
-		    					var f = walletData.setFrequentUserCards(resolve[0].data.data.frequently, type);
-		    					var l = walletData.setLastUserCards(resolve[0].data.data.last_used, type);
+		    					var u = walletData.setUserCards(resolve[0].data.data.all || [], type);
+		    					var f = walletData.setFrequentUserCards(resolve[0].data.data.frequently || [], type);
+		    					var l = walletData.setLastUserCards(resolve[0].data.data.last_used || [], type);
 								$state.go(route);
-								preloaderMethod.preloadImage([u, f, l]);
+								preloaderMethod.preloadImage([u || [], f || [], l || []]);
 	    					}
 	    					else{$rootScope.doLoading = false;}
 	    				})
@@ -67,11 +67,11 @@ function Mycouponcard($state, $rootScope, coupon, couponData, preloaderMethod, a
 	    				.then(function (resolve) {
                         console.log(resolve)
 	    					if(resolve){
-			                	var m = couponData.setUserCoupons(resolve[0].data.data.allcoupons);
-			                	var f = couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
-			                	var u = couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
+			                	var m = couponData.setUserCoupons(resolve[0].data.data.allcoupons || []);
+			                	var f = couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons || []);
+			                	var u = couponData.setUsedCoupons(resolve[0].data.data.usedcoupons || []);
 								$state.go('mycouponcards');
-								preloaderMethod.preloadImage([m, f, u]);
+								preloaderMethod.preloadImage([m || [], f || [], u || []]);
 	    					}
 	    					else{$rootScope.doLoading = false;}
 	    				})
@@ -95,12 +95,13 @@ function Mystampcard($state, $rootScope, stamp, stampData, preloaderMethod, acco
 	    			$rootScope.doLoading = true;
 	    			stamp.getUserStamps(ipayu_info.ipayu_id)
 	    				.then(function (resolve) {
+                        console.log(resolve)
 	    					if(resolve){
-			                	var m = stampData.setUserStamps(resolve[0].data.data.allstamps);
-			                	var f = stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
-			                	var u = stampData.setUsedStamps(resolve[0].data.data.usedstamps);
+			                	var m = stampData.setUserStamps(resolve[0].data.data.allstamps || []);
+			                	var f = stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps || []);
+			                	var u = stampData.setUsedStamps(resolve[0].data.data.usedstamps || []);
 								$state.go('mystampcards');
-								preloaderMethod.preloadImage([m, u, f]);
+								preloaderMethod.preloadImage([m || [], u || [], f || []]);
 	    					}
 	    					else{$rootScope.doLoading = false;}
 	    				})
@@ -147,11 +148,11 @@ function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, cus
 	    			$rootScope.doLoading = true;
 	    			wallet.getAllHasCardAssets(type)
 	    					.then(function (resolve) {
-								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured)
-								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured)
-								var c = walletData.setCategories(resolve[1].data.data)
+								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured || [])
+								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured || [])
+								var c = walletData.setCategories(resolve[1].data.data || [])
 	    						$state.go(route);
-								preloaderMethod.preloadImage([f, n, c]);
+								preloaderMethod.preloadImage([f || [], n || [], c || []]);
 	    					})
 	    		}
 	    	})
@@ -192,9 +193,10 @@ function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, 
 	    			wallet.getAllCardAvailable(user.ipayu_id, type)
 	    					.then(function (resolve) {
 	    						if(resolve){
-	    							var a = walletData.setAllAvailableCards(resolve[0].data.data);
-	    							$state.go(route);
-									preloaderMethod.preloadImage([a]);
+                                    console.log(resolve)
+                                    var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
+                                    $state.go(route);
+                                    preloaderMethod.preloadImage([a || []]);
 	    						}
 	    						else{$rootScope.doLoading = false;}
 								console.log(resolve);
@@ -241,9 +243,9 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
 	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id, type)
 	    					.then(function (resolve) {
 	    						if(resolve){
-	    							var a = walletData.setAllAvailableCards(resolve[0].data.data);
+	    							var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
 	    							$state.go(route);
-									preloaderMethod.preloadImage([a]);
+									preloaderMethod.preloadImage([a] || []);
 	    						}
 	    						else{$rootScope.doLoading = false;}
 								console.log(resolve);

@@ -22,7 +22,7 @@ function TimerDirective(customService){
                     heheTimer = setInterval(function(){
                         theTimer = customService.getTimeRemaining(de);
                         if(theTimer.total<=0){
-                            scope.thisCard.hasExpired = true;
+                            scope.thisCard.expired = true;
                             scope.$emit(attrs.timerEmit, scope.thisCard);
                         }
                         else{
