@@ -42,6 +42,8 @@
                 <td class="gray">
                     <label for="username"> 
                         <input type="text" id="username" 
+                                autofocus
+                                ng-focus="scrollUp('username')"
                                 name="username" ng-model="user_info.username.input_value" 
                                 placeholder="Username" 
                                 required class="input"  
@@ -64,6 +66,7 @@
                     <input type="text"
                             class="input" 
                             name="country" 
+                            ng-focus="scrollUp('country')"
                             id="country" 
                             ng-model="user_info.country.input_value"
                             ng-class="{'text-gray' : user_info.country.showError && user_info.answer.touched}"
@@ -93,6 +96,7 @@
                 <td class="gray input-fname">
                     <label for="fname" class="label-fname"> 
                         <input type="text" id="fname" 
+                                ng-focus="scrollUp('fname')"
                                 name="fname" 
                                 ng-model="user_info.fname.input_value" 
                                 placeholder="First Name" 
@@ -131,6 +135,7 @@
                     <label for="email"> 
                         <input type="text" id="email" 
                                 name="email" 
+                                ng-focus="scrollUp('email')"
                                 ng-model="user_info.email.input_value" 
                                 placeholder="Email" required 
                                 ng-keyup="validate_email(true)"
@@ -150,6 +155,7 @@
                 <label for="birthday"> 
                     <input type="text" class="input" name="birthday"
                             id="birthday"
+                            ng-focus="scrollUp('birthday')"
                             placeholder="Birthday"
                             onfocus="this.type = 'date'"
                             min="{{dateRange().min}}" max="{{dateRange().max}}"
@@ -171,6 +177,7 @@
                         <input type="password" 
                                 id="password"
                                 ng-blur="showPassTip = false" 
+                                ng-focus="scrollUp('password')"
                                 name="password" 
                                 ng-model="user_info.password.input_value"
                                 placeholder="Password" required
@@ -205,6 +212,7 @@
                 <td class="gray">                
                     <label for="rpassword"> 
                         <input type="password" id="rpassword" name="rpassword" 
+                                ng-focus="scrollUp('rpassword')"
                                 ng-model="user_info.repeat_password.input_value" 
                                 placeholder="Repeat Password" required 
                                 ng-keyup="validate_repeat_password(true)"
@@ -224,6 +232,7 @@
                 <td class="gray">
                     <label for="question">
                         <select class="input" id="question" name="question" 
+                                ng-focus="scrollUp('question')"
                                 ng-model="user_info.question.input_value" 
                                 ng-change="validate_question(true)"
                                 ng-class="{'text-gray' : user_info.question.grayText }"
@@ -245,6 +254,7 @@
                 <td class="gray">
                     <label for="answer"> 
                         <input type="password" id="answer" 
+                                ng-focus="scrollUp('answer')"
                                 name="answer" 
                                 ng-model="user_info.answer.input_value" 
                                 placeholder="Your secret answer" required 
@@ -264,6 +274,6 @@
             <button class="register" type="submit" ng-disabled="processRegister">REGISTER</button>
         </center>
     </form>
-    <div style="height:200px;" ng-if="hasFocusElement"></div>
+    <div style="height:500px;" ng-if="hasFocusElement"></div>
 </div>
 </div>

@@ -210,9 +210,7 @@ function AddCardForm(){
                         return;
                     }
                 }
-                console.log(checker)
                 $scope.disableBtn = true;
-
                 var cardDetails = {
                     'requestType'	: 'AddUserCard_',
                     'ipayu_id'		: ipayu_info.ipayu_id,

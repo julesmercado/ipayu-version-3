@@ -44,6 +44,20 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 			'max'	: max
 		}
 	}
+    
+    $scope.scrollUp = function (id) {
+		var innerElement = $("#"+id);
+		if(innerElement.length) {
+			var f = $("#"+id).offset().top,
+	      		s = $("#sp-page").scrollTop(),
+	      		d = $("#sp-page").position().top;
+	        var pos = f + s - d;
+
+	        $("#sp-page").animate({
+	            scrollTop : pos - 20
+	        }, { duration: 'medium', easing: 'swing' });
+		}
+    };
 
 	$scope.validate_gender = function ( ) {
 		resetError('gender');
