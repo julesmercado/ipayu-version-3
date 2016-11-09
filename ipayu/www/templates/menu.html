@@ -6,12 +6,12 @@
 			<img src="images/user-profile.png" class="img-circle">
 
 			<h3 class="menu-name">
-				<span ng-if="ipayu_info.gender == 'Male'">Mr.&nbsp;</span>
-				<span ng-if="ipayu_info.gender == 'Female'">Ms.&nbsp;</span>
-				{{ipayu_info.firstname +'&nbsp;'+ ipayu_info.lastname | uppercase}}
+				<span ng-if="ipayu_menu_info.gender == 'Male'">Mr.&nbsp;</span>
+				<span ng-if="ipayu_menu_info.gender == 'Female'">Ms.&nbsp;</span>
+				{{ipayu_menu_info.firstname +'&nbsp;'+ ipayu_menu_info.lastname | uppercase}}
 			</h3>
 
-			   <p class="status-message-menu"> IpayU ID {{ipayu_info.phone}}</p>
+			   <p class="status-message-menu"> IpayU ID {{ipayu_menu_info.phone}}</p>
 
 		</div>
 	</div>

@@ -6,6 +6,7 @@ DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountDa
 function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialog) {
 	
 	$scope.date = new Date();
+	$scope.ipayu_info = accountData.getUser();
 	
 	$scope.dashboardMyCards = accountData.getTopThreeFrequent();
 	console.log($scope.dashboardMyCards);
