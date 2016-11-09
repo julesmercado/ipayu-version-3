@@ -62,7 +62,7 @@
                 <div class="mall-events-announcemnt-con">
                     <img ng-src="{{event.image}}" class="mall-event-post-image" ng-click="toMallEventsFull(event)">
                        <p class="mall-event-post-title" ng-bind="event.name" ng-click="toMallEventsFull(event)"></p>
-                       <p class="mall-event-post-content collapseable" ng-bind="event.description | limitTo: limitText[$index]">
+                       <p class="mall-event-post-content collapseable" ng-bind="event.description | limitTo: limitText[$index]" ng-click="toMallEventsFull(event)">
                              
                        </p>
            
