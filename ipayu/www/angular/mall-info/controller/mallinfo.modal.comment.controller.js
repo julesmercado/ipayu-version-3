@@ -45,6 +45,9 @@
                     $scope.comments = response.all.data || [];
                     $scope.comment_length = $scope.comments.length;
                     setTimeout(function(){scrollToBottom();}, 10)
-                } );
+                    $rootScope.$broadcast('get_events');
+                });
             }
     } )
+    
+    
