@@ -1,8 +1,11 @@
 
-var modules = [
-                'ui.router', 'ui.bootstrap', 'monospaced.qrcode', 'ngDialog', 'angular-loading-bar', 'ngTouch', 'ngCordova',
 
-                    'app.wallet', 'app.mallinfo',
+var modules = [
+                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova',
+    
+                'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
+                
+                'app.wallet', 'app.mallinfo'
             ];
 
 var mainModule = angular.module('app.ipayu', modules)
@@ -13,18 +16,6 @@ mainModule.config(Config)
 
 Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
 function Run(sqliteSet, accountData, $rootScope, $state) {
-
-    var initial_screen_size = window.innerHeight;
-    $rootScope.doLoading = false;
-    $rootScope.showOffline = false;
-
-    document.addEventListener('online', onOnline, false);
-    document.addEventListener('offline', onOffline, false);
-    document.addEventListener("backbutton", backButtonIsTapped, false);
-    window.addEventListener("resize", onResize, false);
-    sqliteSet.setUpDatabase();
-    sqliteSet.createTable();
-    // sqliteSet.dropTable();
 
     function onOnline(){
         $rootScope.showOffline = false;
@@ -75,6 +66,22 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
 
         return;
     }
+        sqliteSet.setUpDatabase();
+        sqliteSet.createTable();
+        // sqliteSet.dropTable();
+    
+    document.addEventListener('deviceready', function () {
+
+        var initial_screen_size = window.innerHeight;
+        $rootScope.doLoading = false;
+        $rootScope.showOffline = false;
+        
+        document.addEventListener('online', onOnline, false);
+        document.addEventListener('offline', onOffline, false);
+        document.addEventListener("backbutton", backButtonIsTapped, false);
+        window.addEventListener("resize", onResize, false);
+        
+     }, true);
 
 }
 

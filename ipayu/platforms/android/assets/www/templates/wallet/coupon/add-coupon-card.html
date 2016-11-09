@@ -134,7 +134,7 @@
         </div>
     </div>
 
-   <div id="add-card-section" class="wrapper-dash " ng-if="!hasFocusElement">
+<!--    <div id="add-card-section" class="wrapper-dash " ng-if="!hasFocusElement">
 
     <div class="row" style="background-color:#000;opacity:0.5;height:160px" id="aweee" >
         <div class="col-xs-12">
@@ -162,7 +162,29 @@
                 </div>
             </div> 
         </div>
+    </div> -->
+
+    
+    <div class="ad-section-add" ng-if="!hasFocusElement">
+        <div class=" filtered-coupons " style="">
+
+         <p class="featured-ad-txt">FEATURED COUPONS</p>
+
+        <div class="row lu-cards my-cards custom-slider coupon-holder ad-section-cs-image-holder" style="">
+           
+            <div class='cs-image-holder coupon-img-holder inner-ad-container' ng-repeat="f in [1,2,3,4,5]" ng-click="tapped(f)">
+              
+                <img ng-src="http://www.ipayu.co/ipayu_app/assets/coupons/KFC_coupon.png" class="cs-image ad-img-scroll">
+            </div>
+           
+             <h6 ng-if="featured.length == 0" class="text-gray no-cards" style="color:#fff !important;text-align:center;">
+                 No featured coupons.
+             </h6>
+        </div>
+
+        </div>
     </div>
+
     </div>
     <card-successfully-added-modal></card-successfully-added-modal>
     <coupon-footer ng-if="!hasFocusElement"></coupon-footer>

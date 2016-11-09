@@ -58,14 +58,15 @@
             </div>    
             <div class="col-xs-5">
                 <!--   <img src="images/bcode.png" class="bcode-ci"> -->
-                  <qrcode data="{{thisCoupon.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
+                <barcode type="code128b" render="img" string="{{thisCoupon.serial_number}}" class="bcode-ci"></barcode>
+                <qrcode data="{{thisCoupon.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
             </div>
 
         </div>
         <div class="row" style="background-color:#333333; color:white; margin:0" >
-                <center ng-if="!thisCoupon.hasExpired && !thisCoupon.alreadyAdded"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
-                <center ng-if="thisCoupon.hasExpired"><h6>COUPON EXPIRED</h6></center>
-                <center ng-if="thisCoupon.alreadyAdded"><h6>COUPON USED</h6></center>
+                <center ng-if="!thisCoupon.expired && !thisCoupon.has_used"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
+                <center ng-if="thisCoupon.expired"><h6>COUPON EXPIRED</h6></center>
+                <center ng-if="thisCoupon.has_used"><h6>COUPON USED</h6></center>
         </div>
     </div>
 </div>

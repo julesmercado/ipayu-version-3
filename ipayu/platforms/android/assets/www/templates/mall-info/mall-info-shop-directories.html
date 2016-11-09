@@ -79,7 +79,8 @@
                  <div style="position:relative;" ng-if="shops.length>0">
                     <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="{{shops[0].toUpperCase()}}" ng-if="shops[0]!='num'"> {{shops[0].toUpperCase()}} </label>
                     <label class="letter-heading mall-info-letter-heading" style="position:absolute;"  id="num" ng-if="shops[0]=='num'"> # </label>
-                    <label class="mall-info-underscore" style="border-top:1px solid black;"></label>
+                    <hr class="letter-bar-search mall-info-letter-bar" /> 
+                    <!-- <label class="mall-info-underscore" style="border-top:1px solid black;"></label> -->
                     </div>
                     <div class="container " id="mall-dir-letter-heading">
                         <div class="col-xs-3 mall-dir-logo-container mall-info-mall-dir-log-container" ng-click="toShopInfo(shop)" ng-repeat="shop in shops[1]">

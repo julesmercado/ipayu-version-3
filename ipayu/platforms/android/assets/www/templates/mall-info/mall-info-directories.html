@@ -56,8 +56,8 @@
         <div class="full-height-container"> 
             <div  id="cardsContainer" ng-repeat="malls in all_malls">
                 <div ng-if="malls[1].length>0">
-                    <span class="letter-heading" id="{{malls[0].toUpperCase()}}" ng-if="malls[0]!='num'"> {{malls[0].toUpperCase()}} __________________________ </span>
-                    <span class="letter-heading" id="num" ng-if="malls[0]=='num'"> # __________________________ </span>
+                    <span class="letter-heading" id="{{malls[0].toUpperCase()}}" ng-if="malls[0]!='num'"> {{malls[0].toUpperCase()}} <hr class="letter-bar-search mall-info-letter-bar" /> </span>
+                    <span class="letter-heading" id="num" ng-if="malls[0]=='num'"> # <hr class="letter-bar-search mall-info-letter-bar" />  </span>
                     <div class="container " id="mall-dir-letter-heading">
                         <div class="col-xs-3 mall-dir-logo-container" ng-click="toMallEvents(mall)" ng-repeat="mall in malls[1]">
                             <img ng-src="{{mall.image}}" class="mall-dir-mall-icon">

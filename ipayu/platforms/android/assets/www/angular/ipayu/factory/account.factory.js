@@ -21,22 +21,24 @@ function AccountFactory($q, accountRequest) {
             return $q.all([req_register])
                 .then(thenFunc, errFunc)
         },
-
         getQuestions: function () {
             var req_questions = accountRequest.getQuestions();
             return $q.all([req_questions])
                 .then(thenFunc, errFunc)
         },
-
         checkIfExist: function (data, type) {
             var req_email = accountRequest.checkIfExist(data, type);
             return $q.all([req_email])
                 .then(thenFunc, errFunc)
         },
-
         login: function(username, password){
             var req_login= accountRequest.login(username, password);
             return $q.all([req_login])
+                .then(thenFunc, errFunc)
+        },
+        resetPassword: function(data){
+            var req_reset= accountRequest.resetPassword(data);
+            return $q.all([req_reset])
                 .then(thenFunc, errFunc)
         }
 

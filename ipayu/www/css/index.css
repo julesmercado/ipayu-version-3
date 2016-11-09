@@ -258,11 +258,11 @@ form#registration button.register {
 .fading-menu{width:100%;z-index:15;margin-top:60px;overflow-y:hidden}
 .menu-name{margin-top:10px; font-size: 20px; }
 .menu-logout{margin-top:-9px;}
-.add-card-addon{width: 49px; font-size: 9px; position: absolute; padding: 3px; height: 37%;border-top-left-radius: 4px !important;
+.add-card-addon{width: 49px; font-size: 9px; position: absolute; padding: 3px; height: 36%;border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important; border:none;bottom: 10px}
 .no-cards{z-index: 9;height: 60px;    text-align: center;    padding-top: 8%;width: 100%;position: absolute;top: 0;font-family: "HelveticaBold"; color: black; text-transform: uppercase}
 .dash-user-img{height: 60px;    margin: 0 auto;    display: block;}
-.dash-user-img canvas{height: 60px;    margin: 0 auto;    display: block; margin-top: 2%;}
+.dash-user-img canvas{height: 60px;    margin: 0 auto;    display: block;}
 
 .page-header{border-bottom:none ;}
 .nav-dash{background-color:#DF1642; width: 100%}
@@ -270,7 +270,7 @@ form#registration button.register {
 .dashboard{background: rgba(255,255,255,0.6);background-image: url(../images/dashboard/bg.png); background-repeat: no-repeat; background-position:bottom center; background-size: cover; height: 60%; }
 .uppercase{    text-transform: uppercase;}
 .header-lead-text span.uppercase{    text-transform: uppercase;}
-.header-lead-text span{font-size: 100%;}
+.header-lead-text span{font-size: 20px;}
 .header-lead-text{font-size: 22px; text-align: center; font-family: "HelveticaLight";overflow:hidden; margin-bottom:0;} 
         .text-pink{color: #DF1642}
 
@@ -284,9 +284,9 @@ form#registration button.register {
     .dash-header-greeting{margin-top: 10px; margin-bottom:0px}
 
 .dash-recently-used-cards{ background-color: #F2F2F2;}
-        .dash-recently-used-card-title{font-family: "HelveticaBold";color:#39739E; font-size:15px; margin-top: 20px;margin-left:10px; float:left;overflow:hidden; }
+        .dash-recently-used-card-title{font-family: "HelveticaBold";color:#39739E; font-size:15px; margin-top: 10px;margin-left:10px; float:left;overflow:hidden; }
 
-        .dash-recently-used-card-date{font-family: "HelveticaLight";color:#39739E; font-size:15px; margin-top: 20px;margin-right:10px; float:right;overflow:hidden; }
+        .dash-recently-used-card-date{font-family: "HelveticaLight";color:#39739E; font-size:15px; margin-top: 10px;margin-right:10px; float:right;overflow:hidden; }
         
 
         .card-row{width:auto; margin:10px; height: 50%;margin-top:0; }
@@ -317,7 +317,8 @@ form#registration button.register {
         .solo-tab{margin: auto; display: block;}
         .nbsp{margin-left:0px;text-align: none}
 
-        .dash-user-footer-tab-item.talk-of-town img{width: 63%;}
+        .dash-user-footer-tab-item.talk-of-town img{width: 65%;}
+        #promos-logo-dash{width: 70%}
 
         div.dash-reports-row>div.col-xs-4.dash-user-reports-tab-item:nth-child(3){border-right:none;}
 
@@ -614,11 +615,13 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 .fp-footer span { font-size:12px;color:#808080 }
 /* end of forgot password*/
 
+.ad-img-scroll{padding: 0 !important; border-radius: 5px !important;}
+    .inner-ad-container{margin:0 5px;}
 
 .custom-slider .cs-image-holder .cs-image{
     height: auto;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
     padding-right: 0;
 

@@ -23,15 +23,20 @@ function Daterangefilter(excel){
 	return function(items, from, to) {
 
 		function parseTimestamp(date){
-			return new Date(date).getTime() / 1000;
+            console.log(date)
+            return Date.parse(new Date(date));
 		}
 
 		var dateFrom = parseTimestamp(from);
 		var dateTo = parseTimestamp(to);
+        
+        console.log(dateFrom)
+        console.log(dateTo)
 		
 		var result = [];
 		for (var i=0; i < items.length; i++){
 			var transactionDate = items[i].date;
+            console.log(items[i].date)
 			if (transactionDate >= dateFrom && transactionDate <= dateTo)  {
 				result.push(items[i]);
 			}

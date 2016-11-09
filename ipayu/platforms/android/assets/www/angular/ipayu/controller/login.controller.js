@@ -1,11 +1,11 @@
 
 mainModule.controller('loginCtrl', LoginCtrl)
+mainModule.controller('forgotCtrl', ForgotCtrl)
 
 
 LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$q', 
 						'account', 'flags', 'stamp', 'coupon', 'wallet',
 						'accountData', 'walletData', 'couponData', 'stampData'];
-
 function LoginCtrl($scope, $rootScope, $state, $q, 
 						account, flags, stamp, coupon, wallet, 
 						accountData, walletData, couponData, stampData) {
@@ -101,7 +101,7 @@ function LoginCtrl($scope, $rootScope, $state, $q,
                                     if(attempts >= 3){
                                         alert('Number of attempts = 3');
                                         accountData.setNumberOfAttempts(0);
-                                        $state.go('forgot');
+                                        $state.go('forgot', {'user': $scope.loginData.username.value});
                                     }
                                     else{
                                         accountData.setNumberOfAttempts(attempts);
@@ -158,3 +158,33 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 	}
 
 }
+
+
+ForgotCtrl.$inject = ['$scope', '$state', '$stateParams', 'questions', 'account'];
+function ForgotCtrl($scope, $state, $stateParams, questions, account) {
+    $scope.done = false;
+    $scope.questions = questions[0].data;
+    $scope.forgotData = {
+        'username'  : $stateParams.user,
+        'question_id'  : '',
+        'answer'    : '',
+        'datetime_changed'  : Date.parse(new Date())
+    }
+    
+    $scope.resetPassword = function(){
+        account.resetPassword($scope.forgotData)
+            .then(function(resolve){
+            console.log(resolve)
+                if(resolve){
+                    alert(resolve[0].data.message);
+                    if(resolve[0].data.success){
+                        $scope.done = true;
+                        $scope.user_email = resolve[0].data.data;
+//                       $state.go('login'); 
+                    }
+                }
+            })
+    }
+}
+
+

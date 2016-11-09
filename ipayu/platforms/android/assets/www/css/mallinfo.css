@@ -9,23 +9,23 @@
 @font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; } 
 html{overflow-x: hidden;}
 .mall-info-header{background-color: #DF1642; border:1px solid #DF1642}
-.mall-dir-mall-icon{height: 40px; width: 40px; border:1px solid gainsboro; border-radius: 10px;padding:3px;}
-.mall-dir-logo-container{padding-top: 10px}
+.mall-dir-mall-icon{height: 55px; width: 55px; border:3px solid gainsboro; border-radius: 10px;padding:3px; background-color: white}
+.mall-dir-logo-container{padding:5px}
 .mall-info-alphabet-list{font-size: 10px; line-height: 16px;}
-.mall-dir-mall-txt{    text-align: center;    font-size: 10px;    padding-top: 6px;font-family: "HelveticaLight"}
+.mall-dir-mall-txt{    text-align: center;    font-size: 10px;    padding-top: 6px;font-family: "HelveticaLight"; padding-right: 12px;color: black;    font-weight: bolder;}
 .mall-events-mall-banner{    width: 100%;    height: 125px;}
 .mall-events-backdrop-header{background-color: rgba(0,0,0,0.5); height: 70px; width:270px;position: absolute;    right: 0;    top: 45px;}
     .mall-events-backdrop-header>h3{color:white; font-family: "HelveticaLight";margin-bottom: 0;text-align: center;}
-    .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLightCond";padding-left: 10px;font-size: 12px}
-.mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%;}
-
-.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  }
+    .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLight";padding-left: 10px;font-size: 12px}
+.mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%; background-color: white;}
+    .mall-info-letter-bar{border-color: gray; padding-bottom: 5px; width: 82%}
+.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  font-family: "HelveticaLight"}
 .mall-info-featured-shops-container{background-color: #808080;}
 .mall-info-shop-search-icons{display:inline-block;}
 .mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 10px;  margin-top: 13px;}
 .mall-info-shop-search-categories {}
-.mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;}
-.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.3)} 
+.mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;    border: 4px solid white;}
+.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.4)} 
 .mall-info-featured-malls-mall-name{color: white;font-size: 11px; }
 .mall-info-divider{border-bottom: 1px solid white;width: 39px;position: absolute;top: 201px;left: 44%;}
 .mall-info-search-container{width:83px;}
@@ -71,17 +71,19 @@ html{overflow-x: hidden;}
 .modal-header {padding-top: 10px;display: flex;flex-direction: row;justify-content: space-around;height: 44px;font-size: 10px;margin-left: -25px;}
 .comment-logo{ width: 20px;height: 14px;margin-top: 0px;}
 .comments-container{display: flex;font-size: 12px;margin: 14px;border-bottom: 1px solid gray; margin-left: -18px;}
-.comment-logo-image{width: 16px;height: 16px; margin-top: -5px;}
+.comment-logo-image{width: 16px;height: 16px; margin-top: -5px; position: relative;}
 .comment-photo{ margin-right: 0;padding-right: 0;margin-left: 0;padding-left: 0;}
 .comment-name-body-container{padding-left: 0px;margin-top: 10px;}
 .commenter-name{font-weight: bold;}
-.comment-input{margin: 5px;}
+.comment-input{margin: 5px;    position: absolute;    width: 100%;    bottom: -4px;}
 .input-message{width: 79%;}
 .num-comments {display: flex;}
 .comment-smileys-container{list-style-type: none;display: flex;margin-left: -60px;}
 #comment-wrapper{padding-left: 0;}
 ul.comment-smileys-container li{margin: 2px;}
 li.row.comments-container:last-child {border-bottom: none;}
+.comment-list-modal{max-height: 490px;overflow-y: scroll;}
+.comment-body{word-break: break-all;}
 
 
 
@@ -102,7 +104,7 @@ li.row.comments-container:last-child {border-bottom: none;}
     .mall-events-feed-container>div>p{margin-top: 10px;font-family: "HelveticaLight";font-size: 16px; margin-bottom: 0}
     .mall-events-feed-container::-webkit-scrollbar {display:none;}
     .mall-event-posted-datetime{    color: gray;    font-size: 10px;    float: right;    margin-top: 5px; margin-right:10px;font-family: "HelveticaLight";}
-.mall-events-announcemnt-con{min-height: 220px; width: 100%;background-color: white; border: 1px solid gainsboro;}
+.mall-events-announcemnt-con{min-height:190px; width: 100%;background-color: white; border: 1px solid gainsboro;}
 .mall-event-post-image{    height: 90px;    width: 90px;    margin: 7px;float: left;}
 .mall-event-post-content{text-align: justify;    margin: 10px; font-size: 11px; font-family: "HelveticaLight";margin-top: 0;}
 .mall-event-post-title{font-family: "HelveticaBold"; font-size: 12px;margin-top:15px; margin-bottom: 0;}
@@ -111,10 +113,10 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-info-shop-search-icon-cat {height: 50px ;width: 50px ;}
 
 .mall-event-post-date-container{    border-right: 1px solid blue;    position: relative;    padding-top: 18px;    padding-right: 5px;}
-    .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#f50000}
+    .mall-event-dd{font-size: 30px;font-family: "HelveticaBoldCond";color:#DE4547}
     .mall-event-MM{position: absolute;margin-bottom:0;line-height: 1;color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
     .mall-event-yyyy{color:rgb(63,135,167);font-family: "HelveticaBoldCond"}
-    .mall-event-mm-end,.mall-event-yyyy-end{color:#f50000;}
+    .mall-event-mm-end,.mall-event-yyyy-end{color:#DE4547;}
 .mall-event-post-time-container{position: absolute;    padding-left: 2px;}
 .mall-event-post-time-container>span{line-height: 1;    display: block;    font-size: 10px; width:50px;  }
 .mall-event-post-time-container>span>span{font-family: "HelveticaBold"; color:rgb(63,135,167);}
@@ -136,11 +138,12 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-info-letter-heading{margin-left:10px;}
 .mall-info-divider{top: 144px;left: 45%;}
 
-@media screen and (min-width: 360px){
+@media screen and (min-width: 360px){   
     .mall-events-see-brochure-text{    font-size: 10px; }
 .mall-dir-mall-icon {    height: 60px;    width: 60px;}
 .mall-info-alphabet-list{font-size: 11px; line-height: 18px}
 .mall-events-announcemnt-con{min-height: 200px;}
+.comment-list-modal{max-height: 500px}
 
 }
 @media only screen and (min-width: 360px)and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3.0) {
@@ -161,7 +164,7 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-info-featured-malls-mall {height: 70px;width: 70px;}
 .mall-info-shop-search-icon-cat{height: 70px;width: 70px;}
 .mall-info-dark-bg-shop{height:241px;}
-
+}
 
 @media screen and (min-width: 375px){
 .mall-info-alphabet-list{font-size: 12px;}
@@ -188,6 +191,7 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-events-backdrop-header{    height: 80px;    width: 295px;top:70px;}
 .mall-events-mall-header-logo{height: 105px;    width: 105px;    margin-right: 25px;    margin-top: -55px;}
 .pdf-export-btn-img{right: 11px}
+.comment-list-modal {    max-height: 620px;}
 /*.mall-info-dark-bg-shop {height: 248px}*/
 }
 

@@ -53,6 +53,12 @@ function WalletFactory($q, walletRequest) {
                 .then(thenFunc, errFunc)
         },
 
+        redeem: function(data){
+            var req_redeem = walletRequest.redeem(data);
+            return $q.all([req_redeem])
+                .then(thenFunc, errFunc)
+        },
+
         addCard: function(data){
             var req_add_card = walletRequest.addCard(data);
             return $q.all([req_add_card])

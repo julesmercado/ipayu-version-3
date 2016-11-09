@@ -20,19 +20,24 @@ function ProcessCtrl($rootScope, $timeout, flags, $state, sqliteGet, accountData
         else {
             wallet.getTopThreeFrequent(loggedUser.ipayu_id)
                     .then(function (resolve) {
-                        if(resolve && resolve.length){
+                        if(resolve){
                             accountData.setTopThreeFrequent(resolve[0].data.data);
                             flags.setUpCountryDisplay(loggedUser.country_code);
                             redirect('dashboard');
                         }
                         else{
-                            redirect('login');
+                            _check();
                         }
                     }, function (reject) {
-                        redirect('login');
+                        _check();
                         console.log(reject);
                     })
         }
+    }
+    
+    function _check(){
+        if(loggedUser.length == 0){ redirect('login'); }
+        else{ redirect('dashboard'); }
     }
 
     function redirect(state) {
