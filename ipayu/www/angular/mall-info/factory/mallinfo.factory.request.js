@@ -66,7 +66,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                         url: bringmesmiles,
-                        data: $httpParamSerializerJQLike({'requestType': 'GetShopsByMall_', 'asset_id': asset_id})
+                        data: $httpParamSerializerJQLike({'requestType': 'GetShopsByMall_', 'asset_info_id': asset_id})
                     });
         },
         getCategoriesInShops: function(asset_id){

@@ -7,7 +7,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
 
     var tOut;
     $rootScope.doLoading = false;
-	$rootScope.ipayu_info = accountData.getUser();
+//	$rootScope.ipayu_info = accountData.getUser();
     function init() {
         $rootScope.headerCountries = flags.getAll();
         $rootScope.countryDisplay = flags.getCountryDisplay();

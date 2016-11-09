@@ -2,17 +2,18 @@
 
 <div id="sp-page" style="overflow-y:hidden">
 <div class="page-main-header" style="background-color:#DF1642"></div>
-<div id="" class="animated "
+<div id="sp-nav" class="animated" 
 		ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
-		style="width:100%;height:100%;z-index:1;margin-top:46px;position: fixed;"
-		 ng-swipe-left="toggleMenu()">
+		style="width:100%;z-index:1;margin-top:63px !important;"
+		 ng-swipe-left="menuSwipeLeft()">
 
     <menu style="width:80%;height:100%;background:#fff;"
 		    class="animated" 
     		ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
 
 </div>
-<div style="background-color: rgba(255,255,255,0.6);padding-bottom: 150px" class="dashboard">
+<div class="dashboard">
+<div style="padding-bottom: 150px">
 	<nav class="navbar ">
 	    <div class="navbar-header nav-dash">
 	      <a class="navbar-brand" ng-click="toggleMenu()">
@@ -28,9 +29,9 @@
 	    </div>
 	</nav>
 
-	<div class="container">
+	<div class="container ">
 	
-	<img src="images/dashboard/ipayu-icon.png" class="dash-user-img" />	
+	<img src="images/dashboard/ipayu-icon.png" class="dash-user-img">	
 		<div class="row dash-header-greeting">
 	        <div>	
 
@@ -44,7 +45,7 @@
 	    </div>
 	  <!-- <img src="images/dashboard/qr-code.png" class="dash-user-img">   -->
 	  <div style="text-align:center;">
-	  	<qrcode data="{{ipayu_info.username}}" version="3" class="dash-user-img" ng-click="showLargeQr()"></qrcode>	
+	  	<qrcode data="{{ipayu_info.phone}}" version="3" class="dash-user-img" ng-click="showLargeQr()"></qrcode>	
 	  </div>
 	</div>
 	</div>
@@ -57,18 +58,25 @@
 
         <div class="card-row">
             <div class="row mn-cards custom-slider" style="overflow-x: hidden;">
-            	<!-- | filter:searchCountry  -->
-		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards"
-		         		route-card-info="{{card}}" card-type="{{card.card_type}}">
+
+
+		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards | filter:searchCountry as filtermycards">
 		            <img class="cs-image" 
-		            	ng-src="{{card.image}}" 
+		            	ng-if="card.type_1 == 'mall'" 
+		            	ng-click="viewMallCardInfo(card.card_id)" 
+		            	ng-src="{{card.card_image}}" 
+		            	style="width:88%"/>
+		            <img class="cs-image" 
+		            	ng-if="card.type_1 == 'shop'" 
+		            	ng-click="viewShopCardInfo(card, card.card_id)" 
+		            	ng-src="{{card.card_image}}" 
 		            	style="width:88%"/>
 		        </div>
-		        <h6 ng-if="!dashboardMyCards[0].image" class="text-gray no-cards" style="position:relative !important">
-		        	No transactions recorded,
-		        	<a ui-sref="mymallcards" style="color:#006dcc;">view wallet</a>
-		        </h6>
+		        <h6 ng-if="filtermycards.length == 0 || !filtermycards[0].card_image" class="text-gray no-cards" style="position:relative !important">No transactions recorded, <a ui-sref="mymallcards">view wallet</a></h6>
 		    </div>
+
+
+
         </div>
    </div>
  
@@ -76,46 +84,41 @@
 
         <div class="row dash-reports-row">
 
-            <div class="col-xs-4 dash-user-reports-tab-item" ng-repeat="clone in dashboardMyCards"> 
+            <div class="col-xs-4 dash-user-reports-tab-item" ng-repeat="clone in filtermycards"> 
             <!-- single display -->
-               <!--  <div ng-if="clone.points_type == 'reward'">
-                	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>
+               <!--sold single display  <div ng-if="clone.points_type == 'reward'">
+                	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="clone.points_balance + ' pts'"></div>
                 </div>
                 <div ng-if="clone.points_type == 'rebate'">
                 	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div>
-                </div> -->
+                </div>  end of old single display-->
 
                 <div class="" ng-if="clone.points_type == 'reward'">
-                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance"></span>
-                    <hr class="separator-dash" />
-                    <span class="only-one-card-type-dashboard pts-label-dashboard">Points</span>	
+                	<span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance"></span>
+                	<hr class="separator-dash" />
+                	<span class="only-one-card-type-dashboard pts-label-dashboard">Points</span>	
+                </div>
+            	
+            	 <div class="" ng-if="clone.points_type == rebate'">
+                	<span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rebates_balance"></span>
+                	<hr class="separator-dash" />
+                	<span class="only-one-card-type-dashboard pts-label-dashboard">USD</span>	
                 </div>
 
-                <div class="" ng-if="clone.points_type == 'rebate'">
-                    <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rebates_balance"></span>
-                    <hr class="separator-dash" />
-                    <span class="only-one-card-type-dashboard pts-label-dashboard">USD</span>	
-                </div>
-            
             <!-- double display -->
-                <div ng-if="clone.points_type == 'combo'">
-                	<!-- <div class="tab-element bold two-type-card-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>
+                <div ng-if="clone.points_type == 'both'">
+                	<!-- <div class="tab-element bold two-type-card-dashboard" ng-bind="clone.points_balance + ' pts'"></div>
 	                <div class="tab-element bold two-type-card-dashboard-rebates" ng-bind="'$ ' + clone.rebates_balance + ' rebates'"></div> -->
 
-	                 <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance" style="font-size:17px;padding-top:3%"></span>
+	                <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.points_balance" style="font-size:17px;padding-top:3%"></span>
                 	<hr class="separator-dash" />
                 	<span class="only-one-card-type-dashboard pts-label-dashboard" style="padding-bottom:0;">Points</span>	
 
 	                <span class="only-one-card-type-dashboard points-dashboard" ng-bind="clone.rebates_balance" style="font-size:17px; padding-top:0px"></span>
                 	<hr class="separator-dash" />
-                	<span class="only-one-card-type-dashboard pts-label-dashboard" style="padding-bottom:3%;">USD</span>
+                	<span class="only-one-card-type-dashboard pts-label-dashboard" style="padding-bottom:3%;">USD</span>	
                 </div>
 
-            <!-- no data -->
-                <div ng-if="!clone.points_type">
-                	<div class="tab-element bold only-one-card-type-dashboard">&nbsp;</div>
-                    <span class="only-one-card-type-dashboard pts-label-dashboard">&nbsp;</span>
-                </div>
             </div>
 
         </div>
@@ -124,21 +127,21 @@
   			<div class="row dash-footer-tabs">
 		        <div class="dash-reports-row">
 		            <div class="col-xs-3 dash-user-footer-tab-item">
-		                <span route-mycard="mall">
+		                <a ui-sref="mymallcards">
 		                    <div class=""><img src="images/wallet.png" class="img img-responsive dash-footer-icon"></div>
 		                    <div class="footer-element-small light">WALLET</div>
-		                </span>
+		                </a>
 		            </div>
 		            <div class="col-xs-3 dash-user-footer-tab-item">
 		                <a  ui-sref="promolanding">
-		                    <div class=""><img src="images/promo.png" class="img img-responsive dash-footer-icon" id="promos-logo-dash">
+		                    <div class=""><img src="images/promo.png" class="img img-responsive dash-footer-icon" style="width: 66%;">
 		                    <div class="footer-element-small light">PROMOS</div>
 		                    </div>
 		                </a>
 		            </div>
 		            <div class="col-xs-3 dash-user-footer-tab-item talk-of-town">
 		                <!-- href="talkoftown-home.html" -->
-		                <a ui-sref="mallInfoLanding">
+		                <a ui-sref="malInfoLanding">
 		                    <div class=""><img src="images/talk.png" class="img img-responsive dash-footer-icon"></div>
 		                    <div class="footer-element-small light nbsp ">MALL&nbsp;INFO</div>
 		                </a>
@@ -150,6 +153,20 @@
 
 		        </div>
    		 </div>
+ 
 	</div>
-    
-    <large-qr-modal></large-qr-modal>
+
+
+<script type="text/ng-template" id="largeQR">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="">
+					  <div style="text-align:center;">
+					  	<qrcode data="{{ipayu_info.phone}}" version="3" class="large-qr"></qrcode>	
+					  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script> 

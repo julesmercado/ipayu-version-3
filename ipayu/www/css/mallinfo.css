@@ -19,10 +19,10 @@ html{overflow-x: hidden;}
     .mall-events-backdrop-header>p>a{color:white; font-family: "HelveticaLight";padding-left: 10px;font-size: 12px}
 .mall-events-mall-header-logo{height: 85px; width: 85px;   float: right;    margin-right: 20px;    margin-top: -30px;    border-radius: 100%; background-color: white;}
     .mall-info-letter-bar{border-color: gray; padding-bottom: 5px; width: 82%}
-.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 10px;  font-family: "HelveticaLight"}
+.mallinfo-new-posts{color: black;margin-top: 32px;font-size: 12px;  font-family: "HelveticaLight"}
 .mall-info-featured-shops-container{background-color: #808080;}
 .mall-info-shop-search-icons{display:inline-block;}
-.mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 10px;  margin-top: 13px;}
+.mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 12px;  margin-top: 13px;}
 .mall-info-shop-search-categories {}
 .mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;    border: 4px solid white;}
 .mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.4)} 
@@ -57,14 +57,14 @@ html{overflow-x: hidden;}
 .mall-event-single-post-title{font-size: 14px !important; font-family: "HelveticaBold" !important; color: black;line-height: 4px;padding-top: 10px}
 .mall-event-single-post-posted{font-size: 11px;    color: gray; font-family: "HelveticaLight"}
 
-.shop-single-page-header{text-align: center;background-color: gray; color: white; font-family: "HelveticaBold";    margin: 0;    padding: 10px;    padding-bottom: 5px;}
-.shop-details-text{font-size: 10px; color: gray; font-family: "HelveticaCond"}
+.shop-single-page-header{text-align: center;background-color: #999999; color: white; font-family: "HelveticaLight";    margin: 0;    padding: 10px;    padding-bottom: 5px;}
+.shop-details-text{font-size: 12px; color: gray; font-family: "HelveticaCond"}
 .mother-of-all-containers-that-is-scrollable{position: absolute;    width: 100%;    height: 88%;    overflow-y: scroll; }
 .mother-of-all-containers-that-is-scrollable::-webkit-scrollbar {display:none;}
-.shop-history-text{font-family: "HelveticaLight"; font-size: 8px; text-align: justify;margin-bottom: 0}
-.mall-info-shop-search-icon-cat{border: 2px solid #dacccc;}
+.shop-history-text{font-family: "HelveticaLight"; font-size: 10px; text-align: justify;margin-bottom: 0}
+.mall-info-shop-search-icon-cat{border: 2px solid #dacccc; background-color: white !important}
 .mall-info-mall-search-featured-malls{height:inherit;}
-
+.shop-info-logo-shop{width: 100px;padding: 5px;height: 100px;border-radius: 20px;margin: 0 auto;align-items: center;display: block;}
 
 /*Comments Modal*/
 .modal-dialog{margin: 0;}
@@ -72,9 +72,10 @@ html{overflow-x: hidden;}
 .comment-logo{ width: 20px;height: 14px;margin-top: 0px;}
 .comments-container{display: flex;font-size: 12px;margin: 14px;border-bottom: 1px solid gray; margin-left: -18px;}
 .comment-logo-image{width: 16px;height: 16px; margin-top: -5px; position: relative;}
-.comment-photo{ margin-right: 0;padding-right: 0;margin-left: 0;padding-left: 0;}
+.comment-photo{ margin-right: 0;padding-right: 0;margin-left: 0;padding-left: 0; width: 50px; height: 50px; margin-right: 10px;}
+    ..comment-photo img{width: 100%}
 .comment-name-body-container{padding-left: 0px;margin-top: 10px;}
-.commenter-name{font-weight: bold;}
+.commenter-name{font-weight: bold; margin-bottom: 0}
 .comment-input{margin: 5px;    position: absolute;    width: 100%;    bottom: -4px;}
 .input-message{width: 79%;}
 .num-comments {display: flex;}
@@ -142,7 +143,7 @@ li.row.comments-container:last-child {border-bottom: none;}
     .mall-events-see-brochure-text{    font-size: 10px; }
 .mall-dir-mall-icon {    height: 60px;    width: 60px;}
 .mall-info-alphabet-list{font-size: 11px; line-height: 18px}
-.mall-events-announcemnt-con{min-height: 200px;}
+.mall-events-announcemnt-con{min-height: 200px; margin-bottom: 15px;}
 .comment-list-modal{max-height: 500px}
 
 }
