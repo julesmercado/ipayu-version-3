@@ -169,6 +169,8 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
 	$scope.redeems = $scope.card.redeemables;
     $scope.redeem = true;
     $scope.transaction = false;
+    
+    console.log(JSON.stringify($scope.transactions))
 
     var ipayu_info 	= accountData.getUser(),
         dateNow = new Date(),
@@ -200,7 +202,6 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
     }
     
     $rootScope.$on('updateData', function(event){
-        console.log(event);
         wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'mall'})
             .then(function(resolve){
                 if(resolve){

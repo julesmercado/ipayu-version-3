@@ -261,21 +261,36 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
 }
 
 // Card Info
-CardInfo.$inject = ['$state', '$rootScope', 'walletData'];
-function CardInfo($state, $rootScope, walletData) {
+CardInfo.$inject = ['$state', '$rootScope', 'walletData', 'accountData', 'wallet', 'preloaderMethod'];
+function CardInfo($state, $rootScope, walletData, accountData, wallet, preloaderMethod) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 
-	    		var data= JSON.parse(attrs.routeCardInfo),
+	    		var ipayu_info 	= accountData.getUser(),
+                    data= JSON.parse(attrs.routeCardInfo),
 	    			route   = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
 	    			cards 	= walletData.getUserCards(attrs.cardType),
     				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
     				card 	= cards[key];
 
 				walletData.setCardInfo(card)
-				$state.go(route);
+                
+                if(!$rootScope.showOffline){
+                    $rootScope.doLoading = true;
+                    wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: card.card_type})
+                        .then(function(resolve){
+                            if(resolve){
+                                var u = walletData.setUserCards(resolve[0].data.data.all, card.card_type);
+                                var f =walletData.setFrequentUserCards(resolve[0].data.data.frequently, card.card_type);
+                                var l =walletData.setLastUserCards(resolve[0].data.data.last_used, card.card_type);
+                                $state.go(route);
+                                preloaderMethod.preloadImage([u || [], f || [], l || []]);
+                            }
+                        })
+                }
+                else{$state.go(route);}
 
 	    	})
 	    }
@@ -320,7 +335,7 @@ function RedeemHistory ($state, $rootScope, customService, accountData, wallet, 
 	    		}
                 else{
                     $rootScope.doLoading = true;
-                    wallet.redeemHistory({'ipayu_id'	: user.ipayu_id})
+                    wallet.redeemHistory({'ipayu_id' : user.ipayu_id})
                         .then(function(resolve){
                             if(resolve){
                                 var r = walletData.setRedeemHistory(resolve[0].data.data);
