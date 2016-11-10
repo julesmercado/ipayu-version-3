@@ -5,7 +5,7 @@ var modules = [
     
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
                 
-                'app.wallet', 'app.mallinfo'
+                'app.wallet', 'app.mallinfo', 'app.promos'
             ];
 
 var mainModule = angular.module('app.ipayu', modules)
