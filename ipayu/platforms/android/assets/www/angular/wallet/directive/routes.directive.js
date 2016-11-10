@@ -249,7 +249,7 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
 	    						if(resolve){
 	    							var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
 	    							$state.go(route);
-									preloaderMethod.preloadImage([a] || []);
+									preloaderMethod.preloadImage([a || []]);
 	    						}
 	    						else{$rootScope.doLoading = false;}
 								console.log(resolve);
@@ -324,7 +324,7 @@ function RedeemHistory ($state, $rootScope, customService, accountData, wallet, 
                         .then(function(resolve){
                             if(resolve){
                                 var r = walletData.setRedeemHistory(resolve[0].data.data);
-                                preloaderMethod.preloadImage([r] || []);
+                                preloaderMethod.preloadImage([r || []]);
                                 $state.go('redeemhistory');
                             }
                         })

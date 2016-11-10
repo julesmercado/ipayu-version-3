@@ -1,6 +1,8 @@
 
     mallInfo.controller( 'modalComments', 
-        function( $scope , mallData , $rootScope , mallCardFactory2 , accountData ){ /*, offlineData*/
+        function( $scope , mallData , $rootScope , mallCardFactory2 , accountData, $uibModalInstance ){ /* , offlineData*/
+            
+            $scope.comment_length = 0;
             
             $scope.$watch( function(){
             	return mallData.setMallCard()
@@ -26,10 +28,26 @@
                 }
             	
             }
+            
+            $scope.closeModal = function(){
+                 $uibModalInstance.close();
+            }
+            
+            function scrollToBottom(){
+                var pos = document.getElementById("comments-container-box").scrollHeight;
+                $("#comments-container-box").animate({
+                    scrollTop : pos
+                }, { duration: 'medium', easing: 'swing' });
+            }
 
             function getComment( value ){
             	mallCardFactory2.getComments( value ).then( function( response ){
-                    $scope.comments = response.all.data;
-                } );
+                    $scope.comments = response.all.data || [];
+                    $scope.comment_length = $scope.comments.length;
+                    setTimeout(function(){scrollToBottom();}, 10)
+                    $rootScope.$broadcast('get_events');
+                });
             }
     } )
+    
+    
