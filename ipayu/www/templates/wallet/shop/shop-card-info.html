@@ -148,7 +148,9 @@
                     <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
                     <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
                     <td>{{tran.balance}}</td>
-                    <td class="bold" style="font-size:8px" ng-click="seeInfo(tran)" ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
+                    <td class="bold" style="font-size:8px"
+                        route-item-location="{{tran.asset_info_id}}" item={{tran}}
+                        ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
                     <td style="font-size:9px" ng-if="tran.type == 'transaction' ">&nbsp;</td>
                 </tr>
             </table>

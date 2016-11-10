@@ -164,7 +164,7 @@
                     <td>{{tran.balance}}</td>
                     <td>
                         <span class="bold" style="font-size:8px" 
-                            ng-click="seeInfo(tran)" 
+                            route-item-location="{{tran.asset_info_id}}" item={{tran}}
                             ng-if="tran.type == 'redeemption'">
                             See&nbsp;info&nbsp;>
                         </span>

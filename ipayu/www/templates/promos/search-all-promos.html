@@ -70,26 +70,50 @@
         </center>
 
         <div class="full-height-container"> 
-            <div  id="cardsContainer">
-                <span class="letter-heading" > A <hr class="letter-bar-search" /> </span>
-                    <div class="container " id="mall-dir-letter-heading">
-
-                        <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
+            <div ng-if="allPromos.length != 0" ng-repeat="alphabet in allPromos track by $index" id="cardsContainer">
+            <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} <hr class="letter-bar-search" />  </span>
+            <div class="container container-mall-card-results" ng-repeat="cardPerRow in alphabet[1] track by $index" >
+                <div ng-repeat="card in cardPerRow track by $index">
+                    <div class="col-xs-6 col-md-6 orange-container" ng-if="!card.already_added" ng-click="tapped(card)">
+                        <div class="blue-layer" style="background-color:#A93535">
+                            <div class="orange-inner-layer">
+                                <p class="add-card-text"> + TAP TO ADD </p>
+                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                <p class="add-card-text"> {{card.name}}</p>
                             </div>
-                        </div>  
-                                              
+                        </div>
                     </div>
+                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.already_added" style="opacity:.5;" ng-click="alreadyAdded()">
+                        <div class="blue-layer" style="background-color:#A93535">
+                            <div class="orange-inner-layer">
+                                <p class="add-card-text"> ALREADY ADDED </p>
+                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                <p class="add-card-text"> {{card.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.available == 'out of stock'" style="opacity:.5;" ng-click="outOfStock()">
+                        <div class="blue-layer" style="background-color:#A93535">
+                            <div class="orange-inner-layer">
+                                <p class="add-card-text"> OUT OF STOCK </p>
+                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                <p class="add-card-text"> {{card.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.available == 'expired'" style="opacity:.5;" ng-click="expired()">
+                        <div class="blue-layer" style="background-color:#A93535">
+                            <div class="orange-inner-layer">
+                                <p class="add-card-text"> EXPIRED </p>
+                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                <p class="add-card-text"> {{card.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+                <h4 ng-if="searchResult == 0" style="text-align:center;">No results found.</h4>
         </div>
     </div>
 </div>

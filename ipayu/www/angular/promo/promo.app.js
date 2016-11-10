@@ -1,22 +1,21 @@
-var modules = [ 'app.wallet' , 'ngCordova' ];
-var promos = angular.module('app.promos', modules)
-	
-promos.config(Config)
 
+var modules = [];
+var promoModule = angular.module('app.promos', modules)
+	
+promoModule.config(Config)
 
 Config.$inject = ['$stateProvider'];
-
 function Config($stateProvider) {
 
 	$stateProvider
         .state('promolanding', {
             url: '/promoLanding',
             templateUrl: 'templates/promos/promolanding.html',
-            controller: 'shopCardSearchCtrl',
+            controller: 'promoLandingCtrl',
             cache: false
         })
-        .state('promo-solo-page', {
-            url: '/promo-solo-page',
+        .state('promosolopage', {
+            url: '/promosolopage',
             templateUrl: 'templates/promos/promo-solo-page.html',
             controller: '',
             cache: false
@@ -27,10 +26,10 @@ function Config($stateProvider) {
             controller: '',
             cache: false
         })
-        .state('search-all-promos', {
-            url: '/search-all-promos',
+        .state('searchallpromos', {
+            url: '/searchallpromos',
             templateUrl: 'templates/promos/search-all-promos.html',
-            controller: '',
+            controller: 'allPromoSearchCtrl',
             cache: false
         })
 }

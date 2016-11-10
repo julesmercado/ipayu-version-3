@@ -228,7 +228,6 @@ function CouponCardSearch($scope, $rootScope, walletData, customService, account
                 function(newValue, oldValue){
                 	$scope.featured = get_featured();
 					$scope.unfeatured = get_unfeatured();
-					$scope.unfeatured = get_unfeatured();
                 }
             )
 }

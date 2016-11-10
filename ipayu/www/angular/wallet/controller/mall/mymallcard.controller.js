@@ -169,8 +169,6 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
 	$scope.redeems = $scope.card.redeemables;
     $scope.redeem = true;
     $scope.transaction = false;
-    
-    console.log(JSON.stringify($scope.transactions))
 
     var ipayu_info 	= accountData.getUser(),
         dateNow = new Date(),
