@@ -105,8 +105,14 @@
                                    <div class="col-xs-4 mall-events-user-actions like-btn">
                                         <img src="images/rate-smile.png">
                                         <span ng-bind="event.total_reactions"></span>
-                                        <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
-                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions()"></li>
+                                        <ul class="reactions-box" 
+                                            ng-controller="reactions"> <!-- Reaction buttons container-->
+                                            <li class="reaction" 
+                                                ng-class="react.class" 
+                                                data-reaction="react.name" 
+                                                ng-style="{'background-image':'url('+react.image+')'}" 
+                                                ng-click="postReactions(event, react)" 
+                                                ng-repeat="react in reactions"></li>
                                         </ul>
                                     </div>
                                       <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">
@@ -114,7 +120,7 @@
                                          <span ng-bind="event.total_comments"></span>
                                          <div class="comments-box"></div>
                                     </div>
-                                      <div class="col-xs-4 mall-events-user-actions" ng-click="shareAnywhere()">
+                                      <div class="col-xs-4 mall-events-user-actions" ng-click="shareAnywhere(event)">
                                         <img src="images/share.png">
                                          <span>Share</span>
                                     </div>

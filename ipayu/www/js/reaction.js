@@ -17,7 +17,6 @@ $(document).ready(function(){
 		  $(".like-btn-emo").removeClass().addClass('like-btn-emo').addClass("like-btn-default");
 		  $(".like-emo").html('<span class="like-btn-like"></span>');
 		  $(".like-details").html("Arkaprava Majumder and 1k others");
-		  
 	  }	  
   })
   
