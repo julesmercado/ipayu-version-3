@@ -145,7 +145,10 @@ function AllMallCardSearch($scope, $rootScope, walletData, customService, ngDial
             	},
             	destination: function(){
             		return 'addmallcard';
-            	}
+            	},
+                border_class: function(){
+                    return '';
+                }
             },
             overlay: true
         });
@@ -224,11 +227,13 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
 }
 
 
-AddMallCardCtrl.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet'];
-function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accountData, wallet) {
+AddMallCardCtrl.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'customService'];
+function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accountData, wallet, customService) {
 
-	var thisCard = walletData.getCardToAdd();
-	var ipayu_info = accountData.getUser();
+    $scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
+    var thisCard = walletData.getCardToAdd();
+
+    var ipayu_info = accountData.getUser();
     $scope.emitMessage = 'addMallCard';
     $scope.cardType = 'mall';
     $scope.thisCard = thisCard;
@@ -239,6 +244,7 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
 	}
     
     $scope.$on($scope.emitMessage, function (event, cardDetails) {
+        console.log(cardDetails)
         wallet.addCard(cardDetails)
         	.then(function(resolve){
         		if(!resolve[0].data.success){
@@ -260,6 +266,26 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
         			})
         	})
     })
+    
+	$scope.tapped = function ( card ) {
+		ngDialog.open({
+            template: 'confirmAlert',
+            className: 'ngdialog-theme-plain add-card-custom',
+            controller: 'addCardModalCtrl',
+            resolve: {
+            	card: function(){
+            		return card;
+            	},
+            	destination: function(){
+            		return 'addmallcard';
+            	},
+                border_class: function(){
+                    return '';
+                }
+            },
+            overlay: true
+        });
+	}
 
     var pop_up = function(scs, msg){
     		ngDialog.open({
@@ -272,11 +298,20 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
 			        },
 			        destination: function(){
 			        	return 'mymallcards';
-			        }
+			        },
+                    border_class: function(){
+                        return '';
+                    }
 			    },
 	            overlay: true
 	        });
     }
+
+    $scope.$watch('searchCountry.country',
+                function (newValue, oldValue) {
+					$scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
+                }
+            )
 }
 
 

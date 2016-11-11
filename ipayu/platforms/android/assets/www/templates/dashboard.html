@@ -58,13 +58,14 @@
         <div class="card-row">
             <div class="row mn-cards custom-slider" style="overflow-x: hidden;">
             	<!-- | filter:searchCountry  -->
-		         <div class='cs-image-holder' ng-repeat="card in dashboardMyCards as filtermycards"
-		         		route-card-info="{{card}}" card-type="{{card.card_type}}">
+		         <div class='cs-image-holder' 
+                    ng-repeat="card in dashboardMyCards | dashboardfilter:searchCountry.country as topThreeRecent"
+		         	route-card-info="{{card}}" card-type="{{card.card_type}}">
 		            <img class="cs-image" 
 		            	ng-src="{{card.image}}" 
 		            	style="width:88%"/>
 		        </div>
-		        <h6 ng-if="!dashboardMyCards[0].image" class="text-gray no-cards" style="position:relative !important">
+		        <h6 ng-if="!topThreeRecent[0].image" class="text-gray no-cards" style="position:relative !important">
 		        	No transactions recorded,
 		        	<a ui-sref="mymallcards" style="color:#006dcc;">view wallet</a>
 		        </h6>
@@ -76,7 +77,7 @@
 
         <div class="row dash-reports-row">
 
-            <div class="col-xs-4 dash-user-reports-tab-item" ng-repeat="clone in dashboardMyCards"> 
+            <div class="col-xs-4 dash-user-reports-tab-item" ng-repeat="clone in topThreeRecent"> 
             <!-- single display -->
                <!--  <div ng-if="clone.points_type == 'reward'">
                 	<div class="tab-element bold only-one-card-type-dashboard" ng-bind="clone.rewards_balance + ' pts'"></div>

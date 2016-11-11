@@ -121,18 +121,49 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
 
 }
 
-AddCardModal.$inject = ['$scope', '$state', '$rootScope', 'walletData', 'card', 'destination'];
-function AddCardModal($scope, $state, $rootScope, walletData, card, destination) {
+AddCardModal.$inject = ['$scope', '$state', 'ngDialog', '$rootScope', 'walletData', 'accountData', 'wallet', 'card', 'destination', 'border_class'];
+function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountData, wallet, card, destination, border_class) {
+    var user_info = accountData.getUser();
+    $scope.border_class = border_class;
     $scope.proceed = function(){
         card.country_code = $rootScope.countryDisplay.name;
         card.country = $rootScope.searchCountry.country;
         walletData.setCardToAdd(card);
-        $state.go(destination);
+        
+        if(destination == 'addmallcard' || destination == 'addshopcard'){
+            requestFetured();
+        }
+        else {
+            state_go();
+        }
+    }
+    
+    function requestFetured() {
+        var type = '';
+        if(destination == 'addmallcard') {
+            type = 'mall';
+        }
+        else if (destination == 'addshopcard') {
+            type = 'shop';
+        }
+        wallet.getFeaturedCards({'ipayu_id' : user_info.ipayu_id, 'type' : type})
+        .then(function(resolve){
+            walletData.setFeaturedCards(resolve[0].data.data);
+            state_go();
+        })
+    }
+    
+    function state_go() {
+        ngDialog.closeAll();
+        $state.transitionTo(destination, {}, { 
+          reload: true, inherit: false, notify: true
+        });
     }
 }
 
-CardSuccessfullyAdded.$inject = ['$scope', '$state', '$rootScope', 'ngDialog', 'result', 'destination'];
-function CardSuccessfullyAdded($scope, $state, $rootScope, ngDialog, result, destination) {
+CardSuccessfullyAdded.$inject = ['$scope', '$state', '$rootScope', 'ngDialog', 'result', 'destination', 'border_class'];
+function CardSuccessfullyAdded($scope, $state, $rootScope, ngDialog, result, destination, border_class) {
+    $scope.border_class = border_class;
     $scope.result = result;
     $scope.ok = function(){
         if(result.success){

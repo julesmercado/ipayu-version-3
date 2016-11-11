@@ -12,7 +12,8 @@ function WalletData() {
         categories = [],
         card_to_add = false,
         item_location = [],
-        item_info = [];
+        item_info = [],
+        featured_cards = [];
 
     return {
         
@@ -75,9 +76,15 @@ function WalletData() {
         },
         setItemLocation: function(data){
             item_location = data;
+            return data;
         },
         setItemInfo: function(data){
             item_info = data;
+            return data;
+        },
+        setFeaturedCards: function(data) {
+            featured_cards = data;
+            return data;
         },
 
 
@@ -142,6 +149,9 @@ function WalletData() {
         },
         getItemInfo: function(){
             return item_info;
+        },
+        getFeaturedCards: function() {
+            return featured_cards;
         },
 
 

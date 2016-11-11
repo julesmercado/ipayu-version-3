@@ -72,6 +72,11 @@ function WalletFactory($q, walletRequest) {
             var req_redeembraches = walletRequest.redeemBranches(data);
             return $q.all([req_redeembraches])
                 .then(thenFunc, errFunc)
+        },
+        getFeaturedCards: function(data){
+            var req_fetured = walletRequest.getFeaturedCards(data);
+            return $q.all([req_fetured])
+                .then(thenFunc, errFunc)
         }
 
     }

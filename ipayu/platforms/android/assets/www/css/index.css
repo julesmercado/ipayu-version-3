@@ -585,7 +585,7 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful img { height:45px;width:auto }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful p { margin:10px 30px 0px 30px;line-height:15px;font-size:14px;color:#808080;font-family: "HelveticaBold" }
-.ipt-qty-it{line-height:1; width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 20px;border-top: 10px solid transparent;}
+.ipt-qty-it{line-height:1; width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 10px;border-top: 10px solid transparent;}
 .redeemable-item-body-text-ngdialog{font-size: 10px; font-family: "HelveticaLight"; color: gray !important}
 .rdeem-modal-it-n{font-size: 24px;    font-family: "HelveticaLight";    color: rgb(104, 99, 99);    font-weight: bolder;}
 .card-info-dialog-dashed{padding-top: 0px !important; height: auto !important}

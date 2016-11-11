@@ -62,9 +62,7 @@
             <span class="mall-event-single-post-posted">Posted {{time_created}} ago </span>
                 <div class="mall-events-announcemnt-con" style="border:none">
                     <img ng-src="{{info.image}}" class="mall-event-single-post-image">
-                       <p class="mall-event-post-content mall-event-single-post-content" ng-bind="info.description | limitTo: limitText">
-                            You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser.  You can, of course, use your own text, and not just the Lorem ipsum text. Make sure your IMG code is above the first P tag, however.Save your work and view the results in your browser. 
-                       </p>           
+                       <p class="mall-event-post-content mall-event-single-post-content" ng-bind="info.description | limitTo: limitText"></p>           
                         <div class="row">
                             <div class="container">
                                <div class="col-xs-5" style="padding-left:5px">
@@ -102,25 +100,26 @@
                                 <div class="col-xs-8">
                                    <div class="col-xs-4 mall-events-user-actions like-btn">
                                         <img src="images/rate-smile.png">
-                                        <span>5.0</span>
+                                        <span ng-bind="info.total_reactions"></span>
                                         <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
-                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions()"></li>
+                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions(mallInfo, react)"></li>
                                         </ul>
                                     </div>
                                       <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">
                                         <img src="images/comment.png">
-                                         <span>4k</span>
+                                         <span ng-bind="info.total_comments"></span>
                                          <div class="comments-box"></div>
                                     </div>
-                                      <div class="col-xs-4 mall-events-user-actions">
+                                      <div class="col-xs-4 mall-events-user-actions" ng-click="shareAnywhere(info)">
                                         <img src="images/share.png">
                                          <span>Share</span>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-4">
-                                    <p><a ng-click="toMallEventsFull(event)" class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
+                                    <p><a class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
+                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img" 
+                                         ng-click="download_file(info.file)"> 
                                 </div>
                             </div>
                         </div>

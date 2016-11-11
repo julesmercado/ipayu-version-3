@@ -15,6 +15,7 @@ function ProcessCtrl($rootScope, $timeout, flags, $state, sqliteGet, accountData
     }
     else{
         if($rootScope.showOffline == true){
+            flags.setUpCountryDisplay(loggedUser.country_code);
             redirect('dashboard');
         }
         else {
@@ -37,7 +38,9 @@ function ProcessCtrl($rootScope, $timeout, flags, $state, sqliteGet, accountData
     
     function _check(){
         if(loggedUser.length == 0){ redirect('login'); }
-        else{ redirect('dashboard'); }
+        else{
+            flags.setUpCountryDisplay(loggedUser.country_code); 
+            redirect('dashboard'); }
     }
 
     function redirect(state) {

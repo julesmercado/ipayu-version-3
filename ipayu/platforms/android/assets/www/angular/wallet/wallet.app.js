@@ -39,7 +39,8 @@ function Config($stateProvider) {
         .state('addmallcard', {
             url: '/addmallcard',
             templateUrl: 'templates/wallet/mall/add-mall-card.html',
-            controller: 'addMallCardCtrl'
+            controller: 'addMallCardCtrl',
+            cache: false
         })
 
     // shop cards
@@ -71,7 +72,8 @@ function Config($stateProvider) {
         .state('addshopcard', {
             url: '/addshopcard',
             templateUrl: 'templates/wallet/shop/add-shop-card.html',
-            controller: 'addShopCardCtrl'
+            controller: 'addShopCardCtrl',
+            cache: false
         })
 
     // coupon cards
@@ -108,7 +110,8 @@ function Config($stateProvider) {
         .state('addcouponcard', {
             url: '/addcouponcard',
             templateUrl: 'templates/wallet/coupon/add-coupon-card.html',
-            controller: 'addCouponCardCtrl'
+            controller: 'addCouponCardCtrl',
+            cache: false
         })
 
     // stamp cards
@@ -140,7 +143,8 @@ function Config($stateProvider) {
         .state('addstampcard', {
             url: '/addstampcard',
             templateUrl: 'templates/wallet/stamp/add-stamp-card.html',
-            controller: 'addStampCardCtrl'
+            controller: 'addStampCardCtrl',
+            cache: false
         })
     
         // redeem history

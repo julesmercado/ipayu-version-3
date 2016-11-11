@@ -6,6 +6,7 @@
             $scope.mallInfo = mallData.setMallInfo();
             $scope.time_created = timeSince( $scope.info.datetime_created );
             $scope.limitText = 190;
+        
 
             var monthNames = [
               "JAN", "FEB", "MAR",

@@ -2,9 +2,9 @@
 mainModule.controller('dashboardCtrl', DashboardCtrl)
 
 
-DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData', 'ngDialog', '$timeout'];
-function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialog, $timeout ) {
-	
+DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData', 'ngDialog', '$timeout', 'wallet', 'flags'];
+function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialog, $timeout, wallet, flags) {
+    
 	$scope.date = new Date();
 	$scope.ipayu_info = accountData.getUser();
 
@@ -18,6 +18,7 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialo
     }
 	
 	$scope.dashboardMyCards = accountData.getTopThreeFrequent();
+    console.log($scope.dashboardMyCards)
 
     $scope.showLargeQr = function(){
         ngDialog.open({
@@ -27,5 +28,10 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialo
             overlay: true
         });
     }
+    
+    wallet.getTopThreeFrequent($scope.ipayu_info.ipayu_id)
+    .then(function(resolve){
+        console.log(resolve)
+    })
     
 }

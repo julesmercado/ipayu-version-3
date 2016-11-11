@@ -61,7 +61,7 @@
             <p style="    margin-bottom: 0;    margin-top: 10px;">Mall Event <span class="mall-event-posted-datetime">Posted {{datePosted}} ago </span></p>
                 <div class="mall-events-announcemnt-con">
                     <img ng-src="{{event.image}}" class="mall-event-post-image" ng-click="toMallEventsFull(event)">
-                       <p class="mall-event-post-title" ng-bind="event.name" ng-click="toMallEventsFull(event)"></p>
+                       <p class="mall-event-post-title" ng-click="toMallEventsFull(event)" ng-bind="event.name"></p>
                        <p class="mall-event-post-content collapseable" ng-bind="event.description | limitTo: limitText[$index]" ng-click="toMallEventsFull(event)">
                              
                        </p>
@@ -127,8 +127,12 @@
                                 </div>
 
                                 <div class="col-xs-4" style="padding-left:10px">
-                                    <p style="padding-top:5px"><a class="mall-events-see-brochure-text"> See&nbsp;brochure </a></p>
-                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img"> 
+                                    <p style="padding-top:5px">
+                                        <a class="mall-events-see-brochure-text" ng-click="toMallEventsFull(event)"> See&nbsp;brochure 
+                                        </a>
+                                    </p>
+                                    <img src="images/pdf-mall-info.png" class="pdf-export-btn-img" 
+                                         ng-click="download_file(event.file)"> 
                                 </div>
                             </div>
                         </div>
