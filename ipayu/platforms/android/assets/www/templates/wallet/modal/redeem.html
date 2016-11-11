@@ -10,7 +10,7 @@
                   </div>
                 <div class="col-xs-12"  ng-if="!isClick && !isRedeemed">
                     <span class="ci-info-price pull-right">
-                      {{ point_value }}&nbsp;Points
+                       {{ point_value +'&nbsp;'+ redeemable_type }}
                     </span>
                 </div>
 
@@ -83,7 +83,7 @@
                                                         {{ type }}
                                                     </span>
                                                     <span class="redeemable-points">
-                                                        {{ point_value }} Points
+                                                        {{ point_value +'&nbsp;'+ redeemable_type }}
                                                     </span>
                                                 </span>
                                             </div>

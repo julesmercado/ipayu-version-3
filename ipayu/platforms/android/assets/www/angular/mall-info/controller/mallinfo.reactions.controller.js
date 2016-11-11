@@ -3,7 +3,8 @@ mallInfo.controller('reactions', ReactionsDirective );
 
 function ReactionsDirective( $rootScope , $scope , mallCardFactory2 , mallData , accountData ){
 
-				
+    var ctr = 0;
+    
 	mallCardFactory2.getReactionsImage( ).then( function( response ){
         var reactions = response.all.data;
         $scope.reactions = reactions.reverse();
@@ -12,14 +13,28 @@ function ReactionsDirective( $rootScope , $scope , mallCardFactory2 , mallData ,
 		}
     } )
 
-    $scope.postReactions = function(){
-    	var data = mallData.setMallCard();
-    	var user = accountData.getUser();
-    	var date = new Date();
-    	mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) ).then( function( response ){
-            console.log( response );
-            console.log($scope)
-        } );
+    $scope.postReactions = function(event, reaction){
+        console.log(ctr)
+        if(ctr != 0){
+            var data = mallData.setMallCard();
+            var user = accountData.getUser();
+            var date = new Date();
+
+
+            mallCardFactory2.postReact(event.asset_event_id, user.ipayu_id, reaction.reaction_id, Date.parse(date))
+            .then( function( response ){
+    //            console.log( response );
+    //            console.log($scope)
+                setTimeout(function(){
+                    $rootScope.$broadcast('get_events');
+                }, 500)
+            } );
+        }
+        else {
+            ctr++;
+        }
+        
     }
+    
 
 }

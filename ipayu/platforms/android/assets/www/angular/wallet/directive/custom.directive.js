@@ -80,7 +80,9 @@ function DownloadExcel(excel, accountData, wallet){
                 wallet.sendExportedTable(dataToSend)
                     .then(
                             function(response){
-                                window.open(response[0].data.dataPATH_URL, '_system');
+                                if(response){
+                                    window.open(response[0].data.data.PATH_URL, '_system');
+                                }
                             },
                             function(error){
                                 console.log(error);

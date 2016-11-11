@@ -47,8 +47,9 @@
 		.promo-pin-reserve{width: 110px;    position: absolute;    margin-top: 13px;    right: 8px;    top:55px;    text-align: center;font-size:18px;color: white; font-family: "HelveticaCond"; font-weight: bolder}
 	.promo-solo-title{padding-left: 25px; font-size: 18px;font-family: "HelveticaBold"}
 
-
-
+	.promo-cat{background-color: #FFBE58 !important}
+	.promo-cat-active{background-color: #FFBE09 !important}
+ 
 @media screen and (min-width: 360px){
 	.promo-pin-img {  margin-top: 13px;    right: 15px;}
 		.promo-pin-reserve{right: 20px}

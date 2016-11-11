@@ -137,10 +137,10 @@ li.row.comments-container:last-child {border-bottom: none;}
 /*shop-search-icons {padding: 11px;display: inline-block;}*/
 
 @media screen and (min-width: 320px){
-.listed-alphabet{margin-right: 10px;}
+.listed-alphabet{margin-right: 5px;}
 .mall-info-underscore {margin-bottom: 22px;font-weight: 100;margin-top: 7px;margin-left: 36px;width: 80%;}
 .mall-info-letter-heading{margin-left:10px;}
-.mall-info-divider{top: 162px;left: 45%;}
+.mall-info-divider{top: 190px;left: 45%;}
 
 @media screen and (min-width: 360px){   
     .mall-events-see-brochure-text{    font-size: 10px; }

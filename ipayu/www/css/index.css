@@ -329,7 +329,7 @@ form#registration button.register {
     .ngdialog{overflow:hidden !important;}
 
 /*header*/
-.page-main-header{ background-color:#A72146;margin:0px;height:20px;border:none; }
+.page-main-header{ background-color:#DF1642;margin:0px;height:20px;border:none; }
 ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li button{ color:#fff;height:100%; }
     ul.page-menu-top li:first-child button { padding-left:8px; margin-bottom: 15px}
@@ -660,7 +660,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
 .view-all-cards::-webkit-scrollbar {display:none;}
     
     .rh-it{margin-top:20px; margin-bottom: 0px; font-size: 12px}
-.card-info-changeables{font-family: "HelveticaCond"; font-size:12px; text-transform: uppercase;color: gray}
+.card-info-changeables{font-family: "HelveticaCond"; font-size:10px; text-transform: uppercase;color: gray}
 
 .redeem-history-card-img{border-radius: 10px;    height: 60px;    display: block;    margin: 0 auto;    float: right;}
 .condensed-redeem{font-family: "HelveticaLightCond" !important}
@@ -711,7 +711,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 
 /*shop*/
 
-.shop-page-main-header{background-color: black}
+.shop-page-main-header{background-color: #1882A8}
 .shop-nav{background-color: #1882A8 !important; border: 1px solid #1882A8 !important;}
     .blue-bg{background-color: #1882A8 !important}
 .shop-search-icon-cat{background-color:#07A5CA;padding:0px; height: 55px;  width: 55px;border-radius: 7px; margin:0 auto; z-index:1;}
@@ -746,7 +746,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .letter-bar-search{    border-color: black;    width: 77%;    display: inline-block;    margin-bottom: 0;}
 
 /*coupon*/
-
+.coupon-page-main-header{background-color: rgb(130,0,13)}
 .coupon-nav{background-color: rgb(130,0,13) !important; border-color:rgb(130,0,13) !important;}
     .coupon-cat{background-color: rgb(130,0,13) !important;}
     .coupon-search-icon-cat-active{background-color: rgb(90,0,0) !important;}
@@ -754,7 +754,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
     .coupon-forms>input{border:rgb(130,0,13) !important ;}
     .coupon-holder{background-color: rgba(51,51,51,0.5)}
     .filtered-coupons{margin-bottom: 0; margin-top: 10px}
-    .coupon-time{color: white; font-size:9px; margin-bottom: 0;font-family: "HelveticaBold";}
+    .coupon-time{color: white; font-size:9px; margin-bottom: 0;font-family: "HelveticaLight";}
     .coupon-img-holder{ padding:5px; padding-left: 0}
 .coupon-img-holder:last-child{margin-right: 25px}
 .coupon-img-holder:first-child{margin-left: 15px}
@@ -789,6 +789,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .bcode-ci img{width:100%;}
 
 /*stamp*/
+.stamp-page-main-header{background-color: rgb(13,73,123)!important;}
 .mother-of-all-scrollables{width: 100%;    height: 500px;    padding-bottom: 90px;    overflow-y: scroll; overflow-x: hidden;}
 .mother-of-all-scrollables::-webkit-scrollbar{display: none}
 .stamp-nav{background-color: rgb(13,73,123)!important; border-color:rgb(13,73,123) !important;}
@@ -836,6 +837,9 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 
 .no-cards-ct{text-align: center;font-family: "HelveticaBold";padding-top: 25%;}
 /*end of ads*/
+
+.shop-modal-border{border-color:#1882A8;}
+.coupon-stamp-modal-border{border-color: gray}
 
 @media screen and (min-width: 320px){
   /*   .container-fluid .row img.login-img{margin-bottom: 6.5em;} */
