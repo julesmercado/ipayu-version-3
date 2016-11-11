@@ -25,12 +25,25 @@
                         
                         <div class="col-xs-9 no-padding">
                             <div class="animated mci-orange-circle tada sci-circle">
-                                <div class="mci-white-dashed-border">
+                                <div class="mci-white-dashed-border" ng-if="card.points_type == 'combo'">
                                     <span class="mci-tp-txt">TOTAL POINTS</span>
                                     <hr class="hr-mci-tp"/>
                                     <span class="mci-rp only-one-is-shown">&nbsp;{{card.rewards_balance}}&nbsp;</span>
-                                    <span class="mci-tp-txt mci-rb-txt no-show-text" >REBATES</span>
-                                    <span class="mci-rp no-show-text">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
+                                    <span class="mci-tp-txt mci-rb-txt" >REBATES</span>
+                                    <span class="mci-rp">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
+                                    <hr class="hr-mci-tp" />
+                                    <span class="mci-ced">  Expiring on {{readable_date(card.datetime_end)}} </span>
+                                </div>
+                                <div class="mci-white-dashed-border" ng-if="card.points_type != 'combo'">
+                                    <span class="mci-tp-txt" ng-if="card.points_type == 'reward'">TOTAL POINTS</span>
+                                    <span class="mci-tp-txt" ng-if="card.points_type == 'rebate'">REBATES</span>
+                                    <hr class="hr-mci-tp"/>
+                                    <span class="mci-rp only-one-is-shown" ng-if="card.points_type == 'reward'">
+                                        &nbsp;{{card.rewards_balance}}&nbsp;
+                                    </span>
+                                    <span class="mci-rp only-one-is-shown" ng-if="card.points_type == 'rebate'">
+                                        &nbsp;{{card.rebates_balance}}$&nbsp;
+                                    </span>
                                     <hr class="hr-mci-tp" />
                                     <span class="mci-ced">  Expiring on {{readable_date(card.datetime_end)}} </span>
                                 </div>

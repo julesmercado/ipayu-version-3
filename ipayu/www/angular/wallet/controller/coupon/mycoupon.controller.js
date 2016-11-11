@@ -9,8 +9,10 @@ walletModule.controller('allCouponCardSearchCtrl', AllCouponCardSearch)
 walletModule.controller('addCouponCardCtrl', AddCouponCard)
 
 
-MyCoupon.$inject = ['$scope', '$rootScope', 'couponData', '$state', 'ngDialog'];
-function MyCoupon($scope, $rootScope, couponData, $state, ngDialog) {
+MyCoupon.$inject = ['$scope', '$rootScope', 'couponData', '$state', 'ngDialog', 'accountData', 'coupon'];
+function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData, coupon) {
+    
+	var ipayu_info = accountData.getUser();
 	$scope.coupons = filterCouponcard(couponData.getUserCoupons());
 	$scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
     
@@ -105,6 +107,30 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog) {
                 $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
             }
         )
+
+    function intervalForCoupons(){
+        setInterval(function() {
+            if($rootScope.showOffline == false && $state.current.name == 'mycouponcards'){
+                coupon.getUserCoupons(ipayu_info.ipayu_id, true)
+                    .then(function(resolve){
+                            couponData.setUserCoupons(resolve[0].data.data.allcoupons);
+                            couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
+                            couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
+                            var newArray = JSON.stringify(resolve[0].data.data.allcoupons),
+                                oldArray = JSON.stringify(couponData.getUserCoupons()),
+                                newFeaturedArray = JSON.stringify(resolve[0].data.data.featuredcoupons),
+                                oldFeaturedArray = JSON.stringify(couponData.getFeaturedCoupons());
+                            if(newArray != oldArray){
+                                $scope.coupons = filterCouponcard(couponData.getUserCoupons());
+                            }
+                            if(newFeaturedArray != oldFeaturedArray){
+                                $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+                            }
+                        })
+            }
+        }, 2000);
+    }
+    intervalForCoupons();
 }
 
 
@@ -163,8 +189,8 @@ function CouponHistory ($scope, $rootScope, $state, couponData, customService) {
 }
 
 
-CouponCardSearch.$inject = ['$scope', '$rootScope', 'walletData', 'customService', 'accountData'];
-function CouponCardSearch($scope, $rootScope, walletData, customService, accountData) {
+CouponCardSearch.$inject = ['$scope', '$rootScope', 'walletData', 'customService'];
+function CouponCardSearch($scope, $rootScope, walletData, customService) {
 
 	var currentPage = 0,
 		pageSize = 7,
@@ -310,7 +336,10 @@ function AllCouponCardSearch($scope, $rootScope, walletData, customService, ngDi
             	},
             	destination: function(){
             		return 'addcouponcard';
-            	}
+            	},
+                border_class: function(){
+                    return 'coupon-stamp-modal-border';
+                }
             },
             overlay: true
         });
@@ -327,6 +356,8 @@ function AllCouponCardSearch($scope, $rootScope, walletData, customService, ngDi
 
 AddCouponCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'coupon', 'couponData'];
 function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, accountData, wallet, coupon, couponData) {
+    
+	$scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
 
 	var thisCard = walletData.getCardToAdd();
 	var ipayu_info = accountData.getUser();
@@ -338,6 +369,28 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
 		$state.go('mycouponcards')
 		return;
 	}
+
+    function filterCouponcard(data){
+        if(!data || data.length == 0){
+            return [];
+        }
+        var booklets = [],
+            coupons = [];
+        for (var i = 0; i < data.length; i++) {
+            if(data[i].country == $rootScope.countryDisplay.country ){
+                if(data[i].datetime_end){
+                    data[i].remainingTime = '';
+                }
+                if(data[i].booklet_id != 0){
+                    booklets.push(data[i]);
+                }
+                else{
+                    coupons.push(data[i]);
+                }
+            }
+        };
+        return booklets.concat(coupons);
+    }
     
     $scope.$on($scope.emitMessage, function (event, cardDetails) {
         wallet.addCard(cardDetails)
@@ -373,10 +426,19 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
 			        },
 			        destination: function(){
 			        	return 'mycouponcards';
-			        }
+			        },
+                    border_class: function(){
+                        return 'coupon-stamp-modal-border';
+                    }
 			    },
 	            overlay: true
 	        });
     }
+
+    $scope.$watch('searchCountry.country',
+                function (newValue, oldValue) {
+                    $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+                }
+            )
 }
 

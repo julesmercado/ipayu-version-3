@@ -174,7 +174,10 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService, ngDial
             	},
             	destination: function(){
             		return 'addshopcard';
-            	}
+            	},
+                border_class: function(){
+                    return 'shop-modal-border';
+                }
             },
             overlay: true
         });
@@ -229,8 +232,10 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
 }
 
 
-AddShopCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', '$state', 'walletData', 'flags', 'accountData', 'wallet'];
-function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, flags, accountData, wallet) {
+AddShopCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', '$state', 'walletData', 'flags', 'accountData', 'wallet', 'customService'];
+function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, flags, accountData, wallet, customService) {
+
+    $scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
 
 	var thisCard = walletData.getCardToAdd();
 	var ipayu_info = accountData.getUser();
@@ -277,9 +282,38 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
 			        },
 			        destination: function(){
 			        	return 'myshopcards';
-			        }
+			        },
+                    border_class: function(){
+                        return 'shop-modal-border';
+                    }
 			    },
 	            overlay: true
 	        });
     }
+    
+	$scope.tapped = function ( card ) {
+		ngDialog.open({
+            template: 'confirmAlert',
+            className: 'ngdialog-theme-plain add-card-custom',
+            controller: 'addCardModalCtrl',
+            resolve: {
+            	card: function(){
+            		return card;
+            	},
+            	destination: function(){
+            		return 'addshopcard';
+            	},
+                border_class: function(){
+                    return 'shop-modal-border';
+                }
+            },
+            overlay: true
+        });
+	}
+
+    $scope.$watch('searchCountry.country',
+                function (newValue, oldValue) {
+					$scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
+                }
+            )
 }

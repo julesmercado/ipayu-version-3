@@ -75,6 +75,7 @@ function FlagFactory() {
                         country: all_flags[i].name,
                         display : false
                     };
+                    console.log(countryDisplay)
                     return;
                 }
             }

@@ -16,8 +16,8 @@ function CouponFactory($q, couponRequest) {
 
     return {
 
-        getUserCoupons: function (id) {
-            var req_coupon = couponRequest.getUserCoupons(id);
+        getUserCoupons: function (id, ignore) {
+            var req_coupon = couponRequest.getUserCoupons(id, ignore);
             return $q.all([req_coupon])
                 .then(thenFunc, errFunc)
         }

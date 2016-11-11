@@ -16,8 +16,8 @@ function StampFactory($q, stampRequest) {
 
     return {
 
-        getUserStamps: function (id) {
-            var req_stamp = stampRequest.getUserStamps(id);
+        getUserStamps: function (id, ignore) {
+            var req_stamp = stampRequest.getUserStamps(id, ignore);
             return $q.all([req_stamp])
                 .then(thenFunc, errFunc)
         }

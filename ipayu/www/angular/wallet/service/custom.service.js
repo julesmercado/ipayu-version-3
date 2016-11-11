@@ -20,6 +20,7 @@ function CustomService() {
 
 	    filterByCountry: function(cards, country, chunk, chunkSize){
 	        var filtered = [];
+            if(!cards){return [];}
 	        for (var i = 0; i < cards.length; i++) {
 	            if(cards[i].country == country){
 	                filtered.push(cards[i]);

@@ -169,18 +169,28 @@
 
         <div class="row lu-cards my-cards custom-slider coupon-holder ad-section-cs-image-holder" style="">
            
-            <div class='cs-image-holder coupon-img-holder inner-ad-container' ng-repeat="f in [1,2,3,4,5]" ng-click="tapped(f)">
-              
-                <img ng-src="http://ipayu.co/ipayu_app/assets/cards/stampcards/jollibee.jpg" class="cs-image ad-img-scroll">
+            <div class='cs-image-holder coupon-img-holder inner-ad-container' 
+                 ng-repeat="f in featured" 
+                 ng-click="tapped(f)">
+                <img ng-src="{{f.image}}" class="cs-image ad-img-scroll">
             </div>
-           
-             <h6 ng-if="featured.length == 0" class="text-gray no-cards" style="color:#fff !important;text-align:center;">
-                 No featured coupons.
-             </h6>
+            
+            <div class='cs-image-holder coupon-img-holder inner-ad-container' 
+                 ng-if="featured.length == 0"
+                 style="position:relative;">
+                <img src="http://bringmesmiles.com/ipayu/assets/icons/sm.png" 
+                     class="cs-image ad-img-scroll"
+                     style="visibility: hidden;">
+                <h6 style="color:#fff !important;text-align:center;position:absolute;font-size:15px;width:100%;top:0;">
+                    No featured cards.
+                </h6>
+            </div>
+            
         </div>
 
         </div>
     </div>
     </div>
     <card-successfully-added-modal></card-successfully-added-modal>
+    <add-card-confirm-modal></add-card-confirm-modal>
     <stamp-footer ng-if="!hasFocusElement"></stamp-footer>
