@@ -1,6 +1,6 @@
 
     mallInfo.controller( 'mallInfoEventsFull', 
-        function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal ){ /*, offlineData*/
+        function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal, $cordovaSocialSharing ){ /*, offlineData*/
 
             $scope.info = mallData.setMallEvent();
             $scope.mallInfo = mallData.setMallInfo();
@@ -26,6 +26,20 @@
                 month: monthNames[dateStart.getMonth()],
                 year: dateStart.getFullYear()
             };
+        
+            $scope.download_file = function(file){
+                window.open(file, '_system');
+            }
+            
+            $scope.shareAnywhere = function(event) {
+                var thisEvent = event;
+                $cordovaSocialSharing.share(thisEvent.description, thisEvent.name, thisEvent.image, thisEvent.file) 
+                    .then(function(result) {
+//                        alert(JSON.stringify(result))
+                    }, function(err) {
+//                        alert(JSON.stringify(err))
+                    });
+            }
 
             $scope.time = {
                 start: convert24to12( timeStart ),
