@@ -55,6 +55,11 @@
                     return cutOff + "...";
                 }
             }
+            
+            $scope.download_file = function(file){
+                window.open(file, '_system');
+            }
+        
             $scope.collapse = function( $event, index ){
                 $scope.isNavCollapsed = true;
                 $scope.isCollapsed = !$scope.isCollapsed;

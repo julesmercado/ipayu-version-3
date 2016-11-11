@@ -19,16 +19,11 @@ function ReactionsDirective( $rootScope , $scope , mallCardFactory2 , mallData ,
             var data = mallData.setMallCard();
             var user = accountData.getUser();
             var date = new Date();
-
-
+            
             mallCardFactory2.postReact(event.asset_event_id, user.ipayu_id, reaction.reaction_id, Date.parse(date))
             .then( function( response ){
-    //            console.log( response );
-    //            console.log($scope)
-                setTimeout(function(){
-                    $rootScope.$broadcast('get_events');
-                }, 500)
-            } );
+                $rootScope.$broadcast('get_events');
+            });
         }
         else {
             ctr++;
