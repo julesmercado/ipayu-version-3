@@ -47,16 +47,16 @@
         <div class=" page-header mall-info-dark-bg-shop">
             <p class="mall-info-feature-mall-title">FEATURED SHOPS</p>
             <div class="container mall-info-mall-search-featured-malls mall-search-featured-malls featured-shops custom-slider" ng-swipe-left="swipeLeft(featured, 'featured')" ng-swipe-right="swipeRight(featured, 'featured')">
-                <div class="row" style="margin:0;">
+                <div class="row " style="margin:0;">
                     <div ng-repeat="mall in featured[indexFeatured][0]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
                         <img ng-src="{{mall.image}}" class="img img-responsive featured-malls-mall mall-info-featured-malls-mall">
-                        <center><p class="mall-info-featured-malls-mall-name">{{mall.name}}</p></center>
+                       <span class="mall-info-category-label-text category-label-text mil-f">{{mall.name}}</span>
                     </div>
                 </div>
-                <div class="row" style="margin:0;">
+                <div class="row layer-2-mif" style="margin:0;">
                     <div ng-repeat="mall in featured[indexFeatured][1]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons shop-search-icons fadeIn">
                         <img ng-src="{{mall.image}}" class="img img-responsive featured-malls-mall mall-info-featured-malls-mall">
-                        <center><p class="mall-info-featured-malls-mall-name">{{mall.name}}</p></center>
+                        <span class="mall-info-category-label-text category-label-text mil-f">{{mall.name}}</span>
                     </div>
                 </div>
                     <center><h4 ng-if="featCoupon.length == 0">Nothing to display</h4></center>
@@ -79,7 +79,9 @@
          <div class="animated col-sm-3  shop-search-icons flipInX" ui-sref="mallDirectories" style="float:right;">
 
              <div class="col-sm-1 mall-info-search-container" style="z-index:500">
-                <img src="images/white-magnifying.png" class="img img-responsive shop-search-icon-cat mall-info-search-icon">
+                <div class=" shop-search-icon-cat mall-info-search-icon">
+                <img src="images/white-magnifying.png" class="img img-responsive">
+                </div>
                 <span class="mall-info-search-text category-label-text" ui-sref="mallDirectories">SEARCH</span>
              </div>
           
@@ -96,7 +98,7 @@
                     <span class="mall-info-category-label-text category-label-text">{{mall.name}}</span>
                 </div>
             </div>
-            <div class="row" style="margin:0;">
+            <div class="row layer-2-mif" style="margin:0;">
                 <div ng-repeat="mall in newMalls[indexNewMalls][1]" ng-click="toMallEvents(mall)" class="animated cs-image-holder-featured col-xs-3 col-md-3  mall-info-shop-search-icons mall-info-shop-search-icons-2 shop-search-icons fadeIn" 
                         >
 

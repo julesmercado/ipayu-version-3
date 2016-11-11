@@ -20,7 +20,7 @@
                 month: monthNames[dateStart.getMonth()],
                 year: dateStart.getFullYear()
             };
-
+        
             $scope.time = {
                 start: convert24to12( timeStart ),
                 end: convert24to12( timeEnd )
@@ -38,8 +38,15 @@
             $scope.day = days[ day ];
             $scope.isCollapsed = false;
 
-            $scope.shareAnywhere = function() {
-                $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
+            $scope.shareAnywhere = function(event) {
+                var thisEvent = event;
+                console.log(thisEvent)
+                $cordovaSocialSharing.share(thisEvent.description, thisEvent.name, thisEvent.image) 
+                    .then(function(result) {
+                        alert(JSON.stringify(result))
+                    }, function(err) {
+                        alert(JSON.stringify(err))
+                    });
             }
             
             function truncateText( text ){

@@ -660,7 +660,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
 .view-all-cards::-webkit-scrollbar {display:none;}
     
     .rh-it{margin-top:20px; margin-bottom: 0px; font-size: 12px}
-.card-info-changeables{font-family: "HelveticaCond"; font-size:12px; text-transform: uppercase;color: gray}
+.card-info-changeables{font-family: "HelveticaCond"; font-size:10px; text-transform: uppercase;color: gray}
 
 .redeem-history-card-img{border-radius: 10px;    height: 60px;    display: block;    margin: 0 auto;    float: right;}
 .condensed-redeem{font-family: "HelveticaLightCond" !important}

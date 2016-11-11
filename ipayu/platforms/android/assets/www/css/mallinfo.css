@@ -25,14 +25,14 @@ html{overflow-x: hidden;}
 .mall-info-feature-mall-title{  position: absolute;  margin-left: 20px;  font-family: "HelveticaLight";  color: white;  font-size: 12px;  margin-top: 13px;}
 .mall-info-shop-search-categories {}
 .mall-info-search-icon{background-color: #DF1642; padding: 8px; height: 100%; width: 100%; border-radius: 37px; margin: 0 auto; z-index: 1;margin-top: 17px;    border: 4px solid white;}
-.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.4)} 
-.mall-info-featured-malls-mall-name{color: white;font-size: 11px; }
+.mall-info-dark-bg-shop{background-color: rgba(0,0,0,0.5)} 
+.mall-info-featured-malls-mall-name{color: white;font-size: 11px;     margin-top: 5px;    margin-bottom: 0;}
 .mall-info-divider{border-bottom: 1px solid white;width: 39px;position: absolute;top: 201px;left: 44%;}
 .mall-info-search-container{width:83px;}
-.mall-info-search-text{margin-top: 5px;color: black;}
+.mall-info-search-text{margin-top: 5px;color: black;font-size: 7px;}
 .mall-info-new-shops-container{ margin-top: 106px; margin-left:0px;margin-right:0px;padding-right: 0px;padding-left: 0px;}
 .mall-info-new-posts-shops{margin:1px;}
-.mall-info-category-label-text{margin-top: 3px;color: black;font-size: 12px;}
+.mall-info-category-label-text{margin-top: 3px;color: black;font-size: 10px;}
 .mall-info-featured-malls-mall{height: 80px;width: 80px;}
 .mall-info-full-height-container {padding-bottom: 100px;margin-top: 14px;}
 .mall-info-directories-container{background-color: #F2F2F2;}
@@ -46,6 +46,8 @@ html{overflow-x: hidden;}
     .dropdown-toggle {text-align: right;}
     .dropdown-menu {height: 0;display: block !important;visibility: hidden;position: relative;float: none;}
     .open .dropdown-menu {display: block !important; visibility: visible;height: auto;margin-top: 26px;}
+    .mil-f{white-space: initial; color:white;}
+  /*  .layer-2-mif{padding-top: 15px}*/
 
 .mall-info-caret{border-left: 6px solid transparent;border-right: 6px solid transparent;border-top: 6px solid #020202;}
 .mall-info-mall-dir-icon{height: 60px;width: 60px; padding: 0;margin: 0;}
@@ -58,14 +60,14 @@ html{overflow-x: hidden;}
 .mall-event-single-post-posted{font-size: 11px;    color: gray; font-family: "HelveticaLight"}
 
 .shop-single-page-header{text-align: center;background-color: #999999; color: white; font-family: "HelveticaLight";    margin: 0;    padding: 10px;    padding-bottom: 5px;}
-.shop-details-text{font-size: 12px; color: gray; font-family: "HelveticaCond"}
+.shop-details-text{font-size: 11px; color: gray; font-family: "HelveticaCond"}
 .mother-of-all-containers-that-is-scrollable{position: absolute;    width: 100%;    height: 88%;    overflow-y: scroll; }
 .mother-of-all-containers-that-is-scrollable::-webkit-scrollbar {display:none;}
-.shop-history-text{font-family: "HelveticaLight"; font-size: 10px; text-align: justify;margin-bottom: 0}
+.shop-history-text{font-family: "HelveticaLight"; font-size: 10px; text-align: justify;margin-bottom: 0;color: black;}
 .mall-info-shop-search-icon-cat{border: 2px solid #dacccc; background-color: white !important}
 .mall-info-mall-search-featured-malls{height:inherit;}
 .shop-info-logo-shop{width: 100px;padding: 5px;height: 100px;border-radius: 20px;margin: 0 auto;align-items: center;display: block;}
-
+.mishi-sb-lg{    position: absolute;    height: 30%;    right: 20px;}
 /*Comments Modal*/
 .modal-dialog{margin: 0;}
 .modal-header {padding-top: 10px;display: flex;flex-direction: row;justify-content: space-around;height: 44px;font-size: 10px;margin-left: -25px;}
@@ -110,7 +112,7 @@ li.row.comments-container:last-child {border-bottom: none;}
 .mall-event-post-image{    height: 90px;    width: 90px;    margin: 7px;float: left;}
 .mall-event-post-content{text-align: justify;    margin: 10px; font-size: 11px; font-family: "HelveticaLight";margin-top: 0;}
 .mall-event-post-title{font-family: "HelveticaBold"; font-size: 12px;margin-top:15px; margin-bottom: 0;}
-.mall-info-dark-bg-shop{height:192px;}
+.mall-info-dark-bg-shop{height:210px;}
 .mall-info-featured-malls-mall {height: 50px ; width: 50px ;}
 .mall-info-shop-search-icon-cat {height: 50px ;width: 50px ;}
 
@@ -135,10 +137,10 @@ li.row.comments-container:last-child {border-bottom: none;}
 /*shop-search-icons {padding: 11px;display: inline-block;}*/
 
 @media screen and (min-width: 320px){
-.listed-alphabet{margin-right: 10px;}
+.listed-alphabet{margin-right: 5px;}
 .mall-info-underscore {margin-bottom: 22px;font-weight: 100;margin-top: 7px;margin-left: 36px;width: 80%;}
 .mall-info-letter-heading{margin-left:10px;}
-.mall-info-divider{top: 144px;left: 45%;}
+.mall-info-divider{top: 190px;left: 45%;}
 
 @media screen and (min-width: 360px){   
     .mall-events-see-brochure-text{    font-size: 10px; }
@@ -163,9 +165,10 @@ li.row.comments-container:last-child {border-bottom: none;}
 @media screen and (min-width: 360px){
 .mall-dir-mall-icon {    height: 60px;    width: 60px;}
 .mall-info-alphabet-list{font-size: 11px; line-height: 18px}
-.mall-info-featured-malls-mall {height: 70px;width: 70px;}
-.mall-info-shop-search-icon-cat{height: 70px;width: 70px;}
+.mall-info-featured-malls-mall {height: 65px;width: 65px;}
+.mall-info-shop-search-icon-cat{height: 65px;width: 65px;}
 .mall-info-dark-bg-shop{height:241px;}
+.layer-2-mif{padding-top: 20px}
 }
 
 @media screen and (min-width: 375px){
