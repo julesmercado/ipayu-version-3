@@ -387,7 +387,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 /*mall search*/
 
 .feature-mall-title{    position: absolute;    margin-left: 15px;    font-family: "HelveticaBold";    color: white;    font-size: 10px; margin-top: 13px; letter-spacing: 1px; font-weight: bold}
-.dark-bg{background-color: black; opacity:0.5; height: 132px !important}
+.dark-bg{background-color: black; opacity:0.5; height: 110px !important}
 .mall-search-featured-malls{position: absolute;top:100px; padding:0; min-width: 100%}
 
 .featured-malls-mall{width:50px; height: 50px;border-radius: 10px; margin: 0 auto; display: block; background-color: white}
@@ -466,7 +466,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .filtered-cards .fu-cards div.col-xs-6:nth-of-type(2),
 .filtered-cards .mn-cards div.col-xs-6:nth-of-type(2) { padding-left:5px; }
 
-.ci-info-price{    font-size: 18px;    font-family: "HelveticaBold";    color: #A5BF0C;}
+.ci-info-price{    font-size:21px;    font-family: "HelveticaBold";    color: #A5BF0C;    padding-top: 10px;}
 /* END OF MALL PAGE FOR FILTER */
 
 /* MALL PAGE FOR VIEW ALL */
@@ -585,8 +585,9 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful img { height:45px;width:auto }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful p { margin:10px 30px 0px 30px;line-height:15px;font-size:14px;color:#808080;font-family: "HelveticaBold" }
-.ipt-qty-it{width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 20px}
-.redeemable-item-body-text-ngdialog{font-size: 11px; font-family: "HelveticaLight"; color: gray}
+.ipt-qty-it{line-height:1; width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 10px;border-top: 10px solid transparent;}
+.redeemable-item-body-text-ngdialog{font-size: 10px; font-family: "HelveticaLight"; color: gray !important}
+.rdeem-modal-it-n{font-size: 24px;    font-family: "HelveticaLight";    color: rgb(104, 99, 99);    font-weight: bolder;}
 .card-info-dialog-dashed{padding-top: 0px !important; height: auto !important}
 
    .ng-dialog-redeem-btn img{height: 45px; }
@@ -682,7 +683,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
 .item-pt-mc{text-align:right;padding-top:10px; font-size: 12px !important;text-align: left; padding-right: 5px}
 .mci-itn{font-size: 12px !important; }
 .img-item-ih{height:72px; width:72px; border: 1px solid gainsboro}
-.ih-item-qty{font-size: 32px;padding-top: 0px; height: 50px; width: 50px; text-align: center;}
+.ih-item-qty{font-size: 32px; height: 50px; width: 50px; text-align: center; line-height: 1.5;border-top: 5px solid transparent;}
 #item-desc-ih p{color: gray; font-size: 13px}
 #item-desc-il p{color: gray; font-size: 11px; font-family: "HelveticaLightCond"}
 .sci-circle{background-color: #07A5CA !important}
@@ -838,8 +839,8 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .no-cards-ct{text-align: center;font-family: "HelveticaBold";padding-top: 25%;}
 /*end of ads*/
 
-.shop-modal-border{border-color:#1882A8;}
-.coupon-stamp-modal-border{border-color: gray}
+.shop-modal-border{border-color:#1882A8 !important;}
+.coupon-stamp-modal-border{border-color: gray !important}
 
 @media screen and (min-width: 320px){
   /*   .container-fluid .row img.login-img{margin-bottom: 6.5em;} */
@@ -849,6 +850,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 }
 
 @media only screen and (min-width: 360px){
+    .dark-bg{height: 132px !important}
    .side-menu .fc div.col-xs-12 img{ height:90px;width:90px;margin-top:25px;}
    .status-message-menu{margin-bottom: 35px}
     .login-options{margin-bottom:23% !important}
@@ -1025,7 +1027,7 @@ and (max-device-width : 736px) {
 }
 @media screen and (min-width: 400px){
      .container-fluid .row img.login-img{margin-bottom: 4.4em;} 
-     .shop-search-icon-cat{height:80px; width:80px;}
+     .shop-search-icon-cat{height:75px; width:75px;}
      .shop-search-categories{bottom:190px;}
      .featured-malls-mall{height: 60px; width: 60px}
      .coupon-img-container{max-height: none; padding-right: 10px; padding-left: 10px}

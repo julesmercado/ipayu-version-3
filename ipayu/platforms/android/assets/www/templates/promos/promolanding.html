@@ -14,7 +14,7 @@
 <div class="row">
     <div class="container">
         <div class=" page-header dark-bg dark-bg-shop">
-            <p class="feature-mall-title">FEATURED MALLS AND SHOPS</p>
+            <p class="feature-mall-title">FEATURED</p>
         </div>
 
         <div class="container mall-search-featured-malls featured-shops custom-slider">
@@ -58,7 +58,7 @@
 
 <div class="row">
     <div class="container">
-        <div class="container shop-search-categories">
+        <div class="container shop-search-categories promo-categories">
             <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
                 ng-repeat="topCat in categories | limitTo:4" 
                 ng-click="selectCategory(topCat.name)">
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="container shop-search-categories-2">
+        <div class="container shop-search-categories-2  promo-categories-2">
             <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
                     ng-repeat="bottomCat in categories" 
                     ng-if="$index > 3"
@@ -91,5 +91,13 @@
        </div>
 
     </div>
+     <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}">
+          <div class="carousel-caption">
+            <h4>Slide {{$index+1}}</h4>
+          </div>
+        </slide>
+      </carousel>
 
 </div>

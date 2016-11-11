@@ -329,7 +329,7 @@ form#registration button.register {
     .ngdialog{overflow:hidden !important;}
 
 /*header*/
-.page-main-header{ background-color:#A72146;margin:0px;height:20px;border:none; }
+.page-main-header{ background-color:#DF1642;margin:0px;height:20px;border:none; }
 ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li button{ color:#fff;height:100%; }
     ul.page-menu-top li:first-child button { padding-left:8px; margin-bottom: 15px}
@@ -387,7 +387,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 /*mall search*/
 
 .feature-mall-title{    position: absolute;    margin-left: 15px;    font-family: "HelveticaBold";    color: white;    font-size: 10px; margin-top: 13px; letter-spacing: 1px; font-weight: bold}
-.dark-bg{background-color: black; opacity:0.5; height: 132px !important}
+.dark-bg{background-color: black; opacity:0.5; height: 110px !important}
 .mall-search-featured-malls{position: absolute;top:100px; padding:0; min-width: 100%}
 
 .featured-malls-mall{width:50px; height: 50px;border-radius: 10px; margin: 0 auto; display: block; background-color: white}
@@ -466,7 +466,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .filtered-cards .fu-cards div.col-xs-6:nth-of-type(2),
 .filtered-cards .mn-cards div.col-xs-6:nth-of-type(2) { padding-left:5px; }
 
-.ci-info-price{    font-size: 18px;    font-family: "HelveticaBold";    color: #A5BF0C;}
+.ci-info-price{    font-size:21px;    font-family: "HelveticaBold";    color: #A5BF0C;    padding-top: 10px;}
 /* END OF MALL PAGE FOR FILTER */
 
 /* MALL PAGE FOR VIEW ALL */
@@ -585,8 +585,9 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful img { height:45px;width:auto }
 .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(2) .col-xs-12 .redeem-successful p { margin:10px 30px 0px 30px;line-height:15px;font-size:14px;color:#808080;font-family: "HelveticaBold" }
-.ipt-qty-it{width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 20px}
-.redeemable-item-body-text-ngdialog{font-size: 11px; font-family: "HelveticaLight"; color: gray}
+.ipt-qty-it{line-height:1; width:70%;background-color:#eee;border:none;font-size:35px;color:#000;border-radius:5px;text-align:center;font-family: "HelveticaBold"; margin:0 auto; display: block; margin-bottom: 20px;border-top: 10px solid transparent;}
+.redeemable-item-body-text-ngdialog{font-size: 10px; font-family: "HelveticaLight"; color: gray !important}
+.rdeem-modal-it-n{font-size: 24px;    font-family: "HelveticaLight";    color: rgb(104, 99, 99);    font-weight: bolder;}
 .card-info-dialog-dashed{padding-top: 0px !important; height: auto !important}
 
    .ng-dialog-redeem-btn img{height: 45px; }
@@ -682,7 +683,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
 .item-pt-mc{text-align:right;padding-top:10px; font-size: 12px !important;text-align: left; padding-right: 5px}
 .mci-itn{font-size: 12px !important; }
 .img-item-ih{height:72px; width:72px; border: 1px solid gainsboro}
-.ih-item-qty{font-size: 32px;padding-top: 0px; height: 50px; width: 50px; text-align: center;}
+.ih-item-qty{font-size: 32px; height: 50px; width: 50px; text-align: center; line-height: 1.5;border-top: 5px solid transparent;}
 #item-desc-ih p{color: gray; font-size: 13px}
 #item-desc-il p{color: gray; font-size: 11px; font-family: "HelveticaLightCond"}
 .sci-circle{background-color: #07A5CA !important}
@@ -711,7 +712,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 
 /*shop*/
 
-.shop-page-main-header{background-color: black}
+.shop-page-main-header{background-color: #1882A8}
 .shop-nav{background-color: #1882A8 !important; border: 1px solid #1882A8 !important;}
     .blue-bg{background-color: #1882A8 !important}
 .shop-search-icon-cat{background-color:#07A5CA;padding:0px; height: 55px;  width: 55px;border-radius: 7px; margin:0 auto; z-index:1;}
@@ -746,7 +747,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .letter-bar-search{    border-color: black;    width: 77%;    display: inline-block;    margin-bottom: 0;}
 
 /*coupon*/
-
+.coupon-page-main-header{background-color: rgb(130,0,13)}
 .coupon-nav{background-color: rgb(130,0,13) !important; border-color:rgb(130,0,13) !important;}
     .coupon-cat{background-color: rgb(130,0,13) !important;}
     .coupon-search-icon-cat-active{background-color: rgb(90,0,0) !important;}
@@ -754,7 +755,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
     .coupon-forms>input{border:rgb(130,0,13) !important ;}
     .coupon-holder{background-color: rgba(51,51,51,0.5)}
     .filtered-coupons{margin-bottom: 0; margin-top: 10px}
-    .coupon-time{color: white; font-size:9px; margin-bottom: 0;font-family: "HelveticaBold";}
+    .coupon-time{color: white; font-size:9px; margin-bottom: 0;font-family: "HelveticaLight";}
     .coupon-img-holder{ padding:5px; padding-left: 0}
 .coupon-img-holder:last-child{margin-right: 25px}
 .coupon-img-holder:first-child{margin-left: 15px}
@@ -789,6 +790,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .bcode-ci img{width:100%;}
 
 /*stamp*/
+.stamp-page-main-header{background-color: rgb(13,73,123)!important;}
 .mother-of-all-scrollables{width: 100%;    height: 500px;    padding-bottom: 90px;    overflow-y: scroll; overflow-x: hidden;}
 .mother-of-all-scrollables::-webkit-scrollbar{display: none}
 .stamp-nav{background-color: rgb(13,73,123)!important; border-color:rgb(13,73,123) !important;}
@@ -837,6 +839,9 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .no-cards-ct{text-align: center;font-family: "HelveticaBold";padding-top: 25%;}
 /*end of ads*/
 
+.shop-modal-border{border-color:#1882A8 !important;}
+.coupon-stamp-modal-border{border-color: gray !important}
+
 @media screen and (min-width: 320px){
   /*   .container-fluid .row img.login-img{margin-bottom: 6.5em;} */
   .coupon-img-container{max-height: 140px;}
@@ -845,6 +850,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 }
 
 @media only screen and (min-width: 360px){
+    .dark-bg{height: 132px !important}
    .side-menu .fc div.col-xs-12 img{ height:90px;width:90px;margin-top:25px;}
    .status-message-menu{margin-bottom: 35px}
     .login-options{margin-bottom:23% !important}
@@ -1021,7 +1027,7 @@ and (max-device-width : 736px) {
 }
 @media screen and (min-width: 400px){
      .container-fluid .row img.login-img{margin-bottom: 4.4em;} 
-     .shop-search-icon-cat{height:80px; width:80px;}
+     .shop-search-icon-cat{height:75px; width:75px;}
      .shop-search-categories{bottom:190px;}
      .featured-malls-mall{height: 60px; width: 60px}
      .coupon-img-container{max-height: none; padding-right: 10px; padding-left: 10px}
