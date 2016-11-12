@@ -1,0 +1,127 @@
+<div id="sp-page" style="overflow:hidden;background-image:none; background-color:#F2F2F2">
+    <div class="page-main-header shop-page-main-header" style="background-color:#DF1642"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+
+
+   <ul class="nav nav-tabs page-menu-top">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+        <li class="col-xs-4"> 
+           <p class="bold header-title-wallet">
+                Mall Info
+            </p>
+        </li>
+ <li class="col-xs-4 pull-right no-padding-right">
+            <button ng-click="toggleShowCountry()" id="flags-nav">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <span>{{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+
+   <div class="row search-input" style="background-color:gray;">
+        <div class="container">
+            <div class=" container ">
+                <input type="text" ng-model="searchData" ng-focus="setFocus()" ng-blur="setBlur()" ng-change="filterCards()"> <button type="submit"><img src="images/white-magnifying.png" class="search-button"></button>
+            </div>
+        </div>
+    </div>
+
+<div class="container filtered-cards mall-info-directories-container"  style="height:100%; overflow-y:auto">
+   <div class="row add-cards-section"  style="margin-top:10px">
+        
+        <div class="dropdown-container" style="position:relative">
+            <div class="position-dropdown-controller">
+            <center>
+                <div class="dropdown btn-group col-md-6" uib-dropdown>
+                    <button id="btn-append-to-single-button" type="button" class="btn btn-primary mall-info-dropdown" uib-dropdown-toggle style="position:relative;
+                    text-align: center;">
+                      {{selectedCat ? selectedCat: 'Store Categories'}} &nbsp;&nbsp;&nbsp; 
+                      <span class="caret mall-info-caret" 
+                        style="position: absolute;
+                                top: 11px;
+                                right: 6px;"></span>
+                    </button>
+                    <ul class="dropdown-menu col-xs-12 mall-info-dropdown-ul" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                      <li role="menuitem" ng-repeat="category in categories" ><a ng-click="selected(category.name)">{{category.name}}</a><input type="hidden" name="options" ng-model="selected" required></li>
+                    </ul>
+                </div>
+            </center>
+            </div>
+        </div>
+        <div class="full-height-container mall-info-full-height-container"> 
+            <div  id="cardsContainer" ng-repeat="shops in all_shops">
+                 <div style="position:relative;" ng-if="shops.length>0">
+                    <label class="letter-heading mall-info-letter-heading" id="{{shops[0].toUpperCase()}}" ng-if="shops[0]!='num'"> {{shops[0].toUpperCase()}} </label>
+                    <label class="letter-heading mall-info-letter-heading" id="num" ng-if="shops[0]=='num'"> # </label>
+                    <hr class="letter-bar-search mall-info-letter-bar" /> 
+                    <!-- <label class="mall-info-underscore" style="border-top:1px solid black;"></label> -->
+                    </div>
+                    <div class="container " id="mall-dir-letter-heading">
+                        <div class="col-xs-3 mall-dir-logo-container mall-info-mall-dir-log-container" ng-click="toShopInfo(shop)" ng-repeat="shop in shops[1]">
+                            <img ng-src="{{shop.image}}" class="mall-dir-mall-icon mall-info-mall-dir-icon">                            
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+    <ul class="listed-alphabet mall-info-alphabet-list">
+        
+        <li><span ng-click="scrollUp('A')">A</span></li>
+        <li><span ng-click="scrollUp('B')">B</span></li>
+        <li><span ng-click="scrollUp('C')">C</span></li>
+        <li><span ng-click="scrollUp('D')">D</span></li>
+        <li><span ng-click="scrollUp('E')">E</span></li>
+        <li><span ng-click="scrollUp('F')">F</span></li>
+        <li><span ng-click="scrollUp('G')">G</span></li>
+        <li><span ng-click="scrollUp('H')">H</span></li>
+        <li><span ng-click="scrollUp('I')">I</span></li>
+        <li><span ng-click="scrollUp('J')">J</span></li>
+        <li><span ng-click="scrollUp('K')">K</span></li>
+        <li><span ng-click="scrollUp('L')">L</span></li>
+        <li><span ng-click="scrollUp('M')">M</span></li>
+        <li><span ng-click="scrollUp('N')">N</span></li>
+        <li><span ng-click="scrollUp('O')">O</span></li>
+        <li><span ng-click="scrollUp('P')">P</span></li>
+        <li><span ng-click="scrollUp('Q')">Q</span></li>
+        <li><span ng-click="scrollUp('R')">R</span></li>
+        <li><span ng-click="scrollUp('S')">S</span></li>
+        <li><span ng-click="scrollUp('T')">T</span></li>
+        <li><span ng-click="scrollUp('U')">U</span></li>
+        <li><span ng-click="scrollUp('V')">V</span></li>
+        <li><span ng-click="scrollUp('W')">W</span></li>
+        <li><span ng-click="scrollUp('X')">X</span></li>
+        <li><span ng-click="scrollUp('Y')">Y</span></li>
+        <li><span ng-click="scrollUp('Z')">Z</span></li>
+    </ul>
+
+
+</div>

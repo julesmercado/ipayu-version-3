@@ -1,0 +1,86 @@
+
+<div class="container-fluid login-bg" style="overflow:hidden;">
+
+    <div class="container">
+        <div class="row">
+            <img src="images/ipayu_logo.png" class="img img-responsive login-img">
+        </div>
+    </div>
+
+
+    <div class="container login-form">
+        <div class="row" >
+            <form name="loginForm" ng-submit="login()">
+              <div class="form-group" style="margin-bottom: 5px;">
+                <input type="text" id="username" 
+                      class="form-control login-credentials red-tooltip" 
+                      placeholder="Ipayu ID" name="phone" 
+                      ng-model="loginData.username.value" 
+                      uib-tooltip="{{loginData.username.message}}" 
+                      tooltip-trigger="'none'" 
+                      tooltip-placement="bottom" 
+                      tooltip-is-open="openToolTip && loginData.username.showError"
+                      ng-keyup="validate_username()">
+              </div>
+              <div class="form-group" style="margin-bottom: 5px;">
+                <input type="password" id="password" 
+                        class="form-control login-credentials red-tooltip" 
+                        placeholder="Password" name="password" 
+                        ng-model="loginData.password.value" 
+                        ng-disabled="loginData.username.value.length < 8 || loginData.username.showError" 
+                        uib-tooltip="{{loginData.password.message}}" 
+                        tooltip-trigger="'none'" 
+                        tooltip-placement="bottom" 
+                        tooltip-is-open="openToolTip && loginData.password.showError"
+                        ng-keyup="validate_password()">
+              </div>
+
+              <div id="login-options" class="text-center">
+                  <button type="submit" class="btn btn-default login-button" id="login_btn" 
+                        ng-disabled="button.disabled" ng-bind="button.text">
+                  </button>
+              </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row login-options" style="line-height:25px;">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="text-center login-options-label">
+                <p ui-sref="register" style="display:inline" class="condensed">REGISTER</p><br>
+                <p ui-sref="forgot" style="display:inline" class="condensed">FORGOT PASSWORD</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- MODAL TEMPLATE -->
+<script type="text/ng-template" id="loginAlert">
+    <div class="ngdialog-addmallcard-message">
+        <div class="ngdialog-addmallcard-message-bottom">
+
+            <div class="ngdialog-addmallcard-sucess" style="clear:both">
+                <form>
+                  <div class="form-group text-center">
+                     <h4>Are you sure you want to exit?</h4>
+                  </div>
+                  
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-default" ng-click="closeApp(1)">OK</button>
+
+                    <button type="submit" class="btn btn-default" ng-click="closeApp(2)">CANCEL</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script> 
+
+<footer ng-if="!hasFocusElement" class="footer" style="position: absolute; bottom: 0;left:0;">
+    <div class="login-footer ads">
+       <img src="images/login_ad.png" class="ads-img">
+    </div>
+</footer>
+
+

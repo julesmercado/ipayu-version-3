@@ -7,17 +7,17 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.app.ipayu"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.app.ipayu"
-        },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.app.ipayu"
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.app.mallinfo"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.app.ipayu"
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
     "dependent_plugins": {}

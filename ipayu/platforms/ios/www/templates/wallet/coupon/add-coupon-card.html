@@ -1,0 +1,171 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header coupon-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
+
+
+<div class="container filtered-cards">
+
+    <div class="row add-card-header shop-card-header"  style="background-color: rgba(130,0,13,0.5) !important">
+        <div class="col-xs-12" >
+            <p class="text-center" id="add-card-txt">
+                ADD CARD
+            </p>
+        </div>
+    </div>
+
+    <div class="row add-card-form" add-card-form>
+        <div class="col-xs-12">
+            <form>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group coupon-forms" >
+                            <label for="fn">FULL NAME</label>
+                            <input type="text" ng-model="userData.name.i_value" class="form-control" 
+                                    disabled="true" 
+                                    id="fn">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group coupon-forms" >
+                            <label for="em">EMAIL</label>
+                            <input type="email" ng-model="userData.email.i_value" class="form-control" 
+                                    ng-disabled="true"
+                                    id="em">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group coupon-forms" >
+                            <label for="mn">MOBILE NUMBER</label>
+                            <select class="input-group-addon input-group-sm  add-card-addon" 
+                                    id="basic-addon1"
+                                    ng-model="phonePrefix.prefix">
+                                        <option value="+60" >+60</option>
+                                        <option value="+63" >+63</option>
+                                        <option value="+65" >+65</option>
+                                        <option value="+66" >+66</option>
+                                        <option value="+673" >+673</option>
+                                        <option value="+84" >+84</option>
+                                        <option value="+855" >+855</option>
+                                        <option value="+95" >+95</option>
+                            </select>
+                            <input type="number" ng-model="userData.phone.i_value" class="form-control" autofocus="true" 
+                                    ng-keyup="upPhone(true)" id="mn"
+                                    uib-tooltip="{{ userData.phone.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.phone.hasError && userData.phone.touched " style="padding-left:54px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group coupon-forms" >
+                            <label for="add">ADDRESS</label>
+                            <input type="text" ng-model="userData.address.i_value" class="form-control" 
+                                    ng-disabled="userData.phone.hasError"
+                                    ng-keyup="upAddress(true)" id="add"
+                                    uib-tooltip="{{ userData.address.message }}"
+                                    tooltip-trigger="'none'"
+                                    tooltip-placement="bottom"
+                                    tooltip-is-open="openToolTip && userData.address.hasError && userData.address.touched ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group coupon-forms" >
+                            <label for="city">CITY</label>
+                            <input type="text" ng-model="userData.city.i_value" class="form-control" 
+                                    ng-disabled="userData.address.hasError" 
+                                    ng-keyup="upCity(true)" id="city"
+                                    uib-tooltip="{{ userData.city.message }}"
+                                    tooltip-trigger="'none'"
+                                    tooltip-placement="bottom"
+                                    tooltip-is-open="openToolTip && userData.address.hasError && userData.address.touched ">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <div class="form-group coupon-forms" >
+                            <label for="pc">POSTAL CODE</label>
+                            <input type="number" ng-model="userData.postal.i_value" class="form-control" 
+                                    ng-disabled="userData.city.hasError"
+                                    ng-keyup="upPostal(true)" id="pc"
+                                    uib-tooltip="{{ userData.postal.message }}" 
+                                    tooltip-trigger="'none'" 
+                                    tooltip-placement="bottom" 
+                                    tooltip-is-open="openToolTip && userData.postal.hasError && userData.postal.touched ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-default blue-text" 
+                                ng-click="addCard()"
+                                ng-disabled="disableBtn"
+                                style="color:rgb(130,0,13) !important;">
+                            <img src="images/assets/maroon-check.png">
+                            ADD
+                        </button>
+                        
+                        <button class="btn btn-default dark-blue" back
+                                style="color:rgb(130,0,13) !important;">
+                            <img src="images/assets/maroon-ex.png">
+                            CANCEL
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="ad-section-add" ng-if="!hasFocusElement">
+        <div class=" filtered-coupons " style="">
+
+         <p class="featured-ad-txt">FEATURED COUPONS</p>
+
+        <div class="row lu-cards my-cards custom-slider coupon-holder ad-section-cs-image-holder">
+           
+            <div class='cs-image-holder coupon-img-holder inner-ad-container' 
+                 ng-repeat="f in featured" 
+                 ng-click="tapped(f)">
+                <img ng-src="{{f.image}}" class="cs-image ad-img-scroll">
+            </div>
+            
+            <div class='cs-image-holder coupon-img-holder inner-ad-container' 
+                 ng-if="featured.length == 0"
+                 style="position:relative;">
+                <img src="http://bringmesmiles.com/ipayu/assets/icons/sm.png" 
+                     class="cs-image ad-img-scroll"
+                     style="visibility: hidden;">
+                <h6 style="color:#fff !important;text-align:center;position:absolute;font-size:15px;width:100%;top:0;">
+                    No featured cards.
+                </h6>
+            </div>
+            
+        </div>
+
+        </div>
+    </div>
+
+    </div>
+    <card-successfully-added-modal></card-successfully-added-modal>
+    <add-card-confirm-modal></add-card-confirm-modal>
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
+</div>

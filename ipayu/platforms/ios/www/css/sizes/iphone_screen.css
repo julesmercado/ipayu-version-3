@@ -1,0 +1,149 @@
+
+/* IPHONE 5S */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 568px) {
+
+	header#reg-header h2 { font-size: 15px; }
+
+	header img { margin-top: 23px;width: 13%; }
+
+	form#registration { padding-bottom:10px; }
+	form#registration table.gender label img { width:23%; }
+	form#registration table.gender input[type="radio"] { margin-top:8.5%; }
+	form#registration table.form tr.double td.input-fname { width: 875px; }
+	form#registration table.form tr.double td.input-country { width:500px; }
+	form#registration table.form tr.double td.input-country > select { margin-top:0; }
+	form#registration table.form tr { padding-bottom:5px; }
+	form#registration table.form tr>td img { max-height: 20px;max-width: 30px; margin:8px auto; }
+	form#registration td label { padding:0;padding-left:5%;height: 32px }
+	form#registration td label.label-fname { padding-left:9%; }
+	form#registration table.gender { margin:10px auto;margin-bottom:0px; }
+	form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input { font-size:12px; margin-top:10px; }
+
+	form#registration button.register { margin-top:5px; font-size: 100%; padding: 4px 14px 4px 14px; }
+
+
+	.search-card-result-redeem { margin-top:7%; }
+		.search-card-result-redeem .coupon-redeem-top { height: 230px; padding: 10px 13px 0px 13px; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description p { font-size:13px;margin-bottom:25px; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description ul li:first-child { font-size:15px; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description ul li { margin-right: 8px }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description ul li:nth-child(4) { margin-right: 0; }
+		.search-card-result-redeem .coupon-redeem-bottom button img { height: 45px; width: auto }
+		.ngdialog-message .coupon-dialog-options a img { height: 50px;width:auto; }
+		.ngdialog-message .coupon-dialog-message { margin-bottom:10px;font-size: 17px }
+		.search-card-result-redeem .coupon-redeem-bottom { padding-top:7px;height: 57px; }
+		.ngdialog-message-success .coupon-success-dialog p { font-size: 17px }
+		.ngdialog-message-success .coupon-success-dialog img:nth-of-type(1) { height: 40px;width: auto }
+		.ngdialog-message-success .coupon-success-dialog img { height: 50px;width: auto; }
+
+	.l-header { background-color:#DF1642;height:110px; font-family:normal;color:white;text-align:center; }
+	.l-header h1 { margin:0px;font-size:20px; }
+	.l-header img { height:50px;width:50px;margin-top:20px }
+
+	.l-loading {text-align:center;margin-top:105px;}
+	.l-loading .l-spinner h3 { font-size:20px;font-family:normal;margin:0px;margin-top:10px; }
+
+	.l-footer { background-image:url(../../images/login_ad.png);background-repeat:no-repeat;background-size:100%; position:fixed;bottom:0;width:100%;height:65px; }
+	.l-footer table tr td:last-child { width:100%;padding-right:10px; }
+	.l-footer table tr td p { padding: 0px;margin: 8px 0px 9px 7px; height: 50px;width: 50px;background-color: black;overflow:hidden }
+	.l-footer table tr td p img { height:20px;width:auto;margin:15px;background-color:white;border-radius:100%; }
+	.l-footer table tr td input {height: 44px;width:100%;margin-top:3px; margin-bottom: 4px; }
+
+}
+
+
+/* IPAD 6 */
+@media only screen 
+and (min-width : 375px) 
+and (max-width : 667px) { 
+
+	header#reg-header h2 { font-size: 115%; }
+	.adjust-login-header { margin-top: 0; }
+	header img { margin-top: 25px;width: 18%; }
+
+	form#registration { padding-bottom:10px; }
+	form#registration table.gender label img { width:25%; }
+	form#registration table.gender input[type="radio"] { margin-top:8.5%; }
+	form#registration table.form tr.double td.input-fname { width: 875px; }
+	form#registration table.form tr.double td.input-country { width:500px; }
+	form#registration td label { padding:0;padding-left:5%; }
+	form#registration td label.label-fname { padding-left:9%; }
+	form#registration table.gender { margin:10px auto; }
+	form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input { font-size:97%; }
+
+	form#registration button.register { margin-top:8px;font-size: 115%; padding: 6px 15px 6px 15px; }
+
+
+	.l-loading .l-spinner img{ height: 150px;width:auto; }
+	.search-area { height: 4%; }
+
+	.search-card-result-redeem .coupon-redeem-top { height: 310px !important;  }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description p{ font-size: 16px !important;margin-top:20px;margin-bottom:40px; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description ul li:first-child { font-size:19px !important; }
+
+
+	.l-footer { background-color:green; position:fixed;bottom:0;width:100%;height:65px; }
+    .l-footer table tr td p { padding: 0px;margin: 8px 0px 9px 7px; height: 50px;width: 50px;background-color: black; }
+    .l-footer table tr td  input {height: 44px; width: 304px;margin-top:3px; margin-bottom: 4px; }
+    .l-footer table tr td p img { height:20px;width:auto;margin:15px;background-color:white;border-radius:100%; }
+}
+
+
+
+
+/* IPAD 6 PLUS */
+@media only screen 
+and (min-width : 414px) 
+and (max-width : 736px) { 
+
+	header#reg-header h2 { font-size: 125%; }
+
+	header img { margin-top: 27px; width: 18%; }
+
+	form#registration { padding-bottom:10px; }
+	form#registration table.gender label img { width:27%; }
+	form#registration table.gender input[type="radio"] { margin-top:16%; }
+	form#registration table.form tr.double td.input-fname { width: 875px; }
+	form#registration table.form tr.double td.input-country { width:500px; }
+	form#registration table.form tr.double td.input-country > select { margin-top:0px; }
+	form#registration table.form tr { padding-bottom:8px; }
+	form#registration table.form tr>td img { max-height: 30px;margin:9px auto; }
+	form#registration table.form tr>td img.country-flag { max-height: 40px;max-width: 40px;margin:9px auto; }
+	form#registration table.form tr td label.resize-form  img { height: 25px }
+	form#registration td label { padding:0;padding-left:5%;height: 50px }
+	form#registration td label.label-fname { padding-left:9%; }
+	form#registration table.gender { margin:30px auto; }
+	form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input { font-size:100%;margin-top:15px; }
+
+	form#registration button.register { margin-top:13px; font-size: 115% ; padding: 7px 16px 7px 16px; }
+
+
+	.mall-card-tabs { height:90px; }
+		.mall-tabs-icon-img { height:55px;width:auto; }
+		.mall-tabs-icon-img-firstchild img { height:60px;width:auto; }
+		.mall-tabs-icon-img-lastchild img { height:67px;width:auto; }
+
+		.search input { height:27px; font-size:16px; text-indent: 35px; }
+
+	.search-card-result-redeem { margin-top:6%; }
+		.search-card-result-redeem .coupon-redeem-top { height: 355px; padding:15px 15px 0px 15px; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description p { font-size:18px;margin-top: 20px; margin-bottom:40px; }
+		.search-card-result-redeem .coupon-redeem-bottom { height: 80px !important; }
+		.search-card-result-redeem .coupon-redeem-top .coupon-description ul li:first-child { font-size:20px; }
+		.search-card-result-redeem .coupon-redeem-bottom button img { height: 65px;width:auto; }
+		.ngdialog-message .coupon-dialog-message { font-size:20px; }
+		.ngdialog-message-success { height: 160px  }
+		.ngdialog-message-success .coupon-success-dialog p { font-size:20px;margin-bottom: 16px }
+
+	.l-footer { background-color:green; position:fixed;bottom:0;width:100%;height:130px; }
+    .l-footer table tr td p { padding: 0px;margin: 8px 0px 9px 7px; height: 50px;width: 50px;background-color: black; }
+    .l-footer table tr td  input {height: 44px; width: 342px;margin-top:3px; margin-bottom: 4px; }
+    .l-footer table tr td p img { height:20px;width:auto;margin:15px;background-color:white;border-radius:100%; }
+
+}
+
+@media only screen and (width:414px) and (height: 736px){
+form#registration table.gender { margin:5px auto; }
+}
