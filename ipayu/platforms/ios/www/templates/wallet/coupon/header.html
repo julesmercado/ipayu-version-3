@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs page-menu-top coupon-nav">
+    <li class="col-xs-4 no-padding">
+        <button back>
+            <img src="images/back-btn.png" class="back-button-header-img">
+        </button>
+        <button  ng-click="toggleMenu()">
+         <img src="images/menubar.png" >
+        </button>
+    </li>
+
+    <li class="col-xs-4"> 
+       <p class="bold header-title-wallet">
+             Coupons
+        </p>
+    </li>
+        <li class="col-xs-4 pull-right no-padding-right">
+            <button ng-click="toggleShowCountry()" id="flags-nav">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <span>{{countryDisplay.name}}</span> 
+                    <ul ng-if="countryDisplay.display"
+                        class="flagHeader">
+
+                            <li ng-repeat="c in headerCountries" 
+                                ng-click="selectCountry(c)"> 
+                                <img ng-src="images/flags/{{c.img}}"> 
+                                    {{c.code}}
+                            </li>
+                        </ul>
+            </button>
+             <button class="btn-top-with-flag" ui-sref="dashboard">
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+
+</ul>
