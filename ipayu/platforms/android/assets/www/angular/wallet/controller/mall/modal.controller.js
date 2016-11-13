@@ -21,6 +21,7 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
     $scope.image      	= redeemable.image;
     $scope.q_remaining 	= parseInt(redeemable.remaining_stock);
     $scope.redeemable_type = (redeemable.points_type == 'reward')?'Points':'USD';
+    $scope.item     = redeemable;
 
     $scope.isClick = false;
     $scope.isRedeemed = false;

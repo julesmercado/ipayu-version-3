@@ -16,13 +16,13 @@ function WalletFactory($q, walletRequest) {
 
     return {
 
-        getTopThreeFrequent: function(id){
-            var req_frequent = walletRequest.getTopThreeFrequent(id);
+        getTopThreeFrequent: function(id, ignore){
+            var req_frequent = walletRequest.getTopThreeFrequent(id, ignore);
             return $q.all([req_frequent])
                 .then(thenFunc, errFunc)
         },
-        getUserCards: function(data){
-            var req_cards = walletRequest.getUserCards(data);
+        getUserCards: function(data, ignore){
+            var req_cards = walletRequest.getUserCards(data, ignore);
             return $q.all([req_cards])
                 .then(thenFunc, errFunc)
         },

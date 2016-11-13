@@ -2,12 +2,16 @@
 mainModule.controller('mainCtrl', MainCtrl)
 
 
-MainCtrl.$inject = ['$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet'];
-function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet) {
+MainCtrl.$inject = [
+                    '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet', 
+                    'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData'
+                    ];
+function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet,
+                    stampData, couponData, stamp, coupon, wallet, walletData) {
 
     var tOut;
     $rootScope.doLoading = false;
-//	$rootScope.ipayu_info = accountData.getUser();
+	var ipayu_info = accountData.getUser();
     function init() {
         $rootScope.headerCountries = flags.getAll();
         $rootScope.countryDisplay = flags.getCountryDisplay();
@@ -82,5 +86,89 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
     $rootScope.readable_date = function(date){
         return $filter('date')(new Date(parseInt(date)), 'yyyy-MM-dd');
     }
+
+    var ready_dashboard = true,
+        ready_mallcard = true,
+        ready_shopcard = true,
+        ready_coupon = true,
+        ready_stamp = true;
+
+    setInterval(function() {
+
+        if($rootScope.showOffline == false) {
+
+            if($state.current.name == 'dashboard' && ready_dashboard == true){
+                ready_dashboard == false;
+                wallet.getTopThreeFrequent(ipayu_info.ipayu_id, true)
+                .then(function(resolve){
+                    ready_dashboard = true
+                    if(resolve){
+                        accountData.setTopThreeFrequent(resolve[0].data.data);
+                        $rootScope.$broadcast('newDashboardData', resolve[0].data.data)
+                    }
+                })
+            }
+
+            if($state.current.card_type == 'mallcard' && ready_mallcard == true){
+                ready_mallcard = false;
+                wallet.getUserCards({'ipayu_id':ipayu_info.ipayu_id, 'type':'mall'}, true)
+                .then(function(resolve){
+                    ready_mallcard = true;
+                    if(resolve){
+                        walletData.setUserCards(resolve[0].data.data.all, 'mall');
+                        walletData.setFrequentUserCards(resolve[0].data.data.frequently, 'mall');
+                        walletData.setLastUserCards(resolve[0].data.data.last_used, 'mall');
+                        $rootScope.$broadcast('newMallCardData', resolve[0].data.data)
+                    }
+                })
+            }
+
+            if($state.current.card_type == 'shopcard' && ready_shopcard == true){
+                ready_shopcard = false;
+                wallet.getUserCards({'ipayu_id':ipayu_info.ipayu_id, 'type':'shop'}, true)
+                .then(function(resolve){
+                    ready_shopcard = true;
+                    if(resolve){
+                        walletData.setUserCards(resolve[0].data.data.all, 'shop');
+                        walletData.setFrequentUserCards(resolve[0].data.data.frequently, 'shop');
+                        walletData.setLastUserCards(resolve[0].data.data.last_used, 'shop');
+                        $rootScope.$broadcast('newShopCardData', resolve[0].data.data)
+                    }
+                })
+            }
+
+            if($state.current.card_type == 'couponcard' && ready_coupon == true){
+                ready_coupon = false;
+                coupon.getUserCoupons(ipayu_info.ipayu_id, true)
+                .then(function(resolve){
+                    ready_coupon = true;
+                    if(resolve){
+                        couponData.setUserCoupons(resolve[0].data.data.allcoupons);
+                        couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
+                        couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
+                        $rootScope.$broadcast('newCouponData', resolve[0].data.data)
+                    }
+                })
+            }
+
+            if($state.current.card_type == 'stampcard' && ready_stamp == true){
+                ready_stamp = false;
+                stamp.getUserStamps(ipayu_info.ipayu_id, true)
+                .then(function(resolve){
+                    ready_stamp = true;
+                    if(resolve){
+                        stampData.setUserStamps(resolve[0].data.data.allstamps);
+                        stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
+                        stampData.setUsedStamps(resolve[0].data.data.usedstamps);
+                        $rootScope.$broadcast('newStampData', resolve[0].data.data)
+                    }
+                })
+            }
+
+        }
+
+        
+
+    }, 2000);
 
 }

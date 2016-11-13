@@ -185,6 +185,7 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
     }
 
     $scope.redeemItem = function (item) {
+    	console.log(item)
         ngDialog.open({
             template: 'redeemmodal',
             className: 'ngdialog-theme-plain profile-cutom-bg',

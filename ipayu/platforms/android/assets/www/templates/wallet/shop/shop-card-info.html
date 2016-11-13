@@ -28,7 +28,7 @@
                                 <div class="mci-white-dashed-border" ng-if="card.points_type == 'combo'">
                                     <span class="mci-tp-txt">TOTAL POINTS</span>
                                     <hr class="hr-mci-tp"/>
-                                    <span class="mci-rp only-one-is-shown">&nbsp;{{card.rewards_balance}}&nbsp;</span>
+                                    <span class="mci-rp">&nbsp;{{card.rewards_balance}}&nbsp;</span>
                                     <span class="mci-tp-txt mci-rb-txt" >REBATES</span>
                                     <span class="mci-rp">&nbsp;{{card.rebates_balance}}$&nbsp;</span>
                                     <hr class="hr-mci-tp" />
@@ -153,13 +153,12 @@
                 <tr class="animated transaction-data-row flipInX"
                     ng-if="transactions.length != 0"
                     ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
-                    <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
+                    <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
                     <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
                     <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
                     <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
                     <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-                    <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
-                    <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
+                    <td>{{tran.points || 0}}</td>
                     <td>{{tran.balance}}</td>
                     <td class="bold" style="font-size:8px"
                         route-item-location="{{tran.asset_info_id}}" item={{tran}}
@@ -182,13 +181,12 @@
         <tr class="transaction-data-row"
             ng-if="transactions.length != 0"
             ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
-            <td style="text-align:center; padding-left:4px;">{{tran.transaction_date | date:"MM/dd/yyyy"}}</td>
+            <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
             <td class="uppercase" style="text-align:center;">{{ tran.shop_name || 'N/A' }}</td>
             <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
             <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-            <td ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
-            <td ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
+            <td>{{tran.points || 0}}</td>
             <td>{{tran.balance}}</td>
         </tr>
         <tr ng-if="transactions.length == 0">

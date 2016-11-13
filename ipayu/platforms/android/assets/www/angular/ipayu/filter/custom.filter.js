@@ -20,7 +20,7 @@ function GreetFltr() {
 
 function DashboardFilter(){
     return function (input, country){
-        if(input.length == 0)
+        if(!input || input.length == 0)
             return input;
         
         var temp = [];

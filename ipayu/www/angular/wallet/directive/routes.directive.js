@@ -282,15 +282,24 @@ function CardInfo($state, $rootScope, walletData, accountData, wallet, preloader
                     wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: card.card_type})
                         .then(function(resolve){
                             if(resolve){
+                            	
                                 var u = walletData.setUserCards(resolve[0].data.data.all, card.card_type);
                                 var f =walletData.setFrequentUserCards(resolve[0].data.data.frequently, card.card_type);
                                 var l =walletData.setLastUserCards(resolve[0].data.data.last_used, card.card_type);
-                                $state.go(route);
+
+			                    $state.transitionTo(route, {}, { 
+			                      reload: true, inherit: false, notify: true
+			                    });
+
                                 preloaderMethod.preloadImage([u || [], f || [], l || []]);
                             }
                         })
                 }
-                else{$state.go(route);}
+                else{
+                    $state.transitionTo(route, {}, { 
+                      reload: true, inherit: false, notify: true
+                    });
+                }
 
 	    	})
 	    }

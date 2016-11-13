@@ -40,12 +40,11 @@
 
             $scope.shareAnywhere = function(event) {
                 var thisEvent = event;
-                console.log(thisEvent)
-                $cordovaSocialSharing.share(thisEvent.description, thisEvent.name, thisEvent.image) 
+                $cordovaSocialSharing.share(thisEvent.description, thisEvent.name, thisEvent.image,  thisEvent.file) 
                     .then(function(result) {
-                        alert(JSON.stringify(result))
+//                        alert(JSON.stringify(result))
                     }, function(err) {
-                        alert(JSON.stringify(err))
+//                        alert(JSON.stringify(err))
                     });
             }
             

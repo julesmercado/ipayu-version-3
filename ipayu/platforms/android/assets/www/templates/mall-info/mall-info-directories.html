@@ -51,7 +51,7 @@
         </div>
     </div>
 
-<div class="container filtered-cards" style="height:100%; overflow-y:auto">
+<div class="container filtered-cards" style="height:100%; overflow-y:auto" id="allcardssearch">
    <div class="row add-cards-section"  style="margin-top:10px">
         <div class="full-height-container"> 
             <div  id="cardsContainer" ng-repeat="malls in all_malls">
@@ -63,7 +63,6 @@
                             <img ng-src="{{mall.image}}" class="mall-dir-mall-icon">
                             <p class="mall-dir-mall-txt">{{mall.name}}</p>
                         </div>
-                        
                     </div>
                 </div>
             </div>

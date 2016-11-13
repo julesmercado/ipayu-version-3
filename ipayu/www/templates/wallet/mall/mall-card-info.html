@@ -173,11 +173,7 @@
                         <span ng-if="tran.sales_amount != 'null'">{{tran.sales_amount}}</span>
                         
                     </td>
-                    <td >
-                        
-                        <span ng-if="tran.type == 'transaction'">{{tran.rebate || 0}}</span>
-                        <span ng-if="tran.type == 'redeem'">-{{tran.rebate || 0}}</span>
-                    </td>
+                    <td>{{tran.points || 0}}</td>
                     <td>{{tran.balance}}</td>
                     <td>
                         <span class="bold" style="font-size:8px" 
@@ -205,8 +201,7 @@
             <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
             <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-            <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
-            <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
+            <td>{{tran.points || 0}}</td>
             <td>{{tran.balance}}</td>
         </tr>
         <tr ng-if="transactions.length == 0">

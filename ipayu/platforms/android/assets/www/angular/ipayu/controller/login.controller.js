@@ -155,8 +155,14 @@ function LoginCtrl($scope, $rootScope, $state, $q,
             
                     // set redeem history
                 	walletData.setRedeemHistory(resolve[5][0].data.data);
+
+
+                    $rootScope = $rootScope.$new(true);
+                    $scope = $scope.$new(true);
                     
-					$state.go('dashboard')
+                    $state.transitionTo('dashboard', {}, { 
+                      reload: true, inherit: false, notify: true
+                    });
                     
                 }, function (reject) {
 					console.log(reject);

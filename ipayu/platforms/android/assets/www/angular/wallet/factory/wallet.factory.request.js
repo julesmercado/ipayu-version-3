@@ -6,14 +6,15 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
 
     return {
 
-        getTopThreeFrequent: function (id) {
+        getTopThreeFrequent: function (id, ignore) {
             var dataToSend = {
                 'requestType'   : 'GetRecentlyUsed_',
-                'ipayu_id'         : id
+                'ipayu_id'      : id
             }
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',
+                            'ignoreLoadingBar': ignore,
                             'data'      : $httpParamSerializerJQLike(dataToSend),
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
@@ -90,11 +91,12 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
         },
-        getUserCards: function (data) {
+        getUserCards: function (data, ignore) {
             data.requestType = 'GetMyUserCards_';
             return $http({
                             'method'    : 'POST',
                             'url'       : API_ROOT_URL + 'card_controller.php',
+                            'ignoreLoadingBar': ignore,
                             'data'      : $httpParamSerializerJQLike(data),
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })
