@@ -1,5 +1,6 @@
 
 mainModule.controller('dashboardCtrl', DashboardCtrl)
+mainModule.controller('profileCtrl', ProfileCtrl)
 
 
 DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData', 'ngDialog', '$timeout', 'wallet', 'flags'];
@@ -34,4 +35,10 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialo
         $scope.dashboardMyCards = data;
     })
     
+}
+
+
+ProfileCtrl.$inject = ['$scope', 'accountData'];
+function ProfileCtrl($scope, accountData) {
+    $scope.userInfo = accountData.getUser();
 }

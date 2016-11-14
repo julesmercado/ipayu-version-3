@@ -35,7 +35,11 @@
    			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
     		<img src="images/dashboard/ipayu-icon.png" class="img img-responsive prof-pp">
 
-    		<h3 class="user-name-pp"> Mr. Pika Chu </h3>
+    		<h3 class="user-name-pp"> 
+                <span ng-if="userInfo.gender == 'Male'">Mr.&nbsp;</span>
+				<span ng-if="userInfo.gender == 'Female'">Ms.&nbsp;</span>
+				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}    
+            </h3>
     		<hr/>
     		<div class="container prof-user-cred-container">
     			<div class="row">
@@ -45,7 +49,7 @@
     				</div> 
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Ipayu ID</p>
-    					<p class="item-detail-profp">1256652</p>
+    					<p class="item-detail-profp">{{userInfo.username}}</p>
     				</div>
 
     			</div>
@@ -58,7 +62,7 @@
     				</div> 
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Phone no.</p>
-    					<p class="item-detail-profp">05454122</p>
+    					<p class="item-detail-profp">{{userInfo.phone || 'N/A'}}</p>
     				</div>
 
     			</div>
@@ -71,11 +75,11 @@
     				</div> 
     				<div class="col-xs-3 no-padding" style="position:relative">
     					<p class="item-header-profp">First Name:</p>
-    					<p class="item-detail-profp">Pika </p>
+    					<p class="item-detail-profp"> {{userInfo.firstname | capitalize}}</p>
     				</div>
     				<div class="col-xs-3 no-padding" style="position:relative">
     					<p class="item-header-profp">Last Name:</p>
-    					<p class="item-detail-profp">Chu</p>
+    					<p class="item-detail-profp">{{userInfo.lastname | capitalize}}</p>
     				</div>
 
     			</div>
@@ -84,11 +88,10 @@
     			<div class="row">
     				<div class="col-xs-3 no-padding item-pp-holder">
     					<img src="images/dashboard/gray-email.png" class="item-pp">
-    					
     				</div> 
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Email:</p>
-    					<p class="item-detail-profp">pika@chu.com</p>
+    					<p class="item-detail-profp">{{userInfo.email}}</p>
     				</div>
 
     			</div>
@@ -102,11 +105,11 @@
     				</div> 
     				<div class="col-xs-3 no-padding" style="position:relative">
     					<p class="item-header-profp">Birth Year:</p>
-    					<p class="item-detail-profp">1998 </p>
+    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[0]}}</p>
     				</div>
     				<div class="col-xs-3 no-padding" style="position:relative">
     					<p class="item-header-profp">Birth Month:</p>
-    					<p class="item-detail-profp">August</p>
+    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[1] | date:'MMMM'}}</p>
     				</div>
 
     			</div>

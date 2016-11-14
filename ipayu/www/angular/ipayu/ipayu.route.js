@@ -46,6 +46,18 @@ function Config($stateProvider, $urlRouterProvider) {
             cache: false
         })
 
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'templates/profile.html',
+            controller: 'profileCtrl'
+        })
+
+         .state('changePW', {
+            url: '/changePW',
+            templateUrl: 'templates/change-pass.html',
+            controller: ''
+        })
+
     $urlRouterProvider.otherwise('/process');
 
 }
