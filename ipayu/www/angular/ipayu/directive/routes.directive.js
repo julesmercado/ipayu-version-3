@@ -1,7 +1,7 @@
 
 mainModule.directive('back', Back)
 mainModule.directive('dash', Dash)
-mainModule.directive('profile', Dash)
+mainModule.directive('profile', Profile)
 
 Back.$inject = ['$state'];
 function Back($state) {
@@ -34,8 +34,8 @@ function Dash($state) {
 
 
 
-Dash.$inject = ['$state'];
-function Dash($state) {
+Profile.$inject = ['$state'];
+function Profile($state) {
 	return {
 	    restrict: 'A',
 	    scope: '',
