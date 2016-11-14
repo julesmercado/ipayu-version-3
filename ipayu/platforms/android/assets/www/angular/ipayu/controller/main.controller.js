@@ -114,6 +114,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 wallet.getUserCards({'ipayu_id':ipayu_info.ipayu_id, 'type':'mall'}, true)
                 .then(function(resolve){
                     ready_mallcard = true;
+                    console.log(resolve)
                     if(resolve){
                         walletData.setUserCards(resolve[0].data.data.all, 'mall');
                         walletData.setFrequentUserCards(resolve[0].data.data.frequently, 'mall');
