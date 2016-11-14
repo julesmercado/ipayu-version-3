@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
@@ -23,6 +22,7 @@
 		EE94BC9BFC154657B0B82324 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04D43C79A7F4F6EB164C783 /* CoreTelephony.framework */; };
 		F7962313803843A497286584 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E7BBC7865A634FC18DCFC344 /* SocialSharing.m */; };
 		F9F10DF9445A4847BAF6D5BA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E31A2507B0D4691A3AD4C90 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6A57E4B9F07B4A8384256DA2 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A89774F6EF47B2ADE5B808 /* Cache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +78,8 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F226BFBAACF44548AC03C16E /* CDVReachability.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Ipayu/config.xml; sourceTree = "<group>"; };
+		E9A89774F6EF47B2ADE5B808 /* Cache.m */ = {isa = PBXFileReference; name = "Cache.m"; path = "org.apache.cordova.plugin.cache/Cache.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7A618AEF9F3A446895ED1B67 /* Cache.h */ = {isa = PBXFileReference; name = "Cache.h"; path = "org.apache.cordova.plugin.cache/Cache.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,8 @@
 				2106A09A5AD74F29BE1647D3 /* sqlite3.c */,
 				603C62D391ED497FA428A70C /* SQLitePlugin.h */,
 				58E64D77C4934BF980331B29 /* sqlite3.h */,
+				E9A89774F6EF47B2ADE5B808 /* Cache.m */,
+				7A618AEF9F3A446895ED1B67 /* Cache.h */,
 			);
 			name = Plugins;
 			path = Ipayu/Plugins;
@@ -242,7 +246,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 730;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ipayu" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -320,6 +324,7 @@
 				F7962313803843A497286584 /* SocialSharing.m in Sources */,
 				C6A4575074D748DFB755191D /* SQLitePlugin.m in Sources */,
 				B820EE62C6464C5880D862B9 /* sqlite3.c in Sources */,
+				6A57E4B9F07B4A8384256DA2 /* Cache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

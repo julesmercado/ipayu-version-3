@@ -196,6 +196,7 @@ function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, 
 	    			$rootScope.doLoading = true;
 	    			wallet.getAllCardAvailable(user.ipayu_id, type)
 	    					.then(function (resolve) {
+                        console.log(resolve, "route")
 	    						if(resolve){
                                     console.log(resolve)
                                     var a = walletData.setAllAvailableCards(resolve[0].data.data || []);

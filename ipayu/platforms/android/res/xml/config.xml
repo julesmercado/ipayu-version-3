@@ -30,4 +30,7 @@
     <allow-intent href="market:*" />
     <access origin="*" subdomains="true" />
     <preference name="loglevel" value="DEBUG" />
+    <feature name="Cache">
+        <param name="android-package" value="org.apache.cordova.plugin.cache.Cache" />
+    </feature>
 </widget>

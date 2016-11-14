@@ -32,6 +32,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
+    },
+    {
+        "id": "org.apache.cordova.plugin.cache.Cache",
+        "file": "plugins/org.apache.cordova.plugin.cache/www/Cache.js",
+        "pluginId": "org.apache.cordova.plugin.cache",
+        "clobbers": [
+            "cache"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -40,7 +48,8 @@ module.exports.metadata =
     "cordova-plugin-network-information": "1.3.0",
     "cordova-plugin-whitelist": "1.3.0",
     "cordova-sqlite-storage": "1.4.8",
-    "cordova-plugin-x-socialsharing": "5.1.3"
+    "cordova-plugin-x-socialsharing": "5.1.3",
+    "org.apache.cordova.plugin.cache": "1.0.5"
 };
 // BOTTOM OF METADATA
 });

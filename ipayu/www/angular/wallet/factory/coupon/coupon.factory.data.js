@@ -1,9 +1,9 @@
 
 mainModule.factory('couponData', CouponData)
 
-// CouponData.$inject = [];
 
-function CouponData() {
+CouponData.$inject = ['storages'];
+function CouponData(storages) {
     
     var coupon_group = [];
     
@@ -11,15 +11,15 @@ function CouponData() {
 
 // Setters
         setUserCoupons: function (data) {
-            localStorage.setItem('ipayucouponcards', JSON.stringify(data));
+            localStorage.setItem(storages.ipayucouponcards, JSON.stringify(data));
             return data;
         },
         setFeaturedCoupons: function (data) {
-            localStorage.setItem('ipayufeaturedcoupons', JSON.stringify(data));
+            localStorage.setItem(storages.ipayufeaturedcoupons, JSON.stringify(data));
             return data;
         },
         setUsedCoupons: function (data) {
-            localStorage.setItem('ipayuusedcoupons', JSON.stringify(data));
+            localStorage.setItem(storages.ipayuusedcoupons, JSON.stringify(data));
             return data;
         },
         setCouponGroup: function (data) {
@@ -30,15 +30,15 @@ function CouponData() {
 
 // Getters
         getUserCoupons: function () {
-            var retrievedObject = localStorage.getItem('ipayucouponcards');
+            var retrievedObject = localStorage.getItem(storages.ipayucouponcards);
             return JSON.parse(retrievedObject) || [];
         },
         getFeaturedCoupons: function () {
-            var retrievedObject = localStorage.getItem('ipayufeaturedcoupons');
+            var retrievedObject = localStorage.getItem(storages.ipayufeaturedcoupons);
             return JSON.parse(retrievedObject) || [];
         },
         getUsedCoupons: function () {
-            var retrievedObject = localStorage.getItem('ipayuusedcoupons');
+            var retrievedObject = localStorage.getItem(storages.ipayuusedcoupons);
             return JSON.parse(retrievedObject) || [];
         },
         getCouponGroup: function () {
@@ -47,7 +47,7 @@ function CouponData() {
 
 
         addUserCoupon: function(data){
-            var retrievedObject = localStorage.getItem('ipayucouponcards');
+            var retrievedObject = localStorage.getItem(storages.ipayucouponcards);
             retrievedObject = JSON.parse(retrievedObject) || [];
             retrievedObject.push(data);
 

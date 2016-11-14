@@ -56,7 +56,7 @@ function Daterangefilter(excel){
 	};
 }
 
-Redeemfilter.$inject = [];
+Capitalize.$inject = [];
 function Capitalize(){
     return function(input) {
         return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';

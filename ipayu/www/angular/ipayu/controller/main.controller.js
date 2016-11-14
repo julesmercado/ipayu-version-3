@@ -3,15 +3,17 @@ mainModule.controller('mainCtrl', MainCtrl)
 
 
 MainCtrl.$inject = [
-                    '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet', 
+                    '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet',  'storages',
                     'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData'
                     ];
-function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet,
+function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages,
                     stampData, couponData, stamp, coupon, wallet, walletData) {
-
-    var tOut;
+    
     $rootScope.doLoading = false;
-	var ipayu_info = accountData.getUser();
+
+    var tOut,
+        ipayu_info = accountData.getUser();
+    
     function init() {
         $rootScope.headerCountries = flags.getAll();
         $rootScope.countryDisplay = flags.getCountryDisplay();
@@ -75,12 +77,35 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
         }
         flags.setCountryDisplay(countryDisplay);
         $rootScope.countryDisplay = flags.getCountryDisplay();
+        $rootScope.$broadcast('countryHasChange', $rootScope.countryDisplay);
     }
 
     $rootScope.logout = function () {
         sqliteSet.dropTable();
-        localStorage.clear();
-        $state.go('login');
+//        localStorage.clear();
+        
+        for(var i in storages){
+            if(storages.hasOwnProperty(i)){
+                localStorage.removeItem(storages[i]);
+            }
+        }
+        
+//        var success_clear_cache = function(status) {
+//            alert(JSON.stringify(status), "clear cache success")
+//        }
+//
+//        var error_clear_cache = function(status) {
+//            alert(JSON.stringify(status), "clear cache error")
+//        }
+//
+//        window.cache.clear( success_clear_cache, error_clear_cache );
+//        window.cache.cleartemp(); 
+        
+//        $state.go('login');
+        
+        $state.transitionTo('login', {}, { 
+          reload: true, inherit: false, notify: true
+        });
     }
 
     $rootScope.readable_date = function(date){
@@ -94,6 +119,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
         ready_stamp = true;
 
     setInterval(function() {
+        ipayu_info = accountData.getUser();
 
         if($rootScope.showOffline == false) {
 

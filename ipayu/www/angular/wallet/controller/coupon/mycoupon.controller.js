@@ -96,13 +96,11 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
         couponData.setFeaturedCoupons(new_featured);
         $scope.featured = filterCouponcard(couponData.getFeaturedCoupons()); 
     })
-
-    $scope.$watch( 'searchCountry.country',
-            function(newValue){
-                $scope.coupons = filterCouponcard(couponData.getUserCoupons());
-                $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
-            }
-        )
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.coupons = filterCouponcard(couponData.getUserCoupons());
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+    })
 
     function resetMyCoupons(data) {
         if(data.length == 0){
@@ -325,13 +323,11 @@ function CouponCardSearch($scope, $rootScope, walletData, customService) {
 		$scope.featured = get_featured();
 		$scope.unfeatured = get_unfeatured();
 	}
-
-    $scope.$watch('searchCountry.country',
-                function(newValue, oldValue){
-                	$scope.featured = get_featured();
-					$scope.unfeatured = get_unfeatured();
-                }
-            )
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = get_featured();
+        $scope.unfeatured = get_unfeatured();
+    })
 }
 
 
@@ -423,11 +419,10 @@ function AllCouponCardSearch($scope, $rootScope, walletData, customService, ngDi
 	$scope.filterCards = function(){
 		$scope.allCouponCards = contruct_data(all_cards);
 	}
-    $scope.$watch('searchCountry.country',
-    		function(newValue){
-    			$scope.allCouponCards = contruct_data(all_cards);
-    		}
-    	)
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.allCouponCards = contruct_data(all_cards);
+    })
 }
 
 AddCouponCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'coupon', 'couponData'];
@@ -511,10 +506,8 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
 	        });
     }
 
-    $scope.$watch('searchCountry.country',
-                function (newValue, oldValue) {
-                    $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
-                }
-            )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+    })
 }
 
