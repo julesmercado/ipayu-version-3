@@ -67,9 +67,7 @@ function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, account
 
     function resetMyStamps(data) {
         if(data.length == 0){
-            $scope.$apply(function(){
-                $scope.stamps = [];
-            })
+            $scope.stamps = [];
             return;
         }
         for (var i = 0; i < $scope.stamps.length; i++) {
@@ -119,7 +117,7 @@ function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, account
     }
 
     $rootScope.$on('newStampData', function (event, data) {
-        console.log(data, 'New Stamp')
+        // console.log(data, 'New Stamp')
 
         var a = data.allstamps || [];
         var f = data.featuredstamps || [];
@@ -177,13 +175,11 @@ function StampInfo($scope, $rootScope, $state, stampData, customService, $stateP
     }
 
     $scope.$on('hasExpiredStamp', function (evt, value) {
-        $scope.$apply(function () {
-            $scope.thisStamp = value;
-        })
+        $scope.thisStamp = value;
     });
 
     $rootScope.$on('newStampData', function (event, data) {
-        console.log(data, 'New Stamp')
+        // console.log(data, 'New Stamp')
 
         if($stateParams.type == 'mystamps'){
             allStamps = data.allstamps;
@@ -207,7 +203,7 @@ function StampHistory ($scope, $rootScope, $state, stampData, customService, sta
 
 
     $rootScope.$on('newStampData', function (event, data) {
-        console.log(data, 'New Stamp')
+        // console.log(data, 'New Stamp')
         $scope.usedStamps = customService.filterByCountry(data.usedstamps, $rootScope.countryDisplay.country, true, 2);
     })
 }

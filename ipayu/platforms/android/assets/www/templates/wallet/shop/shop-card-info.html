@@ -150,7 +150,7 @@
                     <td style="text-align:center;">Balance</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr class="animated transaction-data-row flipInX"
+                <tr class=" transaction-data-row "
                     ng-if="transactions.length != 0"
                     ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate">
                     <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
