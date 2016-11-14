@@ -15,10 +15,10 @@ function MyShopCard($scope, $rootScope, walletData) {
 	$scope.shopCards = walletData.getUserCards('shop');
 
     $rootScope.$on('newShopCardData', function (event, data) {
-        console.log(data, 'New Shop card')
-		$scope.lastUsed = data.all;
+        // console.log(data, 'New Shop card')
+		$scope.lastUsed = data.last_used;
 		$scope.frequent = data.frequently;
-		$scope.mallCards = data.last_used;
+		$scope.shopCards = data.all;
     })
 }
 
@@ -35,7 +35,7 @@ function MyShopCardView($scope, $rootScope, walletData, customService) {
             )
 
     $rootScope.$on('newShopCardData', function (event, data) {
-        console.log(data, 'New Shop card')
+        // console.log(data, 'New Shop card')
         $scope.shopCards = customService.filterByCountry(data.all, $rootScope.countryDisplay.country, true);
     })
 }
@@ -239,7 +239,7 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
     }
 
     $rootScope.$on('newShopCardData', function (event, data) {
-        console.log(data, 'New Shop card')
+        // console.log(data, 'New Shop card')
         var cards = data.all;
         for (var i = 0; i < cards.length; i++) {
         	if(cards[i].card_id == $scope.card.card_id){

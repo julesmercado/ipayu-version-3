@@ -16,10 +16,10 @@ function MyMallCardCtrl($scope, walletData, $rootScope) {
 	$scope.mallCards = walletData.getUserCards('mall');
 
     $rootScope.$on('newMallCardData', function (event, data) {
-        console.log(data, 'New Mall card')
-		$scope.lastUsed = data.all;
+        // console.log(data, 'New Mall card')
+		$scope.lastUsed = data.last_used;
 		$scope.frequent = data.frequently;
-		$scope.mallCards = data.last_used;
+		$scope.mallCards = data.all;
     })
 
 }
@@ -37,7 +37,7 @@ function MyMallCardViewCtrl($scope, $rootScope, walletData, customService) {
             )
 
     $rootScope.$on('newMallCardData', function (event, data) {
-        console.log(data, 'New Mall card')
+        // console.log(data, 'New Mall card')
         $scope.mallCards = customService.filterByCountry(data.all, $rootScope.countryDisplay.country, true);
 
     })
@@ -214,7 +214,7 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
     }
 
     $rootScope.$on('newMallCardData', function (event, data) {
-        console.log(data, 'New Mall card')
+        // console.log(data, 'New Mall card')
         var cards = data.all;
         for (var i = 0; i < cards.length; i++) {
         	if(cards[i].card_id == $scope.card.card_id){

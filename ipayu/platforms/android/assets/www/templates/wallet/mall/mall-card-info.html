@@ -164,7 +164,7 @@
                     <td style="text-align:center;">Balance</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr class="animated transaction-data-row flipInX"
+                <tr class=" transaction-data-row"
                     ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate as filtered_transactions">
                     <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
                     <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>

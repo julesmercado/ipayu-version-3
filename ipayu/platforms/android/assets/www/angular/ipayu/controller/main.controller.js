@@ -164,10 +164,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                     }
                 })
             }
-
         }
-
-        
 
     }, 2000);
 

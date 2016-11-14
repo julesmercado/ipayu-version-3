@@ -78,13 +78,11 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
                 new_coupons.push(coupons[i]);
             }
         }
-        $scope.$apply(function () {
-            couponData.setUserCoupons(new_coupons);
-            var used = couponData.getUsedCoupons();
-            used.push(coupon);
-            couponData.setUsedCoupons(used);
-            $scope.coupons = filterCouponcard(couponData.getUserCoupons());  
-        });
+        couponData.setUserCoupons(new_coupons);
+        var used = couponData.getUsedCoupons();
+        used.push(coupon);
+        couponData.setUsedCoupons(used);
+        $scope.coupons = filterCouponcard(couponData.getUserCoupons());  
     })
     
     $scope.$on('hasExpiredFeaturedCoupon', function(event, coupon){
@@ -95,10 +93,8 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
                 new_featured.push(featured[i]);
             }
         }
-        $scope.$apply(function () {
-            couponData.setFeaturedCoupons(new_featured);
-            $scope.featured = filterCouponcard(couponData.getFeaturedCoupons()); 
-        });
+        couponData.setFeaturedCoupons(new_featured);
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons()); 
     })
 
     $scope.$watch( 'searchCountry.country',
@@ -167,7 +163,7 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
     }
 
     $rootScope.$on('newCouponData', function (event, data) {
-        console.log(data, 'New Coupon')
+        // console.log(data, 'New Coupon')
 
         var a = data.allcoupons || [];
         var f = data.featuredcoupons || [];
@@ -191,7 +187,7 @@ function CouponGroup($scope, $rootScope, couponData, customService, $stateParams
     }
 
     $rootScope.$on('newCouponData', function (event, data) {
-        console.log(data, 'New Coupon')
+        // console.log(data, 'New Coupon')
         var all_coupon = data.allcoupons,
             gr = couponData.getCouponGroup();
 
@@ -235,13 +231,11 @@ function CouponInfo($scope, $rootScope, couponData, customService, $stateParams)
     }
 
     $scope.$on('hasExpiredCoupon', function (evt, value) {
-        $scope.$apply(function () {
-            $scope.thisCoupon = value;
-        })
+        $scope.thisCoupon = value;
     });
 
     $rootScope.$on('newCouponData', function (event, data) {
-        console.log(data, 'New Coupon')
+        // console.log(data, 'New Coupon')
 
         if($stateParams.type == 'mycoupons'){
             allCoupons = data.allcoupons;
@@ -264,7 +258,7 @@ function CouponHistory ($scope, $rootScope, $state, couponData, customService) {
     }
 
     $rootScope.$on('newCouponData', function (event, data) {
-        console.log(data, 'New Coupon')
+        // console.log(data, 'New Coupon')
         $scope.usedCoupons = customService.filterByCountry(data.usedcoupons, $rootScope.countryDisplay.country, true, 2);
 
     })
