@@ -30,7 +30,7 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialo
     }
 
     $rootScope.$on('newDashboardData', function (event, data) {
-        // console.log(data, 'New Dashboard')
+         console.log(data, 'New Dashboard')
         $scope.dashboardMyCards = data;
     })
     

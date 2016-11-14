@@ -1,9 +1,8 @@
 
 walletModule.factory('walletData', WalletData)
 
-// WalletData.$inject = [];
-
-function WalletData() {
+ WalletData.$inject = ['storages'];
+function WalletData(storages) {
 
     var all_available_cards = [], 
         card_info = [],
@@ -20,28 +19,28 @@ function WalletData() {
 // Setters
         setUserCards: function (data, type) {
             if(type == 'mall'){
-                localStorage.setItem('ipayumallcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayumallcards, JSON.stringify(data));
             }
             else if(type == 'shop'){
-                localStorage.setItem('ipayushopcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayushopcards, JSON.stringify(data));
             }
             return data;
         },
         setFrequentUserCards: function (data, type) {
             if(type == 'mall'){
-                localStorage.setItem('ipayufrequentmallcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayufrequentmallcards, JSON.stringify(data));
             }
             else if(type == 'shop'){
-                localStorage.setItem('ipayufrequentshopcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayufrequentshopcards, JSON.stringify(data));
             }
             return data;
         },
         setLastUserCards: function (data, type) {
             if(type == 'mall'){
-                localStorage.setItem('ipayulastmallcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayulastmallcards, JSON.stringify(data));
             }
             else if(type == 'shop'){
-                localStorage.setItem('ipayulastshopcards', JSON.stringify(data));
+                localStorage.setItem(storages.ipayulastshopcards, JSON.stringify(data));
             }
             return data;
         },
@@ -71,7 +70,7 @@ function WalletData() {
             return data;
         },
         setRedeemHistory: function(data){
-            localStorage.setItem('ipayuredeemhistory', JSON.stringify(data));
+            localStorage.setItem(storages.ipayuredeemhistory, JSON.stringify(data));
             return data;
         },
         setItemLocation: function(data){
@@ -92,10 +91,10 @@ function WalletData() {
         getUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
-                t = 'ipayumallcards';
+                t = storages.ipayumallcards;
             }
             else if(type == 'shop'){
-                t = 'ipayushopcards';
+                t = storages.ipayushopcards;
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
@@ -103,10 +102,10 @@ function WalletData() {
         getFrequentUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
-                t = 'ipayufrequentmallcards';
+                t = storages.ipayufrequentmallcards;
             }
             else if(type == 'shop'){
-                t = 'ipayufrequentshopcards';
+                t = storages.ipayufrequentshopcards;
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
@@ -117,10 +116,10 @@ function WalletData() {
         getLastUserCards: function (type) {
             var t = '';
             if(type == 'mall'){
-                t = 'ipayulastmallcards';
+                t = storages.ipayulastmallcards;
             }
             else if(type == 'shop'){
-                t = 'ipayulastshopcards';
+                t = storages.ipayulastshopcards;
             }
             var retrievedObject = localStorage.getItem(t);
             return JSON.parse(retrievedObject) || [];
@@ -141,7 +140,7 @@ function WalletData() {
             return card_to_add;
         },
         getRedeemHistory: function(data){
-            var retrievedObject = localStorage.getItem('ipayuredeemhistory');
+            var retrievedObject = localStorage.getItem(storages.ipayuredeemhistory);
             return JSON.parse(retrievedObject) || [];
         },
         getItemLocation: function(){
@@ -158,10 +157,10 @@ function WalletData() {
         addUserCards: function(data, type){
             var t = '';
             if(type == 'mall'){
-                t = 'ipayumallcards';
+                t = storages.ipayumallcards;
             }
             else if(type == 'shop'){
-                t = 'ipayushopcards';
+                t = storages.ipayushopcards;
             }
             var retrievedObject = localStorage.getItem(t);
             retrievedObject = JSON.parse(retrievedObject) || [];

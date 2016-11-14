@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"ios-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Cache\"><param name=\"ios-package\" value=\"Cache\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -36,6 +40,9 @@
             "PACKAGE_NAME": "com.app.mallinfo"
         },
         "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "org.apache.cordova.plugin.cache": {
             "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
@@ -73,12 +80,21 @@
             "clobbers": [
                 "SQLitePlugin"
             ]
+        },
+        {
+            "id": "org.apache.cordova.plugin.cache.Cache",
+            "file": "plugins/org.apache.cordova.plugin.cache/www/Cache.js",
+            "pluginId": "org.apache.cordova.plugin.cache",
+            "clobbers": [
+                "cache"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-network-information": "1.3.0",
         "cordova-plugin-whitelist": "1.3.0",
         "cordova-plugin-x-socialsharing": "5.1.3",
-        "cordova-sqlite-storage": "1.4.8"
+        "cordova-sqlite-storage": "1.4.8",
+        "org.apache.cordova.plugin.cache": "1.0.5"
     }
 }

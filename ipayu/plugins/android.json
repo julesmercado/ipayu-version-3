@@ -18,6 +18,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.app.ipayu"
+        },
+        "org.apache.cordova.plugin.cache": {
+            "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
     "dependent_plugins": {}

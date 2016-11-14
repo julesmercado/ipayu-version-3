@@ -8,10 +8,29 @@ var modules = [
                 'app.wallet', 'app.mallinfo', 'app.promos'
             ];
 
+var storage = {
+    ipayuuserinfo : 'ipayuuserinfo',
+    ipayutopthreefrequent   : 'ipayutopthreefrequent',
+    ipayumallcards  : 'ipayumallcards',
+    ipayushopcards  : 'ipayushopcards',
+    ipayufrequentmallcards  : 'ipayufrequentmallcards',
+    ipayufrequentshopcards  : 'ipayufrequentshopcards',
+    ipayulastmallcards  : 'ipayulastmallcards',
+    ipayulastshopcards  : 'ipayulastshopcards',
+    ipayucouponcards    : 'ipayucouponcards',
+    ipayufeaturedcoupons    : 'ipayufeaturedcoupons',
+    ipayuusedcoupons    : 'ipayuusedcoupons',
+    ipayustampcards : 'ipayustampcards',
+    ipayufeaturedstamps : 'ipayufeaturedstamps',
+    ipayuusedstamps : 'ipayuusedstamps',
+    ipayuredeemhistory  : 'ipayuredeemhistory'
+}
+
 var mainModule = angular.module('app.ipayu', modules)
 
 mainModule.run(Run);
 mainModule.constant('API_ROOT_URL', 'http://bringmesmiles.com/ipayu/controller/')
+mainModule.value('storages', storage)
 mainModule.config(Config)
 
 Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];

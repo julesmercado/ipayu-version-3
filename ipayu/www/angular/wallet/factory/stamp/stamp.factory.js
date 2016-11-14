@@ -6,7 +6,7 @@ StampFactory.$inject = ['$q', 'stampRequest'];
 function StampFactory($q, stampRequest) {
 
     function thenFunc(response) {
-        // console.log(response);
+         console.log(response);
         return response;
     }
 
