@@ -49,14 +49,14 @@ function CustomService() {
 				full = false;
 
 			for (var i = 0; i < data.length; i++) {
-				if(temp.length != cols){
+				if(temp.length + 1 != cols){
 					temp.push(data[i]);
 					remove_last_column = false;
 				}
 				else{
+					temp.push(data[i]);
 					returnData.push(temp);
 					temp = [];
-					temp.push(data[i]);
 					remove_last_column = true;
 				}
 				if(i == data.length-1){
@@ -78,7 +78,7 @@ function CustomService() {
 			var last_row = returnData.slice(-1)[0];
 			if(last_row && !full && !for_shop){
 				var last_col = returnData[returnData.indexOf(last_row)].slice(-1)[0];
-				if(remove_last_column){
+				if(remove_last_column == true){
 					returnData[returnData.indexOf(last_row)][last_row.indexOf(last_col)] = true;
 				}
 				else{

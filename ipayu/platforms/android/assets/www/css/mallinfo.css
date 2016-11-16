@@ -89,6 +89,7 @@ li.row.comments-container:last-child {border-bottom: none;}
 .comment-body{word-break: break-all;}
 .close-btn-comment-modal{    font-size: 21px;    position: absolute;    right: 13px;    top: 0;}
 
+.mall-info-directories-container::-webkit-scrollbar{display: none}
 
 
 @media only screen and (max-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3){
