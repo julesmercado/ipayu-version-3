@@ -18,19 +18,19 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-sqlite-storage.SQLitePlugin",
-        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
-        "pluginId": "cordova-sqlite-storage",
-        "clobbers": [
-            "SQLitePlugin"
-        ]
-    },
-    {
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
             "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
         ]
     },
     {
@@ -40,6 +40,14 @@ module.exports = [
         "clobbers": [
             "cache"
         ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -47,9 +55,10 @@ module.exports.metadata =
 {
     "cordova-plugin-network-information": "1.3.0",
     "cordova-plugin-whitelist": "1.3.0",
-    "cordova-sqlite-storage": "1.4.8",
     "cordova-plugin-x-socialsharing": "5.1.3",
-    "org.apache.cordova.plugin.cache": "1.0.5"
+    "cordova-sqlite-storage": "1.4.8",
+    "org.apache.cordova.plugin.cache": "1.0.5",
+    "cordova-plugin-splashscreen": "4.0.0"
 };
 // BOTTOM OF METADATA
 });

@@ -97,34 +97,36 @@ function CustomService() {
 	    },
 
     	groupByFirstLetter: function(allCards, country, searchData, mallInfo){
-    		var thisService = this;
-			var data = allCards;
-			var all = [];
-
-			var firstLetter = '';
-			var tempFirstLetter = '';
+    		var thisService = this,
+                data = allCards,
+                all = [],
+                first_letters = [''],
+                firstLetter = '';
 
 			for (var i = 0; i < data.length; i++) {
 				var checkFirstLetter = data[i].name.substr(0, 1).toUpperCase().match('[A-Z]');
 				if(!checkFirstLetter){
-					tempFirstLetter = 'num';
+					firstLetter = 'num';
 				}
 				else{
-					tempFirstLetter = data[i].name.substr(0, 1).toUpperCase();
+					firstLetter = data[i].name.substr(0, 1).toUpperCase();
 				}
+                
+                if(first_letters.indexOf(firstLetter) == -1) {
 
-				if(tempFirstLetter != firstLetter && data[i].country == country) {
-					if(searchData == '') {
-						firstLetter = tempFirstLetter;
-						var alpha = thisService.getAlpha(firstLetter, mallInfo);
-						all.push(alpha);
-					}
-					else {
-						var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
-						if(pos == 0){
-							firstLetter = tempFirstLetter;
+					if(data[i].country == country) {
+						if(searchData == '') {
+                			first_letters.push(firstLetter)
 							var alpha = thisService.getAlpha(firstLetter, mallInfo);
 							all.push(alpha);
+						}
+						else {
+							var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
+							if(pos == 0){
+								first_letters.push(firstLetter)
+								var alpha = thisService.getAlpha(firstLetter, mallInfo);
+								all.push(alpha);
+							}
 						}
 					}
 				}

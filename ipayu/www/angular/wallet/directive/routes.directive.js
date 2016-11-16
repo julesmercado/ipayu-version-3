@@ -196,7 +196,6 @@ function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, 
 	    			$rootScope.doLoading = true;
 	    			wallet.getAllCardAvailable(user.ipayu_id, type)
 	    					.then(function (resolve) {
-                        console.log(resolve, "route")
 	    						if(resolve){
                                     console.log(resolve)
                                     var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
@@ -230,14 +229,11 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
                     case 'shop':
                         route = 'allshopsearch'; break;
                     case 'coupon':
-                        route = 'allcouponsearch';
-                        break;
+                        route = 'allcouponsearch'; break;
                     case 'stamp':
-                        route = 'allstampsearch';
-                        break;
+                        route = 'allstampsearch'; break;
                     default:
-                        alert('undefined type');
-                        return;
+                        alert('undefined type'); return;
                 }
 
 	    		if($rootScope.showOffline){

@@ -107,7 +107,7 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
                         'datetime_redeemed' : Date.parse(new Date()),
                         'balance'   : card_balance - ($scope.point_value * $scope.counter),
                         'quantity'  : parseInt($scope.counter),
-                        'points_used'   : parseInt($scope.point_value)
+                        'points_used'   : parseInt($scope.point_value * $scope.counter)
                     }
                     $scope.t = newPointsBalance(card_balance, $scope.point_value, $scope.counter);
                     $scope.isLoading = true;

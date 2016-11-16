@@ -188,17 +188,5 @@ function Config($stateProvider) {
             controller: 'itemLocationCtrl'
         })
 
-        .state('profile', {
-            url: '/profile',
-            templateUrl: 'templates/profile.html',
-            controller: ''
-        })
-
-         .state('changePW', {
-            url: '/changePW',
-            templateUrl: 'templates/change-pass.html',
-            controller: ''
-        })
-
 
 }

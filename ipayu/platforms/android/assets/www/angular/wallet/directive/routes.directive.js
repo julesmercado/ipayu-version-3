@@ -229,14 +229,11 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
                     case 'shop':
                         route = 'allshopsearch'; break;
                     case 'coupon':
-                        route = 'allcouponsearch';
-                        break;
+                        route = 'allcouponsearch'; break;
                     case 'stamp':
-                        route = 'allstampsearch';
-                        break;
+                        route = 'allstampsearch'; break;
                     default:
-                        alert('undefined type');
-                        return;
+                        alert('undefined type'); return;
                 }
 
 	    		if($rootScope.showOffline){

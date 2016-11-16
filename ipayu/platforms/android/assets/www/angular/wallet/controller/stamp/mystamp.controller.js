@@ -53,17 +53,10 @@ function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, account
         });
 	}
 
-    $scope.$watch(
-            function(){
-                return $rootScope.searchCountry.country;
-            },
-            function(newValue, oldValue){
-                $scope.stamps = filterStampcard(stampData.getUserStamps());
-                $scope.featured = filterStampcard(stampData.getFeaturedStamps());
-            }
-        )
-
-
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.stamps = filterStampcard(stampData.getUserStamps());
+        $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+    })
 
     function resetMyStamps(data) {
         if(data.length == 0){
@@ -270,13 +263,11 @@ function StampCardSearch($scope, $rootScope, walletData, customService, accountD
 		$scope.unfeatured = get_unfeatured();
 	}
 
-    $scope.$watch('searchCountry.country',
-                function(newValue, oldValue){
-                	$scope.featured = get_featured();
-					$scope.unfeatured = get_unfeatured();
-					$scope.unfeatured = get_unfeatured();
-                }
-            )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = get_featured();
+        $scope.unfeatured = get_unfeatured();
+        $scope.unfeatured = get_unfeatured();
+    })
 }
 
 
@@ -368,11 +359,10 @@ function AllStampCardSearch($scope, $rootScope, walletData, customService, ngDia
 	$scope.filterCards = function(){
 		$scope.allStampCards = contruct_data(all_cards);
 	}
-    $scope.$watch('searchCountry.country',
-    		function(newValue){
-    			$scope.allStampCards = contruct_data(all_cards);
-    		}
-    	)
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.allStampCards = contruct_data(all_cards);
+    })
 }
 
 AddStampCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'stamp', 'stampData'];
@@ -472,13 +462,8 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
         });
 	}
 
-    $scope.$watch(
-            function(){
-                return $rootScope.searchCountry.country;
-            },
-            function(newValue, oldValue){
-                $scope.featured = filterStampcard(stampData.getFeaturedStamps());
-            }
-        )
+    $rootScope.$on('countryHasChange', function(event, country){
+       $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+    })
 }
 

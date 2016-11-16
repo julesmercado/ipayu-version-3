@@ -100,7 +100,7 @@ function CustomService() {
     		var thisService = this,
                 data = allCards,
                 all = [],
-                first_letters = [],
+                first_letters = [''],
                 firstLetter = '';
 
 			for (var i = 0; i < data.length; i++) {
@@ -112,19 +112,21 @@ function CustomService() {
 					firstLetter = data[i].name.substr(0, 1).toUpperCase();
 				}
                 
-                if(first_letters.includes(firstLetter)){ continue; }
-                else { first_letters.push(firstLetter) }
+                if(first_letters.indexOf(firstLetter) == -1) {
 
-				if(data[i].country == country) {
-					if(searchData == '') {
-						var alpha = thisService.getAlpha(firstLetter, mallInfo);
-						all.push(alpha);
-					}
-					else {
-						var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
-						if(pos == 0){
+					if(data[i].country == country) {
+						if(searchData == '') {
+                			first_letters.push(firstLetter)
 							var alpha = thisService.getAlpha(firstLetter, mallInfo);
 							all.push(alpha);
+						}
+						else {
+							var pos = data[i].name.toLowerCase().indexOf(searchData.toLowerCase());
+							if(pos == 0){
+								first_letters.push(firstLetter)
+								var alpha = thisService.getAlpha(firstLetter, mallInfo);
+								all.push(alpha);
+							}
 						}
 					}
 				}
@@ -149,7 +151,6 @@ function CustomService() {
 				alpha[0] = firstLetter;
 				alpha[1] = [[]];
     		}
-            console.log(alpha, 'alpha')
     		return alpha;
     	},
 

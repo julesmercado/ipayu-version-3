@@ -58,4 +58,8 @@
     <feature name="Cache">
         <param name="ios-package" value="Cache" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>

@@ -81,7 +81,8 @@ function DownloadExcel(excel, accountData, wallet){
                     .then(
                             function(response){
                                 if(response){
-                                    window.open(response[0].data.data.PATH_URL, '_system');
+                                    window.open(response[0].data.data, '_system');
+                                    console.log(response);
                                 }
                             },
                             function(error){

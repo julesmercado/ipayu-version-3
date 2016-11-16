@@ -8,18 +8,21 @@
     },
     "installed_plugins": {
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.app.ipayu"
+            "PACKAGE_NAME": "com.app.mallinfo"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.app.ipayu"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.app.ipayu"
+            "PACKAGE_NAME": "com.app.mallinfo"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.app.ipayu"
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.mallinfo"
         },
         "org.apache.cordova.plugin.cache": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.app.mallinfo"
         }
     },

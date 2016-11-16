@@ -14,24 +14,19 @@
             <a route-mycouponcard class="coupon-history-viewAll-txt" style="z-index:99;">
                <span class="glyphicon glyphicon-triangle-left"></span> VIEW ALL
             </a>
+            <span class="history-label coupon-group-label" style="z-index:1;" >{{group_name}}</span>   
 
-
-            <span class="history-label coupon-group-label" style="z-index:1;" >{{group_name}}</span>    
-
-            <a route-card-history="coupon" class="history-coupons pull-right" style="    z-index: 100;
-    margin-right: -8px;
-    margin-top: 13px;">
+            <a route-card-history="coupon" class="history-coupons hc-ht-cg">
                 HISTORY <span class="glyphicon glyphicon-play"></span>
             </a>
-
-    <div class=" view-all-cards" style="overflow-x:hidden; margin-top:30px">
+    <div class=" view-all-cards" style="overflow-x:hidden; margin-top:45px">
         <div class="col-xs-12 no-padding">
 
             <div  class="row" ng-repeat="group in coupons">
-                <div class="col-xs-6 dark-filter-coupons animated flipInX" ng-repeat="card in group"  ng-click="proceedCouponInfo(card.coupon_id)">
+                <div class="col-xs-6 dark-filter-coupons" ng-repeat="card in group"  ng-click="proceedCouponInfo(card.coupon_id)">
                     <div class="solid-border-va">
                         <div class="dashed-border-va">
-                            <img ng-src="{{card.image}}" class="img-responsive img-card-view-all animated flipInX">
+                            <img ng-src="{{card.image}}" class="img-responsive img-card-view-all">
                         </div>
 
                     </div>

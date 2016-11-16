@@ -6,7 +6,7 @@ CouponFactory.$inject = ['$q', 'couponRequest'];
 function CouponFactory($q, couponRequest) {
 
     function thenFunc(response) {
-        // console.log(response);
+         console.log(response);
         return response;
     }
 
