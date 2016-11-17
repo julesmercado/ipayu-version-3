@@ -53,44 +53,78 @@ function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, account
         });
 	}
 
-    $scope.$watch(
-            function(){
-                return $rootScope.searchCountry.country;
-            },
-            function(newValue, oldValue){
-                $scope.stamps = filterStampcard(stampData.getUserStamps());
-                $scope.featured = filterStampcard(stampData.getFeaturedStamps());
-            }
-        )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.stamps = filterStampcard(stampData.getUserStamps());
+        $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+    })
 
-    function intervalForStamps(){
-        setInterval(function() {
-            if($rootScope.showOffline == false && $state.current.name == 'mystampcards'){
-                stamp.getUserStamps(ipayu_info.ipayu_id, true)
-                    .then(function(resolve){
-                            stampData.setUserStamps(resolve[0].data.data.allstamps);
-                            stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
-                            stampData.setUsedStamps(resolve[0].data.data.usedstamps);
-                            var newArray = JSON.stringify(resolve[0].data.data.allstamps),
-                                oldArray = JSON.stringify(stampData.getUserStamps()),
-                                newFeaturedArray = JSON.stringify(resolve[0].data.data.featuredstamps),
-                                oldFeaturedArray = JSON.stringify(stampData.getFeaturedStamps());
-                            if(newArray != oldArray){
-                                $scope.coupons = filterCouponcard(stampData.getUserStamps());
-                            }
-                            if(newFeaturedArray != oldFeaturedArray){
-                                $scope.featured = filterCouponcard(stampData.getFeaturedStamps());
-                            }
-                    console.log(resolve)
-                        })
+    function resetMyStamps(data) {
+        if(data.length == 0){
+            $scope.stamps = [];
+            return;
+        }
+        for (var i = 0; i < $scope.stamps.length; i++) {
+            var ch = false;
+            for (var x = 0; x < data.length; x++) {
+                if($scope.stamps[i].stamp_id == data[x].stamp_id){
+                    ch = true;
+                }
             }
-        }, 2000);
+            if(ch == false){
+                $scope.stamps.splice($scope.stamps.indexOf($scope.stamps[i]), 1);
+            }
+        }
     }
-    intervalForStamps();
+
+    function resetFeatured(data) {
+        if(data.length == 0){
+            $scope.featured = [];
+            return;
+        }
+
+        for (var i = 0; i < $scope.featured.length; i++) {
+            var ch = false;
+            for (var x = 0; x <data.length; x++) {
+                if($scope.featured[i].stamp_id == data[x].stamp_id){
+                    ch = true;
+                }
+            }
+            if(ch == false){
+                $scope.featured.splice($scope.featured.indexOf($scope.featured[i]), 1);
+            }
+        }
+
+        for (var i = 0; i <data.length; i++) {
+            var ch = false;
+            for (var x = 0; x < $scope.featured.length; x++) {
+                if(data[i].stamp_id == $scope.featured[x].stamp_id){
+                    ch = true;
+                }
+            }
+            if(ch == false){
+                if(data[i].country == $rootScope.searchCountry.country){
+                    $scope.featured.push(data[i]);
+                }
+            }
+        }
+    }
+
+    $rootScope.$on('newStampData', function (event, data) {
+        // console.log(data, 'New Stamp')
+
+        var a = data.allstamps || [];
+        var f = data.featuredstamps || [];
+
+        resetMyStamps(a);
+        resetFeatured(f);
+
+    })
 }
 
-StampInfo.$inject = ['$scope', '$rootScope', 'stampData', 'customService', '$stateParams'];
-function StampInfo($scope, $rootScope, stampData, customService, $stateParams) {
+StampInfo.$inject = ['$scope', '$rootScope', '$state', 'stampData', 'customService', '$stateParams', 'stamp', 'accountData'];
+function StampInfo($scope, $rootScope, $state, stampData, customService, $stateParams, stamp, accountData) {
+
+    var ipayu_info = accountData.getUser();
     var allStamps = [];
     
     if($stateParams.type == 'mystamps'){
@@ -101,7 +135,6 @@ function StampInfo($scope, $rootScope, stampData, customService, $stateParams) {
     }
     
     $scope.thisStamp = getThisStamp();
-    console.log($scope.thisStamp)
     
     function getThisStamp(){
         var temp = [];
@@ -135,19 +168,37 @@ function StampInfo($scope, $rootScope, stampData, customService, $stateParams) {
     }
 
     $scope.$on('hasExpiredStamp', function (evt, value) {
-        $scope.$apply(function () {
-            $scope.thisStamp = value;
-        })
+        $scope.thisStamp = value;
     });
+
+    $rootScope.$on('newStampData', function (event, data) {
+        // console.log(data, 'New Stamp')
+
+        if($stateParams.type == 'mystamps'){
+            allStamps = data.allstamps;
+        } else if($stateParams.type == 'usedstamps'){
+            allStamps = data.usedstamps;
+        }
+        $scope.thisStamp = getThisStamp();
+    })
+
 }
 
-StampHistory.$inject = ['$scope', '$rootScope', '$state', 'stampData', 'customService'];
-function StampHistory ($scope, $rootScope, $state, stampData, customService) {
+StampHistory.$inject = ['$scope', '$rootScope', '$state', 'stampData', 'customService', 'stamp', 'accountData'];
+function StampHistory ($scope, $rootScope, $state, stampData, customService, stamp, accountData) {
+
+    var ipayu_info = accountData.getUser();
     $scope.usedStamps = customService.filterByCountry(stampData.getUsedStamps(), $rootScope.countryDisplay.country, true, 2);
 
     $scope.proceedStampInfo = function(stamp_id){
       $state.go('stampinfo', {'id':stamp_id, 'type':'usedstamps'});
     }
+
+
+    $rootScope.$on('newStampData', function (event, data) {
+        // console.log(data, 'New Stamp')
+        $scope.usedStamps = customService.filterByCountry(data.usedstamps, $rootScope.countryDisplay.country, true, 2);
+    })
 }
 
 
@@ -212,13 +263,11 @@ function StampCardSearch($scope, $rootScope, walletData, customService, accountD
 		$scope.unfeatured = get_unfeatured();
 	}
 
-    $scope.$watch('searchCountry.country',
-                function(newValue, oldValue){
-                	$scope.featured = get_featured();
-					$scope.unfeatured = get_unfeatured();
-					$scope.unfeatured = get_unfeatured();
-                }
-            )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = get_featured();
+        $scope.unfeatured = get_unfeatured();
+        $scope.unfeatured = get_unfeatured();
+    })
 }
 
 
@@ -310,11 +359,10 @@ function AllStampCardSearch($scope, $rootScope, walletData, customService, ngDia
 	$scope.filterCards = function(){
 		$scope.allStampCards = contruct_data(all_cards);
 	}
-    $scope.$watch('searchCountry.country',
-    		function(newValue){
-    			$scope.allStampCards = contruct_data(all_cards);
-    		}
-    	)
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.allStampCards = contruct_data(all_cards);
+    })
 }
 
 AddStampCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'stamp', 'stampData'];
@@ -414,13 +462,8 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
         });
 	}
 
-    $scope.$watch(
-            function(){
-                return $rootScope.searchCountry.country;
-            },
-            function(newValue, oldValue){
-                $scope.featured = filterStampcard(stampData.getFeaturedStamps());
-            }
-        )
+    $rootScope.$on('countryHasChange', function(event, country){
+       $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+    })
 }
 

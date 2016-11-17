@@ -78,13 +78,11 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
                 new_coupons.push(coupons[i]);
             }
         }
-        $scope.$apply(function () {
-            couponData.setUserCoupons(new_coupons);
-            var used = couponData.getUsedCoupons();
-            used.push(coupon);
-            couponData.setUsedCoupons(used);
-            $scope.coupons = filterCouponcard(couponData.getUserCoupons());  
-        });
+        couponData.setUserCoupons(new_coupons);
+        var used = couponData.getUsedCoupons();
+        used.push(coupon);
+        couponData.setUsedCoupons(used);
+        $scope.coupons = filterCouponcard(couponData.getUserCoupons());  
     })
     
     $scope.$on('hasExpiredFeaturedCoupon', function(event, coupon){
@@ -95,42 +93,84 @@ function MyCoupon($scope, $rootScope, couponData, $state, ngDialog, accountData,
                 new_featured.push(featured[i]);
             }
         }
-        $scope.$apply(function () {
-            couponData.setFeaturedCoupons(new_featured);
-            $scope.featured = filterCouponcard(couponData.getFeaturedCoupons()); 
-        });
+        couponData.setFeaturedCoupons(new_featured);
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons()); 
+    })
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.coupons = filterCouponcard(couponData.getUserCoupons());
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
     })
 
-    $scope.$watch( 'searchCountry.country',
-            function(newValue){
-                $scope.coupons = filterCouponcard(couponData.getUserCoupons());
-                $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+    function resetMyCoupons(data) {
+        if(data.length == 0){
+            $scope.coupons = [];
+            return;
+        }
+        for (var i = 0; i < $scope.coupons.length; i++) {
+            var ch = false;
+            for (var x = 0; x < data.length; x++) {
+                if($scope.coupons[i].coupon_id){
+                    if($scope.coupons[i].coupon_id == data[x].coupon_id){
+                        ch = true;
+                    }
+                }
+                else{
+                    if($scope.coupons[i].booklet_id == data[x].booklet_id){
+                        ch = true;
+                    }
+                }
             }
-        )
-
-    function intervalForCoupons(){
-        setInterval(function() {
-            if($rootScope.showOffline == false && $state.current.name == 'mycouponcards'){
-                coupon.getUserCoupons(ipayu_info.ipayu_id, true)
-                    .then(function(resolve){
-                            couponData.setUserCoupons(resolve[0].data.data.allcoupons);
-                            couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
-                            couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
-                            var newArray = JSON.stringify(resolve[0].data.data.allcoupons),
-                                oldArray = JSON.stringify(couponData.getUserCoupons()),
-                                newFeaturedArray = JSON.stringify(resolve[0].data.data.featuredcoupons),
-                                oldFeaturedArray = JSON.stringify(couponData.getFeaturedCoupons());
-                            if(newArray != oldArray){
-                                $scope.coupons = filterCouponcard(couponData.getUserCoupons());
-                            }
-                            if(newFeaturedArray != oldFeaturedArray){
-                                $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
-                            }
-                        })
+            if(ch == false){
+                $scope.coupons.splice($scope.coupons.indexOf($scope.coupons[i]), 1);
             }
-        }, 2000);
+        }
     }
-    intervalForCoupons();
+
+    function resetFeatured(data) {
+        if(data.length == 0){
+            $scope.featured = [];
+            return;
+        }
+
+        for (var i = 0; i < $scope.featured.length; i++) {
+            var ch = false;
+            for (var x = 0; x <data.length; x++) {
+                if($scope.featured[i].coupon_id == data[x].coupon_id){
+                    ch = true;
+                }
+            }
+            if(ch == false){
+                $scope.featured.splice($scope.featured.indexOf($scope.featured[i]), 1);
+            }
+        }
+
+        for (var i = 0; i <data.length; i++) {
+            var ch = false;
+            for (var x = 0; x < $scope.featured.length; x++) {
+                if(data[i].coupon_id == $scope.featured[x].coupon_id){
+                    ch = true;
+                }
+            }
+            if(ch == false){
+                if(data[i].country == $rootScope.searchCountry.country){
+                    $scope.featured.push(data[i]);
+                }
+            }
+        }
+    }
+
+    $rootScope.$on('newCouponData', function (event, data) {
+        // console.log(data, 'New Coupon')
+
+        var a = data.allcoupons || [];
+        var f = data.featuredcoupons || [];
+
+        resetMyCoupons(a);
+        resetFeatured(f);
+
+    })
+
 }
 
 
@@ -143,6 +183,23 @@ function CouponGroup($scope, $rootScope, couponData, customService, $stateParams
     $scope.proceedCouponInfo = function(coupon_id){
       $state.go('couponinfo', {'id':coupon_id, 'type':'mycoupons'});
     }
+
+    $rootScope.$on('newCouponData', function (event, data) {
+        // console.log(data, 'New Coupon')
+        var all_coupon = data.allcoupons,
+            gr = couponData.getCouponGroup();
+
+        for (var i = 0; i < all_coupon.length; i++) {
+            if(all_coupon[i].booklet_id) {
+                if(gr.booklet_id == all_coupon[i].booklet_id){
+                    $scope.coupons = customService.chunk(all_coupon[i], 2)
+                    break;
+                }
+            }
+        }
+        console.log('');
+
+    })
 }
 
 CouponInfo.$inject = ['$scope', '$rootScope', 'couponData', 'customService', '$stateParams'];
@@ -172,10 +229,21 @@ function CouponInfo($scope, $rootScope, couponData, customService, $stateParams)
     }
 
     $scope.$on('hasExpiredCoupon', function (evt, value) {
-        $scope.$apply(function () {
-            $scope.thisCoupon = value;
-        })
+        $scope.thisCoupon = value;
     });
+
+    $rootScope.$on('newCouponData', function (event, data) {
+        // console.log(data, 'New Coupon')
+
+        if($stateParams.type == 'mycoupons'){
+            allCoupons = data.allcoupons;
+        }
+        else if($stateParams.type == 'usedcoupons'){
+            allCoupons = data.usedcoupons;
+        }
+        $scope.thisCoupon = getThisCoupon();
+
+    })
 }
 
 CouponHistory.$inject = ['$scope', '$rootScope', '$state', 'couponData', 'customService'];
@@ -186,6 +254,12 @@ function CouponHistory ($scope, $rootScope, $state, couponData, customService) {
     $scope.proceedCouponInfo = function(coupon_id){
       $state.go('couponinfo', {'id':coupon_id, 'type':'usedcoupons'});
     }
+
+    $rootScope.$on('newCouponData', function (event, data) {
+        // console.log(data, 'New Coupon')
+        $scope.usedCoupons = customService.filterByCountry(data.usedcoupons, $rootScope.countryDisplay.country, true, 2);
+
+    })
 }
 
 
@@ -249,13 +323,11 @@ function CouponCardSearch($scope, $rootScope, walletData, customService) {
 		$scope.featured = get_featured();
 		$scope.unfeatured = get_unfeatured();
 	}
-
-    $scope.$watch('searchCountry.country',
-                function(newValue, oldValue){
-                	$scope.featured = get_featured();
-					$scope.unfeatured = get_unfeatured();
-                }
-            )
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = get_featured();
+        $scope.unfeatured = get_unfeatured();
+    })
 }
 
 
@@ -347,11 +419,10 @@ function AllCouponCardSearch($scope, $rootScope, walletData, customService, ngDi
 	$scope.filterCards = function(){
 		$scope.allCouponCards = contruct_data(all_cards);
 	}
-    $scope.$watch('searchCountry.country',
-    		function(newValue){
-    			$scope.allCouponCards = contruct_data(all_cards);
-    		}
-    	)
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.allCouponCards = contruct_data(all_cards);
+    })
 }
 
 AddCouponCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'coupon', 'couponData'];
@@ -435,10 +506,8 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
 	        });
     }
 
-    $scope.$watch('searchCountry.country',
-                function (newValue, oldValue) {
-                    $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
-                }
-            )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = filterCouponcard(couponData.getFeaturedCoupons());
+    })
 }
 

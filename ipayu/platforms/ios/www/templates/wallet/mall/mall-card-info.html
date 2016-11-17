@@ -125,15 +125,15 @@
                     <div class="row" style=" margin-top: -15px;">
                         <div class="col-xs-12">
                             <div style="padding-right:10px" class="col-xs-3 mc-info-redeem-img ">
-                                <img ng-src="{{rg.image}}" class="animated img img-responsive img-item-redeemable bounceIn">
+                                <img ng-src="{{rg.image}}" class=" img img-responsive img-item-redeemabl">
                             </div>
                             <div style="padding-left:0" class="col-xs-4 mc-info-redeem-desc">
-                                <div class=" animated  bounceIn">
+                                <div class=" ">
                                     <p class="mci-itn">{{ rg.item_name }}</p>
                                     <p class="condensed-redeem">Redeem this offer and get <span class="bold">1000 PHP</span> worth for</p>
                                 </div>
                             </div>
-                            <div style="padding-left:0" class="animated  col-xs-2  mc-info-redeem-desc bounceIn">
+                            <div style="padding-left:0" class="  col-xs-2  mc-info-redeem-des">
                                 <p class="item-pt-mc">{{ rg.point_value }}&nbsp;
                                     <span ng-if="rg.points_type == 'rebate'">rebates</span>
                                     <span ng-if="rg.points_type == 'reward'">points</span>
@@ -164,7 +164,7 @@
                     <td style="text-align:center;">Balance</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr class="animated transaction-data-row flipInX"
+                <tr class=" transaction-data-row"
                     ng-repeat="tran in transactions | daterangefilter:dateFilter.mindate:dateFilter.maxdate as filtered_transactions">
                     <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
                     <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
@@ -173,11 +173,7 @@
                         <span ng-if="tran.sales_amount != 'null'">{{tran.sales_amount}}</span>
                         
                     </td>
-                    <td >
-                        
-                        <span ng-if="tran.type == 'transaction'">{{tran.rebate || 0}}</span>
-                        <span ng-if="tran.type == 'redeem'">-{{tran.rebate || 0}}</span>
-                    </td>
+                    <td>{{tran.points || 0}}</td>
                     <td>{{tran.balance}}</td>
                     <td>
                         <span class="bold" style="font-size:8px" 
@@ -205,8 +201,7 @@
             <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
             <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-            <td  ng-if="tran.type == 'transaction' ">{{tran.rebate || 0}}</td>
-            <td  ng-if="tran.type == 'redeem' ">-{{tran.rebate || 0}}</td>
+            <td>{{tran.points || 0}}</td>
             <td>{{tran.balance}}</td>
         </tr>
         <tr ng-if="transactions.length == 0">

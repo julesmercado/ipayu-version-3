@@ -21,8 +21,8 @@
         <link rel="stylesheet" type="text/css" href="css/reaction.css">
         <link rel="stylesheet" type="text/css" href="css/reaction-style.css">
         <link rel="stylesheet" type="text/css" href="css/angular-range-slider.css">
-        
-        <link rel="stylesheet" id="themeCSS" href="css/daterange/classic.css"> 
+
+        <link rel="stylesheet" id="themeCSS" href="css/daterange/classic.css">
         <link rel="stylesheet" href="css/daterange/style.css">
 
         <link rel="stylesheet" type="text/css" href="css/promo.css">
@@ -31,23 +31,23 @@
 
     </head>
 
-<!--
     <script type="text/javascript">
 
          document.addEventListener('deviceready', function () {
              angular.bootstrap(document, ['app.ipayu']);
          }, false);
-        
+
     </script>
--->
-    <body ng-app="app.ipayu">
+
+ <!-- ng-app="app.ipayu" -->
+    <body>
 
         <div ng-controller="mainCtrl">
-            
-            <div class="no-net-alert animated slideInDown" 
-                    ng-if="showOffline" 
-                    ng-class="{'slideInDown': showOffline, 'display-none' : !showOffline}" 
-                    show-offline-message>  
+
+            <div class="no-net-alert animated slideInDown"
+                    ng-if="showOffline"
+                    ng-class="{'slideInDown': showOffline, 'display-none' : !showOffline}"
+                    show-offline-message>
             </div>
             <loading style="position: absolute;
                             top: 0;
@@ -80,15 +80,15 @@
         <script type="text/javascript" src="js/angular-qrcode.js"></script>
         <script type="text/javascript" src="js/angular-barcode.js"></script>
         <script type="text/javascript" src="js/ui-bootstrap-tpls-2.0.0.min.js"></script>
-        
+
         <script type="text/javascript" src="js/ng-cordova.js"></script>
-         <script type="text/javascript" src="cordova.js"></script> 
+         <script type="text/javascript" src="cordova.js"></script>
 
 
-        <!-- Ipayu Main -->  
+        <!-- Ipayu Main -->
         <script type="text/javascript" src="angular/ipayu/ipayu.app.js"></script>
         <script type="text/javascript" src="angular/ipayu/ipayu.route.js"></script>
-        
+
         <script type="text/javascript" src="angular/ipayu/controller/main.controller.js"></script>
         <script type="text/javascript" src="angular/ipayu/controller/login.controller.js"></script>
         <script type="text/javascript" src="angular/ipayu/controller/register.controller.js"></script>
@@ -161,7 +161,7 @@
         <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.data.js"></script>
         <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.js"></script>
         <script type="text/javascript" src="angular/wallet/factory/stamp/stamp.factory.request.js"></script>
-        
+
         <!-- Wallet->Redeem History Controllers -->
         <script type="text/javascript" src="angular/wallet/controller/redeem-history/redeem-history.controller.js"></script>
 
@@ -202,7 +202,7 @@
         <script type="text/javascript" src="angular/promo/controller/promo.controller.js"></script>
         <script type="text/javascript" src="angular/promo/directive/route.directive.js"></script>
         <script type="text/javascript" src="angular/promo/directive/parts.directive.js"></script>
-        
+
 
 <!--        <script type="text/javascript" src="js/reaction.js"></script>-->
     </body>

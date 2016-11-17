@@ -2,22 +2,41 @@
 
 var modules = [
                 'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova',
-    
+
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
-                
+
                 'app.wallet', 'app.mallinfo', 'app.promos'
             ];
+
+var storage = {
+    ipayuuserinfo : 'ipayuuserinfo',
+    ipayutopthreefrequent   : 'ipayutopthreefrequent',
+    ipayumallcards  : 'ipayumallcards',
+    ipayushopcards  : 'ipayushopcards',
+    ipayufrequentmallcards  : 'ipayufrequentmallcards',
+    ipayufrequentshopcards  : 'ipayufrequentshopcards',
+    ipayulastmallcards  : 'ipayulastmallcards',
+    ipayulastshopcards  : 'ipayulastshopcards',
+    ipayucouponcards    : 'ipayucouponcards',
+    ipayufeaturedcoupons    : 'ipayufeaturedcoupons',
+    ipayuusedcoupons    : 'ipayuusedcoupons',
+    ipayustampcards : 'ipayustampcards',
+    ipayufeaturedstamps : 'ipayufeaturedstamps',
+    ipayuusedstamps : 'ipayuusedstamps',
+    ipayuredeemhistory  : 'ipayuredeemhistory'
+}
 
 var mainModule = angular.module('app.ipayu', modules)
 
 mainModule.run(Run);
 mainModule.constant('API_ROOT_URL', 'http://bringmesmiles.com/ipayu/controller/')
+mainModule.value('storages', storage)
 mainModule.config(Config)
 
 Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
 function Run(sqliteSet, accountData, $rootScope, $state) {
-    
-    
+
+
     document.addEventListener('deviceready', function () {
 
         function onOnline(){
@@ -79,10 +98,10 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
         document.addEventListener("backbutton", backButtonIsTapped, false);
         window.addEventListener("resize", onResize, false);
 
-        sqliteSet.setUpDatabase();
-        sqliteSet.createTable();
+        // sqliteSet.setUpDatabase();
+        // sqliteSet.createTable();
         // sqliteSet.dropTable();
-    
+
     }, true);
 
 }

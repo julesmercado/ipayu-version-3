@@ -2,9 +2,9 @@
 
 var modules = [
                 'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova',
-    
+
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
-                
+
                 'app.wallet', 'app.mallinfo', 'app.promos'
             ];
 
@@ -35,8 +35,8 @@ mainModule.config(Config)
 
 Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
 function Run(sqliteSet, accountData, $rootScope, $state) {
-    
-    
+
+
     document.addEventListener('deviceready', function () {
 
         function onOnline(){
@@ -101,7 +101,7 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
         sqliteSet.setUpDatabase();
         sqliteSet.createTable();
         // sqliteSet.dropTable();
-    
+
     }, true);
 
 }

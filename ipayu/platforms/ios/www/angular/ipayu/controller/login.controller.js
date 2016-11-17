@@ -90,6 +90,18 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 							button_init();
 							if(response){
                                 if(response[0].data.success){
+//                                    var success_clear_cache = function(status) {
+//                                        console.log(status, "clear cache success")
+//                                    }
+//
+//                                    var error_clear_cache = function(status) {
+//                                        console.log(status, "clear cache error")
+//                                    }
+//
+//                                    window.cache.clear( success_clear_cache, error_clear_cache );
+//                                    window.cache.cleartemp(); 
+                                    
+                                    
                                     accountData.setUser(response[0].data.data[0]);
                                     flags.setUpCountryDisplay(response[0].data.data[0].country_code);
                                     process_all_data(response[0].data.data[0].ipayu_id)
@@ -155,8 +167,16 @@ function LoginCtrl($scope, $rootScope, $state, $q,
             
                     // set redeem history
                 	walletData.setRedeemHistory(resolve[5][0].data.data);
+
+
+                    $rootScope = $rootScope.$new(true);
+                    $scope = $scope.$new(true);
+            
+                    $state.go('dashboard')
                     
-					$state.go('dashboard')
+//                    $state.transitionTo('dashboard', {}, { 
+//                      reload: true, inherit: false, notify: true
+//                    });
                     
                 }, function (reject) {
 					console.log(reject);

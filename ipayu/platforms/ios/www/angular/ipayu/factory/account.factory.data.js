@@ -1,9 +1,10 @@
 
 mainModule.factory('accountData', AccountData)
 
-// AccountData.$inject = [];
 
-function AccountData() {
+
+ AccountData.$inject = ['storages'];
+function AccountData(storages) {
 
     var attempts = 0,
         doubleTap = 0;
@@ -12,10 +13,10 @@ function AccountData() {
 
 // Setters
         setUser: function (data) {
-            localStorage.setItem('ipayuuserinfo', JSON.stringify(data));
+            localStorage.setItem(storages.ipayuuserinfo, JSON.stringify(data));
         },
         setTopThreeFrequent: function (data) {
-            localStorage.setItem('ipayutopthreefrequent', JSON.stringify(data));
+            localStorage.setItem(storages.ipayutopthreefrequent, JSON.stringify(data));
         },
         setNumberOfAttempts: function (att) {
             attempts = att;
@@ -28,11 +29,11 @@ function AccountData() {
 
 // Getters
         getUser: function () {
-            var retrievedObject = localStorage.getItem('ipayuuserinfo');
+            var retrievedObject = localStorage.getItem(storages.ipayuuserinfo);
             return JSON.parse(retrievedObject) || [];
         },
         getTopThreeFrequent: function (data) {
-            var retrievedObject = localStorage.getItem('ipayutopthreefrequent');
+            var retrievedObject = localStorage.getItem(storages.ipayutopthreefrequent);
             return JSON.parse(retrievedObject) || [new Array(), new Array(), new Array()];
         },
 

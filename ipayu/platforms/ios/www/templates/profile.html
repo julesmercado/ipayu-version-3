@@ -1,0 +1,119 @@
+<div id="sp-page" style="overflow:hidden;background-image:none; background-color:white;">
+    <div class="page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+  <ul class="nav nav-tabs page-menu-top">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+
+        <li class="col-xs-4"> 
+           <p class="bold header-title-wallet">
+                Profile
+            </p>
+        </li>
+
+       <li class="col-xs-4 pull-right no-padding-right">
+             <button class="btn-top-with-flag" dash>
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+
+    <div class="container" id="profile-user-container">
+   			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
+    		<img src="images/dashboard/ipayu-icon.png" class="img img-responsive prof-pp">
+
+    		<h3 class="user-name-pp"> 
+                <span ng-if="userInfo.gender == 'Male'">Mr.&nbsp;</span>
+				<span ng-if="userInfo.gender == 'Female'">Ms.&nbsp;</span>
+				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}    
+            </h3>
+    		<hr/>
+    		<div class="container prof-user-cred-container">
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-barcode.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-9 no-padding" style="position:relative">
+    					<p class="item-header-profp">Ipayu ID</p>
+    					<p class="item-detail-profp">{{userInfo.username}}</p>
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-cp.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-9 no-padding" style="position:relative">
+    					<p class="item-header-profp">Phone no.</p>
+    					<p class="item-detail-profp">{{userInfo.phone || 'N/A'}}</p>
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-id.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-3 no-padding" style="position:relative">
+    					<p class="item-header-profp">First Name:</p>
+    					<p class="item-detail-profp"> {{userInfo.firstname | capitalize}}</p>
+    				</div>
+    				<div class="col-xs-3 no-padding" style="position:relative">
+    					<p class="item-header-profp">Last Name:</p>
+    					<p class="item-detail-profp">{{userInfo.lastname | capitalize}}</p>
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-email.png" class="item-pp">
+    				</div> 
+    				<div class="col-xs-9 no-padding" style="position:relative">
+    					<p class="item-header-profp">Email:</p>
+    					<p class="item-detail-profp">{{userInfo.email}}</p>
+    				</div>
+
+    			</div>
+    			<hr/>
+
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-cal.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-3 no-padding" style="position:relative">
+    					<p class="item-header-profp">Birth Year:</p>
+    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[0]}}</p>
+    				</div>
+    				<div class="col-xs-3 no-padding" style="position:relative">
+    					<p class="item-header-profp">Birth Month:</p>
+    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[1] | date:'MMMM'}}</p>
+    				</div>
+
+    			</div>
+    			<hr/>
+    		</div>
+    </div>
+</div>

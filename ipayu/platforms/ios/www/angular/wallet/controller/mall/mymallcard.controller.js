@@ -9,24 +9,35 @@ walletModule.controller('mallCardInfoCtrl', MallCardInfoCtrl)
 walletModule.controller('addMallCardCtrl', AddMallCardCtrl)
 
 
-MyMallCardCtrl.$inject = ['$scope', 'walletData'];
-function MyMallCardCtrl($scope, walletData) {
+MyMallCardCtrl.$inject = ['$scope', 'walletData', '$rootScope'];
+function MyMallCardCtrl($scope, walletData, $rootScope) {
 	$scope.lastUsed = walletData.getLastUserCards('mall');
 	$scope.frequent = walletData.getFrequentUserCards('mall');
 	$scope.mallCards = walletData.getUserCards('mall');
+
+    $rootScope.$on('newMallCardData', function (event, data) {
+        // console.log(data, 'New Mall card')
+		$scope.lastUsed = data.last_used;
+		$scope.frequent = data.frequently;
+		$scope.mallCards = data.all;
+    })
+
 }
 
 MyMallCardViewCtrl.$inject = ['$scope', '$rootScope', 'walletData', 'customService'];
-
 function MyMallCardViewCtrl($scope, $rootScope, walletData, customService) {
 
 	$scope.mallCards = customService.filterByCountry(walletData.getUserCards('mall'), $rootScope.countryDisplay.country, true);
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.mallCards = customService.filterByCountry(walletData.getUserCards('mall'), country.country, true);
+    })
 
-    $scope.$watch('searchCountry.country',
-                function(newValue, oldValue){
-                	$scope.mallCards = customService.filterByCountry(walletData.getUserCards('mall'), $rootScope.countryDisplay.country, true);
-                }
-            )
+    $rootScope.$on('newMallCardData', function (event, data) {
+        // console.log(data, 'New Mall card')
+        $scope.mallCards = customService.filterByCountry(data.all, $rootScope.countryDisplay.country, true);
+
+    })
 }
 
 
@@ -61,13 +72,11 @@ function MallCardSearch($scope, $rootScope, walletData, customService, accountDa
 		console.log(obj);
 		return obj.data;
 	}
-
-    $scope.$watch('searchCountry.country',
-                function (newValue, oldValue) {
-					$scope.featured_malls = customService.filterByCountry(walletData.getAssetsFeatured(), $rootScope.countryDisplay.country);
-					$scope.unfeatured_malls = get_unfeatured();
-                }
-            )
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured_malls = customService.filterByCountry(walletData.getAssetsFeatured(), country.country);
+        $scope.unfeatured_malls = get_unfeatured();
+    })
 }
 
 AllMallCardSearch.$inject = ['$scope', '$rootScope', 'walletData', 'customService', 'ngDialog'];
@@ -156,11 +165,10 @@ function AllMallCardSearch($scope, $rootScope, walletData, customService, ngDial
 	$scope.filterCards = function(){
 		$scope.allMallCards = contruct_data(all_cards);
 	}
-    $scope.$watch('searchCountry.country',
-    		function(newValue){
-    			$scope.allMallCards = contruct_data(all_cards);
-    		}
-    	)
+    
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.allMallCards = contruct_data(all_cards);
+    })
 }
 
 
@@ -199,9 +207,17 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
         });
     }
 
-    $scope.seeInfo = function (tran) {
-    	console.log(tran)
-    }
+    $rootScope.$on('newMallCardData', function (event, data) {
+        // console.log(data, 'New Mall card')
+        var cards = data.all;
+        for (var i = 0; i < cards.length; i++) {
+        	if(cards[i].card_id == $scope.card.card_id){
+		        $scope.card = cards[i];
+				$scope.transactions = cards[i].transactions;
+				$scope.redeems = cards[i].redeemables;
+        	}
+        }
+    })
     
     $rootScope.$on('updateData', function(event){
         wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'mall'})
@@ -308,11 +324,9 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
 	        });
     }
 
-    $scope.$watch('searchCountry.country',
-                function (newValue, oldValue) {
-					$scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
-                }
-            )
+    $rootScope.$on('countryHasChange', function(event, country){
+        $scope.featured = customService.filterByCountry(walletData.getFeaturedCards(),country.country);
+    })
 }
 
 

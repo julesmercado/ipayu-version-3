@@ -42,4 +42,6 @@
     <icon density="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="orientation" value="portrait" />
+    <preference name="disallowOverscroll" value="true" />
+    <preference name="webviewbounce" value="false" />
 </widget>

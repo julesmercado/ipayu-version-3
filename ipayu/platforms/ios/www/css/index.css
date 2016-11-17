@@ -476,7 +476,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(2) {padding-right: 25px;    padding-left: 9px; }
 .view-all-cards div.col-xs-12 div.row div.col-xs-6 .solid-border-va { background-color:#fff;border:1px solid #DF1642;padding:2px }
 .view-all-cards div.col-xs-12 div.row div.col-xs-6 .dashed-border-va { border:1px dashed #DF1642;padding:5px }
-.img-card-view-all{height: 60px; margin:0 auto;display: block; border-radius: 7px}
+.img-card-view-all{height: 60px; margin:0 auto;display: block; border-radius: 7px;width:90%;}
 /* END OF MALL PAGE FOR VIEW ALL */
 
 /* MALL CARD INFO */
@@ -668,7 +668,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
 
 .ui-rangeSlider-withArrows .ui-rangeSlider-container{height: 10px !important; border-radius:6px !important;margin: 0 !important;   }
     .ui-rangeSlider .ui-rangeSlider-innerBar{height: 10px!important; font-size: 9px !important;margin: 0 !important; border-radius: 6px}
-    .ui-rangeSlider .ui-ruler-scale0 .ui-ruler-tick-inner{background-color: white; border-right:1px solid black !important; text-align: center}
+    .ui-rangeSlider .ui-ruler-scale0 .ui-ruler-tick-inner{background-color: white; border-right:1px solid black !important; text-align: center ;   border-top-left-radius: 12px;    position: relative;    border-bottom-left-radius: 42px;}
     .ui-rangeSlider .ui-rangeSlider-bar{background-color: rgba(162, 162, 162, 0.35) !important;  height: 8px!important }
     .ui-rangeSlider .ui-rangeSlider-handle{z-index:2 !important;background: white !important; border: 2px solid black; border-radius: 100%;width: 20px !important;  height: 20px !important; margin-top:-4px;}
     .ui-rangeSlider .ui-ruler-scale0 .ui-ruler-tick-label{position: relative !important;bottom: 0!important}
@@ -680,7 +680,7 @@ ul.flagHeader::-webkit-scrollbar {display:none;}
     height: 16px !important;    box-shadow: none;    width: 16px !important;     margin-top: 3px !important;}
 .ui-rangeSlider-arrow.ui-rangeSlider-rightArrow{display: none; right: -18px !important;    bottom: 13px !important; background: url(../images/plus.png) no-repeat !important; background-color: none !important; border: none !important;border-radius: 0px !important;
     height: 16px !important;    box-shadow: none;    width: 16px !important;     margin-top: 3px !important;}
-.item-pt-mc{text-align:right;padding-top:10px; font-size: 12px !important;text-align: left; padding-right: 5px}
+.item-pt-mc{text-align:right;padding-top:10px; font-size: 12px !important;text-align: left; padding-right: 5px;    font-family: "HelveticaBold";    color: gray;}
 .mci-itn{font-size: 12px !important; }
 .img-item-ih{height:72px; width:72px; border: 1px solid gainsboro}
 .ih-item-qty{font-size: 32px; height: 50px; width: 50px; text-align: center; line-height: 1.5;border-top: 5px solid transparent;}
@@ -783,7 +783,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .full-height-container{    padding-bottom: 100px;}
 .ci-qr-code canvas{height: 60px;    float: right; margin-bottom: 10px !important}
 .history-txt{ font-family: "HelveticaBold"; font-size: 12px;padding-top: 2px }
-
+.hc-ht-cg{    z-index: 100; margin-top: 13px;    position: absolute;    right: 12px;}
 
 
 .bcode-ci {position: absolute;width: 100px;bottom: 0;right: 78px;height: 40px;}
@@ -842,6 +842,15 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .shop-modal-border{border-color:#1882A8 !important;}
 .coupon-stamp-modal-border{border-color: gray !important}
 
+/*profile*/
+#profile-user-container{height: 100%; width:100%;overflow-y: scroll;}
+    .prof-pp{    height: 100px;    margin: 0 auto;    margin-top: 10px;}
+    .user-name-pp{ color: #df1642; font-family: "HelveticaBold"; text-align: center;margin-top:10px;}
+    .item-pp-holder{    height: 30px;    width: 30px;    background-color: rgb(228,228,228);    padding: 0; margin: 15px}
+        .item-pp{    height: 20px;    margin: 5px auto;    display: block;}
+        .item-header-profp{font-family: "HelveticaLightCond"; font-size: 12px; line-height: 1;margin: 0; margin-top: 15px;color: gray}
+        .item-detail-profp{font-family: "HelveticaBoldCond"; font-size: 12px; line-height: 1;margin: 0; margin-top: 5px;color:gray;}
+/*end of profile*/
 @media screen and (min-width: 320px){
   /*   .container-fluid .row img.login-img{margin-bottom: 6.5em;} */
   .coupon-img-container{max-height: 140px;}
@@ -989,7 +998,7 @@ and (max-device-width : 736px) {
 
 @media only screen and (width: 360px) {
 .dash-header-greeting{}
-   .login-options{margin-bottom:30% !important;}
+   .login-options{margin-bottom:23% !important;}
 }
 
 @media only screen and (min-width: 375px) and (max-width: 414px){
@@ -1303,8 +1312,8 @@ ul.flagHeader li{font-size: 20px}
 .dash-user-reports-tab-item{padding-bottom: 0}
 .container-fluid .login-form input.login-credentials{margin-bottom: 1.5em}
 .img-card-view-all{height: 44px}
-.view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(1) {   padding-left: 55px;}
-.view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(2) {    padding-right: 55px;}
+.view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(1) {   padding-left: 25px;}
+.view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(2) {    padding-right: 25px;}
 .featured-malls-mall-name{margin-bottom: 0}
 .filtered-cards .filter-option{    padding-bottom: 0;}
 .mother-of-all-scrollables{height: 400px}
@@ -1313,6 +1322,7 @@ ul.flagHeader li{font-size: 20px}
 .dash-user-img canvas{height: 45px}
 .img-item-ih{height: 89px}
 .ngdialog.ngdialog-theme-plain .ngdialog-content{margin-top: 0}
+#profile-user-container{padding-bottom: 100px}
 }
 @media screen and (height: 533px){
     .container-fluid .row img.login-img{margin-bottom: 3.5em}

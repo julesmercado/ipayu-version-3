@@ -8,17 +8,17 @@ MainCtrl.$inject = [
                     ];
 function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages,
                     stampData, couponData, stamp, coupon, wallet, walletData) {
-    
+
     $rootScope.doLoading = false;
 
     var tOut,
         ipayu_info = accountData.getUser();
-    
+
     function init() {
         $rootScope.headerCountries = flags.getAll();
         $rootScope.countryDisplay = flags.getCountryDisplay();
         $rootScope.countryDisplay.display = false;
-        
+
         $rootScope.showMenu = false;
         $rootScope.hasBG = false;
         $rootScope.menuDisplayed = false;
@@ -34,7 +34,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
     }
 
 // Action event if state changes
-    $rootScope.$on('$stateChangeSuccess', 
+    $rootScope.$on('$stateChangeSuccess',
         function(ev, to, toParams, from, fromParams) {
             $state.previous = { route: from, routeParams: fromParams }
             ngDialog.closeAll();
@@ -81,15 +81,15 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
     }
 
     $rootScope.logout = function () {
-        sqliteSet.dropTable();
+        // sqliteSet.dropTable();
 //        localStorage.clear();
-        
+
         for(var i in storages){
             if(storages.hasOwnProperty(i)){
                 localStorage.removeItem(storages[i]);
             }
         }
-        
+
 //        var success_clear_cache = function(status) {
 //            alert(JSON.stringify(status), "clear cache success")
 //        }
@@ -99,11 +99,11 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
 //        }
 //
 //        window.cache.clear( success_clear_cache, error_clear_cache );
-//        window.cache.cleartemp(); 
-        
+//        window.cache.cleartemp();
+
 //        $state.go('login');
-        
-        $state.transitionTo('login', {}, { 
+
+        $state.transitionTo('login', {}, {
           reload: true, inherit: false, notify: true
         });
     }

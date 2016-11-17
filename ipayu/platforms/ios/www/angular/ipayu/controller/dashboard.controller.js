@@ -1,5 +1,6 @@
 
 mainModule.controller('dashboardCtrl', DashboardCtrl)
+mainModule.controller('profileCtrl', ProfileCtrl)
 
 
 DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', 'account', 'accountData', 'ngDialog', '$timeout', 'wallet', 'flags'];
@@ -28,10 +29,16 @@ function DashboardCtrl($scope, $rootScope, $state, account, accountData, ngDialo
             overlay: true
         });
     }
-    
-    wallet.getTopThreeFrequent($scope.ipayu_info.ipayu_id)
-    .then(function(resolve){
-        console.log(resolve)
+
+    $rootScope.$on('newDashboardData', function (event, data) {
+         console.log(data, 'New Dashboard')
+        $scope.dashboardMyCards = data;
     })
     
+}
+
+
+ProfileCtrl.$inject = ['$scope', 'accountData'];
+function ProfileCtrl($scope, accountData) {
+    $scope.userInfo = accountData.getUser();
 }

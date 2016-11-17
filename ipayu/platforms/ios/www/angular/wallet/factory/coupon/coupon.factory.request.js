@@ -8,6 +8,7 @@ function CouponFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
     return {
 
         getUserCoupons: function (id, ignore) {
+            console.log(id)
             var dataToSend = {
                 'requestType'   : 'GetUserCoupon_',
                 'ipayu_id'      : id

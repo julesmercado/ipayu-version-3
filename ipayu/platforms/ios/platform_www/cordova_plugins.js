@@ -18,6 +18,14 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "pluginId": "cordova-plugin-x-socialsharing",
@@ -40,25 +48,17 @@ module.exports = [
         "clobbers": [
             "cache"
         ]
-    },
-    {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-network-information": "1.3.0",
+    "cordova-plugin-splashscreen": "4.0.0",
     "cordova-plugin-whitelist": "1.3.0",
     "cordova-plugin-x-socialsharing": "5.1.3",
     "cordova-sqlite-storage": "1.4.8",
-    "org.apache.cordova.plugin.cache": "1.0.5",
-    "cordova-plugin-splashscreen": "4.0.0"
+    "org.apache.cordova.plugin.cache": "1.0.5"
 };
 // BOTTOM OF METADATA
 });

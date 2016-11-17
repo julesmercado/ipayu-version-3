@@ -10,6 +10,9 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.app.mallinfo"
         },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.app.mallinfo"
         },
@@ -20,9 +23,6 @@
             "PACKAGE_NAME": "com.app.mallinfo"
         },
         "org.apache.cordova.plugin.cache": {
-            "PACKAGE_NAME": "com.app.mallinfo"
-        },
-        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
