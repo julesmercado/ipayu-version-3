@@ -5,8 +5,8 @@ promoModule.directive('routePromoAllAssetPromos', AllAssetPromos) // state = sea
 walletModule.directive('routeAllPromoSearch', AllPromoSearch)	// state = searchallpromos
 
 // Landing
-PromoLanding.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'walletData', 'customService'];
-function PromoLanding($state, $rootScope, preloaderMethod, wallet, walletData, customService) {
+PromoLanding.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'walletData', 'customService'];
+function PromoLanding($state, $rootScope, preloaderMethod, promo, walletData, customService) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
@@ -17,13 +17,14 @@ function PromoLanding($state, $rootScope, preloaderMethod, wallet, walletData, c
 	    		}
 	    		else{
 	    			$rootScope.doLoading = true;
-	    			wallet.getAllHasCardAssets()
+	    			promo.get_malls()
 	    					.then(function (resolve) {
-								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured || [])
-								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured || [])
-								var c = walletData.setCategories(resolve[1].data.data || [])
-	    						$state.go('promolanding');
-								preloaderMethod.preloadImage([f || [], n || [], c || []]);
+console.log(resolve)
+								// var f = walletData.setAssetsFeatured(resolve[0].data.data.featured || [])
+								// var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured || [])
+								// var c = walletData.setCategories(resolve[1].data.data || [])
+	    					// 	$state.go('promolanding');
+								// preloaderMethod.preloadImage([f || [], n || [], c || []]);
 	    					})
 	    		}
 	    	})
@@ -32,8 +33,8 @@ function PromoLanding($state, $rootScope, preloaderMethod, wallet, walletData, c
 }
 
 
-AllAssetPromos.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'customService', 'accountData', 'walletData'];
-function AllAssetPromos($state, $rootScope, preloaderMethod, wallet, customService, accountData, walletData) {
+AllAssetPromos.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'customService', 'accountData', 'walletData'];
+function AllAssetPromos($state, $rootScope, preloaderMethod, promo, customService, accountData, walletData) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
@@ -46,16 +47,16 @@ function AllAssetPromos($state, $rootScope, preloaderMethod, wallet, customServi
 	    		}
 	    		else{
 	    			$rootScope.doLoading = true;
-	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id)
-	    					.then(function (resolve) {
-	    						if(resolve){
-	    							var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
-	    							$state.go('searchallpromos');
-									preloaderMethod.preloadImage([a || []]);
-	    						}
-	    						else{$rootScope.doLoading = false;}
+	    			promo.get_promos({'asset_info_id': card.asset_info_id, 'ipayu_id':user.ipayu_id})
+  					.then(function (resolve) {
+  						if(resolve){
+  							var a = promoData.setAllAvailableCards(resolve[0].data.data || []);
+  							$state.go('searchallpromos');
+								preloaderMethod.preloadImage([a || []]);
+  						}
+  						else{$rootScope.doLoading = false;}
 								console.log(resolve);
-	    					})
+    					})
 	    		}
 	    	})
 	    }

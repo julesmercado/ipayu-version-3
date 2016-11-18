@@ -3,7 +3,7 @@ mainModule.factory('accountData', AccountData)
 
 
 
- AccountData.$inject = ['storages'];
+AccountData.$inject = ['storages'];
 function AccountData(storages) {
 
     var attempts = 0,
@@ -47,4 +47,3 @@ function AccountData(storages) {
     }
 
 }
-

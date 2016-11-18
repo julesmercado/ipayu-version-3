@@ -5,7 +5,7 @@ promoModule.controller('allPromoSearchCtrl', AllPromoSearch)
 
 PromoLanding.$inject = ['$scope', '$rootScope', 'customService', 'walletData'];
 function PromoLanding($scope, $rootScope, customService, walletData) {
-    
+
     var currentPage = 0,
 		pageSize = 7,
 		hasMore = false,
@@ -27,7 +27,7 @@ function PromoLanding($scope, $rootScope, customService, walletData) {
 		}
 		$scope.unfeatured = get_unfeatured();
 	}
-	
+
 	function get_unfeatured() {
 		hasMore = false;
 		var filtered_category = customService.filterByCategory(walletData.getAssetsNonFeatured(), selectedCategory);
@@ -70,19 +70,17 @@ function PromoLanding($scope, $rootScope, customService, walletData) {
 					$scope.unfeatured = get_unfeatured();
                 }
             )
-	
+
 }
 
 
-AllPromoSearch.$inject = ['$scope', '$rootScope', 'walletData', 'customService', 'ngDialog'];
-function AllPromoSearch($scope, $rootScope, walletData, customService, ngDialog) {
+AllPromoSearch.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'ngDialog'];
+function AllPromoSearch($scope, $rootScope, promoData, customService, ngDialog) {
 
 	$scope.searchData = '';
 	$scope.searchResult = 0;
-	var all_cards = walletData.getAllAvailableCards();
+	var all_cards = promoData.getAllAvailableCards();
 	$scope.allPromos = contruct_data(all_cards);
-    console.log(all_cards);
-    console.log($scope.allPromos)
 
 	function contruct_data(data){
 		scrollToTop();
