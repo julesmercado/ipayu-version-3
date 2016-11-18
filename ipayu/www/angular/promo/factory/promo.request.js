@@ -9,12 +9,13 @@ function PromoFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
 
       get_malls: function () {
         data = {
-          'requestType' : 'GetMalls_'
+          'requestType' : 'GetAssets_'
         }
           return $http({
                           'method'    : 'POST',
-                          'url'       : API_ROOT_URL + 'mall_info_controller.php/',
-                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                          'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                          'data'      : $httpParamSerializerJQLike(data),
                       })
       },
 
@@ -27,6 +28,26 @@ function PromoFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                           'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                       })
       },
+
+      reserve: function(data) {
+        data.requestType = 'ReserveItem_';
+        return $http({
+                          'method'    : 'POST',
+                          'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'data'      : $httpParamSerializerJQLike(data),
+                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                      })
+      },
+
+      my_promos: function(data){
+        data.requestType = 'GetReservedItem_';
+        return $http({
+                          'method'    : 'POST',
+                          'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'data'      : $httpParamSerializerJQLike(data),
+                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                      })
+      }
 
     }
 }

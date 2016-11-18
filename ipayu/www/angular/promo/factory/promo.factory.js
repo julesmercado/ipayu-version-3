@@ -25,6 +25,18 @@ function PromoFactory($q, promoRequest) {
         var req_promos = promoRequest.get_promos(data);
         return $q.all([req_promos])
         .then(thenFunc, errFunc)
+      },
+
+      reserve: function(data) {
+        var req_reserve = promoRequest.reserve(data);
+        return $q.all([req_reserve])
+        .then(thenFunc, errFunc)
+      },
+
+      my_promos: function(data){
+        var req_mypromos = promoRequest.my_promos(data);
+        return $q.all([req_mypromos])
+        .then(thenFunc, errFunc)
       }
 
     }

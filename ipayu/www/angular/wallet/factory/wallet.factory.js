@@ -6,7 +6,7 @@ WalletFactory.$inject = ['$q', 'walletRequest'];
 function WalletFactory($q, walletRequest) {
 
     function thenFunc(response) {
-        console.log(response);
+        // console.log(response);
         return response;
     }
 

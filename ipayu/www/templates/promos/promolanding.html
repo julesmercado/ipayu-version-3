@@ -16,11 +16,11 @@
         <div class=" page-header dark-bg dark-bg-shop">
             <p class="feature-mall-title">FEATURED</p>
         </div>
-
-        <div class="container mall-search-featured-malls featured-shops custom-slider">
-                <div class="animated cs-image-holder-featured col-xs-3 col-md-3  shop-search-icons fadeIn" style="float:none;" 
-                     ng-repeat="feat in featured as f"
-                     route-promo-all-asset-promos="{{feat}}">
+        <div class="container mall-search-featured-malls featured-shops custom-slider" style="width: 100%;">
+                <div class="animated cs-image-holder-featured col-xs-3 col-md-3  shop-search-icons fadeIn" 
+                    style="float:none;" 
+                    ng-repeat="feat in featured as f"
+                    route-all-promos="{{feat.asset_info_id}}">
                     <img ng-src="{{feat.image}}" class="img img-responsive featured-malls-mall">
                     <p class="featured-malls-mall-name" ng-bind="feat.name"></p>
                 </div>
@@ -38,7 +38,7 @@
         <div class="animated col-xs-3 col-md-3 unfeatured-malls unfeatured-shops fadeIn" 
              ng-repeat="u in unfeat" >
             <div ng-if="u != true"
-                route-promo-all-asset-promos="{{u}}">
+                route-all-promos="{{u.asset_info_id}}">
                 <img ng-src="{{u.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
                 <p class="featured-malls-mall-name unfeatured-mall-name" ng-bind="u.name"></p>
             </div>
@@ -54,7 +54,6 @@
     </div>
 </div>
 
-     
 
 <div class="row">
     <div class="container">
@@ -79,7 +78,7 @@
             <span class="category-label-text">{{bottomCat.name}}</span>
             </div>
 
-            <div class="animated col-xs-3 col-md-3  shop-search-icons flipInX" route-all-promo-search>
+            <div class="animated col-xs-3 col-md-3  shop-search-icons flipInX" route-all-promos="">
               <img src="images/Search_icon_transparent.png" class="img img-responsive shop-search-icon-cat" style="background-color:transparent">
                 <span class="category-label-text" style="color:black">SEARCH</span>
             </div>

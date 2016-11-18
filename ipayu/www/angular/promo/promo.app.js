@@ -9,7 +9,7 @@ function Config($stateProvider) {
 
 	$stateProvider
         .state('promolanding', {
-            url: '/promoLanding',
+            url: '/promolanding',
             templateUrl: 'templates/promos/promolanding.html',
             controller: 'promoLandingCtrl',
             cache: false
@@ -17,13 +17,13 @@ function Config($stateProvider) {
         .state('promosolopage', {
             url: '/promosolopage',
             templateUrl: 'templates/promos/promo-solo-page.html',
-            controller: '',
+            controller: 'promoSoloCtrl',
             cache: false
         })
         .state('promolist', {
             url: '/promolist',
             templateUrl: 'templates/promos/promolist.html',
-            controller: '',
+            controller: 'promoListCtrl',
             cache: false
         })
         .state('searchallpromos', {

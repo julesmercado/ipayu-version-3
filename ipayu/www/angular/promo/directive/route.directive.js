@@ -1,12 +1,14 @@
 
 
 promoModule.directive('routePromoLanding', PromoLanding)    //	state = promolanding
-promoModule.directive('routePromoAllAssetPromos', AllAssetPromos) // state = searchallpromos
-walletModule.directive('routeAllPromoSearch', AllPromoSearch)	// state = searchallpromos
+promoModule.directive('routeAllPromos', AllPromos) // state = searchallpromos
+promoModule.directive('routeSoloPromo', SoloPromo) // state = promosolopage
+promoModule.directive('routeMyPromos', MyPromos) // state = promolist
+
 
 // Landing
-PromoLanding.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'walletData', 'customService'];
-function PromoLanding($state, $rootScope, preloaderMethod, promo, walletData, customService) {
+PromoLanding.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'promoData', 'customService'];
+function PromoLanding($state, $rootScope, preloaderMethod, promo, promoData, customService) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
@@ -19,12 +21,13 @@ function PromoLanding($state, $rootScope, preloaderMethod, promo, walletData, cu
 	    			$rootScope.doLoading = true;
 	    			promo.get_malls()
 	    					.then(function (resolve) {
-console.log(resolve)
-								// var f = walletData.setAssetsFeatured(resolve[0].data.data.featured || [])
-								// var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured || [])
-								// var c = walletData.setCategories(resolve[1].data.data || [])
-	    					// 	$state.go('promolanding');
-								// preloaderMethod.preloadImage([f || [], n || [], c || []]);
+	    						console.log(resolve, "Promo")
+
+								var f = promoData.allFeatured(resolve[0].data.data.featured || [])
+								var n = promoData.allUnfeatured(resolve[0].data.data.not_featured || [])
+								var c = promoData.allCategories(resolve[0].data.data.categories || [])
+	    						$state.go('promolanding');
+								preloaderMethod.preloadImage([f || [], n || [], c || []]);
 	    					})
 	    		}
 	    	})
@@ -33,64 +36,86 @@ console.log(resolve)
 }
 
 
-AllAssetPromos.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'customService', 'accountData', 'walletData'];
-function AllAssetPromos($state, $rootScope, preloaderMethod, promo, customService, accountData, walletData) {
-	return {
-	    restrict: 'A',
-	    link: function(scope, element, attrs, ctrl) {
-	    	element.bind('click', function () {
-	    		var user = accountData.getUser(),
-	    			card = JSON.parse(attrs.routePromoAllAssetPromos);
-
-	    		if($rootScope.showOffline){
-	    			customService.alert('No internet connection', 'Oops!', 'Ok');
-	    		}
-	    		else{
-	    			$rootScope.doLoading = true;
-	    			promo.get_promos({'asset_info_id': card.asset_info_id, 'ipayu_id':user.ipayu_id})
-  					.then(function (resolve) {
-  						if(resolve){
-  							var a = promoData.setAllAvailableCards(resolve[0].data.data || []);
-  							$state.go('searchallpromos');
-								preloaderMethod.preloadImage([a || []]);
-  						}
-  						else{$rootScope.doLoading = false;}
-								console.log(resolve);
-    					})
-	    		}
-	    	})
-	    }
-	  }
-}
-
-
-
-AllPromoSearch.$inject = ['$state', '$rootScope', 'preloaderMethod', 'wallet', 'walletData', 'customService', 'accountData'];
-function AllPromoSearch($state, $rootScope, preloaderMethod, wallet, walletData, customService, accountData) {
+AllPromos.$inject = ['$state', '$rootScope', 'preloaderMethod', 'promo', 'customService', 'accountData', 'promoData'];
+function AllPromos($state, $rootScope, preloaderMethod, promo, customService, accountData, promoData) {
 	return {
 	    restrict: 'A',
 	    link: function(scope, element, attrs, ctrl) {
 	    	element.bind('click', function () {
 	    		var user = accountData.getUser();
+	    		var card = attrs.routeAllPromos;
+	    		console.log(card)
+	    			// if(attrs.routeAllPromos){
+	    			// 	card = attrs.routeAllPromos;
+	    			// }
 
 	    		if($rootScope.showOffline){
 	    			customService.alert('No internet connection', 'Oops!', 'Ok');
 	    		}
 	    		else{
 	    			$rootScope.doLoading = true;
-	    			wallet.getAllCardAvailable(user.ipayu_id)
-	    					.then(function (resolve) {
-	    						if(resolve){
-                                    console.log(resolve)
-                                    var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
-                                    $state.go('searchallpromos');
-                                    preloaderMethod.preloadImage([a || []]);
-	    						}
-	    						else{$rootScope.doLoading = false;}
-								console.log(resolve);
-	    					})
+	    			var data = {};
+	    				data.ipayu_id = user.ipayu_id;
+	    				if(card != ''){
+	    					data.asset_info_id = card;
+	    				}
+	    			promo.get_promos(data)
+  					.then(function (resolve) {
+  						if(resolve){
+  							console.log(resolve, "all promos")
+  							var a = promoData.allAvailableCards(resolve[0].data.data || []);
+  							$state.go('searchallpromos');
+							preloaderMethod.preloadImage([a || []]);
+  						}
+    				})
 	    		}
 	    	})
 	    }
 	  }
+}
+
+
+SoloPromo.$inject = ['$state', '$rootScope', 'promoData'];
+function SoloPromo($state, $rootScope, promoData) {
+	
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, ctrl) {
+			element.bind('click', function(){
+				var promo = JSON.parse(attrs.routeSoloPromo);
+				promoData.promoInfo(promo);
+				$rootScope.addPromo = true;
+				$state.go('promosolopage')
+			})
+		}
+	}
+
+}
+
+MyPromos.$inject = ['$state', '$rootScope', 'promoData', 'accountData', 'promo', 'preloaderMethod'];
+function MyPromos($state, $rootScope, promoData, accountData, promo, preloaderMethod) {
+	
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, ctrl) {
+			element.bind('click', function(){
+	    		if($rootScope.showOffline){
+	    			customService.alert('No internet connection', 'Oops!', 'Ok');
+	    		}
+	    		else{
+	    			var userInfo = accountData.getUser();
+	    			$rootScope.doLoading = true;
+	    			promo.my_promos({'ipayu_id':userInfo.ipayu_id})
+  					.then(function (resolve) {
+  						if(resolve){
+  							var a = promoData.userPromos(resolve[0].data.data || []);
+  							$state.go('promolist');
+							preloaderMethod.preloadImage([a || []]);
+  						}
+    				})
+	    		}
+			})
+		}
+	}
+
 }
