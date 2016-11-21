@@ -32,4 +32,6 @@ function Config($stateProvider) {
             controller: 'allPromoSearchCtrl',
             cache: false
         })
+
+        
 }
