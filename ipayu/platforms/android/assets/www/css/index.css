@@ -6,11 +6,25 @@ html,body{overflow-x: hidden;}
 @font-face { font-family: 'roman'; src: url(./Fonts/HelveticaLTStd-Roman_0.otf); font-weight: normal; font-style: normal;}
 @font-face { font-family: 'boldcondensed'; src: url(./Fonts/HelveticaLTStd-BlkCond_0.otf); font-weight: normal; font-style: normal;}
 @font-face { font-family: 'normal'; src: url(./Fonts/HelveticaLTStd-Roman_0.otf); font-weight: normal; font-style: normal;}
-@font-face { font-family: 'HelveticaBold'; src: url(./Fonts/HelveticaLTStd-Bold_0.otf); font-weight: normal; font-style: normal; } 
-@font-face { font-family: 'HelveticaLight'; src: url(./Fonts/HelveticaLTStd-Light_0.otf); font-weight: normal; font-style: normal; } 
-@font-face { font-family: 'HelveticaCond'; src: url(./Fonts/HelveticaLTStd-Cond_0.otf); font-weight: normal; font-style: normal; } 
-@font-face { font-family: 'HelveticaLightCond'; src: url(./Fonts/HelveticaLTStd-LightCond_0.otf); font-weight: normal; font-style: normal; } 
-@font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; } 
+@font-face { font-family: 'HelveticaBold'; src: url(./Fonts/HelveticaLTStd-Bold_0.otf); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HelveticaLight'; src: url(./Fonts/HelveticaLTStd-Light_0.otf); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HelveticaCond'; src: url(./Fonts/HelveticaLTStd-Cond_0.otf); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HelveticaLightCond'; src: url(./Fonts/HelveticaLTStd-LightCond_0.otf); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; }
+#slides_control > div{
+    height: 200px;
+}
+#slides_control img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
 .navbar{border:none;}
 #sp-page{background-image:url(../images/cards-background_2.png);background-repeat:no-repeat; background-size:cover; background-position: center center; background-color: white; overflow: hidden;position: absolute;top:0; bottom:0;left:0;right: 0}
 #sp-nav{width: 100%; overflow:hidden;margin-top:60px !important;}
@@ -54,8 +68,8 @@ ul.flagHeader{
     overflow-y: scroll;
     font-family: condensed;
     font-size: 100%;
-    background: white;    
-    padding: 0;    
+    background: white;
+    padding: 0;
     z-index: 10;
     width: 58px;
 }
@@ -214,7 +228,7 @@ form#registration button.register {
         font-size:30px;
         padding: 16px 30px 4px 30px;
     }
-    
+
     form#registration table.form tr>td:last-child input, form#registration table.form tr>td .input {
         font-size:35px;
     }
@@ -228,7 +242,7 @@ form#registration button.register {
         width:50%;
         height:auto;
     }
-    
+
     form#registration table.gender input[type="radio"] {
         width:30px;
         height:30px;
@@ -272,7 +286,7 @@ form#registration button.register {
 .uppercase{    text-transform: uppercase;}
 .header-lead-text span.uppercase{    text-transform: uppercase;}
 .header-lead-text span{font-size: 20px;}
-.header-lead-text{font-size: 22px; text-align: center; font-family: "HelveticaLight";overflow:hidden; margin-bottom:0;} 
+.header-lead-text{font-size: 22px; text-align: center; font-family: "HelveticaLight";overflow:hidden; margin-bottom:0;}
         .text-pink{color: #DF1642}
 
         .bold{font-family: "HelveticaBold"}
@@ -288,12 +302,12 @@ form#registration button.register {
         .dash-recently-used-card-title{font-family: "HelveticaBold";color:#39739E; font-size:15px; margin-top: 10px;margin-left:10px; float:left;overflow:hidden; }
 
         .dash-recently-used-card-date{font-family: "HelveticaLight";color:#39739E; font-size:15px; margin-top: 10px;margin-right:10px; float:right;overflow:hidden; }
-        
+
 
         .card-row{width:auto; margin:10px; height: 50%;margin-top:0; }
-            .slick-initialized .slick-slide{width: 135px !important;}
-            button.slick-next.slick-arrow{display: none !important}
-            .slick-dots li button{ display: none !important;  }
+            /*.slick-initialized .slick-slide{width: 135px !important;}*/
+            /*button.slick-next.slick-arrow{display: none !important}*/
+            /*.slick-dots li button{ display: none !important;  }*/
            .card-row img{ height:70px;width:auto;margin:0 }
         .card-item-img{height:100%; width: auto }
 
@@ -336,7 +350,7 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li:first-child button img:nth-of-type(1) { height:11px;width:auto;position:relative;top:5px }
     ul.page-menu-top li:first-child button img:nth-of-type(2) { height:20px;width:auto;position:relative;top:-4px;left:15px }
     ul.page-menu-top li:nth-child(even) button { font-size:16px;font-family: "HelveticaBold" }
-    ul.page-menu-top li:last-child  button { padding-right:4px; margin-top:10px; }
+    ul.page-menu-top li:last-child  button { padding-right:4px; margin-top:10px;  }
     ul.page-menu-top li:last-child  button img:nth-of-type(1) { height:10px;width:auto;position:relative;top:-2px; }
     ul.page-menu-top li:last-child  button img:nth-of-type(2) { height:23px;width:auto;position:relative;top:-4px }
     ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:10px;font-family: "HelveticaLight"; }
@@ -371,11 +385,11 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 
 /* LOGIN CSS (IPHONE 6 PLUS) */
 .page-header{ background-color:#A72146;margin:0px;height:22px }
-.login-bg{background-image:url(../images/newbg.jpg);background-repeat:no-repeat;background-size:cover;padding-left:30px;padding-right:30px; height:100%;overflow-y:hidden;position: relative; background-position: center center; } 
+.login-bg{background-image:url(../images/newbg.jpg);background-repeat:no-repeat;background-size:cover;padding-left:30px;padding-right:30px; height:100%;overflow-y:hidden;position: relative; background-position: center center; }
 .container-fluid .row img.login-img  { width:auto;height:175px;margin-left: auto;margin-right: auto;margin-top: 40px;margin-bottom:2em; }
 .container-fluid .login-form { margin-bottom:15px; }
 .container-fluid .login-form input.login-credentials { border-radius:0px;height:50px;font-size:80% !important;font-family: "HelveticaCond"; padding-left:20px; margin-bottom: 2.5em}
-.container-fluid .login-form button.login-button { height:50px;width:135px;font-size:20px;border-radius:0px;background-color:#DF1642;color:#fff;font-family:"HelveticaBoldCond"; } 
+.container-fluid .login-form button.login-button { height:50px;width:135px;font-size:20px;border-radius:0px;background-color:#DF1642;color:#fff;font-family:"HelveticaBoldCond"; }
 .container-fluid .login-options { margin-bottom:31px }
 .container-fluid .login-options .login-options-label { font-size:16px !important;color:#39739E;font-family: "HelveticaCond"; font-weight: bold }
 .login-footer { width:100%;height:auto}
@@ -391,7 +405,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .mall-search-featured-malls{position: absolute;top:100px; padding:0; min-width: 100%}
 
 .featured-malls-mall{width:50px; height: 50px;border-radius: 10px; margin: 0 auto; display: block; background-color: white}
-    .featured-malls-mall-name{color:white; font-family: "HelveticaLight"; font-size: 8px;text-align: center; margin-top:2px;}
+    .featured-malls-mall-name{color:white; font-family: "HelveticaLight"; font-size: 8px;text-align: center; margin-top:5px;}
 .unfeatured-malls{margin-top:8px; height: auto; }
     .unfeatured-mall-name{color:black;}
     .col-xs-3.col-md-3.unfeatured-malls span{font-size:20px;text-align: center; display: block;}
@@ -470,7 +484,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 /* END OF MALL PAGE FOR FILTER */
 
 /* MALL PAGE FOR VIEW ALL */
-.view-all-cards {height:85% ;overflow:auto;padding-bottom: 85px }  
+.view-all-cards {height:85% ;overflow:auto;padding-bottom: 85px }
 .view-all-cards div.col-xs-12 div.row { margin-bottom:18px }
 .view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(1) { padding-left: 25px;    padding-right: 9px;}
 .view-all-cards div.col-xs-12 div.row div.col-xs-6:nth-of-type(2) {padding-right: 25px;    padding-left: 9px; }
@@ -547,7 +561,7 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 .side-menu .fc div.col-xs-12 input { border-radius:0px; font-family: "HelveticaCond";color:#ccc; }
 .side-menu .fc div.col-xs-12 .custom-spacing { border-bottom:1px solid #ccc;margin-bottom:10px }
 
-.side-menu .sc div.col-xs-12 .list-group { margin-bottom: 10px; } 
+.side-menu .sc div.col-xs-12 .list-group { margin-bottom: 10px; }
 .side-menu .sc div.col-xs-12 .list-group .list-group-item { border:none;font-size:12px;padding:7px 0px;font-family: "normal";color:#4c4c4c; }
 .side-menu .sc div.col-xs-12 .list-group .list-group-item img { height:20px;width:20px;margin-right:10px }
 .side-menu .sc div.col-xs-12 .custom-spacing { border-bottom:1px solid #ccc;margin-bottom:10px }
@@ -631,7 +645,7 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 .custom-slider{
     overflow-x: scroll;
     overflow-y: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
     font-size: 0;
     padding: 0;
     z-index: 9;
@@ -659,7 +673,7 @@ tr.transaction-data-row:nth-child(even){background-color: #F2F2F2}
 ul.flagHeader::-webkit-scrollbar {display:none;}
 
 .view-all-cards::-webkit-scrollbar {display:none;}
-    
+
     .rh-it{margin-top:20px; margin-bottom: 0px; font-size: 12px}
 .card-info-changeables{font-family: "HelveticaCond"; font-size:10px; text-transform: uppercase;color: gray;line-height:0}
 
@@ -899,7 +913,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
        .ngdialog-theme-plain .container .row .col-xs-12 .dashed-dialog .container .row:nth-of-type(1){margin-top: 14px}
        .img-item-redeemable{height: 60px; width: 60px}
        .ngdialog-item-price-redeemable{text-align: right;padding-right: 15px; color: yellowgreen !important; font-family: "HelveticaLight"; font-weight: bold}
-    
+
 
 .letter-bar-search {width: 78%;}
 
@@ -921,14 +935,14 @@ form#registration td label{height: 40px !important;}
 
 }
 /* IPHONE 5 */
-@media screen and (width:320px) { 
+@media screen and (width:320px) {
     .container-fluid { padding-left:20px;padding-right: 20px }
     .container-fluid .login-form { margin-bottom: 10px }
     .container-fluid .row img.login-img { height: 130px;margin-top: 50px; }
     .container-fluid .login-form input.login-credentials { height: 40px; font-size: 14px; padding-left:15px; }
     .container-fluid .login-form button.login-button { height: 35px; width: 100px; font-size: 14px }
     .container-fluid .login-options .login-options-label { font-size:14px; }
-    
+
 }
 
 
@@ -946,7 +960,7 @@ form#registration td label{height: 40px !important;}
     .mc-info-fh div.col-xs-8 .circle-description .well .row:nth-of-type(1) p { font-size:15px; }
     .mc-info-fh div.col-xs-8 .circle-description .well .row:nth-of-type(2) p { }
     .mc-info-fh div.col-xs-8 .circle-description .well .row:nth-of-type(3) p { font-size:10px; }
-    .mc-info-fh div.col-xs-4 .row:nth-of-type(1) .col-xs-12, 
+    .mc-info-fh div.col-xs-4 .row:nth-of-type(1) .col-xs-12,
     .mc-info-fh div.col-xs-4 .row:nth-of-type(2) .col-xs-12 { font-size:10px; }
     .mc-info-fh div.col-xs-8 { height:230px; }
     .mc-info-fh div.col-xs-8 .circle-orange { height:200px; }
@@ -970,7 +984,7 @@ and (max-device-width : 736px) {
     .mc-info-fh div.col-xs-8 .circle-description .well .row:nth-of-type(3) p { font-size:11px; margin-top:5px; }
     .mc-info-fh div.col-xs-4 { padding-left:30px;margin-top:90px; }
     .mc-info-fh div.col-xs-4 img { height: 55px; width:auto !important; }
-    .mc-info-fh div.col-xs-4 .row:nth-of-type(1) .col-xs-12, 
+    .mc-info-fh div.col-xs-4 .row:nth-of-type(1) .col-xs-12,
     .mc-info-fh div.col-xs-4 .row:nth-of-type(2) .col-xs-12 { font-size:12px; }
     .mc-info-tab .col-xs-6 p { font-size: 14px;margin-top:5px;margin-bottom: 5px }
     .mc-info-redeem-tab ul { height:335px }
@@ -982,7 +996,7 @@ and (max-device-width : 736px) {
 }
 
 /* IPAD */
-@media (min-width: 768px) {  
+@media (min-width: 768px) {
     .container-fluid { padding-left:45px; padding-right: 45px }
     .container { width: 100%; }
     .page-header { height: 40px }
@@ -1035,7 +1049,7 @@ and (max-device-width : 736px) {
     .rh-img {    width: 95px;    height: 95px;}
 }
 @media screen and (min-width: 400px){
-     .container-fluid .row img.login-img{margin-bottom: 4.4em;} 
+     .container-fluid .row img.login-img{margin-bottom: 4.4em;}
      .shop-search-icon-cat{height:75px; width:75px;}
      .shop-search-categories{bottom:190px;}
      .featured-malls-mall{height: 60px; width: 60px}
@@ -1065,7 +1079,7 @@ and (max-device-width : 736px) {
      .add-this-card-img {    height: 84px;}
      .sn-num{font-size: 20px}
      .map-image {    max-height: 345px;}
-   
+
 }
 @media only screen and (width: 411px) {
 .dash-header-greeting{margin-bottom: 28%}
@@ -1103,7 +1117,7 @@ and (max-device-width : 960px) {
     .tab-element-small{font-size: 110%}
 }
 /* GALAXY S5 */
-@media screen and (width:360px) { 
+@media screen and (width:360px) {
     .page-header { height: 26px; }
     .container-fluid .row img.login-img { height: 145px; margin-top:5em ;margin-bottom: 4em; }
     .container-fluid .login-form input.login-credentials { height: 40px;font-size: 16px;  }
@@ -1188,7 +1202,7 @@ and (max-device-width : 960px) {
 
 
 @media only screen and (width: 480px){
-    .login-options{margin-bottom: 23% !important;} 
+    .login-options{margin-bottom: 23% !important;}
     .container-fluid .row img.login-img{margin-bottom: em !important}
 }
 
@@ -1326,7 +1340,7 @@ ul.flagHeader li{font-size: 20px}
 }
 @media screen and (height: 533px){
     .container-fluid .row img.login-img{margin-bottom: 3.5em}
-   
+
 
 }
 @media screen and (height: 567px){
@@ -1438,4 +1452,3 @@ ul.flagHeader li{font-size: 20px}
      .dash-user-img {    height: 70px;}
      .dash-user-img canvas{    height: 70px;}
 }
-    

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xs-3">
                 <span route-mycard="mall">
-                    <span class="notification-shits" ng-if="mallNotification.length != 0">{{mallNotification.length}}</span>
+                    <span class="notification-shits" ng-if="notifications.mall && notifications.mall.length != 0">{{notifications.mall.length}}</span>
                     <img src="images/footer/Mallcards-Active.png" class="pf-first-child tab-img">
                      <p class="footer-lang-text">MALL&nbsp;CARDS</p>
                 </span>
@@ -16,7 +16,7 @@
 
             <div class="col-xs-3">
                 <span route-mycard="shop">
-                    <span class="notification-shits" ng-if="shopNotification.length != 0">{{shopNotification.length}}</span>
+                    <span class="notification-shits" ng-if="notifications.shop && notifications.shop.length != 0">{{notifications.shop.length}}</span>
                     <img src="images/footer/Mallcards-Mallcard.png"  class="pf-second-child tab-img">
                      <p class="footer-lang-text-mall" >SHOP&nbsp;CARDS</p>
                 </span>
@@ -24,7 +24,7 @@
 
             <div class="col-xs-3"> <!-- -->
                 <span route-mycouponcard>
-                    <span class="notification-shits" ng-if="couponNotification.length != 0">{{couponNotification.length}}</span>
+                    <span class="notification-shits" ng-if="notifications.coupon && notifications.coupon.length != 0">{{notifications.coupon.length}}</span>
                     <img src="images/footer/Mallcards-Coupon.png" class="pf-third-child tab-img">
                      <p class="footer-lang-text-mall" >COUPONS</p>
                 </span>
@@ -32,7 +32,7 @@
 
             <div class="col-xs-3">
                 <span route-mystampcard>
-                    <span class="notification-shits" ng-if="stampNotification.length != 0">{{stampNotification.length}}</span>
+                    <span class="notification-shits" ng-if="notifications.stamp && notifications.stamp.length != 0">{{notifications.stamp.length}}</span>
                     <img src="images/footer/Mallcards-Stomp.png" class="pf-last-child tab-img">
                      <p class="footer-lang-text-mall">STAMP&nbsp;CARDS</p>
                 </span>

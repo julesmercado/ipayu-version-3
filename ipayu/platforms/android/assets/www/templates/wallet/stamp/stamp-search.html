@@ -22,6 +22,15 @@
                      route-all-asset-cards="{{feat}}" type="stamp">
                     <img ng-src="{{feat.image}}" class="img img-responsive featured-malls-mall">
                     <p class="featured-malls-mall-name" ng-bind="feat.name"></p>
+                    <!-- <span style="position: absolute;
+                    background: #a5a508;
+                    color: #fff;
+                    font-size: 15px;
+                    top: 22px;
+                    right: 5px;
+                    font-family: condensed;
+                    padding: 0 5px;"
+                    ng-if="showNew(f.stamp_id, 'stamp')">New</span> -->
                 </div>
                 <center><h4 ng-if="f.length == 0">Nothing to display</h4></center>
         </div>

@@ -112,6 +112,19 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
         return $filter('date')(new Date(parseInt(date)), 'yyyy-MM-dd');
     }
 
+    $rootScope.showNew = function(id, type){
+        var n = $rootScope.notifications;
+        if(!n.hasOwnProperty(type)){
+            return false;
+        }
+        for (var i = 0; i < n[type].length; i++) {
+            if(n[type][i].card_id == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     var ready_dashboard = true,
         ready_mallcard = true,
         ready_shopcard = true,
@@ -206,7 +219,8 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                     ready_notification == true;
                     if(resolve){
                         $rootScope.notifications = resolve[0].data.data;
-                        console.log($rootScope.notifications)
+                        $rootScope.notifications.mall = [];
+                        $rootScope.notifications.shop = [];
                     }
                 })
             }

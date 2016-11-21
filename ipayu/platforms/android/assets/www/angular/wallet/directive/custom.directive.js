@@ -3,6 +3,7 @@ walletModule.directive('timerCountdown', TimerDirective)
 walletModule.directive('stringToTimestamp', StringToTimestamp)
 walletModule.directive('downloadExcel', DownloadExcel)
 walletModule.directive('addCardForm', AddCardForm)
+walletModule.directive('promoTimeRemaining', PromoTimeRemaining)
 
 
 TimerDirective.$inject = ['customService'];
@@ -229,4 +230,32 @@ function AddCardForm(){
             }
         }
     }
+}
+
+
+PromoTimeRemaining.$inject = ['customService'];
+function PromoTimeRemaining(customService){
+
+    return {
+            restrict: 'A',
+            link : function(scope, element, attrs){
+                var date_end = attrs.promoTimeRemaining;
+                
+                countdown();
+                
+                function countdown(){
+                    heheTimer = setInterval(function(){
+                        theTimer = customService.getTimeRemaining(date_end);
+                        if(theTimer.total<=0){
+                            scope.$emit(attrs.promoSoloEmit);
+                        }
+                        else{
+                            element.text(theTimer.days+' : '+theTimer.hours+' : '+theTimer.minutes);  
+                        }
+                      },1000);
+                }
+
+             }
+        }
+
 }

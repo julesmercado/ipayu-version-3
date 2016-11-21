@@ -1,7 +1,7 @@
 
 
 var modules = [
-                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova',
+                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick',
 
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
 
@@ -98,8 +98,8 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
         document.addEventListener("backbutton", backButtonIsTapped, false);
         window.addEventListener("resize", onResize, false);
 
-        sqliteSet.setUpDatabase();
-        sqliteSet.createTable();
+        // sqliteSet.setUpDatabase();
+        // sqliteSet.createTable();
         // sqliteSet.dropTable();
 
     }, true);

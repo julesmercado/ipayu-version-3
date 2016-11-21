@@ -18,16 +18,16 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
     $scope.myInterval = 3000;
     $scope.slides = [
         {
-          image: 'http://lorempixel.com/400/200/'
+          image: 'http://lorempixel.com/320/80/'
         },
         {
-          image: 'http://lorempixel.com/400/200/food'
+          image: 'http://lorempixel.com/320/80/food'
         },
         {
-          image: 'http://lorempixel.com/400/200/sports'
+          image: 'http://lorempixel.com/320/80/sports'
         },
         {
-          image: 'http://lorempixel.com/400/200/people'
+          image: 'http://lorempixel.com/320/80/people'
         }
       ];
 

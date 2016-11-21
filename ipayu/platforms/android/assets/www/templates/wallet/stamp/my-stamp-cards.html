@@ -22,6 +22,15 @@
                     timer-countdown="{{f.datetime_end}}"
                 coupon="f">hh:mm:ss</p>
                 <img ng-src="{{f.image}}" class="cs-image" style="height:72px;">
+                <!-- <span style="position: absolute;
+                    background: #a5a508;
+                    color: #fff;
+                    font-size: 15px;
+                    top: 22px;
+                    right: 5px;
+                    font-family: condensed;
+                    padding: 0 5px;"
+                    ng-if="showNew(f.stamp_id, 'stamp')">New</span> -->
             </div>
 
             <div class='cs-image-holder' ng-if="featured.length == 0 || !featured">

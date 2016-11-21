@@ -20,21 +20,24 @@ function PreloaderMethod (preloader, $rootScope) {
 				}
 			}
 			if(allImages.length == 0){
-				if(!continueLoading){$rootScope.doLoading = false;}
-				return;
+				if(!continueLoading){$rootScope.doLoading = false;} return;
 			}
 			else{
 				preloader.preloadImages( allImages ).then(
 					function handleResolve( allImages ) {
 						// Loading was successful.
 						console.info( "Preload Successful" );
-						if(!continueLoading){$rootScope.doLoading = false;}
+						if(!continueLoading){
+							setTimeout(function() {$rootScope.doLoading = false;}, 1000);
+						}
 					},
 					function handleReject( imageLocation ) {
 						// Loading failed on at least one image.
 						console.error( "Image Failed", imageLocation );
 						console.info( "Preload Failure" );
-						if(!continueLoading){$rootScope.doLoading = false;}
+						if(!continueLoading){
+							setTimeout(function() {$rootScope.doLoading = false;}, 1000);
+						}
 					},
 					function handleNotify( event ) {
 						console.info( "Percent loaded:", event.percent );

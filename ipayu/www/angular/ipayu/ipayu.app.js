@@ -1,7 +1,7 @@
 
 
 var modules = [
-                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova',
+                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick',
 
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
 

@@ -14,6 +14,9 @@ function WalletFactory($q, $rootScope, walletRequest, accountRequest, accountDat
     }
     
     function getDataNotification(){
+        if(!$state.current.card_type){
+            return null;
+        }
         var type = $state.current.card_type;
             type = type.replace("card", "");
         var ipayu_info = accountData.getUser();
