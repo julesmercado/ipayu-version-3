@@ -14,6 +14,22 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		pageSize = 7,
 		hasMore = false,
 		selectedCategory = '';
+    
+    $scope.myInterval = 3000;
+    $scope.slides = [
+        {
+          image: 'http://lorempixel.com/400/200/'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/food'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/sports'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/people'
+        }
+      ];
 
 	$scope.featured = get_featured();
 	$scope.unfeatured = get_unfeatured();
@@ -241,8 +257,7 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
 PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo'];
 function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
 
-	var data = promoData.userPromos();
-    $scope.promos = data.reserved_item;
+	$scope.promos = promoData.userPromos();
 	console.log($scope.promos)
 
 }

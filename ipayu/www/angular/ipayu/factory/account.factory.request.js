@@ -70,6 +70,7 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
         },
         addNotification: function(data){
             data.requestType = 'AddToNotification_';
+            console.log(data, "Add notification request")
             return $http({
                             'method'    : 'POST',
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
