@@ -241,8 +241,7 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
 PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo'];
 function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
 
-	var data = promoData.userPromos();
-    $scope.promos = data.reserved_item;
+	$scope.promos = promoData.userPromos();
 	console.log($scope.promos)
 
 }

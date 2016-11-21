@@ -1,9 +1,8 @@
 
 walletModule.factory('wallet', WalletFactory)
 
-WalletFactory.$inject = ['$q', '$rootScope', 'walletRequest', 'accountRequest'];
-
-function WalletFactory($q, $rootScope, walletRequest, accountRequest) {
+WalletFactory.$inject = ['$q', '$rootScope', 'walletRequest', 'accountRequest', 'accountData', '$state'];
+function WalletFactory($q, $rootScope, walletRequest, accountRequest, accountData, $state) {
 
     function thenFunc(response) {
         // console.log(response);
@@ -14,21 +13,23 @@ function WalletFactory($q, $rootScope, walletRequest, accountRequest) {
         console.log(err);
     }
     
-    function getDataNotification(data){
-        console.log(data)
+    function getDataNotification(){
+        var type = $state.current.card_type;
+            type = type.replace("card", "");
+        var ipayu_info = accountData.getUser();
         var n = $rootScope.notifications,
             arr = [],
             returnData = [];
         for(var i in n){
-            if(n.hasOwnProperty(i) && i == data.type) {
+            if(n.hasOwnProperty(i) && i == type) {
                 arr = n[i];
                 break;
             }
         }
         for(var i = 0; i < arr.length; i++){
             var temp = {
-                'ipayu_id'  : data.ipayu_id,
-                'type'  : data.type,
+                'ipayu_id'  : ipayu_info.ipayu_id,
+                'type'  : type,
                 'card_id'   : arr[i].card_id
             }
             returnData.push(temp);
@@ -44,15 +45,15 @@ function WalletFactory($q, $rootScope, walletRequest, accountRequest) {
                 .then(thenFunc, errFunc)
         },
         getUserCards: function(data, ignore){
-            var req_cards = walletRequest.getUserCards(data, ignore),
-                req_notification = accountRequest.addNotification({'data':getDataNotification(data)});
-            return $q.all([req_cards, req_notification])
+            var req_cards = walletRequest.getUserCards(data, ignore);
+            return $q.all([req_cards])
                 .then(thenFunc, errFunc)
         },
         getAllHasCardAssets: function(type){
             var req_assets = walletRequest.getAllHasCardAssets(type);
             var req_categories = walletRequest.getAssetCategories();
-            return $q.all([req_assets, req_categories])
+            var req_notification = accountRequest.addNotification({'data':getDataNotification()});
+            return $q.all([req_assets, req_categories, req_notification])
                 .then(thenFunc, errFunc)
         },
         getAssetCategories: function(){

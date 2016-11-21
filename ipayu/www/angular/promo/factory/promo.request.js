@@ -47,6 +47,17 @@ function PromoFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                           'data'      : $httpParamSerializerJQLike(data),
                           'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                       })
+      },
+
+      removeNotification: function(data){
+        data.requestType = 'UpdateAlert_';
+        return $http({
+                          'method'    : 'POST',
+                          'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'data'      : $httpParamSerializerJQLike(data),
+                          'ignoreLoadingBar': true,
+                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                      })
       }
 
     }
