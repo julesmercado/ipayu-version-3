@@ -11,6 +11,20 @@ html,body{overflow-x: hidden;}
 @font-face { font-family: 'HelveticaCond'; src: url(./Fonts/HelveticaLTStd-Cond_0.otf); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'HelveticaLightCond'; src: url(./Fonts/HelveticaLTStd-LightCond_0.otf); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'HelveticaBoldCond'; src: url(./Fonts/HelveticaLTStd-BoldCond_0.otf); font-weight: normal; font-style: normal; }
+#slides_control > div{
+    height: 200px;
+}
+#slides_control img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
 .navbar{border:none;}
 #sp-page{background-image:url(../images/cards-background_2.png);background-repeat:no-repeat; background-size:cover; background-position: center center; background-color: white; overflow: hidden;position: absolute;top:0; bottom:0;left:0;right: 0}
 #sp-nav{width: 100%; overflow:hidden;margin-top:60px !important;}

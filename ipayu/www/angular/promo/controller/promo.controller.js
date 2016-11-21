@@ -14,6 +14,22 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		pageSize = 7,
 		hasMore = false,
 		selectedCategory = '';
+    
+    $scope.myInterval = 3000;
+    $scope.slides = [
+        {
+          image: 'http://lorempixel.com/400/200/'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/food'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/sports'
+        },
+        {
+          image: 'http://lorempixel.com/400/200/people'
+        }
+      ];
 
 	$scope.featured = get_featured();
 	$scope.unfeatured = get_unfeatured();
