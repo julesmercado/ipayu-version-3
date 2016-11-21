@@ -1,9 +1,9 @@
 
 walletModule.factory('wallet', WalletFactory)
 
-WalletFactory.$inject = ['$q', 'walletRequest'];
+WalletFactory.$inject = ['$q', '$rootScope', 'walletRequest', 'accountRequest'];
 
-function WalletFactory($q, walletRequest) {
+function WalletFactory($q, $rootScope, walletRequest, accountRequest) {
 
     function thenFunc(response) {
         // console.log(response);
@@ -13,7 +13,29 @@ function WalletFactory($q, walletRequest) {
     function errFunc(err){
         console.log(err);
     }
-
+    
+    function getDataNotification(data){
+        console.log(data)
+        var n = $rootScope.notifications,
+            arr = [],
+            returnData = [];
+        for(var i in n){
+            if(n.hasOwnProperty(i) && i == data.type) {
+                arr = n[i];
+                break;
+            }
+        }
+        for(var i = 0; i < arr.length; i++){
+            var temp = {
+                'ipayu_id'  : data.ipayu_id,
+                'type'  : data.type,
+                'card_id'   : arr[i].card_id
+            }
+            returnData.push(temp);
+        }
+        return returnData;
+    }
+    
     return {
 
         getTopThreeFrequent: function(id, ignore){
@@ -22,8 +44,9 @@ function WalletFactory($q, walletRequest) {
                 .then(thenFunc, errFunc)
         },
         getUserCards: function(data, ignore){
-            var req_cards = walletRequest.getUserCards(data, ignore);
-            return $q.all([req_cards])
+            var req_cards = walletRequest.getUserCards(data, ignore),
+                req_notification = accountRequest.addNotification({'data':getDataNotification(data)});
+            return $q.all([req_cards, req_notification])
                 .then(thenFunc, errFunc)
         },
         getAllHasCardAssets: function(type){

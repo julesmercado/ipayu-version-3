@@ -15,7 +15,6 @@
         </li>
 
        <li class="col-xs-5 pull-right no-padding-right">
-       <img src="images/promo-R.png" class="promo-btn-reserve-head" route-my-promos>
             <button ng-click="toggleShowCountry()" id="flags-nav" class="promo-flag-list">
                 <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
                 <span>{{countryDisplay.name}}</span> 
@@ -29,6 +28,16 @@
                             </li>
                         </ul>
             </button>
+            <img src="images/promo-R.png" class="promo-btn-reserve-head" route-my-promos>
+            <label class="promo-btn-reserve-head" 
+            style="top: -2px;
+            background: #444;
+            color: #fff;
+            border-radius: 100px;
+            padding: 2px 6px;
+            font-size: 13px;
+            font-weight: normal;
+            right: 40px;" ng-if="notifications.promo && notifications.promo.length != 0">{{notifications.promo.length}}</label>
              <button class="btn-top-with-flag" ui-sref="dashboard">
                 <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
              </button >

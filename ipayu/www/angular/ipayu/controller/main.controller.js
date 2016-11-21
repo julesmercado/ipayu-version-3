@@ -4,10 +4,10 @@ mainModule.controller('mainCtrl', MainCtrl)
 
 MainCtrl.$inject = [
                     '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet',  'storages',
-                    'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData'
+                    'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData', 'account'
                     ];
 function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages,
-                    stampData, couponData, stamp, coupon, wallet, walletData) {
+                    stampData, couponData, stamp, coupon, wallet, walletData, account) {
 
     $rootScope.doLoading = false;
 
@@ -116,13 +116,15 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
         ready_mallcard = true,
         ready_shopcard = true,
         ready_coupon = true,
-        ready_stamp = true;
+        ready_stamp = true,
+        ready_notification = true;
 
     setInterval(function() {
         ipayu_info = accountData.getUser();
 
         if($rootScope.showOffline == false) {
-
+            
+            // for real time dashboard
             if($state.current.name == 'dashboard' && ready_dashboard == true){
                 ready_dashboard == false;
                 wallet.getTopThreeFrequent(ipayu_info.ipayu_id, true)
@@ -135,6 +137,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 })
             }
 
+            // for real time user mallcards
             if($state.current.card_type == 'mallcard' && ready_mallcard == true){
                 ready_mallcard = false;
                 wallet.getUserCards({'ipayu_id':ipayu_info.ipayu_id, 'type':'mall'}, true)
@@ -150,6 +153,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 })
             }
 
+            // for real time user shopcards
             if($state.current.card_type == 'shopcard' && ready_shopcard == true){
                 ready_shopcard = false;
                 wallet.getUserCards({'ipayu_id':ipayu_info.ipayu_id, 'type':'shop'}, true)
@@ -164,6 +168,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 })
             }
 
+            // for real time user coupons
             if($state.current.card_type == 'couponcard' && ready_coupon == true){
                 ready_coupon = false;
                 coupon.getUserCoupons(ipayu_info.ipayu_id, true)
@@ -178,6 +183,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 })
             }
 
+            // for real time user stamps
             if($state.current.card_type == 'stampcard' && ready_stamp == true){
                 ready_stamp = false;
                 stamp.getUserStamps(ipayu_info.ipayu_id, true)
@@ -188,6 +194,19 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                         stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
                         stampData.setUsedStamps(resolve[0].data.data.usedstamps);
                         $rootScope.$broadcast('newStampData', resolve[0].data.data)
+                    }
+                })
+            }
+            
+            // for real time notification
+            if(ready_notification == true){
+                ready_notification == false;
+                account.getNotifications({'ipayu_id':ipayu_info.ipayu_id})
+                .then(function(resolve){
+                    ready_notification == true;
+                    if(resolve){
+                        $rootScope.notifications = resolve[0].data.data;
+                        console.log($rootScope.notifications)
                     }
                 })
             }

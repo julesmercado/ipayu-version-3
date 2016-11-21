@@ -4,6 +4,8 @@ promoModule.controller('promoLandingCtrl', PromoLanding)
 promoModule.controller('allPromoSearchCtrl', AllPromoSearch)
 promoModule.controller('promoSoloCtrl', PromoSolo)
 promoModule.controller('promoListCtrl', PromoList)
+promoModule.controller('reservePromoCtrl', ReservePromo)
+
 
 PromoLanding.$inject = ['$scope', '$rootScope', 'customService', 'promoData'];
 function PromoLanding($scope, $rootScope, customService, promoData) {
@@ -142,8 +144,8 @@ function AllPromoSearch($scope, $rootScope, promoData, customService, ngDialog) 
     })
 }
 
-PromoSolo.$inject = ['$scope', '$rootScope', 'promoData', 'customService', '$state', 'accountData', 'promo'];
-function PromoSolo($scope, $rootScope, promoData, customService, $state, accountData, promo) {
+PromoSolo.$inject = ['$scope', '$rootScope', 'promoData', 'customService', '$state', 'accountData', 'promo', 'ngDialog'];
+function PromoSolo($scope, $rootScope, promoData, customService, $state, accountData, promo, ngDialog) {
 
 	if(!$rootScope.addPromo){
 		redirect()
@@ -159,39 +161,88 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, account
 	})
 
 	$scope.reservePromo = function(){
+        
+        var dataToSend = {
+            'ipayu_id'		: userInfo.ipayu_id,
+            'promo_card_id'	: $scope.promoInfo.promo_card_id
+        }
 		if($scope.promoInfo.expired == true){
 			customService.alert('This promo is already expired')
+            return;
 		}
-		else {
-			var dataToSend = {
-				'ipayu_id'		: userInfo.ipayu_id,
-				'promo_card_id'	: $scope.promoInfo.promo_card_id,
-				'datetime_reserved'	: Date.parse(new Date()),
-				'quantity'		: 1
-			}
-
-			promo.reserve(dataToSend)
-			.then(function(resolve){
-				if(resolve){
-					alert(resolve[0].data.message);
-					if(resolve[0].data.success == true){
-						redirect();
-					}
-				}
-			})
-
-		}
+        
+        ngDialog.open({
+            template: 'reservemodal.html',
+            className: 'ngdialog-theme-plain profile-cutom-bg',
+            controller: 'reservePromoCtrl',
+            resolve: {
+                formData: function(){
+                    return dataToSend;
+                },
+                thisPromo: function(){
+                    return $scope.promoInfo;
+                }
+            },
+            overlay: true
+        });
+        
 	}
+    
 	function redirect(){
 		angular.element(document.getElementById('tomypromos')).click();
 	}
 }
 
+ReservePromo.$inject=  ['$scope', '$rootScope', 'promo', 'formData', 'thisPromo', 'customService'];
+function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customService) {
+    
+    $scope.quantity = 0;
+    $scope.done = false;
+    $scope.thisPromo = thisPromo;
+    
+    $scope.decrement = function(){
+        if($scope.quantity > 0){
+            $scope.quantity--;
+        }
+    }
+    
+    $scope.increment = function(){
+        if($scope.quantity < thisPromo.remaining_stock) {
+            $scope.quantity++;
+        }
+    }
+    
+    $scope.reserve = function(){
+        if($scope.quantity == 0){
+            return 0;
+        }
+		if(thisPromo.expired == true){
+			customService.alert('This promo is already expired')
+		}
+		else {
+            formData.quantity = $scope.quantity;
+            formData.datetime_reserved = Date.parse(new Date());
+            
+			promo.reserve(formData)
+			.then(function(resolve){
+				if(resolve && resolve[0].data.success == true) {
+                    $scope.done = true;
+				}
+			})
+		}
+        
+        $scope.continue = function(){
+            angular.element(document.getElementById('tomypromos')).click();
+        }
+
+    }
+}
+
 PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo'];
 function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
 
-	$scope.promos = promoData.userPromos();
-
+	var data = promoData.userPromos();
+    $scope.promos = data.reserved_item;
 	console.log($scope.promos)
 
 }
