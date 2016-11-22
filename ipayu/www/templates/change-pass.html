@@ -1,33 +1,64 @@
-<div id="sp-page" style="overflow-y:hidden">
-<div class="page-main-header" style="background-color:#DF1642"></div>
-<div id="" class="animated "
-		ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}" 
-		style="width:100%;height:100%;z-index:1;margin-top:46px;position: fixed;"
-		 ng-swipe-left="toggleMenu()">
+<div class="page-header"></div>
+<header class="fp-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <img src="images/password.png">
+                <h4 style="">
+                    CHANGE PASSWORD
+                </h4>
+            </div>
+        </div>
+    </div>  
+</header>
 
-    <menu style="width:80%;height:100%;background:#fff;"
-		    class="animated" 
-    		ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu> 
+<div class="container fp-description">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+         
+         	<h4 class="cpw-header">Enter a new password </h4>
+            <form name="forgotForm">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                       <img src="images/password.png">
+                    </span>
 
+                    <input type="password" class="form-control" placeholder="Enter old password" aria-describedby="basic-addon1"
+                           name="answer" required>
+                </div>
+
+                 <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                       <img src="images/password.png">
+                    </span>
+
+                    <input type="password" class="form-control" placeholder="Enter new password" aria-describedby="basic-addon1"
+                           name="answer" required>
+                </div>
+
+                 <div class="input-group" style="margin-top:10px">
+                    <span class="input-group-addon" id="basic-addon1">
+                       <img src="images/password.png">
+                    </span>
+
+                    <input type="password" class="form-control" placeholder="Repeat new password" aria-describedby="basic-addon1"
+                           name="answer" required>
+                </div>
+                <button type="submit" class="btn btn-default" ng-disabled="forgotForm.$invalid" ng-click="resetPassword()" style="margin-top:30px">
+                    UPDATE
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
-<div style="background-color: rgba(255,255,255,0.6);padding-bottom: 150px" class="dashboard">
-	<nav class="navbar ">
-	    <div class="navbar-header nav-dash">
-	      <a class="navbar-brand" ng-click="toggleMenu()">
-	       	<img style="width: auto;height: 13px;" src="images/menubar.png" id="burger-icon">
-	      </a>
-	       <center>
-                <div class="dash-header-logo"><img src="images/ipayu.png" class="logo-header"></div>
-            </center>
 
-            <button class="btn dash-logout pull-right" >
-                    <img src="images/dashboard/call.png" class="nav-logout-img">
-            </button>
-	    </div>
-	</nav>
 
-</div>
 
-changepass
-
-</div>
+<footer class="fp-footer" ng-if="!hasFocusElement">
+    <div class="container" >
+        <span class="pull-left" back>
+        <img src="images/red-back-btn.png" height="20px">
+            GO BACK
+        </span>
+    </div>
+</footer>
