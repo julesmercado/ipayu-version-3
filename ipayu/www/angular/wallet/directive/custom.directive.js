@@ -4,6 +4,7 @@ walletModule.directive('stringToTimestamp', StringToTimestamp)
 walletModule.directive('downloadExcel', DownloadExcel)
 walletModule.directive('addCardForm', AddCardForm)
 walletModule.directive('promoTimeRemaining', PromoTimeRemaining)
+walletModule.directive('onFinishRender', OnFinishRender)
 
 
 TimerDirective.$inject = ['customService'];
@@ -258,4 +259,18 @@ function PromoTimeRemaining(customService){
              }
         }
 
+}
+
+OnFinishRender.$inject = ['$timeout'];
+function OnFinishRender($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
 }

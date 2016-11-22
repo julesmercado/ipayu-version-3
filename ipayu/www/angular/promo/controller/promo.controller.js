@@ -258,6 +258,16 @@ PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'acco
 function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
 
 	$scope.promos = promoData.userPromos();
+	$scope.emitMessage = 'finishPromoList';
 	console.log($scope.promos)
+
+	$scope.$on($scope.emitMessage, function(event) {
+		var sw = Swiped.init({
+	        query: '.swipeswipe li div.swipable',
+	        list: true,
+	        right: 100
+	    });
+	    console.log(sw)
+	});
 
 }

@@ -22,26 +22,38 @@
     </div>
 
     <div class="mother-of-all-scrollables">
-        <div class="container">
+        <ul class="container swipeswipe" style="list-style-type:none;">
+            <li class="row top15 foo" ng-repeat="promo in promos" on-finish-render="{{emitMessage}}">
+                
+                <div class="swipable" style="position:relative;">
+                <div style="position: absolute;
+                        height: 95px;
+                        left: 100%;
+                        background: red;
+                        width: 100px;
+                        color:#fff;
+                        text-align: center;">Delete</div>
 
-            <div class="row top15 foo" ng-repeat="promo in promos">
-                <div class="col-xs-2 pd-d-c">
-                 <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
-                 <span class="pl-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
-                 <span class="pl-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
+                    <div class="col-xs-2 pd-d-c">
+                        <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
+                        <span class="pl-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
+                        <span class="pl-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
+                    </div>
+
+                    <div class="col-xs-10 pd-r-c" >
+                        <img ng-src="{{promo.image}}" class="promo-reserved-img">
+                        <span class="pl-i-pr">{{promo.price}}</span> <br/>
+                        <span class="pl-i-des">Get our Promo Sale </span> <br/>
+                        by <span class="pl-i-ow">{{promo.asset_name}}</span>
+
+                        <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
+                    </div>
                 </div>
-
-                <div class="col-xs-10 pd-r-c" >
-                <img ng-src="{{promo.image}}" class="promo-reserved-img">
-                    <span class="pl-i-pr">{{promo.price}}</span> <br/>
-                    <span class="pl-i-des">Get our Promo Sale </span> <br/>
-                    by <span class="pl-i-ow">{{promo.asset_name}}</span>
-
-                    <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
-                </div>
-            </div>
-    
-        </div>
+            </li>
+        </ul>
     </div>
 </div>
 
+<script type="text/javascript">
+    
+</script>
