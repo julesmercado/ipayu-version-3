@@ -32,7 +32,10 @@
                         background: red;
                         width: 100px;
                         color:#fff;
-                        text-align: center;">Delete</div>
+                        z-index: 50;
+                        text-align: center;">
+                    <button ng-click="remove()">&times;</button>
+                </div>
 
                     <div class="col-xs-2 pd-d-c">
                         <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
@@ -53,7 +56,4 @@
         </ul>
     </div>
 </div>
-
-<script type="text/javascript">
-    
-</script>
+<confirm-remove-item-modal></confirm-remove-item-modal>

@@ -5,6 +5,8 @@ promoModule.controller('allPromoSearchCtrl', AllPromoSearch)
 promoModule.controller('promoSoloCtrl', PromoSolo)
 promoModule.controller('promoListCtrl', PromoList)
 promoModule.controller('reservePromoCtrl', ReservePromo)
+promoModule.controller('confirmDeleteCtrl', ConfirmDelete)
+
 
 
 PromoLanding.$inject = ['$scope', '$rootScope', 'customService', 'promoData'];
@@ -254,8 +256,8 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
     }
 }
 
-PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo'];
-function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
+PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo', 'ngDialog'];
+function PromoList($scope, $rootScope, promoData, customService, accountData, promo, ngDialog) {
 
 	$scope.promos = promoData.userPromos();
 	$scope.emitMessage = 'finishPromoList';
@@ -267,7 +269,41 @@ function PromoList($scope, $rootScope, promoData, customService, accountData, pr
 	        list: true,
 	        right: 100
 	    });
-	    console.log(sw)
 	});
+
+	$scope.remove = function(id) {
+        ngDialog.open({
+            template: 'confirmRemoveItem',
+            className: 'ngdialog-theme-plain profile-cutom-bg',
+            controller: 'confirmDeleteCtrl',
+            resolve: {
+                id: function(){
+                	return id;
+                },
+                message: function() {
+                	return 'Delete this item?';
+                }
+            },
+            overlay: true
+        });
+	}
+
+}
+
+ConfirmDelete.$inject=  ['$scope', '$rootScope', 'promo', 'id', 'message', 'ngDialog'];
+function ConfirmDelete($scope, $rootScope, promo, id, message, ngDialog) {
+
+	$scope.message = message;
+	
+	$scope.delete = function() {
+		promo.deleteItem({'reservation_id':id})
+		.then(function(resolve){
+			ngDialog.closeAll();
+		})
+	}
+
+	$scope.cancel = function(){
+		ngDialog.closeAll();
+	}
 
 }

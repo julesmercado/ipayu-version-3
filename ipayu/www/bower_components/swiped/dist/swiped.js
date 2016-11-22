@@ -140,9 +140,9 @@
         return group;
     };
 
-    Swiped._closeAll = function(groupNumber) {
+    Swiped._closeAll = function(groupNumber, item) {
         Swiped._elems.forEach(function(Swiped) {
-            if (Swiped.group === groupNumber) {
+            if (Swiped.group === groupNumber && Swiped != item) {
                 Swiped.close(true);
             }
         });
@@ -184,7 +184,7 @@
         this.resetValue();
 
         if (this.list) {
-            Swiped._closeAll(this.group);
+            Swiped._closeAll(this.group, this);
         } else {
             this.close(true);
         }

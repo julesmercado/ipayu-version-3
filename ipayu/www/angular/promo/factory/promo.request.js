@@ -58,6 +58,17 @@ function PromoFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                           'ignoreLoadingBar': true,
                           'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                       })
+      },
+
+      deleteItem: function(data){
+        data.requestType = 'DeleteItem_';
+        return $http({
+                          'method'    : 'POST',
+                          'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'data'      : $httpParamSerializerJQLike(data),
+                          'ignoreLoadingBar': true,
+                          'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                      })
       }
 
     }
