@@ -39,11 +39,12 @@ function PromoFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
                       })
       },
 
-      my_promos: function(data){
+      my_promos: function(data, ignore){
         data.requestType = 'GetReservedItem_';
         return $http({
                           'method'    : 'POST',
                           'url'       : API_ROOT_URL + 'promo_controller.php/',
+                          'ignoreLoadingBar'  : ignore,
                           'data'      : $httpParamSerializerJQLike(data),
                           'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                       })

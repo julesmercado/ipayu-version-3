@@ -162,13 +162,21 @@ function AllPromoSearch($scope, $rootScope, promoData, customService, ngDialog) 
     })
 }
 
-PromoSolo.$inject = ['$scope', '$rootScope', 'promoData', 'customService', '$state', 'accountData', 'promo', 'ngDialog'];
-function PromoSolo($scope, $rootScope, promoData, customService, $state, accountData, promo, ngDialog) {
+PromoSolo.$inject = ['$scope', '$rootScope', 'promoData', 'customService', '$state', '$stateParams', 'accountData', 'promo', 'ngDialog'];
+function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateParams, accountData, promo, ngDialog) {
 
-	if(!$rootScope.addPromo){
-		redirect()
+	
+	if($stateParams.view){
+		$scope.viewOnly = true;
 	}
-	$rootScope.addPromo = false;
+
+	$scope.$watch(function(){
+			return $rootScope.addPromo;
+		}, function(newvalue){
+		if(newvalue == false && !$stateParams.view){
+			redirect()
+		}
+	})
 
 	$scope.promoInfo = promoData.promoInfo();
 	$scope.promoSoloEmit = 'expiredPromo';
@@ -244,6 +252,7 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
 			promo.reserve(formData)
 			.then(function(resolve){
 				if(resolve && resolve[0].data.success == true) {
+					$rootScope.addPromo = false;
                     $scope.done = true;
 				}
 			})
@@ -256,9 +265,10 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
     }
 }
 
-PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo', 'ngDialog'];
-function PromoList($scope, $rootScope, promoData, customService, accountData, promo, ngDialog) {
+PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'accountData', 'promo', 'ngDialog', '$timeout'];
+function PromoList($scope, $rootScope, promoData, customService, accountData, promo, ngDialog, $timeout) {
 
+	$rootScope.hasRemovedItem = false;
 	$scope.promos = promoData.userPromos();
 	$scope.emitMessage = 'finishPromoList';
 	console.log($scope.promos)
@@ -288,22 +298,34 @@ function PromoList($scope, $rootScope, promoData, customService, accountData, pr
         });
 	}
 
+	$rootScope.$on('updatePromolist', function(event, data){
+		console.log($rootScope.hasRemovedItem)
+		if($rootScope.hasRemovedItem == true) {
+			$scope.promos = data;
+			$timeout(function(){
+				$rootScope.hasRemovedItem = false;
+			})
+		}
+	})
+
 }
 
 ConfirmDelete.$inject=  ['$scope', '$rootScope', 'promo', 'id', 'message', 'ngDialog'];
 function ConfirmDelete($scope, $rootScope, promo, id, message, ngDialog) {
 
 	$scope.message = message;
-	
+
 	$scope.delete = function() {
 		promo.deleteItem({'reservation_id':id})
 		.then(function(resolve){
-			ngDialog.closeAll();
+			if(resolve){
+				$rootScope.hasRemovedItem = true;
+				ngDialog.closeAll();
+			}
 		})
 	}
 
 	$scope.cancel = function(){
 		ngDialog.closeAll();
 	}
-
 }
