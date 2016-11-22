@@ -21,18 +21,12 @@
         </div>
     </div>
 
-    <div class="mother-of-all-scrollables">
-        <ul class="container swipeswipe" style="list-style-type:none;">
+    <div class="mother-of-all-scrollables-psp">
+        <ul class="container swipeswipe" style="list-style-type:none; overflow-x:hidden">
             <li class="row top15 foo" ng-repeat="promo in promos" on-finish-render="{{emitMessage}}">
                 
-                <div class="swipable" style="position:relative;">
-                <div style="position: absolute;
-                        height: 95px;
-                        left: 100%;
-                        background: red;
-                        width: 100px;
-                        color:#fff;
-                        text-align: center;">Delete</div>
+                <div class="swipable" style="position:relative; overflow-x:hidden">
+              
 
                     <div class="col-xs-2 pd-d-c">
                         <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
@@ -48,6 +42,9 @@
 
                         <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
                     </div>
+
+                    <div class="promo-list-del-container"><img src="images/promo-del.png" class="pl-del-btn"></div>
+
                 </div>
             </li>
         </ul>

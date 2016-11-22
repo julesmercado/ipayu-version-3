@@ -18,16 +18,16 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
     $scope.myInterval = 3000;
     $scope.slides = [
         {
-          image: 'http://lorempixel.com/320/80/'
+          image: 'http://www.everythingcebu.com/wp-content/uploads/2014/05/Sun-Sational-Summer-Robinsons-Supermarket-Raffle-Prizes.jpg'
         },
         {
-          image: 'http://lorempixel.com/320/80/food'
+          image: 'https://4.bp.blogspot.com/-mMpD4MITRK8/VxH5jOM_xwI/AAAAAAAAJcM/w97m4AhxK-cGr6efSr_9J_wgE3m9qYb2gCLcB/s1600/Smart%2BUCT100.jpg'
         },
         {
-          image: 'http://lorempixel.com/320/80/sports'
+          image: 'http://promos.watimbox.com/wp-content/uploads/2016/07/rustans.jpg'
         },
         {
-          image: 'http://lorempixel.com/320/80/people'
+          image: 'http://www.contestsandpromos.com/wp-content/uploads/2011/03/east-west-greenwich-promo.jpg'
         }
       ];
 
@@ -258,6 +258,16 @@ PromoList.$inject = ['$scope', '$rootScope', 'promoData', 'customService', 'acco
 function PromoList($scope, $rootScope, promoData, customService, accountData, promo) {
 
 	$scope.promos = promoData.userPromos();
+	$scope.emitMessage = 'finishPromoList';
 	console.log($scope.promos)
+
+	$scope.$on($scope.emitMessage, function(event) {
+		var sw = Swiped.init({
+	        query: '.swipeswipe li div.swipable',
+	        list: true,
+	        right: 100
+	    });
+	    console.log(sw)
+	});
 
 }
