@@ -86,12 +86,7 @@
     
 <!--Slides-->
 
-<div style="position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    width: 100%;">
+<div class="pl-carousel">
     <slick dots="true" 
             speed="300" 
             lazy-load="ondemand" 
@@ -100,7 +95,7 @@
             slides-to-scroll="1"
             autoplay="true">
         <div ng-repeat="slide in slides">
-            <img ng-src="{{slide.image}}" style="width:100%;">
+            <img ng-src="{{slide.image}}" style="width:100%;" class="pl-carousel-img">
         </div>
     </slick>
 </div>
