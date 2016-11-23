@@ -33,11 +33,15 @@ mainModule.constant('API_ROOT_URL', 'http://bringmesmiles.com/ipayu/controller/'
 mainModule.value('storages', storage)
 mainModule.config(Config)
 
-Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
-function Run(sqliteSet, accountData, $rootScope, $state) {
+Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state', '$window'];
+function Run(sqliteSet, accountData, $rootScope, $state, $window) {
 
 
     document.addEventListener('deviceready', function () {
+
+         if($window.MobileAccessibility){
+            $window.MobileAccessibility.usePreferredTextZoom(false);
+        }
 
         function onOnline(){
             $rootScope.showOffline = false;
