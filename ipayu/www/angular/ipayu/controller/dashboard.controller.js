@@ -1,6 +1,6 @@
 
 mainModule.controller('dashboardCtrl', Dashboard)
-mainModule.controller('ChangePassCtrl', Profile)
+mainModule.controller('profileCtrl', Profile)
 mainModule.controller('changePassCtrl', ChangePass)
 
 
