@@ -32,13 +32,18 @@ function AccountFactory($q, accountRequest) {
                 .then(thenFunc, errFunc)
         },
         login: function(username, password){
-            var req_login= accountRequest.login(username, password);
+            var req_login = accountRequest.login(username, password);
             return $q.all([req_login])
                 .then(thenFunc, errFunc)
         },
         resetPassword: function(data){
-            var req_reset= accountRequest.resetPassword(data);
+            var req_reset = accountRequest.resetPassword(data);
             return $q.all([req_reset])
+                .then(thenFunc, errFunc)
+        },
+        getNotifications: function(data){
+            var req_notification = accountRequest.getNotifications(data);
+            return $q.all([req_notification])
                 .then(thenFunc, errFunc)
         }
 

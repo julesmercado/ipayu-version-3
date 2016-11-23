@@ -50,7 +50,7 @@
 
 	.promo-cat{background-color: #FFBE58 !important}
 	.promo-cat-active{background-color: #FFBE09 !important}
-	.promo-categories{bottom: 170px}
+	.promo-categories{bottom: 160px}
 	.promo-categories-2{bottom: 100px}
 
 #psp-promo-by, #psp-promo-shoutout,#psp-promo-location{padding-left: 20px; padding-right: 15px}
@@ -65,20 +65,72 @@
 		.psp-timer-label{word-spacing: 10px;    font-size: 14px; padding-left: 20px;font-family: "HelveticaBold";}
 		.psp-promo-validity{font-size: 12px; color: gray; font-family: "HelveticaBold"; text-transform: uppercase;}
 	#psp-date-container>center>p{font-size: 12px; color: gray; font-family: "HelveticaLight";}
- 
+
+	.pl-uf-p{margin-top: 5px !important}
+	.swipable{z-index: 10}
+	.promo-list-del-container{position: absolute;height: 95px;right:-101px;background:#ED1B24;width: 100px;color:#fff;text-align: center;display: inline-block;}
+		.pl-del-btn{width: 60px;    margin-top: 15%;}
+
+ 	
+ 	.promo-modal-container{padding:4px;}
+ 	.dash-promo-modal{border: 1px dashed rgb(250,128,61);    padding: 10px;    border-radius: 23px;}
+ 		.reserve-btn-pm{    padding: 5px;    background: rgb(250,128,61);    font-size: 16px; font-family: "HelveticaCond"; color: white; font-weight: bold}
+ 		.ct-pm{font-family: "HelveticaLight"; color:gray !important; text-align: center; font-weight: bolder; }
+ 		.ct-pm-bold{font-family: "HelveticaBold"}
+
+ 	.pl-carousel{position: absolute;    left: 0;    right: 0;    bottom: 0;    height: 90px;    width: 100%;}
+ 			.pl-carousel-img{height: 90px}
+	.promo-landing-unfeatured-section{margin-top:5px !important;}
+
+
 @media screen and (min-width: 360px){
 	.promo-pin-img {  margin-top: 13px;    right: 15px;}
 		.promo-pin-reserve{right: 20px}
 
-	.promo-categories{bottom: 190px}
-	.promo-categories-2{bottom: 120px}
+	.promo-categories{bottom: 170px !important}
+	.promo-categories-2{bottom: 105px !important}
 }
 
 @media screen and (min-width: 375px){
 
 }
 
+@media screen and (width:384px){
+.promo-categories{bottom: 178px}
+.promo-categories-2 {    bottom: 110px;}
+
+}
 @media screen and (min-width:400px){
 
 	.promo-categories{bottom: 210px}
+}
+
+@media screen and (min-width:414px){
+
+	.promo-categories{bottom: 225px}
+	.promo-categories-2 {    bottom: 135px;}
+
+	.pl-carouse{height: 115px}
+	.pl-carousel-img {    height: 116px;}
+}
+
+@media screen and (max-height: 567px){
+
+	.promo-categories{    bottom: 130px !important; }
+		.promo-categories-2{    bottom: 80px !important;}
+	
+	.pl-carousel{height: 70px !important}
+		.pl-carousel-img{height: 70px !important}
+
+		.promo-alphabet-list {    margin-top: 15px !important;  font-size: 9px !important;}
+}
+
+@media screen and (height: 567px){
+	.promo-categories {    bottom: 144px !important;}
+}
+
+@media screen and (height: 660px){
+
+	.promo-categories{    bottom: 173px !important;}
+		.promo-categories-2{    bottom: 100px !important;}
 }

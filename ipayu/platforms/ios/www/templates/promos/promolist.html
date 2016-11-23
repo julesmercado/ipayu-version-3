@@ -15,34 +15,45 @@
         <div class="row add-card-header reserved-item-header">
             <div class="col-xs-12">
                 <p class="text-center" >
-                    Reserved items (9)
+                    Reserved items ({{promos.length || 0}})
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="mother-of-all-scrollables ">
-    <ul class="no-style-list bar">
-        <div class="container">
+    <div class="mother-of-all-scrollables-psp">
+        <ul class="container swipeswipe" style="list-style-type:none; overflow-x:hidden">
+            
+            <li class="row top15 foo" ng-repeat="promo in promos | filter:searchCountry as filtered" on-finish-render="{{emitMessage}}">
+                
+                <div class="swipable" style="position:relative; overflow-x:hidden" >
+              
+                    <div class="col-xs-2 pd-d-c" route-solo-promo="{{promo}}" view-only='true'>
+                        <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
+                        <span class="pl-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
+                        <span class="pl-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
+                    </div>
 
-            <div class="row top15 foo">
-                <div class="col-xs-2 pd-d-c">
-                 <span class="pl-d-dd">16</span>
-                 <span class="pl-d-mm">Aug</span>
-                 <span class="pl-d-yyy">2016</span>
+                    <div class="col-xs-10 pd-r-c" route-solo-promo="{{promo}}" view-only='true'>
+                        <img ng-src="{{promo.image}}" class="promo-reserved-img">
+                        <span class="pl-i-pr">{{promo.price}}</span> <br/>
+                        <span class="pl-i-des">Get our Promo Sale </span> <br/>
+                        by <span class="pl-i-ow">{{promo.asset_name}}</span>
+
+                        <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
+                    </div>
+
+                    <div class="promo-list-del-container">
+                        <img src="images/promo-del.png" class="pl-del-btn" ng-click="remove(promo.reservation_id)">
+                    </div>
+
                 </div>
 
-                <div class="col-xs-10 pd-r-c" >
-                <img src="http://2.bp.blogspot.com/_QfVWU-2pVL4/TLOWOzz8tKI/AAAAAAAAPws/PLgZWDXeFDM/s1600/kfc-bin-laden-halal-chicken.jpg" class="promo-reserved-img" ui-sref="promosolopage">
-                    <span class="pl-i-pr"> P 9999 </span> <br/>
-                    <span class="pl-i-des">Get our Promo Sale </span> <br/>
-                    by <span class="pl-i-ow">Rustan's</span>
-
-                    <span class="pull-right pl-it-qty"> [1]</span>
-                </div>
-            </div>
-    
-        </div>
+            </li>
+            <li ng-if="filtered.length == 0">
+                <h4 style="text-align:center;">Nothing to display</h4>
+            </li>
+        </ul>
     </div>
 </div>
-
+<confirm-remove-item-modal></confirm-remove-item-modal>

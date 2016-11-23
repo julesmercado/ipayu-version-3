@@ -57,6 +57,27 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                             'url'       : API_ROOT_URL + 'user_controller.php',
                             'data'      : $httpParamSerializerJQLike(data),
                         })
+        },
+        getNotifications: function(data){
+            data.requestType = 'GetCardAlerts_';
+            return $http({
+                            'method'    : 'POST',
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                            'ignoreLoadingBar': true,
+                            'url'       : API_ROOT_URL + 'card_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                        })
+        },
+        addNotification: function(data){
+            data.requestType = 'AddToNotification_';
+            console.log(data, "Add notification request")
+            return $http({
+                            'method'    : 'POST',
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                            'ignoreLoadingBar': true,
+                            'url'       : API_ROOT_URL + 'card_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                        })
         }
 
     }

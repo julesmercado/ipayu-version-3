@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
         	<div class="col-xs-12 no-padding">
-        	 <img src="http://media.graytvinc.com/images/KFC13.jpg" class="img img-responsive">
+        	 <img ng-src="{{promoInfo.image}}" class="img img-responsive">
         	</div>
         </div>
     </div>
@@ -24,33 +24,40 @@
             <h4 class="promo-solo-title">Get our promo sale for </h4>
             <img src="images/single-promo-share.png" class="share-promo-img" >
             <img src="images/single-promo-banner.png" class="promo-banner-img" >
-            <img src="images/single-promo-pin.png" class="promo-pin-img">
+            <img ng-hide="viewOnly" src="images/single-promo-pin.png" class="promo-pin-img">
            
             <span class="promo-banner-text-only">ONLY</span> 
-            <span class="promo-banner-price">P9999</span>     
-            <span class="promo-pin-reserve">RESERVE</span>
+            <span class="promo-banner-price">{{promoInfo.currency_type + promoInfo.price}}</span>     
+            <button class="promo-pin-reserve" 
+            ng-click="reservePromo()"
+            ng-disabled="promoInfo.expired == true"
+            ng-hide="viewOnly">RESERVE</button>
         </div>
-
+        <span id="tomypromos" route-my-promos></span>
         <div class="row">
             <div id="psp-promo-by">
-                <p> by <span> Rustan's </span> <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAALqAAAAJDI1YjE3ZGRkLWRhYTAtNGM0My05ZDAzLWEzOGQ2YzU4MTU0OQ.png" class="psp-logo-sm"> </p>
+                <p> by <span>{{promoInfo.asset_name}}</span> 
+                    <img ng-src="{{promoInfo.asset_image}}" class="psp-logo-sm"> 
+                </p>
             </div>
 
             <div id="psp-promo-shoutout" class="col-xs-11">
-                <p> Catch the latest promos, discounts, and special offers here at Rustan's Supermarket!</p>
+                <p>{{promoInfo.description}}</p>
             </div>
 
             <div id="psp-promo-location" class="col-xs-11">
-                <p> Location: <br/> <span> Level 1 Centrio Mall, Claro M. Recto Ave, Cagayan de Oro, 9000 Misamis Oriental </span> </p>
+                <p> Location: <br/> <span>{{promoInfo.address}}</span> </p>
             </div>
         </div>
 
         <div id="psp-date-container">
             <center>
-                 <span class="psp-promo-validity">valid until may / 11 / 16</span><br/>
+                 <span class="psp-promo-validity">valid until {{promoInfo.datetime_end | date:'MMMM / d / yy'}}</span><br/>
                  <p>Time Remaining</p>
 
-                 <span class="psp-timer">01 : 03 : 50</span><br/>
+                 <span class="psp-timer" 
+                 promo-time-remaining="{{promoInfo.datetime_end}}" 
+                 promo-solo-emit="{{promoSoloEmit}}"></span><br/>
                  <span class="psp-timer-label">Days |  Hours | Minutes</span>
 
             </center>
@@ -59,3 +66,5 @@
     </div>
 </div>	
 </div>
+
+<promo-reserve-modal></promo-reserve-modal>

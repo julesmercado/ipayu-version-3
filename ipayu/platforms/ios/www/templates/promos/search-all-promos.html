@@ -13,12 +13,12 @@
     <div class="row search-input reserved-item-header" >
         <div class="container">
             <div class=" container ">
-                <input type="text" ng-model="searchData" ng-focus="setFocus()" ng-blur="setBlur()" ng-change="filterCards()"> <button type="submit"><img src="images/white-magnifying.png" class="search-button"></button>
+                <input type="text" ng-model="searchData" ng-focus="setFocus()" ng-blur="setBlur()" ng-change="filterCards()"> <img src="images/white-magnifying.png" class="search-button">
             </div>
         </div>
     </div>
 
-    <div class="container filtered-cards" id="allcardssearch" >
+    <div class="container filtered-cards" style="height: 100%;" id="allcardssearch">
    <div class="row add-cards-section"  style="margin-top:10px">
    <div class="dropdown-container" style="position:relative">
             <div class="position-dropdown-controller">
@@ -33,314 +33,37 @@
                                 right: 6px;"></span>
                     </button>
                     <ul class="dropdown-menu col-xs-12 mall-info-dropdown-ul" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
-                      <li role="menuitem" ng-repeat="category in categories" ><a ng-click="selected(category.name)">{{category.name}}</a><input type="hidden" name="options" ng-model="selected" required></li>
+                      <li role="menuitem" ng-repeat="category in categories" >
+                          <a ng-click="selected(category.name)">{{category.name}}</a>
+                      </li>
                     </ul>
                 </div>
             </center>
             </div>
         </div>
-        <!-- <div class="full-height-container"> 
-            <div ng-if="allPromos.length != 0" ng-repeat="alphabet in allPromos track by $index" id="cardsContainer">
-            <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} <hr class="letter-bar-search" />  </span>
-            <div class="container container-mall-card-results" ng-repeat="cardPerRow in alphabet[1] track by $index" >
-                <div ng-repeat="card in cardPerRow track by $index">
-                    <div class="col-xs-6 col-md-6 orange-container" ng-if="!card.already_added" ng-click="tapped(card)">
-                        <div class="blue-layer" style="background-color:#A93535">
-                            <div class="orange-inner-layer">
-                                <p class="add-card-text"> + TAP TO ADD </p>
-                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
-                                <p class="add-card-text"> {{card.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.already_added" style="opacity:.5;" ng-click="alreadyAdded()">
-                        <div class="blue-layer" style="background-color:#A93535">
-                            <div class="orange-inner-layer">
-                                <p class="add-card-text"> ALREADY ADDED </p>
-                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
-                                <p class="add-card-text"> {{card.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.available == 'out of stock'" style="opacity:.5;" ng-click="outOfStock()">
-                        <div class="blue-layer" style="background-color:#A93535">
-                            <div class="orange-inner-layer">
-                                <p class="add-card-text"> OUT OF STOCK </p>
-                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
-                                <p class="add-card-text"> {{card.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-6 orange-container" ng-if="card.available == 'expired'" style="opacity:.5;" ng-click="expired()">
-                        <div class="blue-layer" style="background-color:#A93535">
-                            <div class="orange-inner-layer">
-                                <p class="add-card-text"> EXPIRED </p>
-                                <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
-                                <p class="add-card-text"> {{card.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <h4 ng-if="searchResult == 0" style="text-align:center;">No results found.</h4>
-        </div> -->
-
 
         <div class="full-height-container"> 
-            <div  id="cardsContainer">
-                <span class="letter-heading" > A <hr class="letter-bar-search" /> </span>
-                    <div class="container " id="mall-dir-letter-heading">
 
-                        <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
+            <div id="{{group[0]}}" ng-repeat="group in allPromos as grp">
 
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
+                <span class="letter-heading" > {{(group[0] == 'num')?'#':group[0]}} <hr class="letter-bar-search" /> </span>
+                <div class="container " id="mall-dir-letter-heading" ng-repeat="promo in group[1]">
+                    <div class="col-xs-6" style="padding:10px" route-solo-promo="{{promo}}">
+                        <div class="sap-oc-s">
+                            <img src="images/promo-date-banner.png" >
+                            <div class="sap-d-container" >
+                                 <span class="pl-d-dd sap-d-dd">{{promo.datetime_end | date:'dd'}}</span>
+                                 <span class="pl-d-mm sap-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
+                                 <span class="pl-d-yyy sap-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
                             </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
+                            <div class="in-sap-oc-s">
+                                <img ng-src="{{promo.image}}">
                             </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-                                              
-                    </div>
+                        </div>
+                    </div>   
+                </div>
             </div>
-
-               <div  id="cardsContainer">
-                <span class="letter-heading" > B <hr class="letter-bar-search" /> </span>
-                    <div class="container " id="mall-dir-letter-heading">
-
-                        <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-                                              
-                    </div>
-            </div>
-
-               <div  id="cardsContainer">
-                <span class="letter-heading" > H <hr class="letter-bar-search" /> </span>
-                    <div class="container " id="mall-dir-letter-heading">
-
-                        <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-                                              
-                    </div>
-            </div>
-
-
-               <div  id="cardsContainer">
-                <span class="letter-heading" > Z <hr class="letter-bar-search" /> </span>
-                    <div class="container " id="mall-dir-letter-heading">
-
-                        <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-
-                         <div class="col-xs-6 " style="padding:10px" ui-sref="promo-solo-page">
-                            <div class="sap-oc-s">
-                                    <img src="images/promo-date-banner.png" >
-                                    <div class="sap-d-container" >
-                                         <span class="pl-d-dd sap-d-dd">16</span>
-                                         <span class="pl-d-mm sap-d-mm">Aug</span>
-                                         <span class="pl-d-yyy sap-d-yyy">2016</span>
-                                    </div>
-                                <div class="in-sap-oc-s">
-                                    <img src="http://media.graytvinc.com/images/KFC13.jpg" >
-                                </div>
-                            </div>
-                        </div>  
-                                              
-                    </div>
-            </div>
-
+            <h4 ng-if="grp.length == 0" style="text-align:center">Nothing to display</h4>
         </div>
     </div>
 </div>
