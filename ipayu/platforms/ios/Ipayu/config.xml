@@ -67,4 +67,10 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="orientation" value="portrait" />
     <preference name="webviewbounce" value="false" />
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="MobileAccessibility">
+        <param name="ios-package" onload="true" value="CDVMobileAccessibility" />
+    </feature>
 </widget>

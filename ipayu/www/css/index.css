@@ -1003,7 +1003,7 @@ and (max-device-width : 736px) {
 
 @media only screen and (width: 360px) {
 .dash-header-greeting{}
-   .login-options{margin-bottom:23% !important;}
+   .login-options{margin-bottom:35% !important;}
 }
 
 @media only screen and (min-width: 375px) and (max-width: 414px){
@@ -1110,7 +1110,7 @@ and (max-device-width : 960px) {
 /* GALAXY S5 */
 @media screen and (width:360px) {
     .page-header { height: 26px; }
-    .container-fluid .row img.login-img { height: 145px; margin-top:5em ;margin-bottom: 4em; }
+    .container-fluid .row img.login-img { height: 145px; margin-top:3em ;margin-bottom: 2em; }
     .container-fluid .login-form input.login-credentials { height: 40px;font-size: 16px;  }
     .container-fluid .login-form button.login-button { height: 40px; width: 124px;font-size: 16px; }
     .container-fluid .login-options .login-options-label { font-size: 16px; }

@@ -56,6 +56,30 @@ module.exports = [
         "clobbers": [
             "cache"
         ]
+    },
+    {
+        "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "id": "phonegap-plugin-mobile-accessibility.mobile-accessibility",
+        "file": "plugins/phonegap-plugin-mobile-accessibility/www/mobile-accessibility.js",
+        "pluginId": "phonegap-plugin-mobile-accessibility",
+        "clobbers": [
+            "window.MobileAccessibility"
+        ]
+    },
+    {
+        "id": "phonegap-plugin-mobile-accessibility.MobileAccessibilityNotifications",
+        "file": "plugins/phonegap-plugin-mobile-accessibility/www/MobileAccessibilityNotifications.js",
+        "pluginId": "phonegap-plugin-mobile-accessibility",
+        "clobbers": [
+            "MobileAccessibilityNotifications"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -67,7 +91,9 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.0",
     "cordova-plugin-x-socialsharing": "5.1.3",
     "cordova-sqlite-storage": "1.4.8",
-    "org.apache.cordova.plugin.cache": "1.0.5"
+    "org.apache.cordova.plugin.cache": "1.0.5",
+    "cordova-plugin-device": "1.1.4-dev",
+    "phonegap-plugin-mobile-accessibility": "1.0.5-dev"
 };
 // BOTTOM OF METADATA
 });

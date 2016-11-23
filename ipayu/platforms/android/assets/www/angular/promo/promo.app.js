@@ -15,7 +15,7 @@ function Config($stateProvider) {
             cache: false
         })
         .state('promosolopage', {
-            url: '/promosolopage',
+            url: '/promosolopage/{view}',
             templateUrl: 'templates/promos/promo-solo-page.html',
             controller: 'promoSoloCtrl',
             cache: false

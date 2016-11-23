@@ -44,4 +44,11 @@
     <preference name="orientation" value="portrait" />
     <preference name="disallowOverscroll" value="true" />
     <preference name="webviewbounce" value="false" />
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" />
+    <feature name="MobileAccessibility">
+        <param name="android-package" value="com.phonegap.plugin.mobileaccessibility.MobileAccessibility" />
+    </feature>
 </widget>

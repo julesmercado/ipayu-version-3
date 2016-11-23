@@ -23,18 +23,18 @@
 
     <div class="mother-of-all-scrollables-psp">
         <ul class="container swipeswipe" style="list-style-type:none; overflow-x:hidden">
-            <li class="row top15 foo" ng-repeat="promo in promos" on-finish-render="{{emitMessage}}">
+            
+            <li class="row top15 foo" ng-repeat="promo in promos | filter:searchCountry as filtered" on-finish-render="{{emitMessage}}">
                 
-                <div class="swipable" style="position:relative; overflow-x:hidden">
+                <div class="swipable" style="position:relative; overflow-x:hidden" >
               
-
-                    <div class="col-xs-2 pd-d-c">
+                    <div class="col-xs-2 pd-d-c" route-solo-promo="{{promo}}" view-only='true'>
                         <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
                         <span class="pl-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
                         <span class="pl-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
                     </div>
 
-                    <div class="col-xs-10 pd-r-c" >
+                    <div class="col-xs-10 pd-r-c" route-solo-promo="{{promo}}" view-only='true'>
                         <img ng-src="{{promo.image}}" class="promo-reserved-img">
                         <span class="pl-i-pr">{{promo.price}}</span> <br/>
                         <span class="pl-i-des">Get our Promo Sale </span> <br/>
@@ -43,14 +43,17 @@
                         <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
                     </div>
 
-                    <div class="promo-list-del-container"><img src="images/promo-del.png" class="pl-del-btn"></div>
+                    <div class="promo-list-del-container">
+                        <img src="images/promo-del.png" class="pl-del-btn" ng-click="remove(promo.reservation_id)">
+                    </div>
 
                 </div>
+
+            </li>
+            <li ng-if="filtered.length == 0">
+                <h4 style="text-align:center;">Nothing to display</h4>
             </li>
         </ul>
     </div>
 </div>
-
-<script type="text/javascript">
-    
-</script>
+<confirm-remove-item-modal></confirm-remove-item-modal>

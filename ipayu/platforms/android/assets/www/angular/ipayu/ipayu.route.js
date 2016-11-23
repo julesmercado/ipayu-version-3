@@ -52,10 +52,11 @@ function Config($stateProvider, $urlRouterProvider) {
             controller: 'profileCtrl'
         })
 
-         .state('changePW', {
-            url: '/changePW',
+         .state('changepass', {
+            url: '/changepass',
             templateUrl: 'templates/change-pass.html',
-            controller: ''
+            controller: 'changePassCtrl',
+            cache: false
         })
 
     $urlRouterProvider.otherwise('/process');

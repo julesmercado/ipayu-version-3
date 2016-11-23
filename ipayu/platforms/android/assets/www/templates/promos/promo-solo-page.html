@@ -24,13 +24,14 @@
             <h4 class="promo-solo-title">Get our promo sale for </h4>
             <img src="images/single-promo-share.png" class="share-promo-img" >
             <img src="images/single-promo-banner.png" class="promo-banner-img" >
-            <img src="images/single-promo-pin.png" class="promo-pin-img">
+            <img ng-hide="viewOnly" src="images/single-promo-pin.png" class="promo-pin-img">
            
             <span class="promo-banner-text-only">ONLY</span> 
             <span class="promo-banner-price">{{promoInfo.currency_type + promoInfo.price}}</span>     
             <button class="promo-pin-reserve" 
             ng-click="reservePromo()"
-            ng-disabled="promoInfo.expired == true">RESERVE</button>
+            ng-disabled="promoInfo.expired == true"
+            ng-hide="viewOnly">RESERVE</button>
         </div>
         <span id="tomypromos" route-my-promos></span>
         <div class="row">

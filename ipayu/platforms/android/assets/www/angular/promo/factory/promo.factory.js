@@ -33,10 +33,16 @@ function PromoFactory($q, promoRequest) {
         .then(thenFunc, errFunc)
       },
 
-      my_promos: function(data){
-        var req_mypromos = promoRequest.my_promos(data);
+      my_promos: function(data, ignore) {
+        var req_mypromos = promoRequest.my_promos(data, ignore);
 //            req_notification = promoRequest.removeNotification(data);
         return $q.all([req_mypromos])
+        .then(thenFunc, errFunc)
+      },
+
+      deleteItem: function(data) {
+        var req_delete = promoRequest.deleteItem(data);
+        return $q.all([req_delete])
         .then(thenFunc, errFunc)
       }
 

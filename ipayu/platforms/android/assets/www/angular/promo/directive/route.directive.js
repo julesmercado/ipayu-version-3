@@ -85,7 +85,12 @@ function SoloPromo($state, $rootScope, promoData) {
 				var promo = JSON.parse(attrs.routeSoloPromo);
 				promoData.promoInfo(promo);
 				$rootScope.addPromo = true;
-				$state.go('promosolopage')
+				if(attrs.viewOnly){
+					$state.go('promosolopage', {'view':'view-only'})
+				}
+				else {
+					$state.go('promosolopage')
+				}
 			})
 		}
 	}

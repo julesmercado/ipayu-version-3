@@ -4,10 +4,10 @@ mainModule.controller('mainCtrl', MainCtrl)
 
 MainCtrl.$inject = [
                     '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet',  'storages',
-                    'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData', 'account'
+                    'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData', 'account', 'promo', 'promoData'
                     ];
 function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages,
-                    stampData, couponData, stamp, coupon, wallet, walletData, account) {
+                    stampData, couponData, stamp, coupon, wallet, walletData, account, promo, promoData) {
 
     $rootScope.doLoading = false;
 
@@ -130,7 +130,8 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
         ready_shopcard = true,
         ready_coupon = true,
         ready_stamp = true,
-        ready_notification = true;
+        ready_notification = true,
+        ready_promolist = true;
 
     setInterval(function() {
         ipayu_info = accountData.getUser();
@@ -222,6 +223,19 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                         $rootScope.notifications.mall = [];
                         $rootScope.notifications.shop = [];
                     }
+                })
+            }
+
+            // for real time promolist
+            if( $state.current.name == 'promolist' && ready_promolist == true) {
+                ready_promolist = false;
+                promo.my_promos({'ipayu_id':ipayu_info.ipayu_id}, true)
+                    .then(function (resolve) {
+                        ready_promolist = true;
+                        if(resolve){
+                            promoData.userPromos(resolve[0].data.data || []);
+                            $rootScope.$broadcast('updatePromolist', resolve[0].data.data || [])
+                        }
                 })
             }
         }
