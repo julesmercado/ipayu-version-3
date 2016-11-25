@@ -5,60 +5,62 @@ mainModule.factory('couponData', CouponData)
 CouponData.$inject = ['storages'];
 function CouponData(storages) {
     
-    var coupon_group = [];
+    var coupon_group = [],
+        all_available = [],
+        card_to_add = [];
+    
+    function dataFromStorage(storage) {
+        var retrievedObject = localStorage.getItem(storage);
+        return JSON.parse(retrievedObject) || [];
+    }
     
     return {
-
-// Setters
-        setUserCoupons: function (data) {
-            localStorage.setItem(storages.ipayucouponcards, JSON.stringify(data));
-            return data;
-        },
-        setFeaturedCoupons: function (data) {
-            localStorage.setItem(storages.ipayufeaturedcoupons, JSON.stringify(data));
-            return data;
-        },
-        setUsedCoupons: function (data) {
-            localStorage.setItem(storages.ipayuusedcoupons, JSON.stringify(data));
-            return data;
-        },
-        setCouponGroup: function (data) {
-            coupon_group = data;
-            return data;
+        
+        allAvailableCard: function(data){
+            if(data){
+                all_available = data;
+            }
+            return all_available;
         },
 
-
-// Getters
-        getUserCoupons: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayucouponcards);
-            return JSON.parse(retrievedObject) || [];
+        cardToAdd: function(data){
+            if(data){
+                card_to_add = data;
+            }
+            return card_to_add;
         },
-        getFeaturedCoupons: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayufeaturedcoupons);
-            return JSON.parse(retrievedObject) || [];
+        
+        userCoupons: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayucouponcards, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayucouponcards)
         },
-        getUsedCoupons: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayuusedcoupons);
-            return JSON.parse(retrievedObject) || [];
+        
+        featuredCoupons: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayufeaturedcoupons, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayufeaturedcoupons)
         },
-        getCouponGroup: function () {
+        
+        usedCoupons: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayuusedcoupons, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayuusedcoupons)
+        },
+        
+        couponGroup: function (data) {
+            if(data){
+                coupon_group = data;
+            }
             return coupon_group;
-        },
-
-
-        addUserCoupon: function(data){
-            var retrievedObject = localStorage.getItem(storages.ipayucouponcards);
-            retrievedObject = JSON.parse(retrievedObject) || [];
-            retrievedObject.push(data);
-
-            retrievedObject.sort(function(a, b){
-                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                return 0;
-            });
-            localStorage.setItem(t, JSON.stringify(retrievedObject));
-        },
-
+        }
+        
     }
 
 }

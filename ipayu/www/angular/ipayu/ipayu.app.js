@@ -87,7 +87,7 @@ function Run(sqliteSet, accountData, $rootScope, $state, $window) {
                 }
             }
             else {
-                window.history.back();
+                $window.history.back();
             }
 
             return;

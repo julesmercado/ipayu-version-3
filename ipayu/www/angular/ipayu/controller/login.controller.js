@@ -132,30 +132,30 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 					// set top three frequent for dashboard display
                 	accountData.setTopThreeFrequent(resolve[2][0].data.data);
                 	// set user cards mall or shop
-                	walletData.setUserCards(resolve[3][0].data.data.all, 'mall');
-                	walletData.setUserCards(resolve[4][0].data.data.all, 'shop');
+                	walletData.userCards('mall', resolve[3][0].data.data.all);
+                	walletData.userCards('shop', resolve[4][0].data.data.all);
                 	// set user frequently used cards mall or shop
-                	walletData.setFrequentUserCards(resolve[3][0].data.data.frequently, 'mall');
-                	walletData.setFrequentUserCards(resolve[4][0].data.data.frequently, 'shop');
+                	walletData.frequentUserCards('mall', resolve[3][0].data.data.frequently);
+                	walletData.frequentUserCards('shop', resolve[4][0].data.data.frequently);
                 	// set user last used cards mall or shop
-                	walletData.setLastUserCards(resolve[3][0].data.data.last_used, 'mall');
-                	walletData.setLastUserCards(resolve[4][0].data.data.last_used, 'shop');
+                	walletData.lastUserCards('mall', resolve[3][0].data.data.last_used);
+                	walletData.lastUserCards('shop', resolve[4][0].data.data.last_used);
                 	// set user coupons
-                	couponData.setUserCoupons(resolve[1][0].data.data.allcoupons);
+                	couponData.userCoupons(resolve[1][0].data.data.allcoupons);
                 	// set featured coupon
-                	couponData.setFeaturedCoupons(resolve[1][0].data.data.featuredcoupons);
+                	couponData.featuredCoupons(resolve[1][0].data.data.featuredcoupons);
                 	// set user used coupon
-                	couponData.setUsedCoupons(resolve[1][0].data.data.usedcoupons);
+                	couponData.usedCoupons(resolve[1][0].data.data.usedcoupons);
                 	
                 	// set user stamp
-                	stampData.setUserStamps(resolve[0][0].data.data.allstamps);
+                	stampData.userStamps(resolve[0][0].data.data.allstamps);
                 	// set featured stamp
-                	stampData.setFeaturedStamps(resolve[0][0].data.data.featuredstamps);
+                	stampData.featuredStamps(resolve[0][0].data.data.featuredstamps);
                 	// set user used stamp
-                	stampData.setUsedStamps(resolve[0][0].data.data.usedstamps);
+                	stampData.usedStamps(resolve[0][0].data.data.usedstamps);
             
                     // set redeem history
-                	walletData.setRedeemHistory(resolve[5][0].data.data);
+                	walletData.redeemHistory(resolve[5][0].data.data);
 
 
                     $rootScope = $rootScope.$new(true);

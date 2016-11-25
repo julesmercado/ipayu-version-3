@@ -1,178 +1,198 @@
 
 walletModule.factory('walletData', WalletData)
 
- WalletData.$inject = ['storages'];
-function WalletData(storages) {
-
-    var all_available_cards = [], 
-        card_info = [],
-        featured_assets = [],
-        non_featured_assets = [],
+WalletData.$inject = ['storages', 'shopCardData', 'mallCardData', 'couponData', 'stampData'];
+function WalletData(storages, shopCardData, mallCardData, couponData, stampData) {
+    
+    var assets_featured = [],
+        assets_non_featured = [],
         categories = [],
-        card_to_add = false,
         item_location = [],
         item_info = [],
-        featured_cards = [];
-
+        featured_shop_cards = [],
+        featured_mall_cards = [];
+    
+    function dataFromStorage(storage) {
+        var retrievedObject = localStorage.getItem(storage);
+        return JSON.parse(retrievedObject) || [];
+    }
+    
     return {
         
-// Setters
-        setUserCards: function (data, type) {
+        userCards: function (type, data) {
+            var st = '';
             if(type == 'mall'){
-                localStorage.setItem(storages.ipayumallcards, JSON.stringify(data));
+                st = storages.ipayumallcards;
             }
             else if(type == 'shop'){
-                localStorage.setItem(storages.ipayushopcards, JSON.stringify(data));
+                st = storages.ipayushopcards;
             }
-            return data;
+            else {
+                return [];
+            }
+            
+            if(data){
+                localStorage.setItem(st, JSON.stringify(data));
+            }
+            return dataFromStorage(st)
         },
-        setFrequentUserCards: function (data, type) {
+        
+        frequentUserCards: function (type, data) {
+            var st = '';
             if(type == 'mall'){
-                localStorage.setItem(storages.ipayufrequentmallcards, JSON.stringify(data));
+                st = storages.ipayufrequentmallcards;
             }
             else if(type == 'shop'){
-                localStorage.setItem(storages.ipayufrequentshopcards, JSON.stringify(data));
+                st = storages.ipayufrequentshopcards;
             }
-            return data;
+            else {
+                return [];
+            }
+            
+            if(data){
+                localStorage.setItem(st, JSON.stringify(data));
+            }
+            return dataFromStorage(st)
         },
-        setLastUserCards: function (data, type) {
+        
+        lastUserCards: function (type, data) {
+            var st = '';
             if(type == 'mall'){
-                localStorage.setItem(storages.ipayulastmallcards, JSON.stringify(data));
+                st = storages.ipayulastmallcards;
             }
             else if(type == 'shop'){
-                localStorage.setItem(storages.ipayulastshopcards, JSON.stringify(data));
+                st = storages.ipayulastshopcards;
             }
-            return data;
+            else {
+                return [];
+            }
+            
+            if(data){
+                localStorage.setItem(st, JSON.stringify(data));
+            }
+            return dataFromStorage(st)
+            
         },
-        setAllAvailableCards: function(data){
-            all_available_cards = data;
-            return data;
+        
+        redeemHistory: function(data){
+            if(data){
+                localStorage.setItem(storages.ipayuredeemhistory, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayuredeemhistory)
+        },
+        
+        allAvailableCards: function(type, data){
+            if(type == 'mall'){
+                return mallCardData.allAvailableCard(data);
+            }
+            else if(type == 'shop'){
+                return shopCardData.allAvailableCard(data);
+            }
+            else if(type == 'coupon'){
+                return couponData.allAvailableCard(data);
+            }
+            else if(type == 'stamp'){
+                return stampData.allAvailableCard(data);
+            }
+            return [];
         },
 
-        setCardInfo: function(data){
-            card_info = data;
-            return data;
-        },
-        setAssetsFeatured: function (data) {
-            featured_assets = data;
-            return data;
-        },
-        setAssetsNonFeatured: function (data) {
-            non_featured_assets = data;
-            return data;
-        },
-        setCategories: function(data){
-            categories = data;
-            return data;
-        },
-        setCardToAdd: function(data){
-            card_to_add = data;
-            return data;
-        },
-        setRedeemHistory: function(data){
-            localStorage.setItem(storages.ipayuredeemhistory, JSON.stringify(data));
-            return data;
-        },
-        setItemLocation: function(data){
-            item_location = data;
-            return data;
-        },
-        setItemInfo: function(data){
-            item_info = data;
-            return data;
-        },
-        setFeaturedCards: function(data) {
-            featured_cards = data;
-            return data;
-        },
-
-
-// Getters
-        getUserCards: function (type) {
-            var t = '';
+        cardInfo: function(type, data){
             if(type == 'mall'){
-                t = storages.ipayumallcards;
+                return mallCardData.cardInfo(data);
             }
             else if(type == 'shop'){
-                t = storages.ipayushopcards;
+                return shopCardData.cardInfo(data);
             }
-            var retrievedObject = localStorage.getItem(t);
-            return JSON.parse(retrievedObject) || [];
+            return [];
         },
-        getFrequentUserCards: function (type) {
-            var t = '';
+        
+        assetsFeatured: function (type, data) {
             if(type == 'mall'){
-                t = storages.ipayufrequentmallcards;
+                return mallCardData.assetsFeatured(data);
             }
             else if(type == 'shop'){
-                t = storages.ipayufrequentshopcards;
+                return shopCardData.assetsFeatured(data);
             }
-            var retrievedObject = localStorage.getItem(t);
-            return JSON.parse(retrievedObject) || [];
+            
+            if(data){
+                assets_featured = data;
+            }
+            return assets_featured;
         },
-        getAllAvailableCards: function(){
-            return all_available_cards;
-        },
-        getLastUserCards: function (type) {
-            var t = '';
+        
+        assetsNonFeatured: function (type, data) {
             if(type == 'mall'){
-                t = storages.ipayulastmallcards;
+                return mallCardData.assetsNonFeatured(data);
             }
             else if(type == 'shop'){
-                t = storages.ipayulastshopcards;
+                return shopCardData.assetsNonFeatured(data);
             }
-            var retrievedObject = localStorage.getItem(t);
-            return JSON.parse(retrievedObject) || [];
+            
+            if(data){
+                assets_non_featured = data;
+            }
+            return assets_non_featured;
         },
-        getCardInfo: function(){
-            return card_info;
-        },
-        getAssetsFeatured: function () {
-            return featured_assets;
-        },
-        getAssetsNonFeatured: function () {
-            return non_featured_assets;
-        },
-        getCategories: function(){
+        
+        categories: function(data){
+            if(data){
+                categories = data;
+            }
             return categories;
         },
-        getCardToAdd: function(){
-            return card_to_add;
-        },
-        getRedeemHistory: function(data){
-            var retrievedObject = localStorage.getItem(storages.ipayuredeemhistory);
-            return JSON.parse(retrievedObject) || [];
-        },
-        getItemLocation: function(){
-            return item_location;
-        },
-        getItemInfo: function(){
-            return item_info;
-        },
-        getFeaturedCards: function() {
-            return featured_cards;
-        },
-
-
-        addUserCards: function(data, type){
-            var t = '';
+        
+        cardToAdd: function(type, data){
             if(type == 'mall'){
-                t = storages.ipayumallcards;
+                return mallCardData.cardToAdd(data);
             }
             else if(type == 'shop'){
-                t = storages.ipayushopcards;
+                return shopCardData.cardToAdd(data);
             }
-            var retrievedObject = localStorage.getItem(t);
-            retrievedObject = JSON.parse(retrievedObject) || [];
-            retrievedObject.push(data);
+            else if(type == 'coupon'){
+                return couponData.cardToAdd(data);
+            }
+            else if(type == 'stamp'){
+                return stampData.cardToAdd(data);
+            }
+            return [];
+        },
+        
+        itemLocation: function(type, data){
+            if(type == 'mall'){
+                return mallCardData.itemLocation(data);
+            }
+            else if(type == 'shop'){
+                return shopCardData.itemLocation(data);
+            }
+            
+            if(data){
+                item_location = data;
+            }
+            return item_location;
+        },
 
-            retrievedObject.sort(function(a, b){
-                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                return 0;
-            });
-            localStorage.setItem(t, JSON.stringify(retrievedObject));
-            return data;
+        itemInfo: function(data){
+            if(data){
+                item_info = data;
+            }
+            return item_info;
+        },
+        
+        featuredCards: function(type, data) {
+            if(type == 'mall'){
+                if(data){
+                    featured_mall_cards = data;
+                }
+                return featured_mall_cards;
+            }
+            else if(type == 'shop'){
+                if(data){
+                    featured_shop_cards = data;
+                }
+                return featured_shop_cards;
+            }
         }
     }
 
