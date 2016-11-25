@@ -43,7 +43,7 @@ function shareAnywhere($cordovaSocialSharing) {
                 }, function(err) {
                     // alert(JSON.stringify(err))
                 });
-            }
+            })
         }
 	  }
 }
