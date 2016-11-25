@@ -1,8 +1,8 @@
 
-walletModule.factory('mallCardData', MallCardData)
+walletModule.factory('shopCardData', ShopCardData)
 
-// MallCardData.$inject = [];
-function MallCardData() {
+// ShopCardData.$inject = [];
+function ShopCardData() {
 
     var featured_assets = [],
         non_featured_assets = [],
