@@ -33,9 +33,17 @@
 
     <div class="container" id="profile-user-container">
    			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
-    		<img ng-src="{{userInfo.image}}" class="img img-responsive prof-pp"
+        
+    		<img ng-if="!showImageLoading"
+                 ng-src="{{userInfo.image}}" class="img img-responsive prof-pp"
                  ng-click="openFile()"
                  style="border:1px solid #DF1642;border-radius:100%;">
+        
+            <img ng-if="showImageLoading"
+                 src="images/squares.gif" class="img img-responsive prof-pp" 
+                 style="padding: 20px;
+                    border: 1px solid #DF1642;
+                    border-radius: 100%;"/>
             <input type="file" ng-change="updateProfile(true)" id="hiddenFile" ng-model="selectedFile"
                    base-sixty-four-input
                    style="display:none;"/>
