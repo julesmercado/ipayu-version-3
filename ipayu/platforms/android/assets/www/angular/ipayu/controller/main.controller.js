@@ -3,10 +3,10 @@ mainModule.controller('mainCtrl', MainCtrl)
 
 
 MainCtrl.$inject = [
-                    '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet',  'storages',
+                    '$rootScope', '$timeout', '$filter', 'flags', 'ngDialog', '$state', 'accountData', 'sqliteSet',  'storages', '$window',
                     'stampData', 'couponData', 'stamp', 'coupon', 'wallet', 'walletData', 'account', 'promo', 'promoData'
                     ];
-function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages,
+function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accountData, sqliteSet, storages, $window,
                     stampData, couponData, stamp, coupon, wallet, walletData, account, promo, promoData) {
 
     $rootScope.doLoading = false;
@@ -159,9 +159,9 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                     ready_mallcard = true;
                     console.log(resolve)
                     if(resolve){
-                        walletData.setUserCards(resolve[0].data.data.all, 'mall');
-                        walletData.setFrequentUserCards(resolve[0].data.data.frequently, 'mall');
-                        walletData.setLastUserCards(resolve[0].data.data.last_used, 'mall');
+                        walletData.userCards('mall', resolve[0].data.data.all);
+                        walletData.frequentUserCards('mall', resolve[0].data.data.frequently);
+                        walletData.lastUserCards('mall', resolve[0].data.data.last_used);
                         $rootScope.$broadcast('newMallCardData', resolve[0].data.data)
                     }
                 })
@@ -174,9 +174,9 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 .then(function(resolve){
                     ready_shopcard = true;
                     if(resolve){
-                        walletData.setUserCards(resolve[0].data.data.all, 'shop');
-                        walletData.setFrequentUserCards(resolve[0].data.data.frequently, 'shop');
-                        walletData.setLastUserCards(resolve[0].data.data.last_used, 'shop');
+                        walletData.userCards('shop', resolve[0].data.data.all);
+                        walletData.frequentUserCards('shop', resolve[0].data.data.frequently);
+                        walletData.lastUserCards('shop', resolve[0].data.data.last_used);
                         $rootScope.$broadcast('newShopCardData', resolve[0].data.data)
                     }
                 })
@@ -189,9 +189,9 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 .then(function(resolve){
                     ready_coupon = true;
                     if(resolve){
-                        couponData.setUserCoupons(resolve[0].data.data.allcoupons);
-                        couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons);
-                        couponData.setUsedCoupons(resolve[0].data.data.usedcoupons);
+                        couponData.userCoupons(resolve[0].data.data.allcoupons);
+                        couponData.featuredCoupons(resolve[0].data.data.featuredcoupons);
+                        couponData.usedCoupons(resolve[0].data.data.usedcoupons);
                         $rootScope.$broadcast('newCouponData', resolve[0].data.data)
                     }
                 })
@@ -204,9 +204,9 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                 .then(function(resolve){
                     ready_stamp = true;
                     if(resolve){
-                        stampData.setUserStamps(resolve[0].data.data.allstamps);
-                        stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps);
-                        stampData.setUsedStamps(resolve[0].data.data.usedstamps);
+                        stampData.userStamps(resolve[0].data.data.allstamps);
+                        stampData.featuredStamps(resolve[0].data.data.featuredstamps);
+                        stampData.usedStamps(resolve[0].data.data.usedstamps);
                         $rootScope.$broadcast('newStampData', resolve[0].data.data)
                     }
                 })

@@ -46,6 +46,11 @@ function AccountFactory($q, accountRequest) {
             return $q.all([req_changepass])
                 .then(thenFunc, errFunc)
         },
+        updateProfile: function(data){
+            var req_update = accountRequest.updateProfile(data);
+            return $q.all([req_update])
+                .then(thenFunc, errFunc)
+        },
         getNotifications: function(data){
             var req_notification = accountRequest.getNotifications(data);
             return $q.all([req_notification])

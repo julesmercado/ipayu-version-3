@@ -5,55 +5,54 @@ mainModule.factory('stampData', StampData)
 StampData.$inject = ['storages'];
 function StampData(storages) {
 
+    var all_available = [],
+        card_to_add = [];
+    
+    function dataFromStorage(storage) {
+        var retrievedObject = localStorage.getItem(storage);
+        return JSON.parse(retrievedObject) || [];
+    }
+    
     return {
-
-// Setters
-        setUserStamps: function (data) {
-            localStorage.setItem(storages.ipayustampcards, JSON.stringify(data));
-            return data;
+        
+        allAvailableCard: function(data){
+            if(data){
+                all_available = data;
+            }
+            return all_available;
         },
 
-        setFeaturedStamps: function (data, type) {
-            localStorage.setItem(storages.ipayufeaturedstamps, JSON.stringify(data));
-            return data;
+        cardToAdd: function(data){
+            if(data){
+                card_to_add = data;
+            }
+            return card_to_add;
         },
-
-        setUsedStamps: function (data, type) {
-            localStorage.setItem(storages.ipayuusedstamps, JSON.stringify(data));
-            return data;
+        
+        userStamps: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayustampcards, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayustampcards)
         },
-
-
-// Getters
-        getUserStamps: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayustampcards);
-            return JSON.parse(retrievedObject) || [];
+        
+        featuredStamps: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayufeaturedstamps, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayufeaturedstamps)
         },
-
-        getFeaturedStamps: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayufeaturedstamps);
-            return JSON.parse(retrievedObject) || [];
-        },
-
-        getUsedStamps: function () {
-            var retrievedObject = localStorage.getItem(storages.ipayuusedstamps);
-            return JSON.parse(retrievedObject) || [];
-        },
-
-
-        addUserStamp: function(data){
-            var retrievedObject = localStorage.getItem(storages.ipayustampcards);
-            retrievedObject = JSON.parse(retrievedObject) || [];
-            retrievedObject.push(data);
-
-            retrievedObject.sort(function(a, b){
-                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                return 0;
-            });
-            localStorage.setItem(t, JSON.stringify(retrievedObject));
-        },
-
+        
+        usedStamps: function (data) {
+            if(data){
+                localStorage.setItem(storages.ipayuusedstamps, JSON.stringify(data));
+                return data;
+            }
+            return dataFromStorage(storages.ipayuusedstamps)
+        }
+        
     }
 
 }

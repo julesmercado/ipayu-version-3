@@ -12,8 +12,8 @@ MyStamp.$inject = ['$scope', '$rootScope', 'stampData', '$state', 'ngDialog', 's
 function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, accountData) {
     
 	var ipayu_info = accountData.getUser();
-	$scope.stamps = filterStampcard(stampData.getUserStamps());
-	$scope.featured = filterStampcard(stampData.getFeaturedStamps());
+	$scope.stamps = filterStampcard(stampData.userStamps());
+	$scope.featured = filterStampcard(stampData.featuredStamps());
 
     function filterStampcard(data){
         if(!data || data.length == 0){
@@ -47,15 +47,21 @@ function MyStamp($scope, $rootScope, stampData, $state, ngDialog, stamp, account
             	},
             	destination: function(){
             		return 'addstampcard';
-            	}
+            	},
+                border_class: function(){
+                    return 'coupon-stamp-modal-border';
+                },
+                type: function(){
+                    return 'stamp';
+                }
             },
             overlay: true
         });
 	}
 
     $rootScope.$on('countryHasChange', function(event, country){
-        $scope.stamps = filterStampcard(stampData.getUserStamps());
-        $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+        $scope.stamps = filterStampcard(stampData.userStamps());
+        $scope.featured = filterStampcard(stampData.featuredStamps());
     })
 
     function resetMyStamps(data) {
@@ -128,10 +134,10 @@ function StampInfo($scope, $rootScope, $state, stampData, customService, $stateP
     var allStamps = [];
     
     if($stateParams.type == 'mystamps'){
-        allStamps = stampData.getUserStamps();
+        allStamps = stampData.userStamps();
     }
     else if($stateParams.type == 'usedstamps'){
-        allStamps = stampData.getUsedStamps();
+        allStamps = stampData.usedStamps();
     }
     
     $scope.thisStamp = getThisStamp();
@@ -188,7 +194,7 @@ StampHistory.$inject = ['$scope', '$rootScope', '$state', 'stampData', 'customSe
 function StampHistory ($scope, $rootScope, $state, stampData, customService, stamp, accountData) {
 
     var ipayu_info = accountData.getUser();
-    $scope.usedStamps = customService.filterByCountry(stampData.getUsedStamps(), $rootScope.countryDisplay.country, true, 2);
+    $scope.usedStamps = customService.filterByCountry(stampData.usedStamps(), $rootScope.countryDisplay.country, true, 2);
 
     $scope.proceedStampInfo = function(stamp_id){
       $state.go('stampinfo', {'id':stamp_id, 'type':'usedstamps'});
@@ -212,7 +218,7 @@ function StampCardSearch($scope, $rootScope, walletData, customService, accountD
 
 	$scope.featured = get_featured();
 	$scope.unfeatured = get_unfeatured();
-	$scope.categories = walletData.getCategories();
+	$scope.categories = walletData.categories();
 	$scope.swipeLeft = function(){
 		if(currentPage != 0){
 			currentPage--;
@@ -229,7 +235,7 @@ function StampCardSearch($scope, $rootScope, walletData, customService, accountD
 	
 	function get_unfeatured() {
 		hasMore = false;
-		var filtered_category = customService.filterByCategory(walletData.getAssetsNonFeatured(), selectedCategory);
+		var filtered_category = customService.filterByCategory(walletData.assetsNonFeatured('stamp'), selectedCategory);
 		var unfeatured = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
 		var obj = customService.paginate(unfeatured, 4, 4, currentPage, pageSize, true);
 		hasMore = obj.has_more;
@@ -237,7 +243,7 @@ function StampCardSearch($scope, $rootScope, walletData, customService, accountD
 	}
 
 	function get_featured(){
-		var filtered_category = customService.filterByCategory(walletData.getAssetsFeatured(), selectedCategory);
+		var filtered_category = customService.filterByCategory(walletData.assetsFeatured('stamp'), selectedCategory);
 		var featured = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
 		return featured;
 	}
@@ -276,7 +282,7 @@ function AllStampCardSearch($scope, $rootScope, walletData, customService, ngDia
 
 	$scope.searchData = '';
 	$scope.searchResult = 0;
-	var all_cards = walletData.getAllAvailableCards();
+	var all_cards = walletData.allAvailableCards('stamp');
 	$scope.allStampCards = contruct_data(all_cards);
     console.log(all_cards);
     console.log($scope.allStampCards)
@@ -351,6 +357,9 @@ function AllStampCardSearch($scope, $rootScope, walletData, customService, ngDia
             	},
                 border_class: function(){
                     return 'coupon-stamp-modal-border';
+                },
+                type: function(){
+                    return 'stamp';
                 }
             },
             overlay: true
@@ -368,9 +377,9 @@ function AllStampCardSearch($scope, $rootScope, walletData, customService, ngDia
 AddStampCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', 'walletData', 'accountData', 'wallet', 'stamp', 'stampData'];
 function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountData, wallet, stamp, stampData) {
     
-	$scope.featured = filterStampcard(stampData.getFeaturedStamps());
+	$scope.featured = filterStampcard(stampData.featuredStamps());
 
-	var thisCard = walletData.getCardToAdd();
+	var thisCard = walletData.cardToAdd('stamp');
 	var ipayu_info = accountData.getUser();
     $scope.emitMessage = 'addStampCard';
     $scope.cardType = 'stamp';
@@ -392,10 +401,10 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
                         .then(function(user_card){
                             $scope.disableBtn = false;
                             if(user_card){
-                                walletData.setCardToAdd(false);
-                                stampData.setUserStamps(user_card[0].data.data.allstamps);
-                                stampData.setFeaturedStamps(user_card[0].data.data.featuredstamps);
-                                stampData.setUsedStamps(user_card[0].data.data.usedstamps);
+                                walletData.cardToAdd('stamp', false);
+                                stampData.userStamps(user_card[0].data.data.allstamps);
+                                stampData.featuredStamps(user_card[0].data.data.featuredstamps);
+                                stampData.usedStamps(user_card[0].data.data.usedstamps);
                                 pop_up(resolve[0].data.success, "Card Successfully added")
                             }
                             else{$rootScope.doLoading = false;}
@@ -456,14 +465,20 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
             	},
             	destination: function(){
             		return 'addstampcard';
-            	}
+            	},
+                border_class: function(){
+                    return 'coupon-stamp-modal-border';
+                },
+                type: function(){
+                    return 'stamp';
+                }
             },
             overlay: true
         });
 	}
 
     $rootScope.$on('countryHasChange', function(event, country){
-       $scope.featured = filterStampcard(stampData.getFeaturedStamps());
+       $scope.featured = filterStampcard(stampData.featuredStamps());
     })
 }
 

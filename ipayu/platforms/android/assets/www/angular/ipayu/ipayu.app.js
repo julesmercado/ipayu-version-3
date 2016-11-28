@@ -1,7 +1,7 @@
 
 
 var modules = [
-                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick',
+                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick', 'naif.base64',
 
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
 
@@ -87,7 +87,7 @@ function Run(sqliteSet, accountData, $rootScope, $state, $window) {
                 }
             }
             else {
-                window.history.back();
+                $window.history.back();
             }
 
             return;

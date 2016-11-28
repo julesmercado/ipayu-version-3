@@ -8,7 +8,7 @@ walletModule.controller('itemLocationCtrl', ItemLocationCtrl)
 
 RedeemHistory.$inject = ['$scope', 'walletData'];
 function RedeemHistory($scope, walletData) {
-    $scope.items = walletData.getRedeemHistory();
+    $scope.items = walletData.redeemHistory();
     console.log($scope.items)
 }
 
@@ -16,9 +16,9 @@ ItemLocationCtrl.$inject = ['$scope', 'walletData', '$stateParams'];
 function ItemLocationCtrl($scope, walletData, $stateParams) {
     $scope.showBranches = false;
 
-    $scope.thisItem = walletData.getItemInfo();
+    $scope.thisItem = walletData.itemInfo();
     $scope.selected = $scope.thisItem;
-    $scope.branches = walletData.getItemLocation();
+    $scope.branches = walletData.itemLocation();
     console.log($scope.branches)
     $scope.thisItem.selected = true;
 
