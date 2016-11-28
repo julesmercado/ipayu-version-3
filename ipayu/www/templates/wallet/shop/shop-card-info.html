@@ -124,7 +124,10 @@
                                 </div>
                             </div>
                             <div style="padding-left:0" class=" col-xs-2  mc-info-redeem-desc">
-                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp;points</p>
+                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp; 
+                                    <span ng-if="rg.points_type == 'reward'">points</span>
+                                    <span ng-if="rg.points_type == 'rebate'">$</span>
+                                </p>
                             </div>
                             <div style="padding-left:0;padding-right:0" class="col-xs-3 mc-info-redeem-button">
                                 <button type="submit" ng-click="redeemItem(rg)">
