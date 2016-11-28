@@ -33,12 +33,17 @@
 
     <div class="container" id="profile-user-container">
    			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
-    		<img src="images/dashboard/ipayu-icon.png" class="img img-responsive prof-pp">
+    		<img ng-src="{{userInfo.image}}" class="img img-responsive prof-pp"
+                 ng-click="openFile()"
+                 style="border:1px solid #DF1642;border-radius:100px;">
+            <input type="file" ng-change="updateProfile(true)" id="hiddenFile" ng-model="selectedFile"
+                   base-sixty-four-input
+                   style="display:none;"/>
 
     		<h3 class="user-name-pp"> 
                 <span ng-if="userInfo.gender == 'Male'">Mr.&nbsp;</span>
 				<span ng-if="userInfo.gender == 'Female'">Ms.&nbsp;</span>
-				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}    
+				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}
             </h3>
     		<hr/>
     		<div class="container prof-user-cred-container">
@@ -47,9 +52,15 @@
     					<img src="images/dashboard/gray-barcode.png" class="item-pp">
     					
     				</div> 
-    				<div class="col-xs-9 no-padding" style="position:relative">
+    				<div class="col-xs-9 no-padding" style="position:relative" ng-click="focus('username')">
     					<p class="item-header-profp">Ipayu ID</p>
-    					<p class="item-detail-profp">{{userInfo.username}}</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.username">{{userInfo.username}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.username"
+                               ng-model="userInfo.username"
+                               ng-blur="blur('username')"
+                               id="username-input">
     				</div>
 
     			</div>
@@ -60,9 +71,15 @@
     					<img src="images/dashboard/gray-cp.png" class="item-pp">
     					
     				</div> 
-    				<div class="col-xs-9 no-padding" style="position:relative">
+    				<div class="col-xs-9 no-padding" style="position:relative" ng-click="focus('phone')">
     					<p class="item-header-profp">Phone no.</p>
-    					<p class="item-detail-profp">{{userInfo.phone || 'N/A'}}</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.phone">{{userInfo.phone || 'N/A'}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.phone"
+                               ng-model="userInfo.phone"
+                               ng-blur="blur('phone')"
+                               id="phone-input">
     				</div>
 
     			</div>
@@ -73,13 +90,25 @@
     					<img src="images/dashboard/gray-id.png" class="item-pp">
     					
     				</div> 
-    				<div class="col-xs-3 no-padding" style="position:relative">
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('firstname')">
     					<p class="item-header-profp">First Name:</p>
-    					<p class="item-detail-profp"> {{userInfo.firstname | capitalize}}</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.firstname"> {{userInfo.firstname | capitalize}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.firstname"
+                               ng-model="userInfo.firstname"
+                               ng-blur="blur('firstname')"
+                               id="firstname-input">
     				</div>
-    				<div class="col-xs-3 no-padding" style="position:relative">
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('lastname')">
     					<p class="item-header-profp">Last Name:</p>
-    					<p class="item-detail-profp">{{userInfo.lastname | capitalize}}</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.lastname">{{userInfo.lastname | capitalize}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.lastname"
+                               ng-model="userInfo.lastname"
+                               ng-blur="blur('lastname')"
+                               id="lastname-input">
     				</div>
 
     			</div>
@@ -89,9 +118,15 @@
     				<div class="col-xs-3 no-padding item-pp-holder">
     					<img src="images/dashboard/gray-email.png" class="item-pp">
     				</div> 
+<!--                     ng-click="active.email = true"-->
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Email:</p>
-    					<p class="item-detail-profp">{{userInfo.email}}</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.email">{{userInfo.email}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.email"
+                               ng-model="userInfo.email"
+                               ng-blur="blur('email')">
     				</div>
 
     			</div>
@@ -103,13 +138,33 @@
     					<img src="images/dashboard/gray-cal.png" class="item-pp">
     					
     				</div> 
-    				<div class="col-xs-3 no-padding" style="position:relative">
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('year')">
     					<p class="item-header-profp">Birth Year:</p>
-    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[0]}}</p>
+    					<p class="item-detail-profp"
+                            ng-if="!active.year">{{birth.year}}</p>
+                        <select class="item-detail-profp" 
+                            ng-if="active.year"
+                            ng-model="birth.year"
+                            ng-change="blur('year')"
+                            id="year-input">
+                            <option ng-repeat="opt in options.year"
+                                    value="{{opt}}">{{opt}}
+                            </option>
+                        </select>
     				</div>
-    				<div class="col-xs-3 no-padding" style="position:relative">
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('month')">
     					<p class="item-header-profp">Birth Month:</p>
-    					<p class="item-detail-profp">{{userInfo.birthday.split('-')[1] | date:'MMMM'}}</p>
+    					<p class="item-detail-profp"
+                            ng-if="!active.month">{{birth.month}}</p>
+                        <select class="item-detail-profp" 
+                            ng-if="active.month"
+                            ng-model="birth.month"
+                            ng-change="blur('month')"
+                            id="year-input">
+                            <option ng-repeat="opt in options.month"
+                                    value="{{opt.name}}">{{opt.name}}
+                            </option>
+                        </select>
     				</div>
 
     			</div>

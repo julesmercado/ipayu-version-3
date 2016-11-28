@@ -36,12 +36,133 @@ function Dashboard($scope, $rootScope, $state, account, accountData, ngDialog, $
         $scope.dashboardMyCards = data;
     })
     
+    $rootScope.$on('updateUserInfo', function(event, data){
+        $scope.ipayu_info = accountData.getUser();
+    })
+    
 }
 
 
-Profile.$inject = ['$scope', 'accountData'];
-function Profile($scope, accountData) {
+Profile.$inject = ['$scope', 'accountData', 'account', '$rootScope', '$timeout', '$filter', 'customService'];
+function Profile($scope, accountData, account, $rootScope, $timeout, $filter, customService) {
+    
+    var userInfo = accountData.getUser();
+    $scope.selectedFile = {};
+    $scope.birth = {
+        'year'  : userInfo.birthday.split('-')[0],
+        'month' : $filter('date')(new Date(userInfo.birthday), 'MMMM')
+    };
+    $scope.options = {
+        'year'  : getYearOptions(),
+        'month' : getMonthOptions()
+    }
     $scope.userInfo = accountData.getUser();
+    $scope.active = {
+        'username'  : false,
+        'phone'     : false,
+        'firstname' : false,
+        'lastname'  : false,
+        'email'     : false,
+        'year'      : false,
+        'month'     : false
+    }
+    
+    function getYearOptions() {
+        var temp = [];
+        for(var i = $scope.birth.year; i > $scope.birth.year - 100; i--){
+            temp.push(i);
+        }
+        return temp;
+    }
+    
+    function getMonthOptions(name) {
+        var temp = [
+            {'name': 'January', 'value': 1},
+            {'name': 'February', 'value': 2},
+            {'name': 'March', 'value': 3},
+            {'name': 'April', 'value': 4},
+            {'name': 'May', 'value': 5},
+            {'name': 'June', 'value': 6},
+            {'name': 'July', 'value': 7},
+            {'name': 'August', 'value': 8},
+            {'name': 'September', 'value': 9},
+            {'name': 'October', 'value': 10},
+            {'name': 'November', 'value': 11},
+            {'name': 'December', 'value': 11},
+        ];
+        if(name){
+            for(var i in temp){
+                if(temp.hasOwnProperty(i) && temp[i].name == name){
+                    return temp[i];
+                }
+            }
+        }
+        return temp;
+    }
+    
+    function getNewBirth() {
+        var copy = userInfo.birthday.split('-');
+            copy[0] = $scope.birth.year;
+            copy[1] = getMonthOptions($scope.birth.month).value
+            
+            $scope.userInfo.birthday = copy.join('-')
+    }
+    
+    $scope.openFile = function(){
+        angular.element(document.getElementById('hiddenFile')).click();
+    }
+    
+    $scope.focus = function(property) {
+        for(var i in $scope.active) {
+            if($scope.active.hasOwnProperty(i) && i == property){
+                $scope.active[i] = true;
+                $timeout(function(){
+                    angular.element(document.getElementById(property+'-input')).focus();
+                })
+            }
+        }
+    }
+    
+    $scope.blur = function(property) {
+        for(var i in $scope.active){
+            if($scope.active.hasOwnProperty(i) && i == property){
+                $scope.active[i] = false;
+                if(typeof $scope.userInfo[i] != 'undefined' && $scope.userInfo[i] == userInfo[i]) {
+                    return;
+                }
+            }
+        }
+        if(property == 'year' || property == 'month'){
+            getNewBirth();
+        }
+        $scope.updateProfile();
+    }
+    
+    $scope.updateProfile = function(is_image){
+        var dataToSend = $scope.userInfo;
+        if(is_image){
+            dataToSend.image = $scope.selectedFile;
+        }
+        else {
+            dataToSend.image = '';
+        }
+        dataToSend.datetime_created = Date.parse(new Date());
+        console.log(dataToSend, "dataTosend")
+        account.updateProfile(dataToSend)
+        .then(function(resolve){
+            console.log(resolve, "resolved")
+            if(resolve){
+                if(resolve[0].data.success){
+                    accountData.setUser(resolve[0].data.data[0]);
+                    $rootScope.$broadcast('updateUserInfo', userInfo);
+                }
+                customService.alert(resolve[0].data.message)
+            }
+            $scope.userInfo = accountData.getUser();
+            userInfo = accountData.getUser();
+        })
+    }
+    
 }
 
 
