@@ -41,9 +41,9 @@ function Mycard($state, $rootScope, preloaderMethod, accountData, wallet, wallet
 	    			wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: type})
 	    				.then(function (resolve) {
 	    					if(resolve){
-		    					var u = walletData.setUserCards(resolve[0].data.data.all || [], type);
-		    					var f = walletData.setFrequentUserCards(resolve[0].data.data.frequently || [], type);
-		    					var l = walletData.setLastUserCards(resolve[0].data.data.last_used || [], type);
+		    					var u = walletData.userCards(type, resolve[0].data.data.all || []);
+		    					var f = walletData.frequentUserCards(type, resolve[0].data.data.frequently || []);
+		    					var l = walletData.lastUserCards(type, resolve[0].data.data.last_used || []);
 								$state.go(route);
 								preloaderMethod.preloadImage([u || [], f || [], l || []]);
 	    					}
@@ -71,9 +71,9 @@ function Mycouponcard($state, $rootScope, coupon, couponData, preloaderMethod, a
 	    				.then(function (resolve) {
                         console.log(resolve)
 	    					if(resolve){
-			                	var m = couponData.setUserCoupons(resolve[0].data.data.allcoupons || []);
-			                	var f = couponData.setFeaturedCoupons(resolve[0].data.data.featuredcoupons || []);
-			                	var u = couponData.setUsedCoupons(resolve[0].data.data.usedcoupons || []);
+			                	var m = couponData.userCoupons(resolve[0].data.data.allcoupons || []);
+			                	var f = couponData.featuredCoupons(resolve[0].data.data.featuredcoupons || []);
+			                	var u = couponData.usedCoupons(resolve[0].data.data.usedcoupons || []);
 								$state.go('mycouponcards');
 								preloaderMethod.preloadImage([m || [], f || [], u || []]);
 	    					}
@@ -101,9 +101,9 @@ function Mystampcard($state, $rootScope, stamp, stampData, preloaderMethod, acco
 	    				.then(function (resolve) {
                         console.log(resolve)
 	    					if(resolve){
-			                	var m = stampData.setUserStamps(resolve[0].data.data.allstamps || []);
-			                	var f = stampData.setFeaturedStamps(resolve[0].data.data.featuredstamps || []);
-			                	var u = stampData.setUsedStamps(resolve[0].data.data.usedstamps || []);
+			                	var m = stampData.userStamps(resolve[0].data.data.allstamps || []);
+			                	var f = stampData.featuredStamps(resolve[0].data.data.featuredstamps || []);
+			                	var u = stampData.usedStamps(resolve[0].data.data.usedstamps || []);
 								$state.go('mystampcards');
 								preloaderMethod.preloadImage([m || [], u || [], f || []]);
 	    					}
@@ -133,13 +133,9 @@ function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, cus
                     case 'shop':
                         route = 'shopsearch'; break;
                     case 'coupon':
-                        route = 'couponsearch';
-                        type = '';
-                        break;
+                        route = 'couponsearch';  type = ''; break;
                     case 'stamp':
-                        route = 'stampsearch';
-                        type = '';
-                        break;
+                        route = 'stampsearch'; type = ''; break;
                     default:
                         alert('undefined type');
                         return;
@@ -152,9 +148,9 @@ function CardSearch($state, $rootScope, preloaderMethod, wallet, walletData, cus
 	    			$rootScope.doLoading = true;
 	    			wallet.getAllHasCardAssets(type)
 	    					.then(function (resolve) {
-								var f = walletData.setAssetsFeatured(resolve[0].data.data.featured || [])
-								var n = walletData.setAssetsNonFeatured(resolve[0].data.data.not_featured || [])
-								var c = walletData.setCategories(resolve[1].data.data || [])
+								var f = walletData.assetsFeatured(type, resolve[0].data.data.featured || [])
+								var n = walletData.assetsNonFeatured(type, resolve[0].data.data.not_featured || [])
+								var c = walletData.categories(resolve[1].data.data || [])
 	    						$state.go(route);
 								preloaderMethod.preloadImage([f || [], n || [], c || []]);
 	    					})
@@ -198,7 +194,7 @@ function AllCardSearch($state, $rootScope, preloaderMethod, wallet, walletData, 
 	    					.then(function (resolve) {
 	    						if(resolve){
                                     console.log(resolve)
-                                    var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
+                                    var a = walletData.allAvailableCards(type, resolve[0].data.data || []);
                                     $state.go(route);
                                     preloaderMethod.preloadImage([a || []]);
 	    						}
@@ -244,7 +240,7 @@ function AllAssetCards($state, $rootScope, preloaderMethod, wallet, customServic
 	    			wallet.getAllCardAvailableInEstablishment(user.ipayu_id, card.asset_info_id, type)
 	    					.then(function (resolve) {
 	    						if(resolve){
-	    							var a = walletData.setAllAvailableCards(resolve[0].data.data || []);
+	    							var a = walletData.allAvailableCards(type, resolve[0].data.data || []);
 	    							$state.go(route);
 									preloaderMethod.preloadImage([a || []]);
 	    						}
@@ -268,11 +264,11 @@ function CardInfo($state, $rootScope, walletData, accountData, wallet, preloader
 	    		var ipayu_info 	= accountData.getUser(),
                     data= JSON.parse(attrs.routeCardInfo),
 	    			route   = (attrs.cardType == 'mall')? 'mallcardinfo':'shopcardinfo',
-	    			cards 	= walletData.getUserCards(attrs.cardType),
+	    			cards 	= walletData.userCards(attrs.cardType),
     				key 	= Object.keys(cards).filter(function(key){return (cards[key].card_id == data.card_id)}),
     				card 	= cards[key];
 
-				walletData.setCardInfo(card)
+				walletData.cardInfo(attrs.cardType, card)
                 
                 if(!$rootScope.showOffline){
                     $rootScope.doLoading = true;
@@ -280,9 +276,9 @@ function CardInfo($state, $rootScope, walletData, accountData, wallet, preloader
                         .then(function(resolve){
                             if(resolve){
                             	
-                                var u = walletData.setUserCards(resolve[0].data.data.all, card.card_type);
-                                var f =walletData.setFrequentUserCards(resolve[0].data.data.frequently, card.card_type);
-                                var l =walletData.setLastUserCards(resolve[0].data.data.last_used, card.card_type);
+                                var u = walletData.userCards(attrs.cardType, resolve[0].data.data.all, card.card_type);
+                                var f =walletData.frequentUserCards(attrs.cardType, resolve[0].data.data.frequently, card.card_type);
+                                var l =walletData.lastUserCards(attrs.cardType, resolve[0].data.data.last_used, card.card_type);
 
 			                    $state.transitionTo(route, {}, { 
 			                      reload: true, inherit: false, notify: true
@@ -344,7 +340,7 @@ function RedeemHistory ($state, $rootScope, customService, accountData, wallet, 
                     wallet.redeemHistory({'ipayu_id' : user.ipayu_id})
                         .then(function(resolve){
                             if(resolve){
-                                var r = walletData.setRedeemHistory(resolve[0].data.data);
+                                var r = walletData.redeemHistory(resolve[0].data.data);
                                 preloaderMethod.preloadImage([r || []]);
                                 $state.go('redeemhistory');
                             }
@@ -367,7 +363,7 @@ function ItemLocation ($state, wallet, walletData, $rootScope) {
             element.bind('click', function () {
                 var asset_id = attrs.routeItemLocation,
                     item = JSON.parse(attrs.item);
-                walletData.setItemInfo(item);
+                walletData.itemInfo(item);
                 if($rootScope.showOffline){
                     customService.alert('No internet connection', 'Oops!', 'Ok');
                 }
@@ -375,7 +371,7 @@ function ItemLocation ($state, wallet, walletData, $rootScope) {
                     wallet.redeemBranches({'asset_info_id':asset_id})
                             .then(function(resolve){
                                 if(resolve){
-                                    walletData.setItemLocation(resolve[0].data.data);
+                                    walletData.itemLocation(resolve[0].data.data);
                                     $state.go('itemlocation', {'id':item.redeemable_id})
                                 }
                             })

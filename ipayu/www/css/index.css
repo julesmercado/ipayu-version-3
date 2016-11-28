@@ -263,7 +263,7 @@ form#registration button.register {
 .add-card-addon{width: 49px; font-size: 9px; position: absolute; padding: 3px; height: 36%;border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important; border:none;bottom: 10px}
 .no-cards{z-index: 9;height: 60px;    text-align: center;    padding-top: 8%;width: 100%;position: absolute;top: 0;font-family: "HelveticaBold"; color: black; text-transform: uppercase}
-.dash-user-img{height: 60px;    margin: 0 auto;    display: block;}
+.dash-user-img{height: 60px; width: 60px;   margin: 0 auto;    display: block; border-radius: 100%}
 .dash-user-img canvas{height: 60px;    margin: 0 auto;    display: block;}
 
 .page-header{border-bottom:none ;}
@@ -847,7 +847,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 
 /*profile*/
 #profile-user-container{height: 100%; width:100%;overflow-y: scroll;}
-    .prof-pp{    height: 100px;    margin: 0 auto;    margin-top: 10px;}
+    .prof-pp{    height: 100px; width:100px;    margin: 0 auto;    margin-top: 10px;}
     .user-name-pp{ color: #df1642; font-family: "HelveticaBold"; text-align: center;margin-top:10px;}
     .item-pp-holder{    height: 30px;    width: 30px;    background-color: rgb(228,228,228);    padding: 0; margin: 15px}
         .item-pp{    height: 20px;    margin: 5px auto;    display: block;}
@@ -886,7 +886,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
        .stamps-circle{    margin: 0px 10px;    height: 45px;    width: 45px;}
        .stamp-img{height: 160px}
 
-       .dash-user-img{height: 75px}
+       .dash-user-img{height: 75px;width: 75px}
        .dash-user-img canvas{height: 75px}
        .map-image{max-height: 300px}
        .mc-info-tab .col-xs-4 p{font-size: 11px}
@@ -1050,7 +1050,7 @@ and (max-device-width : 736px) {
      #mag-img{padding:13px;}
     .login-options{margin-bottom: 32% !important}
     .stamps-circle{    margin: 5px 13px;    height: 50px;    width: 50px;}
-    .dash-user-img {    height: 85px;}
+    .dash-user-img {    height: 85px;width: 85px}
     .dash-user-img canvas {    height: 85px;}
     .mc-info-tab .col-xs-4 p{font-size: 12px}
     .filtered-cards > p{font-size: 12px}
@@ -1345,7 +1345,7 @@ ul.flagHeader li{font-size: 20px}
     .filtered-cards > p{margin-left: 1px}
     .header-lead-text {    font-size: 18px;}
     .filtered-cards .lu-cards, .filtered-cards .fu-cards, .filtered-cards .mn-cards{margin-right: -7px; margin-left: -7px}
-    .dash-user-img {    height: 75px;}
+    .dash-user-img {    height: 75px; width: 75px;}
     .container-fluid .login-form input.login-credentials{margin-bottom: 2em}
     .side-menu .fc div.col-xs-12 img{height: 90px;width: 90px;}
     .listed-alphabet {    line-height: 14px;}
@@ -1440,7 +1440,7 @@ ul.flagHeader li{font-size: 20px}
 
 @media screen and (width: 384px){
      .stamps-circle{margin: 10px 8px;}
-     .dash-user-img {    height: 70px;}
+     .dash-user-img {    height: 70px;width: 70px}
      .dash-user-img canvas{    height: 70px;}
 }
 

@@ -124,7 +124,10 @@
                                 </div>
                             </div>
                             <div style="padding-left:0" class=" col-xs-2  mc-info-redeem-desc">
-                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp;points</p>
+                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp; 
+                                    <span ng-if="rg.points_type == 'reward'">points</span>
+                                    <span ng-if="rg.points_type == 'rebate'">$</span>
+                                </p>
                             </div>
                             <div style="padding-left:0;padding-right:0" class="col-xs-3 mc-info-redeem-button">
                                 <button type="submit" ng-click="redeemItem(rg)">
@@ -160,10 +163,14 @@
                     <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
                     <td>{{tran.points || 0}}</td>
                     <td>{{tran.balance}}</td>
-                    <td class="bold" style="font-size:8px"
-                        route-item-location="{{tran.asset_info_id}}" item={{tran}}
-                        ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
-                    <td style="font-size:9px" ng-if="tran.type == 'transaction' ">&nbsp;</td>
+                    <td>
+                        <span class="bold" style="font-size:8px" 
+                            route-item-location="{{tran.asset_info_id}}" item={{tran}}
+                            ng-if="tran.type == 'redeemption'">
+                            See&nbsp;info&nbsp;>
+                        </span>
+                        <span style="font-size:9px" ng-if="tran.type == 'transaction'">&nbsp;</span>
+                    </td>
                 </tr>
             </table>
             <h6 ng-if="transactions.length == 0">No recent transactions</h6>

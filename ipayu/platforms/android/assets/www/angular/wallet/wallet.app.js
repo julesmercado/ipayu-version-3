@@ -39,8 +39,7 @@ function Config($stateProvider) {
             url: '/mallcardinfo',
             templateUrl: 'templates/wallet/mall/mall-card-info.html',
             controller: 'mallCardInfoCtrl',
-            card_type:'mallcard',
-            cache: false
+            card_type:'mallcard'
         })
         .state('addmallcard', {
             url: '/addmallcard',
@@ -79,8 +78,7 @@ function Config($stateProvider) {
             url: '/shopcardinfo',
             templateUrl: 'templates/wallet/shop/shop-card-info.html',
             controller: 'shopCardInfoCtrl',
-            card_type:'shopcard',
-            cache: false
+            card_type:'shopcard'
         })
         .state('addshopcard', {
             url: '/addshopcard',
