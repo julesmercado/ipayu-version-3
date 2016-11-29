@@ -371,7 +371,7 @@ function ItemLocation ($state, wallet, walletData, $rootScope) {
                     wallet.redeemBranches({'asset_info_id':asset_id})
                             .then(function(resolve){
                                 if(resolve){
-                                    walletData.itemLocation(resolve[0].data.data);
+                                    var a = walletData.itemLocation('', resolve[0].data.data);
                                     $state.go('itemlocation', {'id':item.redeemable_id})
                                 }
                             })

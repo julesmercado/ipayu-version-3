@@ -47,6 +47,7 @@ Profile.$inject = ['$scope', 'accountData', 'account', '$rootScope', '$timeout',
 function Profile($scope, accountData, account, $rootScope, $timeout, $filter, customService) {
     
     var userInfo = accountData.getUser();
+    $scope.showImageLoading = false;
     $scope.selectedFile = {};
     $scope.birth = {
         'year'  : userInfo.birthday.split('-')[0],
@@ -142,6 +143,7 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
         var dataToSend = $scope.userInfo;
         if(is_image){
             dataToSend.image = $scope.selectedFile;
+            $scope.showImageLoading = true;
         }
         else {
             dataToSend.image = '';
@@ -151,6 +153,7 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
         account.updateProfile(dataToSend)
         .then(function(resolve){
             console.log(resolve, "resolved")
+            alert(JSON.stringify(resolve))
             if(resolve){
                 if(resolve[0].data.success){
                     accountData.setUser(resolve[0].data.data[0]);
@@ -158,8 +161,12 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
                 }
                 customService.alert(resolve[0].data.message)
             }
+            else {
+                alert(JSON.stringify($scope.selectedFile))
+            }
             $scope.userInfo = accountData.getUser();
             userInfo = accountData.getUser();
+            $scope.showImageLoading = false;
         })
     }
     

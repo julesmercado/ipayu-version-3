@@ -152,7 +152,7 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
         console.log(dataToSend, "dataTosend")
         account.updateProfile(dataToSend)
         .then(function(resolve){
-            console.log(resolve, "resolved")
+            // console.log(resolve, "resolved")
             if(resolve){
                 if(resolve[0].data.success){
                     accountData.setUser(resolve[0].data.data[0]);
