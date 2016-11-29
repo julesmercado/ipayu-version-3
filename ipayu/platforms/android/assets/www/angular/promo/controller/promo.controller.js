@@ -210,8 +210,9 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
                     return $scope.promoInfo;
                 }
             },
-            overlay: false,
-            showClose: false
+            overlay: true,
+            showClose: false,
+            closeByDocument: false
         });
         
 	}
