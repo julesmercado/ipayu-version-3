@@ -27,9 +27,6 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
         },
         {
           image: 'http://promos.watimbox.com/wp-content/uploads/2016/07/rustans.jpg'
-        },
-        {
-          image: 'http://www.contestsandpromos.com/wp-content/uploads/2011/03/east-west-greenwich-promo.jpg'
         }
       ];
 
@@ -169,14 +166,17 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 	if($stateParams.view){
 		$scope.viewOnly = true;
 	}
+    if($rootScope.addPromo == false && !$stateParams.view){
+        redirect()
+    }
 
-	$scope.$watch(function(){
-			return $rootScope.addPromo;
-		}, function(newvalue){
-		if(newvalue == false && !$stateParams.view){
-			redirect()
-		}
-	})
+//	$scope.$watch(function(){
+//			return $rootScope.addPromo;
+//		}, function(newvalue){
+//		if(newvalue == false && !$stateParams.view){
+////			redirect()
+//		}
+//	})
 
 	$scope.promoInfo = promoData.promoInfo();
 	$scope.promoSoloEmit = 'expiredPromo';
@@ -198,6 +198,7 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 		}
         
         ngDialog.open({
+            id: 'reservepromo',
             template: 'reservemodal.html',
             className: 'ngdialog-theme-plain profile-cutom-bg',
             controller: 'reservePromoCtrl',
@@ -209,7 +210,8 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
                     return $scope.promoInfo;
                 }
             },
-            overlay: true
+            overlay: false,
+            showClose: false
         });
         
 	}
@@ -219,12 +221,13 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 	}
 }
 
-ReservePromo.$inject=  ['$scope', '$rootScope', 'promo', 'formData', 'thisPromo', 'customService'];
-function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customService) {
+ReservePromo.$inject=  ['$scope', '$rootScope', 'promo', 'formData', 'thisPromo', 'customService', '$timeout'];
+function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customService, $timeout) {
     
     $scope.quantity = 0;
     $scope.done = false;
     $scope.thisPromo = thisPromo;
+                    $rootScope.addPromo = false;
     
     $scope.decrement = function(){
         if($scope.quantity > 0){
@@ -252,8 +255,8 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
 			promo.reserve(formData)
 			.then(function(resolve){
 				if(resolve && resolve[0].data.success == true) {
-					$rootScope.addPromo = false;
                     $scope.done = true;
+                    $rootScope.addPromo = false;
 				}
 			})
 		}
