@@ -152,17 +152,13 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
         console.log(dataToSend, "dataTosend")
         account.updateProfile(dataToSend)
         .then(function(resolve){
-            console.log(resolve, "resolved")
-            alert(JSON.stringify(resolve))
+            // console.log(resolve, "resolved")
             if(resolve){
                 if(resolve[0].data.success){
                     accountData.setUser(resolve[0].data.data[0]);
                     $rootScope.$broadcast('updateUserInfo', userInfo);
                 }
                 customService.alert(resolve[0].data.message)
-            }
-            else {
-                alert(JSON.stringify($scope.selectedFile))
             }
             $scope.userInfo = accountData.getUser();
             userInfo = accountData.getUser();
