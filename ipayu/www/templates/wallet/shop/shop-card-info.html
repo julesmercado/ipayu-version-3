@@ -165,11 +165,12 @@
                         
                     </td>
                     <td>
-                        <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
+                        <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
                         <span ng-if="tran.points_type != 'combo'">{{tran.points || 0}}</span>
                     </td>
                     <td>
-                        <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
+                     <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
+                       
                         <span ng-if="tran.points_type != 'combo'">{{tran.balance}}</span>
                     </td>
                     <td>
@@ -203,11 +204,12 @@
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
             <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
             <td>
-                <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
+               <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
                 <span ng-if="tran.points_type != 'combo'">{{tran.points || 0}}</span>
             </td>
             <td>
-                <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
+                
+                 <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
                 <span ng-if="tran.points_type != 'combo'">{{tran.balance}}</span>
             </td>
         </tr>

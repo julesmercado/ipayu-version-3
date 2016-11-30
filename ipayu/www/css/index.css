@@ -1042,7 +1042,7 @@ and (max-device-width : 736px) {
 @media screen and (min-width: 400px){
      .container-fluid .row img.login-img{margin-bottom: 4.4em;}
      .shop-search-icon-cat{height:75px; width:75px;}
-     .shop-search-categories{bottom:190px;}
+     .shop-search-categories{bottom:185px;}
      .featured-malls-mall{height: 60px; width: 60px}
      .coupon-img-container{max-height: none; padding-right: 10px; padding-left: 10px}
      #shop-magnify-cat{padding: 15px}
@@ -1070,7 +1070,7 @@ and (max-device-width : 736px) {
      .add-this-card-img {    height: 84px;}
      .sn-num{font-size: 20px}
      .map-image {    max-height: 345px;}
-
+     .coupon-img-holder>img {    height: 100px !important;}
 }
 @media only screen and (width: 411px) {
 .dash-header-greeting{margin-bottom: 28%}
@@ -1083,7 +1083,7 @@ and (max-device-width : 736px) {
 }
 
 @media only screen and (min-width: 415px) and (max-width: 540px){
-    .dash-header-greeting{height: 200px;position: relative;}
+    .dash-header-greeting{height: 72px;position: relative;}
     .dash-header-greeting div{position: absolute;top: 0;left:0;right: 0;}
     .add-this-card-img{ height: 125px}
 }
@@ -1137,7 +1137,7 @@ and (max-device-width : 960px) {
 .menu-logout .list-group .list-group-item .img.img-responsive{height: 30px !important}
 .filtered-cards > p{font-size: 15px}
 .filtered-cards .filter-option .filter-option-ic{font-size:17px;}
-.container-fluid .row img.login-img{height: 240px; margin-bottom: 6em}
+.container-fluid .row img.login-img{height: 150px; margin-bottom: 6em}
 .status-message-menu{    font-size: 20px; font-family: "HelveticaLight"}
   .mc-info-fh div.col-xs-8 .circle-dashed{width: 74%; margin:0 auto;}
   .mc-info-fh div.col-xs-4 img{height: 65px; width: auto !important}
@@ -1172,7 +1172,7 @@ and (max-device-width : 960px) {
 
 .dark-bg-shop{height: 148px !important}
 .login-options {    margin-bottom: 30% !important;}
-.shop-search-icon-cat{height:85px; width:85px;}
+.shop-search-icon-cat{height:72px; width:72px;}
 .container-fluid .login-form input.login-credentials{height: 58px;font-size:18px !important;}
 }
 
