@@ -107,7 +107,6 @@ function AddCardForm(){
             var ipayu_info = accountData.getUser();
             
             $scope.phonePrefix = flags.getFlagByCode($scope.thisCard.country_code);
-            $scope.disableBtn = false;
             $scope.openToolTip = false;
 
             $scope.userData = {

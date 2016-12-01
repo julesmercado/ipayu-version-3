@@ -260,8 +260,9 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
     $scope.emitMessage = 'addMallCard';
     $scope.cardType = 'mall';
     $scope.thisCard = thisCard;
+    $scope.disableBtn = false;
 
-	if(!thisCard){
+	if(thisCard.length == 0){
 		$state.go('mymallcards')
 		return;
 	}
@@ -277,9 +278,9 @@ function AddMallCardCtrl($scope, $rootScope, $state, ngDialog, walletData, accou
         		}
         		wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'mall'})
         			.then(function(user_card){
-        				$scope.disableBtn = false;
+        				$scope.disableBtn = true;
         				if(user_card){
-        					walletData.cardToAdd('mall', false);
+        					walletData.cardToAdd('mall', []);
 	        				walletData.userCards('mall', user_card[0].data.data.all);
 		                	walletData.frequentUserCards('mall', user_card[0].data.data.frequently);
 		                	walletData.lastUserCards('mall', user_card[0].data.data.last_used);

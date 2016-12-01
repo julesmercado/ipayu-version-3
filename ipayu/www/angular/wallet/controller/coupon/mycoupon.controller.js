@@ -444,8 +444,9 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
     $scope.emitMessage = 'addCouponCard';
     $scope.cardType = 'coupon';
     $scope.thisCard = thisCard;
+    $scope.disableBtn = false;
 
-	if(!thisCard){
+	if(thisCard.length == 0){
 		$state.go('mycouponcards')
 		return;
 	}
@@ -482,9 +483,9 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
         		}
         		coupon.getUserCoupons(ipayu_info.ipayu_id)
         			.then(function(user_card){
-        				$scope.disableBtn = false;
+        				$scope.disableBtn = true;
         				if(user_card){
-        					walletData.cardToAdd('coupon', false);
+        					walletData.cardToAdd('coupon', []);
                             couponData.userCoupons(user_card[0].data.data.allcoupons);
                             couponData.featuredCoupons(user_card[0].data.data.featuredcoupons);
                             couponData.usedCoupons(user_card[0].data.data.usedcoupons);

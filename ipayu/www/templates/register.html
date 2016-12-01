@@ -144,7 +144,7 @@
                                 uib-tooltip="{{user_info.email.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched"
+                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched && user_info.email.blur"
                                 />
                     </label>
                 </td>
@@ -176,7 +176,7 @@
                     <label for="password"> 
                         <input type="password" 
                                 id="password"
-                                ng-blur="showPassTip = false" 
+                                ng-blur="passwordBlur()" 
                                 ng-focus="scrollUp('password')"
                                 name="password" 
                                 ng-model="user_info.password.input_value"
@@ -186,7 +186,7 @@
                                 uib-tooltip="{{user_info.password.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched"
+                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched && user_info.password.blur"
                                 required
                                  />
                     </label>

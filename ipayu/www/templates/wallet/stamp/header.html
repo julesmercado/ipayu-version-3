@@ -1,8 +1,13 @@
 <ul class="nav nav-tabs page-menu-top stamp-nav">
     <li class="col-xs-4 col-md-4 col-lg-4 no-padding">
-        <button back>
-        <img src="images/back-btn.png" class="back-button-header-img">
+        
+        <button back  ng-if="state.current.name != 'addstampcard'">
+            <img src="images/back-btn.png" class="back-button-header-img">
         </button>
+        <button route-all-card-search="stamp" ng-if="state.current.name == 'addstampcard'">
+            <img src="images/back-btn.png" class="back-button-header-img">
+        </button>
+        
         <button  ng-click="toggleMenu()">
         <img src="images/menubar.png" >
         </button>
