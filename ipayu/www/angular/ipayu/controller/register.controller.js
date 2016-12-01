@@ -86,7 +86,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
         }
         else {
             $scope.user_info.username.showError = true;
-            $scope.user_info.username.message = 'This field id required';
+            $scope.user_info.username.message = 'This field is required';
             hasError = true;
         }
         return hasError;
@@ -114,7 +114,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
         }
         else{ 
         	$scope.user_info[name].showError = true;
-            $scope.user_info[name].message = 'This field id required';
+            $scope.user_info[name].message = 'This field is required';
         	hasError = true;
         }
         return hasError;
@@ -137,7 +137,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
         }
         else{
         	$scope.user_info.email.showError = true;
-            $scope.user_info.email.message = 'This field id required';
+            $scope.user_info.email.message = 'This field is required';
         	hasError = true;
         }
         return hasError;
@@ -163,7 +163,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
         }
         else{
         	$scope.user_info.password.showError = true;
-            $scope.user_info.password.message = 'This field id required';
+            $scope.user_info.password.message = 'This field is required';
         	hasError = true;
         }
         return hasError;
