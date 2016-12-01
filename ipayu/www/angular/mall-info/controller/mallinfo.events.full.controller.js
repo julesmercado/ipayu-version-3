@@ -1,6 +1,6 @@
 
     mallInfo.controller( 'mallInfoEventsFull', 
-        function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal, $cordovaSocialSharing ){ /*, offlineData*/
+        function( $scope, $state, $stateParams , mallData , $rootScope , $uibModal, $cordovaSocialSharing, mallCardFactory2 ){ /*, offlineData*/
 
             $scope.info = mallData.setMallEvent();
             $scope.mallInfo = mallData.setMallInfo();
@@ -135,6 +135,29 @@
                     return interval + " minutes";
                 }
                 return Math.floor(seconds) + " seconds";
+            }
+        
+        
+            $rootScope.$on('get_events', function(){
+                get_events();
+            })
+
+            function get_events(){
+                mallCardFactory2.fetchMallEvents( parseInt( $stateParams.mallId ) ).then( function( response ){
+                    $scope.limitText = [];
+                    var events = response.all.data;
+                    console.log(response)
+                    for( var i in events ) {
+                        if(events[i].asset_event_id == $scope.info.asset_event_id) {
+                            mallData.setMallEvent( events[i] );
+                            $scope.info = events[i];
+                            $scope.time_created = timeSince( $scope.info.datetime_created );
+                            $scope.limitText = 190;
+                            return;
+                        }
+                    }
+
+                })
             }
 
     } )
