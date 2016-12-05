@@ -10,6 +10,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
                     stampData, couponData, stamp, coupon, wallet, walletData, account, promo, promoData) {
 
     $rootScope.doLoading = false;
+    $rootScope.state = $state;
 
     var tOut,
         ipayu_info = accountData.getUser();
@@ -36,6 +37,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
 // Action event if state changes
     $rootScope.$on('$stateChangeSuccess',
         function(ev, to, toParams, from, fromParams) {
+            $rootScope.state = $state;
             $state.previous = { route: from, routeParams: fromParams }
             ngDialog.closeAll();
             if(accountData.getUser().length == 0 && (to.name != 'login' && to.name != 'register' && to.name != 'forgot')){

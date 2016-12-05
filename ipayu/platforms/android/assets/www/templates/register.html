@@ -144,14 +144,14 @@
                                 uib-tooltip="{{user_info.email.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched"
+                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched && user_info.email.blur"
                                 />
                     </label>
                 </td>
             </tr>
             <tr>
                 <td class="pink"><label for="birthday" class="i6-resize"><img src="images/age.png" /> </label></td>
-                <td class="gray">
+                <td class="gray" style="position: relative;">
                 <label for="birthday"> 
                     <input type="text" class="input" name="birthday"
                             id="birthday"
@@ -169,6 +169,8 @@
                             tooltip-is-open="openToolTip && user_info.birthday.showError && user_info.birthday.touched"
                             required style="height:100%;margin-top:0px">
                 </label>
+
+                <span class="glyphicon glyphicon-calendar" style="    position: absolute;    right: 4px;    top: 13px;"></span>
             </tr>
             <tr>
                 <td class="pink"><label for="password" class="i6-resize"><img src="images/password.png" /> </label></td>
@@ -176,7 +178,7 @@
                     <label for="password"> 
                         <input type="password" 
                                 id="password"
-                                ng-blur="showPassTip = false" 
+                                ng-blur="passwordBlur()" 
                                 ng-focus="scrollUp('password')"
                                 name="password" 
                                 ng-model="user_info.password.input_value"
@@ -185,8 +187,8 @@
                                 ng-disabled="user_info.birthday.showError"
                                 uib-tooltip="{{user_info.password.message}}" 
                                 tooltip-trigger="'none'" 
-                                tooltip-placement="top" 
-                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched"
+                                tooltip-placement="bottom" 
+                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched && user_info.password.blur"
                                 required
                                  />
                     </label>

@@ -68,6 +68,8 @@ html{overflow-x: hidden;}
 .mall-info-mall-search-featured-malls{height:inherit;}
 .shop-info-logo-shop{width: 100px;padding: 5px;height: 100px;border-radius: 20px;margin: 0 auto;align-items: center;display: block;}
 .mishi-sb-lg{    position: absolute;    height: 30%;    right: 20px;}
+.mishi-sb-lg-qr{position: absolute;    top: 65px;    height: 20%; right: 20px} 
+#get-dir-text-mishi{    position: absolute;    font-size:6px;    text-align: center;    right: 22px;    top: 100px;color: gray;font-family: "HelveticaLight"}
 /*Comments Modal*/
 .modal-dialog{margin: 0;}
 .modal-header {padding-top: 10px;display: flex;flex-direction: row;justify-content: space-around;height: 44px;font-size: 10px;margin-left: -25px;}

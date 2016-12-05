@@ -82,7 +82,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 
             if($scope.user_info.username.input_value.length < 8){
                 $scope.user_info.username.showError = true;
-                $scope.user_info.username.message = 'Minimum of 8 characters';
+                $scope.user_info.username.message = 'Minimum of 8 alphanumeric characters';
                 hasError = true;
             }
             if(!$scope.user_info.username.input_value.match(/^[0-9A-Za-z]+$/)){

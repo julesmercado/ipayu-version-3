@@ -26,7 +26,7 @@
             
             $scope.toMallEventsFull = function toMallEventsFull( mallEvent ){
                 mallData.setMallEvent( mallEvent );
-                $state.go( 'mallEventFull' );
+                $state.go( 'mallEventFull', {'mallId':$stateParams.mallId} );
             }
 
             $scope.comment = function(){

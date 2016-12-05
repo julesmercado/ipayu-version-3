@@ -1118,7 +1118,7 @@ and (max-device-width : 960px) {
 
 /* NEXUS 5X */
 @media screen and (min-width: 411px) {
-    .container-fluid .row img.login-img { height: 155px; margin-top: 65px; margin-bottom: 6em; }
+    .container-fluid .row img.login-img { height: 155px; margin-top: 65px; margin-bottom: 4em; }
     .container-fluid .login-form input.login-credentials { height: 50px; font-size: 18px;  }
     .container-fluid .login-form button.login-button { height: 45px; width: 130px;font-size: 17px; }
     .container-fluid .login-options .login-options-label { font-size: 17px; }

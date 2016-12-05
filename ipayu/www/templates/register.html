@@ -151,7 +151,7 @@
             </tr>
             <tr>
                 <td class="pink"><label for="birthday" class="i6-resize"><img src="images/age.png" /> </label></td>
-                <td class="gray">
+                <td class="gray" style="position: relative;">
                 <label for="birthday"> 
                     <input type="text" class="input" name="birthday"
                             id="birthday"
@@ -169,6 +169,8 @@
                             tooltip-is-open="openToolTip && user_info.birthday.showError && user_info.birthday.touched"
                             required style="height:100%;margin-top:0px">
                 </label>
+
+                <span class="glyphicon glyphicon-calendar" style="    position: absolute;    right: 4px;    top: 13px;"></span>
             </tr>
             <tr>
                 <td class="pink"><label for="password" class="i6-resize"><img src="images/password.png" /> </label></td>

@@ -384,8 +384,9 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
     $scope.emitMessage = 'addStampCard';
     $scope.cardType = 'stamp';
     $scope.thisCard = thisCard;
+    $scope.disableBtn = false;
 
-	if(!thisCard){
+	if(thisCard.length == 0){
 		$state.go('mystampcards')
 		return;
 	}
@@ -399,9 +400,9 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
         		if(resolve[0].data.success){
                     stamp.getUserStamps(ipayu_info.ipayu_id)
                         .then(function(user_card){
-                            $scope.disableBtn = false;
+                            $scope.disableBtn = true;
                             if(user_card){
-                                walletData.cardToAdd('stamp', false);
+                                walletData.cardToAdd('stamp', []);
                                 stampData.userStamps(user_card[0].data.data.allstamps);
                                 stampData.featuredStamps(user_card[0].data.data.featuredstamps);
                                 stampData.usedStamps(user_card[0].data.data.usedstamps);

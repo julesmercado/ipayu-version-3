@@ -263,8 +263,9 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
     $scope.emitMessage = 'addShopCard';
     $scope.cardType = 'shop';
     $scope.thisCard = thisCard;
+    $scope.disableBtn = false;
 
-	if(!thisCard){
+	if(thisCard.length == 0){
 		$state.go('myshopcards')
 		return;
 	}
@@ -279,9 +280,9 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
         		}
         		wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'shop'})
         			.then(function(user_card){
-        				$scope.disableBtn = false;
+        				$scope.disableBtn = true;
         				if(user_card){
-        					walletData.cardToAdd('shop', false);
+        					walletData.cardToAdd('shop', []);
 	        				walletData.userCards('shop', user_card[0].data.data.all);
 		                	walletData.frequentUserCards('shop', user_card[0].data.data.frequently);
 		                	walletData.lastUserCards('shop', user_card[0].data.data.last_used);

@@ -19,8 +19,8 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
         'username'          : { 'input_value': '', 'showError': true, 'touched': false,'message': '' },
         'fname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
         'lname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
-        'email'             : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'pattern': /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/, 'patternMatch': false },
-        'password'          : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'patternMatch': false },
+        'email'             : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'pattern': /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/, 'patternMatch': false, 'blur':true },
+        'password'          : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'patternMatch': false, 'blur' : true },
         'repeat_password'   : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'passwordMatch': false, 'showTip' : false },
         'birthday'          : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'grayText' : true },
         'question'          : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'grayText' : true },
@@ -46,6 +46,13 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 	}
     
     $scope.scrollUp = function (id) {
+        if(id == 'email'){
+            $scope.user_info.email.blur = false;
+        }
+        else if(id == 'password'){
+            $scope.user_info.password.blur = false;
+            $scope.showPassTip = true;
+        }
 		var innerElement = $("#"+id);
 		if(innerElement.length) {
 			var f = $("#"+id).offset().top,
@@ -75,7 +82,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 
             if($scope.user_info.username.input_value.length < 8){
                 $scope.user_info.username.showError = true;
-                $scope.user_info.username.message = 'Minimum of 8 characters';
+                $scope.user_info.username.message = 'Minimum of 8 alphanumeric characters';
                 hasError = true;
             }
             if(!$scope.user_info.username.input_value.match(/^[0-9A-Za-z]+$/)){
@@ -254,8 +261,14 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 	function checkIfExist(data, type) {
 		
 	}
+    
+    $scope.passwordBlur = function(){
+        $scope.showPassTip = false
+        $scope.user_info.password.blur = true;
+    }
 
 	$scope.checkEmail = function (email) {
+        $scope.user_info.email.blur = true;
 		$scope.checking = true;
 		account.checkIfExist(email, 'email')
 			.then(function (resolve) {
