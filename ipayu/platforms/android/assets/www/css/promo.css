@@ -60,11 +60,13 @@
 	
 	#psp-promo-shoutout>p{color:#E64759;font-family: "HelveticaBold";font-size: 12px;text-transform: uppercase;margin-bottom: 5px}
 	
-	#psp-date-container{margin-top: 10px}
-		.psp-timer{word-spacing: 7px;    font-size: 30px; font-family: "HelveticaBoldCond"; color: #39749E}
+	#psp-date-container{    margin-top: 10px;    position: absolute;    margin: 0 auto;    display: block;    bottom: 10px;    left: 0;    right: 0;}
+		.psp-timer{word-spacing: 7px;    font-size: 30px; font-family: "HelveticaBoldCond"; color: #39749E; line-height: 1}
 		.psp-timer-label{word-spacing: 10px;    font-size: 14px; padding-left: 20px;font-family: "HelveticaBold";}
 		.psp-promo-validity{font-size: 12px; color: gray; font-family: "HelveticaBold"; text-transform: uppercase;}
 	#psp-date-container>center>p{font-size: 12px; color: gray; font-family: "HelveticaLight";}
+
+	#psp-shop-desc-sec{max-height: 80px; overflow-y: scroll; margin-top: 5px}
 
 	.pl-uf-p{margin-top: 5px !important}
 	.swipable{z-index: 10}
@@ -92,10 +94,11 @@
 
 	.promo-categories{bottom: 170px !important}
 	.promo-categories-2{bottom: 105px !important}
+		#psp-shop-desc-sec{max-height: 150px}
 }
 
 @media screen and (min-width: 375px){
-
+		#psp-shop-desc-sec{max-height: 175px}
 }
 
 @media screen and (width:384px){
@@ -117,6 +120,7 @@
 
 	.pl-carouse{height: 115px !important}
 	.pl-carousel-img {    height: 116px !important}
+	#psp-shop-desc-sec{max-height: 185px}
 }
 
 @media screen and (max-height: 567px){
@@ -128,14 +132,17 @@
 		.pl-carousel-img{height: 70px !important}
 
 		.promo-alphabet-list {    margin-top: 15px !important;  font-size: 9px !important;}
+			#psp-shop-desc-sec{max-height: 72px}
+			.promo-img-solo-psp{max-height: 125px}
 }
 
 @media screen and (height: 567px){
 	.promo-categories {    bottom: 144px !important;}
+		#psp-shop-desc-sec{max-height: 140px}
 }
 
 @media screen and (height: 660px){
-
+#psp-shop-desc-sec {    max-height: 108px;}
 	.promo-categories{    bottom: 173px !important;}
 		.promo-categories-2{    bottom: 100px !important;}
 }
