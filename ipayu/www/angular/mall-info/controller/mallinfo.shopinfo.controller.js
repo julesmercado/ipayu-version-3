@@ -1,6 +1,6 @@
 
 mallInfo.controller( 'shopInfo', 
-function( $scope , mallData , $state ){
+function( $scope , mallData , $state, ngDialog ){
 
     $scope.shopInfo = mallData.setShopInfo();
 
@@ -13,7 +13,14 @@ function( $scope , mallData , $state ){
         cordova.plugins.barcodeScanner.scan(
             function (result) {
                 if(!result.cancelled){
-                    // show gif here
+                    var spl = result.text.split('.'),
+                        mime_type = spl[spl.length - 1];
+                    if(mime_type == 'gif') {
+                        showRoute(result.text);
+                    }
+                    else {
+                        alert('Cannot resolve url');
+                    }
                 }
             },
             function (error) {
@@ -27,6 +34,18 @@ function( $scope , mallData , $state ){
                 "orientation" : "portrait" // Android only (portrait|landscape), default unset so it rotates with the device
             }
         );
+    }
+
+    function showRoute(url) {
+        ngDialog.open({
+            template: 'shopRoute',
+            className: 'ngdialog-theme-plain add-card-custom',
+            controller: ['$scope', function($scope) {
+                $scope.shop_route_url = url;
+            }],
+            overlay: true,
+            showClose: false
+        });
     }
 
 } )

@@ -73,4 +73,7 @@
     <feature name="MobileAccessibility">
         <param name="ios-package" onload="true" value="CDVMobileAccessibility" />
     </feature>
+    <feature name="BarcodeScanner">
+        <param name="ios-package" value="CDVBarcodeScanner" />
+    </feature>
 </widget>

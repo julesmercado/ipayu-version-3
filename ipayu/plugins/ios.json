@@ -30,6 +30,10 @@
         },
         "phonegap-plugin-mobile-accessibility": {
             "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
     "dependent_plugins": {

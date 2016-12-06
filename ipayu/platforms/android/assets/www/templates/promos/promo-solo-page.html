@@ -21,17 +21,17 @@
 
     <div class="container">
         <div class="row" style="position:relative">
-            <h4 class="promo-solo-title">Get our promo sale for </h4>
+            <h4 class="promo-solo-title" ng-if="promoInfo.price>0">Get our promo sale for </h4>
             <img src="images/single-promo-share.png" class="share-promo-img" share-anywhere="{{promoInfo}}">
-            <img src="images/single-promo-banner.png" class="promo-banner-img" >
-            <img ng-hide="viewOnly" src="images/single-promo-pin.png" class="promo-pin-img">
+            <img src="images/single-promo-banner.png" class="promo-banner-img" ng-if="promoInfo.price>0">
+            <img ng-hide="viewOnly" src="images/single-promo-pin.png" class="promo-pin-img" ng-if="promoInfo.price>0">
            
-            <span class="promo-banner-text-only">ONLY</span> 
-            <span class="promo-banner-price">{{promoInfo.currency_type + promoInfo.price}}</span>     
+            <span class="promo-banner-text-only" ng-if="promoInfo.price>0">ONLY</span> 
+            <span class="promo-banner-price" ng-if="promoInfo.price>0">{{promoInfo.currency_type + promoInfo.price}}</span>     
             <button class="promo-pin-reserve" 
             ng-click="reservePromo()"
             ng-disabled="promoInfo.expired == true"
-            ng-hide="viewOnly">RESERVE</button>
+            ng-hide="viewOnly" ng-if="promoInfo.price>0">RESERVE</button>
         </div>
         <span id="tomypromos" route-my-promos></span>
         <div class="row">

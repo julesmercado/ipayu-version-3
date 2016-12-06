@@ -24,7 +24,7 @@
 	.pl-i-des{font-size: 14px;font-family: "HelveticaBold";}
 	.pl-i-ow{font-size: 12px; font-family: "HelveticaBold"}
 	.pl-it-qty{font-size: 30px; font-family: "HelveticaBold";     color: #333;    position: absolute;    right: 4%;    bottom: 37%;}
-
+	.pl-it-qty-text{right: 18px;    position: absolute;    font-family: "HelveticaBold";    font-size: 14px;}
 
 .sap-oc-s{    border: 1px solid #FF884D;    background-color: white;    padding: 2px;}
 	.sap-oc-s>img{position: absolute;    width: 70px;    right: 4px;    top: 3px;}

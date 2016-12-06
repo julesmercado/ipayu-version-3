@@ -27,10 +27,16 @@
         },
         "phonegap-plugin-mobile-accessibility": {
             "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "com.app.mallinfo"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.app.mallinfo"
         }
     }

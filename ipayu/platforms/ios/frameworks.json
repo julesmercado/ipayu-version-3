@@ -1,8 +1,13 @@
 {
-    "AudioToolbox.framework": 2,
+    "AudioToolbox.framework": 3,
     "SystemConfiguration.framework": 2,
     "CoreTelephony.framework": 2,
     "Social.framework": 2,
     "MessageUI.framework": 2,
-    "MediaAccessibility.framework": 1
+    "MediaAccessibility.framework": 1,
+    "libiconv.dylib": 1,
+    "AVFoundation.framework": 1,
+    "CoreVideo.framework": 1,
+    "QuartzCore.framework": 1,
+    "CoreImage.framework": 1
 }
