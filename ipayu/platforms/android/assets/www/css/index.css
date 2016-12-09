@@ -384,7 +384,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .login-footer { width:100%;height:auto}
 .login-footer img.ads-img{width: 100%}
 
-.login-options{margin-bottom:30% !important}
+.login-options{margin-bottom:41% !important}
 /* END OF LOGIN CSS */
 
 /*mall search*/
@@ -867,7 +867,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
     .dark-bg{height: 132px !important}
    .side-menu .fc div.col-xs-12 img{ height:90px;width:90px;margin-top:25px;}
    .status-message-menu{margin-bottom: 35px}
-    .login-options{margin-bottom:23% !important}
+    .login-options{margin-bottom:33% !important}
     .menu-logout{margin-top:auto;}
     .menu-name{margin-top:20px; font-size: 24px}
     .blue-line{margin-bottom: 50px}
@@ -1003,7 +1003,7 @@ and (max-device-width : 736px) {
 
 @media only screen and (width: 360px) {
 .dash-header-greeting{}
-   .login-options{margin-bottom:35% !important;}
+   .login-options{margin-bottom:40% !important;}
 }
 
 @media only screen and (min-width: 375px) and (max-width: 414px){
@@ -1048,7 +1048,7 @@ and (max-device-width : 736px) {
      #shop-magnify-cat{padding: 15px}
      .category-label-text{ font-size: 9.3px; bottom:2px;}
      #mag-img{padding:13px;}
-    .login-options{margin-bottom: 32% !important}
+    .login-options{margin-bottom: 51% !important}
     .stamps-circle{    margin: 5px 13px;    height: 50px;    width: 50px;}
     .dash-user-img {    height: 85px;width: 85px}
     .dash-user-img canvas {    height: 85px;}
@@ -1328,6 +1328,7 @@ ul.flagHeader li{font-size: 20px}
 .img-item-ih{height: 89px}
 .ngdialog.ngdialog-theme-plain .ngdialog-content{margin-top: 0}
 #profile-user-container{padding-bottom: 100px}
+.container-fluid .row img.login-img{margin-top: 40px}
 }
 @media screen and (height: 533px){
     .container-fluid .row img.login-img{margin-bottom: 3.5em}
@@ -1335,6 +1336,7 @@ ul.flagHeader li{font-size: 20px}
 
 }
 @media screen and (height: 567px){
+    .container-fluid .row img.login-img{margin-top: 50px}
     .shop-search-icon-cat {    height: 55px;    width: 55px;}
     .shop-search-categories {    bottom: 150px;}
     .shop-search-categories-2 {    bottom: 90px;}
@@ -1357,6 +1359,7 @@ ul.flagHeader li{font-size: 20px}
     .ad-section-add {    position: absolute;    bottom: 97px;}
     .dark-bg-shop {    height: 110px !important;}
     .img-card-view-all {    height: 65px;}
+    .login-options {    margin-bottom: 36.5% !important;}
 }
 
 @media screen and (max-height: 732px ){
@@ -1448,4 +1451,5 @@ ul.flagHeader li{font-size: 20px}
 @media screen and (height: 660px){
     .shop-search-icon-cat {    height: 65px;    width: 65px;}
         .shop-search-categories {    bottom: 176px;}
+        .login-options {    margin-bottom: 30% !important;}
 }

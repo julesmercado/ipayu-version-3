@@ -83,7 +83,7 @@ function SoloPromo($state, $rootScope, promoData) {
 		link: function(scope, element, attrs, ctrl) {
 			element.bind('click', function(){
 				var promo = JSON.parse(attrs.routeSoloPromo);
-                if(promo.available != true){
+                if(promo.available != true && !attrs.viewOnly){
                     return false;
                 }
                 else {

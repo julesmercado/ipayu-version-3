@@ -48,7 +48,10 @@
 
                 <span class="letter-heading" > {{(group[0] == 'num')?'#':group[0]}} <hr class="letter-bar-search" /> </span>
                 <div class="container " id="mall-dir-letter-heading" >
-                    <div class="col-xs-6" style="padding:10px" route-solo-promo="{{promo}}" ng-repeat="promo in group[1]">
+                    <div class="col-xs-6" style="padding:10px" 
+                         route-solo-promo="{{promo}}" 
+                         ng-repeat="promo in group[1]"
+                         ng-style="promo.available != true && {'opacity':.5}">
                         <div class="sap-oc-s">
                             <img src="images/promo-date-banner.png" >
                             <div class="sap-d-container" >
