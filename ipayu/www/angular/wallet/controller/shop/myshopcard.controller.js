@@ -203,8 +203,8 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService, ngDial
 }
 
 
-ShopCardInfo.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog'];
-function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
+ShopCardInfo.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog', 'wallet', 'accountData'];
+function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog, wallet, accountData) {
 
 	$scope.card = walletData.cardInfo('shop');
 	$scope.transactions = $scope.card.transactions;
@@ -212,7 +212,8 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
     $scope.redeem = true;
     $scope.transaction = false;
 
-    var dateNow = new Date(),
+    var ipayu_info 	= accountData.getUser(),
+        dateNow = new Date(),
     	d = dateNow.getDate(),
     	m = dateNow.getMonth() + 1,
     	y = dateNow.getFullYear();
@@ -232,7 +233,7 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
 		            return item;
 		        },
                 type: function(){
-                    return 'mall';
+                    return 'shop';
                 }
 		    },
             overlay: true
@@ -249,6 +250,33 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
 				$scope.redeems = cards[i].redeemables;
         	}
         }
+    })
+    
+    $rootScope.$on('updateData', function(event){
+        wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'shop'})
+            .then(function(resolve){
+                if(resolve){
+                    var cards = resolve[0].data.data.all;
+                    var card = {};
+                    for(var i = 0; i < cards.length; i++){
+                        if(cards[i].card_id == $scope.card.card_id){
+                            card = cards[i];
+                            break;
+                        }
+                    }
+                    $scope.card = card;
+                    $scope.transactions = card.transactions;
+                    $scope.redeems = card.redeemables;
+                    
+                	walletData.userCards('shop', resolve[0].data.data.all, card.card_type);
+                	walletData.frequentUserCards('shop', resolve[0].data.data.frequently, card.card_type);
+                	walletData.lastUserCards('shop', resolve[0].data.data.last_used, card.card_type);
+                    walletData.cardInfo('shop', card)
+                    setTimeout(function(){
+                        ngDialog.closeAll();
+                    }, 800)
+                }
+            })
     })
 }
 
