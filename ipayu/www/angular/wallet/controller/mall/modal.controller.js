@@ -7,6 +7,7 @@ walletModule.controller('cardSuccessfullyAddedCtrl', CardSuccessfullyAdded)
 
 RedeemModal.$inject = ['$scope', '$rootScope', '$timeout', 'accountData', 'walletData', 'redeemable', 'wallet', 'type'];
 function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, redeemable, wallet, type) {
+    console.log(redeemable, "redeemable")
 
     $scope.card = walletData.cardInfo(type);
     var ipayu_info 	= accountData.getUser(),
@@ -77,10 +78,13 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
     function doRedeem(dataToSend) {
         wallet.redeem(dataToSend)
             .then(function(resolve){
-                $rootScope.$broadcast('updateData');
+            
                 $scope.isClick = false;
                 $scope.isRedeemed = true;
                 $scope.isLoading = false;
+            
+                $rootScope.$broadcast('updateData');
+            
             })
     }
 

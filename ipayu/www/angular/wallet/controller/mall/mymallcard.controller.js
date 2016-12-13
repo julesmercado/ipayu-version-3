@@ -244,6 +244,10 @@ function MallCardInfoCtrl($scope, $rootScope, walletData, $window, ngDialog, wal
                 	walletData.userCards('mall', resolve[0].data.data.all, card.card_type);
                 	walletData.frequentUserCards('mall', resolve[0].data.data.frequently, card.card_type);
                 	walletData.lastUserCards('mall', resolve[0].data.data.last_used, card.card_type);
+                    walletData.cardInfo('mall', card)
+                    setTimeout(function(){
+                        ngDialog.closeAll();
+                    }, 800)
                 }
             })
     })
