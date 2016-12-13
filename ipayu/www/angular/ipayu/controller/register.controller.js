@@ -10,13 +10,14 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 	$scope.showCountryList = false;
     $scope.questions  = questions[0].data;
     $scope.checking = false;
+    $scope.password_pattern = /[^a-z\d]+/i;
 
     $scope.openToolTip = false;
 
     $scope.user_info = {
         'country'           : { 'input_value': 'PH', 'flag':'PH.png', 'showError': true, 'touched': false, 'message': '' },
         'gender'            : { 'input_value': 'Male', 'showError': true, 'touched': false, 'message': '' },
-        'username'          : { 'input_value': '', 'showError': true, 'touched': false,'message': '' },
+        'username'          : { 'input_value': '', 'showError': true, 'touched': false,'message': '', 'blur': false },
         'fname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
         'lname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
         'email'             : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'pattern': /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/, 'patternMatch': false, 'blur':true },
@@ -53,6 +54,10 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
             $scope.user_info.password.blur = false;
             $scope.showPassTip = true;
         }
+        else if(id == 'username'){
+            $scope.user_info.username.blur = false;
+            $scope.showUsernameTip = true;
+        }
 		var innerElement = $("#"+id);
 		if(innerElement.length) {
 			var f = $("#"+id).offset().top,
@@ -76,19 +81,18 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
     	var hasError = false;
     	if(reset){resetError('username');}
     	$scope.user_info.username.touched = true;
-
-        if($scope.user_info.username.input_value || $scope.user_info.username.input_value != ''){
+        if(typeof $scope.user_info.username.input_value != 'undefined' && $scope.user_info.username.input_value != ''){
         	$scope.user_info.username.showError = false;
 
-            if($scope.user_info.username.input_value.length < 8){
-                $scope.user_info.username.showError = true;
-                $scope.user_info.username.message = 'Minimum of 8 alphanumeric characters';
-                hasError = true;
-            }
-            if(!$scope.user_info.username.input_value.match(/^[0-9A-Za-z]+$/)){
+            if($scope.user_info.username.input_value.match($scope.password_pattern)){
             	$scope.user_info.username.showError = true;
             	$scope.user_info.username.message = 'Special characters not allowed';
             	hasError = true;
+            }
+            else if($scope.user_info.username.input_value.length < 8){
+                $scope.user_info.username.showError = true;
+                $scope.user_info.username.message = 'Minimum of 8 alphanumeric characters';
+                hasError = true;
             }
         }
         else {
@@ -282,14 +286,26 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 
 	$scope.checkUsername = function (username) {
 		$scope.checking = true;
-		account.checkIfExist(username, 'username')
-			.then(function (resolve) {
-				if(resolve[0].data.message == false){
-	                $scope.user_info.username.showError = true;
-	                $scope.user_info.username.message = 'Username not available';
-				}
-				$scope.checking = false;
-			})
+        $scope.user_info.username.blur = true;
+        $scope.showUsernameTip = false;
+        if(!username || username == '') {
+            $scope.user_info.username.showError = true;
+            $scope.user_info.username.message = 'Username is required';
+            $scope.checking = false;
+        }
+        else if(!$scope.user_info.username.showError) {
+            account.checkIfExist(username, 'username')
+                .then(function (resolve) {
+                    if(resolve[0].data.message == false){
+                        $scope.user_info.username.showError = true;
+                        $scope.user_info.username.message = 'Username not available';
+                    }
+                    $scope.checking = false;
+                })
+        }
+        else {
+            $scope.checking = false;
+        }
 	}
 
 	$scope.register = function () {

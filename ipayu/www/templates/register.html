@@ -52,7 +52,7 @@
                                 uib-tooltip="{{user_info.username.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.username.showError && user_info.username.touched"
+                                tooltip-is-open="openToolTip && user_info.username.showError && user_info.username.touched && user_info.username.blur"
                                 />
                     </label>
                 </td>
@@ -88,6 +88,16 @@
                                 <img ng-src="images/flags/{{c.img}}" style="margin:0;"> {{c.code}}
                             </li>
                         </ul>
+                </td>
+            </tr>
+            <tr ng-if="showUsernameTip">
+                <td class="password-tip">
+                    <ul>
+                        <li ng-class="{'color-success' : user_info.username.input_value.length > 7}">Atleast 8 characters long</li>
+                        <li ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
+                            Special Characters not allowed
+                        </li>
+                    </ul>
                 </td>
             </tr>
 
