@@ -209,6 +209,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 		$scope.showCountryList = false;
 		$scope.user_info.country.touched = true;
 	}
+    
 	$scope.validate_birthday = function (reset){
 		var hasError = false;
 		if(reset){resetError('birthday');}
@@ -288,6 +289,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 		$scope.checking = true;
         $scope.user_info.username.blur = true;
         $scope.showUsernameTip = false;
+        
         if(!username || username == '') {
             $scope.user_info.username.showError = true;
             $scope.user_info.username.message = 'Username is required';
