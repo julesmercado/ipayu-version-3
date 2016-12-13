@@ -244,6 +244,7 @@ form#registration button.register {
     }
 }
 .rl-l-img{    display: block;    margin: 12px auto;    padding-top: 10px;    width: 26%;}
+.fp-login{margin-top:2px; margin-bottom: 0}
 
 .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
 .red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
@@ -341,7 +342,7 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li:last-child  button { padding-right:4px; margin-top:10px;  }
     ul.page-menu-top li:last-child  button img:nth-of-type(1) { height:10px;width:auto;position:relative;top:-2px; }
     ul.page-menu-top li:last-child  button img:nth-of-type(2) { height:23px;width:auto;position:relative;top:-4px }
-    ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:10px;font-family: "HelveticaLight"; }
+    ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:16px;font-family: "HelveticaLight"; }
         .no-padding{padding:0;}
         .no-padding-right{padding-right: 0;    padding-left: 5%;}
         .header-title-wallet{color:white; text-align: center; margin-top:8px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
@@ -923,7 +924,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .featured-malls-mall{height: 58px;width: 58px}
 .mother-of-all-scrollables{height: 572px}
 form#registration td label{height: 40px !important;}
-
+.fp-login{margin-top:10px;}
 }
 /* IPHONE 5 */
 @media screen and (width:320px) {
