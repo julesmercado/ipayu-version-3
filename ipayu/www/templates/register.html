@@ -94,9 +94,9 @@
             <tr ng-if="showUsernameTip">
                 <td class="password-tip">
                     <ul>
-                        <li ng-class="{'color-success' : user_info.username.input_value.length > 7}">Atleast 8 characters long</li>
-                        <li ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
-                            Special Characters not allowed
+                        <li style="font-size:12px" ng-class="{'color-success' : user_info.username.input_value.length > 7}">at least 8 alphanumeric Characters</li>
+                        <li style="font-size:12px" ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
+                           Special Characters not allowed ( % &amp; . / $ - _)
                         </li>
                     </ul>
                 </td>

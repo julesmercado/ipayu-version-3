@@ -284,6 +284,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 				$scope.checking = false;
 			})
 	}
+    
 
 	$scope.checkUsername = function (username) {
 		$scope.checking = true;
