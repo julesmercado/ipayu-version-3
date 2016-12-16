@@ -1,4 +1,4 @@
-﻿.top5 { padding-top:5px; }
+.top5 { padding-top:5px; }
 .top7 { padding-top:7px; }
 .top10 { padding-top:10px; }
 .top15 { padding-top:15px; }
@@ -37,7 +37,7 @@
 
 	.promo-alphabet-list{margin-top: 38px;padding: 0;    line-height: 1.5;    font-size: 11px;}
 
-.promo-flag-list{right: 76px !important}
+.promo-flag-list{right: 54px !important}
 .promo-btn-reserve-head{position: absolute;right: 12px; top: 11px; height: 20px}
 
 	.share-promo-img{height: 25px;    position: absolute;    right: 20px;    top: 8px;}
