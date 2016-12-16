@@ -1,0 +1,104 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header promo-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    
+    <promo-header></promo-header>
+
+<div class="row">
+    <div class="container">
+        <div class=" page-header dark-bg dark-bg-shop">
+            <p class="feature-mall-title">FEATURED</p>
+        </div>
+        <div class="container mall-search-featured-malls featured-shops custom-slider" style="width: 100%;">
+                <div class="animated cs-image-holder-featured col-xs-3 col-md-3  shop-search-icons fadeIn" 
+                    style="float:none;" 
+                    ng-repeat="feat in featured as f"
+                    route-all-promos="{{feat.asset_info_id}}">
+                    <img ng-src="{{feat.image}}" class="img img-responsive featured-malls-mall">
+                    <p class="featured-malls-mall-name" ng-bind="feat.name"></p>
+                </div>
+                <center><h4 ng-if="f.length == 0">Nothing to display</h4></center>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container mall-search-unfeatured-malls promo-landing-unfeatured-section" 
+        ng-repeat="unfeat in unfeatured | limitTo:2"
+        ng-swipe-left="next()"
+        ng-swipe-right="prev()">
+        
+        <div class="animated col-xs-3 col-md-3 unfeatured-malls unfeatured-shops pl-uf-p fadeIn" 
+             ng-repeat="u in unfeat" >
+            <div ng-if="u != true"
+                route-all-promos="{{u.asset_info_id}}">
+                <img ng-src="{{u.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
+                <p class="featured-malls-mall-name unfeatured-mall-name" ng-bind="u.name"></p>
+            </div>
+            <div ng-if="u == true" ng-click="next()">
+                <img src="images/shopcard-icons/more.png" class="img img-responsive  shop-search-icon-cat" 
+                    style="height: 40px;background-color: transparent; width: 40px; margin-top: 14px;">
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mall-search-unfeatured-malls">
+        <center><h4 ng-if="!unfeatured[0][0].image">Nothing to display</h4></center>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="container">
+        <div class="container shop-search-categories promo-categories">
+            <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
+            ng-repeat="topCat in categories | limitTo:4" 
+            ng-click="selectCategory(topCat.name)">
+                <img ng-src="{{topCat.image}}" class="img img-responsive shop-search-icon-cat promo-cat"
+                ng-class="{'promo-cat-active':topCat.selected}">
+                <span class="category-label-text">{{topCat.name}}</span>
+            </div>
+        </div>
+        <div class="container shop-search-categories-2  promo-categories-2">
+            <div class="col-xs-3 col-md-3  shop-search-icons animated flipInX" 
+            ng-repeat="bottomCat in categories" 
+            ng-if="$index > 3"
+            ng-click="selectCategory(bottomCat.name)">
+                <img ng-src="{{bottomCat.image}}" class="img img-responsive shop-search-icon-cat promo-cat"
+                ng-class="{'promo-cat-active':bottomCat.selected}">
+                <span class="category-label-text">{{bottomCat.name}}</span>
+            </div>
+            <div class="animated col-xs-3 col-md-3  shop-search-icons flipInX" route-all-promos="">
+                <img src="images/Search_icon_transparent.png" class="img img-responsive shop-search-icon-cat" style="background-color:transparent">
+                <span class="category-label-text" style="color:black">SEARCH</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<!--Slides-->
+
+<div class="pl-carousel">
+    <slick dots="true" 
+            speed="300" 
+            lazy-load="ondemand" 
+            infinite="true" 
+            slides-to-show="1" 
+            slides-to-scroll="1"
+            autoplay="true">
+        <div ng-repeat="slide in slides">
+            <img ng-src="{{slide.image}}" style="width:100%;" class="pl-carousel-img">
+        </div>
+    </slick>
+</div>
+
+
+</div>

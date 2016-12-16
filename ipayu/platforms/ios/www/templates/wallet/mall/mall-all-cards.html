@@ -1,0 +1,88 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <mall-header></mall-header>
+    <div class="row search-input" style="background-color:#a61031;">
+        <div class="container">
+            <div class=" container ">
+                <input type="text" ng-model="searchData" ng-focus="setFocus()" ng-blur="setBlur()" ng-change="filterCards()"> <img src="images/white-magnifying.png" class="search-button">
+            </div>
+        </div>
+    </div>
+    <div class="container filtered-cards" id="allcardssearch" >
+        <div class="row add-cards-section"  style="margin-top:10px">
+            <span class="mehehe">SEARCH RESULTS ({{searchResult}}) </span>
+            <div class="full-height-container">
+                
+                <div ng-if="allMallCards.length != 0" ng-repeat="alphabet in allMallCards track by $index" id="cardsContainer">
+                    <span class="letter-heading" id="{{alphabet[0]}}"> {{(alphabet[0] == 'num')?'#':alphabet[0]}} <hr class="letter-bar-search" /> </span>
+                    <div class="container container-mall-card-results" ng-repeat="cardPerRow in alphabet[1] track by $index" >
+                        <div ng-repeat="card in cardPerRow track by $index">
+                            <div class="animated col-xs-6 col-md-6 orange-container flipInX"
+                                ng-if="!card.already_added" ng-click="tapped(card)">
+                                <div class="blue-layer" style="background-color:#a61031;">
+                                    <div class="orange-inner-layer">
+                                        <p class="add-card-text"> + TAP TO ADD </p>
+                                        <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                        <p class="add-card-text"> {{card.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animated col-xs-6 col-md-6 orange-container flipInX"
+                                ng-if="card.already_added" style="opacity:.5;" ng-click="alreadyAdded()">
+                                <div class="blue-layer" style="background-color:#a61031;">
+                                    <div class="orange-inner-layer">
+                                        <p class="add-card-text"> ALREADY ADDED </p>
+                                        <img ng-src="{{card.image}}" class="img img-responsive add-this-card-img">
+                                        <p class="add-card-text"> {{card.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 ng-if="searchResult == 0" style="text-align:center;">No results found.</h4>
+            </div>
+        </div>
+    </div>
+    <ul class="listed-alphabet">
+        <li><span ng-click="scrollUp('num')">#</span></li>
+        <li><span ng-click="scrollUp('A')">A</span></li>
+        <li><span ng-click="scrollUp('B')">B</span></li>
+        <li><span ng-click="scrollUp('C')">C</span></li>
+        <li><span ng-click="scrollUp('D')">D</span></li>
+        <li><span ng-click="scrollUp('E')">E</span></li>
+        <li><span ng-click="scrollUp('F')">F</span></li>
+        <li><span ng-click="scrollUp('G')">G</span></li>
+        <li><span ng-click="scrollUp('H')">H</span></li>
+        <li><span ng-click="scrollUp('I')">I</span></li>
+        <li><span ng-click="scrollUp('J')">J</span></li>
+        <li><span ng-click="scrollUp('K')">K</span></li>
+        <li><span ng-click="scrollUp('L')">L</span></li>
+        <li><span ng-click="scrollUp('M')">M</span></li>
+        <li><span ng-click="scrollUp('N')">N</span></li>
+        <li><span ng-click="scrollUp('O')">O</span></li>
+        <li><span ng-click="scrollUp('P')">P</span></li>
+        <li><span ng-click="scrollUp('Q')">Q</span></li>
+        <li><span ng-click="scrollUp('R')">R</span></li>
+        <li><span ng-click="scrollUp('S')">S</span></li>
+        <li><span ng-click="scrollUp('T')">T</span></li>
+        <li><span ng-click="scrollUp('U')">U</span></li>
+        <li><span ng-click="scrollUp('V')">V</span></li>
+        <li><span ng-click="scrollUp('W')">W</span></li>
+        <li><span ng-click="scrollUp('X')">X</span></li>
+        <li><span ng-click="scrollUp('Y')">Y</span></li>
+        <li><span ng-click="scrollUp('Z')">Z</span></li>
+    </ul>
+<add-card-confirm-modal></add-card-confirm-modal>
+<mall-footer ng-if="!hasFocusElement"></mall-footer>
+
+</div>

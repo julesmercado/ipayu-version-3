@@ -1,0 +1,103 @@
+<div class="page-header"></div>
+<header class="fp-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <img src="images/password.png">
+                <h4 style="">
+                    FORGOT PASSWORD
+                </h4>
+            </div>
+        </div>
+    </div>  
+</header>
+
+
+
+<div class="container fp-description">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h5 style="">Account help for ID:</h5>
+            <h6> <input type="text" style="width:100%;text-align:center;"
+                        ng-model="forgotData.username" 
+                        placeholder="Ipayu ID" name="username"
+                        required/> </h6>
+            <p style="">Answer the following to verify this account is yours:</p>
+
+            <form name="forgotForm">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                       <img src="images/password.png">
+                    </span>
+
+                    <select class="form-control" aria-describedby="basic-addon1" style="padding-left:8px" 
+                            ng-model="forgotData.question_id" 
+                            name="question" required>
+                        <option value="" disabled selected>Secret question</option>
+                        <option ng-repeat="question in questions" value="{{question.question_id}}" ng-bind="question.content"></option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                       <img src="images/password.png">
+                    </span>
+
+                    <input type="text" class="form-control" placeholder="Answer" aria-describedby="basic-addon1"
+                        ng-model="forgotData.answer" 
+                           name="answer" required>
+                </div>
+
+                <p class="help-block">
+                    <span ng-if="done">Ipayu send an email containing a one-off verification code to</span>
+<!--                    Ipayu will send an email containing a one-off verification code to-->
+                </p>
+
+                <p class="help-block" ng-bind="user_email"></p>
+
+                <button type="submit" class="btn btn-default" ng-disabled="forgotForm.$invalid" ng-click="resetPassword()">
+                    SEND MAIL
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<footer class="fp-footer" ng-if="!hasFocusElement">
+    <div class="container" >
+        <span class="pull-left" back>
+        <img src="images/red-back-btn.png" height="20px">
+            GO BACK
+        </span>
+<!-- 
+        <span class="pull-right">
+            CONTACT ADMIN
+        <img src="images/r-red-back-btn.png" height="20px">
+        </span> -->
+    </div>
+</footer>
+
+<!-- 
+<div class="registration wrapper">
+
+    <header id="reg-header">
+    <br/>
+        <h2>FORGOT PASSWORD</h2>
+    </header>
+
+    <form id="registration" novalidate ng-submit="resetPassword()">
+
+        <table class="form" cellspacing="0" cellpadding="0">
+            <tr style="margin-top:50%;">
+                <td class="pink"><label for="email"><img src="images/email.png" /> </label></td>
+                <td class="gray" ng-class="{'bg-error' : reset_pass_data.showError && resetsubmit }"><label for="email"> <input type="email" id="email" ng-focus="scrollUp('email')" name="email" ng-model="reset_pass_data.email" placeholder="Email" required /></label></td>
+            </tr>
+            <tr>
+                <td style="display:block;width:100%;"><button class="register" type="submit" style="display:block;width:100%;">RESET PASSWORD</button></td>
+            </tr>
+        </table>
+
+    </form>
+
+</div> -->

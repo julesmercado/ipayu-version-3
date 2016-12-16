@@ -1,0 +1,90 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header coupon-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
+
+    <div class="search-area">
+       
+    </div>
+ <div class="search">
+            <div ng-if="!searchResultFlag">
+                <form ng-submit="onSearch(search)">
+                    <span class="search-icon" ng-click="onSearch(search)"><img src="images/assets/search.png"></span>
+                    <input placeholder="Search term" ng-model="search">
+                </form>
+            </div>
+            <div class="search-result-text" ng-if="searchResultFlag">
+                SEARCH RESULTS ( {{(mallCards|filter:searchKey).length}} )
+            </div>
+        </div>
+
+    <div class="search-card-result-redeem">
+        <div class="coupon-redeem-top">
+            <img src="images/card3.png" />
+
+            <div class="coupon-description">
+                <p>Get -$1 for a Burger at B-Bop in Parkway parade. More Options Available.</p>
+
+                <ul>
+                    <li>
+                        LESS -$1
+                    </li>
+                    <li>
+                        <p>Discount</p>
+                        <p>10%</p>
+                    </li>
+                    <li>
+                        <p>Bought</p>
+                        <p>300+</p>
+                    </li>
+                    <li>
+                        <p>
+                            Limited <br>
+                            Availability
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="coupon-redeem-bottom">
+            <button type="button" ng-click="redeemItem()">
+                <img src="images/redeem-btn.png"/>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL TEMPLATE -->
+    <script type="text/ng-template" id="withInlineController">
+        <div class="ngdialog-message" ng-if="!isRedeemed">
+            <p class="coupon-dialog-message">DO YOU WANT TO REDEEM THIS ITEM?</p>
+            <p class="coupon-dialog-options">
+                <a ng-click="redeem()">
+                    <img src="images/dark-check.png"/>
+                </a>
+                <a ng-click="closeModal()">
+                    <img src="images/dark-cancel.png"/>
+                </a>
+            </p>
+        </div>
+
+        <div class="ngdialog-message-success" ng-if="isRedeemed">
+            <div class="coupon-success-dialog">
+                <img src="images/dark-big-check.png" />
+                <p>ITEM SUCESSFULLY REDEEMED</p>
+                <a ng-click="closeModal()">
+                    <img src="images/dark-ok.png"/>
+                </a>
+            </div>
+        </div>
+    </script>
+
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
+</div>

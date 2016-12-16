@@ -1,0 +1,60 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header promo-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    
+    <promo-header></promo-header>
+
+    <div class="container">
+        <div class="row add-card-header reserved-item-header">
+            <div class="col-xs-12">
+                <p class="text-center" >
+                    Reserved items ({{promos.length || 0}})
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mother-of-all-scrollables-psp">
+        <ul class="container swipeswipe" style="list-style-type:none; overflow-x:hidden">
+            
+            <li class="row top15 foo" ng-repeat="promo in promos | filter:searchCountry as filtered" on-finish-render="{{emitMessage}}">
+                
+                <div class="swipable" style="position:relative; overflow-x:hidden" >
+              
+                    <div class="col-xs-2 pd-d-c" route-solo-promo="{{promo}}" view-only='true'>
+                        <span class="pl-d-dd">{{promo.datetime_end | date:'dd'}}</span>
+                        <span class="pl-d-mm">{{promo.datetime_end | date:'MMM'}}</span>
+                        <span class="pl-d-yyy">{{promo.datetime_end | date:'yyyy'}}</span>
+                    </div>
+
+                    <div class="col-xs-10 pd-r-c" route-solo-promo="{{promo}}" view-only='true'>
+                        <img ng-src="{{promo.image}}" class="promo-reserved-img">
+                        <span class="pl-i-pr"> P {{promo.price}}</span> <br/>
+                        <span class="pl-i-des">Get our Promo Sale </span> <br/>
+                        by <span class="pl-i-ow">{{promo.asset_name}}</span>
+
+                        <span class="pull-right pl-it-qty"> {{'['+ promo.quantity +']'}} </span>
+                        <span class="pl-it-qty-text">Qty</span>
+                    </div>
+
+                    <div class="promo-list-del-container">
+                        <img src="images/promo-del.png" class="pl-del-btn" ng-click="remove(promo.reservation_id)">
+                    </div>
+
+                </div>
+
+            </li>
+            <li ng-if="filtered.length == 0">
+                <h4 style="text-align:center;">Nothing to display</h4>
+            </li>
+        </ul>
+    </div>
+</div>
+<confirm-remove-item-modal></confirm-remove-item-modal>

@@ -1,0 +1,148 @@
+.top5 { padding-top:5px; }
+.top7 { padding-top:7px; }
+.top10 { padding-top:10px; }
+.top15 { padding-top:15px; }
+.top17 { padding-top:17px; }
+.top30 { padding-top:30px; }
+.no-style-list{list-style-type: none;margin: 0; padding: 0}
+.mother-of-all-scrollables-psp{    width: 100%;    height: 100%;    padding-bottom: 70px;    overflow-y: scroll;    overflow-x: hidden;}
+
+.promo-page-main-header, .promo-nav{background-color: rgb(254,63,19) !important; border-color:rgb(254,63,19) !important; }
+  .promo-category-tile{background-color: rgb(255,190,88) !important}
+
+
+.reserved-item-header{background-color: rgb(255,136,76); }
+	.reserved-item-header div>p{margin: 7px; font-family: "HelveticaLight"; color:white; font-size: 12px; font-weight: bolder}
+
+.pd-d-c{padding: 0 10px;}
+	.pl-d-dd{font-size: 36px;font-family: "HelveticaBoldCond"; color:rgb(222,71,72);text-align: center;}
+	.pl-d-mm{font-family: "HelveticaBoldCond"; text-align: center;font-size: 20px; color: rgb(61,118,160); text-transform: uppercase;line-height: 0;    }
+	.pl-d-yyy{font-family: "HelveticaCond"; text-align: center;font-size: 18px; color: rgb(61,118,160); text-transform: uppercase;line-height: 0;    }
+.pd-r-c{    padding-bottom: 15px;    border-bottom: 1px solid gray;    padding-left: 0; font-size: 12px}
+	.promo-reserved-img{width: 75px;height:80px;float: left;margin-right: 10px}
+	.pl-i-pr{font-size: 24px;font-family: "HelveticaBoldCond"; color:rgb(222,71,72);}
+	.pl-i-des{font-size: 14px;font-family: "HelveticaBold";}
+	.pl-i-ow{font-size: 12px; font-family: "HelveticaBold"}
+	.pl-it-qty{font-size: 30px; font-family: "HelveticaBold";     color: #333;    position: absolute;    right: 4%;    bottom: 37%;}
+	.pl-it-qty-text{right: 18px;    position: absolute;    font-family: "HelveticaBold";    font-size: 14px;}
+
+.sap-oc-s{    border: 1px solid #FF884D;    background-color: white;    padding: 2px;}
+	.sap-oc-s>img{position: absolute;    width: 70px;    right: 4px;    top: 3px;}
+	.sap-d-container{    position: absolute;    right: 37px;    top: 13px;}
+		.sap-d-dd{font-size: 24px; float: left}
+		.sap-d-mm, .sap-d-yyy{font-size: 10px; float: left;position: absolute;    margin-top: 5px;    margin-left:2px; line-height: 1.5;}
+		.sap-d-yyy{line-height: 3.5}
+.in-sap-oc-s{    border: 1px dashed #FF884D;    padding: 1px;}
+	.in-sap-oc-s>img{width: 100%; height: 85px}
+
+	.promo-alphabet-list{margin-top: 38px;padding: 0;    line-height: 1.5;    font-size: 11px;}
+
+.promo-flag-list{right: 54px !important}
+.promo-btn-reserve-head{position: absolute;right: 12px; top: 11px; height: 20px}
+
+	.share-promo-img{height: 25px;    position: absolute;    right: 20px;    top: 8px;}
+	.promo-banner-img{width:210px;margin-top}
+		.promo-banner-text-only{    position: absolute;    left: 20px;    margin-top: 25px;font-family: "HelveticaBoldCond"; color: rgb(222,69,71);}
+		.promo-banner-price{ position: absolute;    left: 62px;    font-size: 40px;    margin-top: 17px;color: rgb(222,69,71);font-family: "HelveticaBoldCond"}
+	.promo-pin-img{width: 110px;    position: absolute;    margin-top: 13px;right:2px}
+		.promo-pin-reserve{width: 110px;    position: absolute;    margin-top: 13px;    right: 8px;    top:55px;    text-align: center;font-size:18px;color: white; font-family: "HelveticaCond"; font-weight: bolder}
+	.promo-solo-title{padding-left: 25px; font-size: 18px;font-family: "HelveticaBold"}
+
+	.promo-cat{background-color: #FFBE58 !important}
+	.promo-cat-active{background-color: #FFBE09 !important}
+	.promo-categories{bottom: 160px}
+	.promo-categories-2{bottom: 100px}
+
+#psp-promo-by, #psp-promo-shoutout,#psp-promo-location{padding-left: 20px; padding-right: 15px}
+	#psp-promo-by>p,#psp-promo-location>p{margin-top: 2px;margin-bottom: 0; color: gray; font-family: "HelveticaLight";font-size: 12px;text-align: left;}
+		#psp-promo-by>p>span,#psp-promo-location>p>span{font-family: "HelveticaBold"; color: black;margin-right: 4px; margin-left: 4px}
+	 .psp-logo-sm{height: 30px}
+	
+	#psp-promo-shoutout>p{color:#E64759;font-family: "HelveticaBold";font-size: 12px;text-transform: uppercase;margin-bottom: 5px}
+	
+	#psp-date-container{    margin-top: 10px;    position: absolute;    margin: 0 auto;    display: block;    bottom: 10px;    left: 0;    right: 0;}
+		.psp-timer{word-spacing: 7px;    font-size: 30px; font-family: "HelveticaBoldCond"; color: #39749E; line-height: 1}
+		.psp-timer-label{word-spacing: 10px;    font-size: 14px; padding-left: 20px;font-family: "HelveticaBold";}
+		.psp-promo-validity{font-size: 12px; color: gray; font-family: "HelveticaBold"; text-transform: uppercase;}
+	#psp-date-container>center>p{font-size: 12px; color: gray; font-family: "HelveticaLight";}
+
+	#psp-shop-desc-sec{max-height: 80px; overflow-y: scroll; margin-top: 5px}
+
+	.pl-uf-p{margin-top: 5px !important}
+	.swipable{z-index: 10}
+	.promo-list-del-container{position: absolute;height: 95px;right:-101px;background:#ED1B24;width: 100px;color:#fff;text-align: center;display: inline-block;}
+		.pl-del-btn{width: 60px;    margin-top: 15%;}
+
+ 	
+ 	.promo-modal-container{padding:4px;}
+ 	.dash-promo-modal{border: 1px dashed rgb(250,128,61);    padding: 10px;    border-radius: 23px;}
+ 		.reserve-btn-pm{    padding: 5px;    background: rgb(250,128,61);    font-size: 16px; font-family: "HelveticaCond"; color: white; font-weight: bold}
+ 		.ct-pm{font-family: "HelveticaLight"; color:gray !important; text-align: center; font-weight: bolder; }
+ 		.ct-pm-bold{font-family: "HelveticaBold"}
+
+ 	.pl-carousel{position: absolute;    left: 0;    right: 0;    bottom: 0;    height: 90px;    width: 100%;}
+ 			.pl-carousel-img{height: 90px}
+	.promo-landing-unfeatured-section{margin-top:5px !important;}
+
+	.promo-img-solo-psp{margin:0 auto; width: 100%; height: 200px}
+
+	.slick-dots{display: none!important; margin-bottom: 0 !important}
+
+@media screen and (min-width: 360px){
+	.promo-pin-img {  margin-top: 13px;    right: 15px;}
+		.promo-pin-reserve{right: 20px}
+
+	.promo-categories{bottom: 170px !important}
+	.promo-categories-2{bottom: 105px !important}
+		#psp-shop-desc-sec{max-height: 150px}
+}
+
+@media screen and (min-width: 375px){
+		#psp-shop-desc-sec{max-height: 175px}
+}
+
+@media screen and (width:384px){
+.promo-categories{bottom: 178px}
+.promo-categories-2 {    bottom: 110px;}
+
+}
+@media screen and (min-width:400px){
+
+	.promo-categories{bottom: 210px}
+		.in-sap-oc-s>img{height: 105px}
+		.promo-img-solo-psp{height: 250px}
+}
+
+@media screen and (min-width:414px){
+
+	.promo-categories{bottom: 225px !important}
+	.promo-categories-2 {    bottom: 135px !important;}
+
+	.pl-carouse{height: 115px !important}
+	.pl-carousel-img {    height: 116px !important}
+	#psp-shop-desc-sec{max-height: 185px}
+}
+
+@media screen and (max-height: 567px){
+
+	.promo-categories{    bottom: 130px !important; }
+		.promo-categories-2{    bottom: 80px !important;}
+	
+	.pl-carousel{height: 70px !important}
+		.pl-carousel-img{height: 70px !important}
+
+		.promo-alphabet-list {    margin-top: 15px !important;  font-size: 9px !important;}
+			#psp-shop-desc-sec{max-height: 72px}
+			.promo-img-solo-psp{max-height: 125px}
+}
+
+@media screen and (height: 567px){
+	.promo-categories {    bottom: 144px !important;}
+		#psp-shop-desc-sec{max-height: 140px}
+}
+
+@media screen and (height: 660px){
+#psp-shop-desc-sec {    max-height: 108px;}
+	.promo-categories{    bottom: 173px !important;}
+		.promo-categories-2{    bottom: 100px !important;}
+}

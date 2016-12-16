@@ -1,0 +1,47 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "org.apache.cordova.plugin.cache": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "phonegap-plugin-mobile-accessibility": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.app.mallinfo"
+        }
+    }
+}

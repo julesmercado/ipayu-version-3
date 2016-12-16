@@ -1,0 +1,77 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header coupon-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
+<div class="mother-of-all-scrollables">
+<div class="container coupon-info-container" 
+        timer-timer="{{thisCoupon.date_end}}" 
+        donotchangetext="true"
+        coupon="thisCoupon" >
+    <div class="white-bg animated fadeIn">
+        <div class="row">
+            <div class="col-xs-12">
+                <img ng-src="{{thisCoupon.image}}" class="img img-responsive coupon-img-container">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 ">
+                <div class="col-xs-8 text-intro-coupon">
+                    <h5 class="coupon-info-text">{{thisCoupon.short_description}}</h5>
+                </div>
+                <div class="col-xs-4">
+                    <h5 class="coupon-info-price">P {{thisCoupon.price}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 ">
+                <div class="container">
+                    <h5 class="coupon-info-text coupon-info-body" ng-if="thisCoupon.description != ''">Fine Print: </h5>
+                    <h5 class="coupon-info-text coupon-info-body" style="text-align:left;"><!--{{thisCoupon.description}}-->
+                        Voucher Validity: June 22, 2016 to December 20, 2030 <br>
+                        Not valid on holidays
+                        Please present to store staff for confirmations
+                        Valid for dine-in only
+                        Rate is per person
+                    </h5>
+
+                    <!-- <h5 class="coupon-info-text coupon-info-body">Fine Print: </h5>
+                    <h5 class="coupon-info-text coupon-info-body">Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions Descriptions</h5> -->
+                </div>
+            </div>
+        </div>
+       <!--  <div class="row">
+            <center>
+                <h5 style="font-weight:bold; font-family:'HelveticaBold'">{{thisCoupon.name}}</h5>
+            </center>
+        </div> -->
+        <div class="row">
+            <div class="col-xs-7">
+                    <p class="coupon-info-text sn-num" >{{thisCoupon.name}}</p>
+            </div>    
+            <div class="col-xs-5">
+                <!--   <img src="images/bcode.png" class="bcode-ci"> -->
+                <barcode type="code128b" render="img" string="{{thisCoupon.serial_number}}" class="bcode-ci"></barcode>
+                <qrcode data="{{thisCoupon.serial_number}}" version="3" class="ci-qr-code"></qrcode>    
+            </div>
+
+        </div>
+        <div class="row" style="background-color:#333333; color:white; margin:0" >
+                <center ng-if="!thisCoupon.expired && !thisCoupon.has_used"><h6>USE TERMINAL AT THE SHOP TO REDEEM</h6></center>
+                <center ng-if="thisCoupon.expired"><h6>COUPON EXPIRED</h6></center>
+                <center ng-if="thisCoupon.has_used"><h6>COUPON USED</h6></center>
+        </div>
+    </div>
+</div>
+</div>
+
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
+
+</div>

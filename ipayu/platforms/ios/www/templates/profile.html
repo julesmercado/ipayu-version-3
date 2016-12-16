@@ -1,0 +1,183 @@
+<div id="sp-page" style="overflow:hidden;background-image:none; background-color:white;">
+    <div class="page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+  <ul class="nav nav-tabs page-menu-top">
+        <li class="col-xs-4 no-padding">
+            <button back>
+                <img src="images/back-btn.png" class="back-button-header-img">
+            </button>
+            <button ng-click="toggleMenu()">
+             <img src="images/menubar.png" >
+            </button>
+        </li>
+
+        <li class="col-xs-4"> 
+           <p class="bold header-title-wallet">
+                Profile
+            </p>
+        </li>
+
+       <li class="col-xs-4 pull-right no-padding-right">
+             <button class="btn-top-with-flag" dash>
+                <img src="images/home-header.png" class="img img-responsive" style="height:26px" id="gohomebtn">
+             </button >
+        </li>
+    </ul>
+
+    <div class="container" id="profile-user-container">
+   			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
+        
+    		<img ng-if="!showImageLoading"
+                 ng-src="{{userInfo.image}}" class="img img-responsive prof-pp"
+                 ng-click="openFile()"
+                 style="border:1px solid #DF1642;border-radius:100%;">
+        
+            <img ng-if="showImageLoading"
+                 src="images/squares.gif" class="img img-responsive prof-pp" 
+                 style="padding: 20px;
+                    border: 1px solid #DF1642;
+                    border-radius: 100%;"/>
+            <input type="file" ng-change="updateProfile(true)" id="hiddenFile" ng-model="selectedFile"
+                   base-sixty-four-input
+                   style="display:none;"/>
+
+    		<h3 class="user-name-pp"> 
+                <span ng-if="userInfo.gender == 'Male'">Mr.&nbsp;</span>
+				<span ng-if="userInfo.gender == 'Female'">Ms.&nbsp;</span>
+				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}
+            </h3>
+    		<hr/>
+    		<div class="container prof-user-cred-container">
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-barcode.png" class="item-pp">
+    					
+    				</div> 
+<!--                     ng-click="focus('username')"-->
+    				<div class="col-xs-9 no-padding" style="position:relative">
+    					<p class="item-header-profp">Ipayu ID</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.username">{{userInfo.username}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.username"
+                               ng-model="userInfo.username"
+                               ng-blur="blur('username')"
+                               id="username-input">
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-cp.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-9 no-padding" style="position:relative" ng-click="focus('phone')">
+    					<p class="item-header-profp">Phone no.</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.phone">{{userInfo.phone || 'N/A'}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.phone"
+                               ng-model="userInfo.phone"
+                               ng-blur="blur('phone')"
+                               id="phone-input">
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-id.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('firstname')">
+    					<p class="item-header-profp">First Name:</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.firstname"> {{userInfo.firstname | capitalize}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.firstname"
+                               ng-model="userInfo.firstname"
+                               ng-blur="blur('firstname')"
+                               id="firstname-input">
+    				</div>
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('lastname')">
+    					<p class="item-header-profp">Last Name:</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.lastname">{{userInfo.lastname | capitalize}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.lastname"
+                               ng-model="userInfo.lastname"
+                               ng-blur="blur('lastname')"
+                               id="lastname-input">
+    				</div>
+
+    			</div>
+    			<hr/>
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-email.png" class="item-pp">
+    				</div> 
+<!--                     ng-click="active.email = true"-->
+    				<div class="col-xs-9 no-padding" style="position:relative">
+    					<p class="item-header-profp">Email:</p>
+    					<p class="item-detail-profp"
+                           ng-if="!active.email">{{userInfo.email}}</p>
+                        <input type="text" class="item-detail-profp" 
+                               ng-if="active.email"
+                               ng-model="userInfo.email"
+                               ng-blur="blur('email')">
+    				</div>
+
+    			</div>
+    			<hr/>
+
+
+    			<div class="row">
+    				<div class="col-xs-3 no-padding item-pp-holder">
+    					<img src="images/dashboard/gray-cal.png" class="item-pp">
+    					
+    				</div> 
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('year')">
+    					<p class="item-header-profp">Birth Year:</p>
+    					<p class="item-detail-profp"
+                            ng-if="!active.year">{{birth.year}}</p>
+                        <select class="item-detail-profp" 
+                            ng-if="active.year"
+                            ng-model="birth.year"
+                            ng-change="blur('year')"
+                            id="year-input">
+                            <option ng-repeat="opt in options.year"
+                                    value="{{opt}}">{{opt}}
+                            </option>
+                        </select>
+    				</div>
+    				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('month')">
+    					<p class="item-header-profp">Birth Month:</p>
+    					<p class="item-detail-profp"
+                            ng-if="!active.month">{{birth.month}}</p>
+                        <select class="item-detail-profp" 
+                            ng-if="active.month"
+                            ng-model="birth.month"
+                            ng-change="blur('month')"
+                            id="year-input">
+                            <option ng-repeat="opt in options.month"
+                                    value="{{opt.name}}">{{opt.name}}
+                            </option>
+                        </select>
+    				</div>
+
+    			</div>
+    			<hr/>
+    		</div>
+    </div>
+</div>
