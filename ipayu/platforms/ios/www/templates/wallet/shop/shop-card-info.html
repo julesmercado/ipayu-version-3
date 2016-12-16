@@ -124,7 +124,10 @@
                                 </div>
                             </div>
                             <div style="padding-left:0" class=" col-xs-2  mc-info-redeem-desc">
-                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp;points</p>
+                                <p class="item-pt-mc">{{ rg.point_value }}&nbsp; 
+                                    <span ng-if="rg.points_type == 'reward'">points</span>
+                                    <span ng-if="rg.points_type == 'rebate'">$</span>
+                                </p>
                             </div>
                             <div style="padding-left:0;padding-right:0" class="col-xs-3 mc-info-redeem-button">
                                 <button type="submit" ng-click="redeemItem(rg)">
@@ -156,14 +159,28 @@
                     <td style="text-align:center; padding-left:4px;">{{tran.date | date:"MM/dd/yyyy"}}</td>
                     <td class="uppercase" style="text-align:center;">{{tran.shop_name || 'N/A'}}</td>
                     <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
-                    <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
-                    <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-                    <td>{{tran.points || 0}}</td>
-                    <td>{{tran.balance}}</td>
-                    <td class="bold" style="font-size:8px"
-                        route-item-location="{{tran.asset_info_id}}" item={{tran}}
-                        ng-if="tran.type == 'redeem' ">See&nbsp;info&nbsp;></td>
-                    <td style="font-size:9px" ng-if="tran.type == 'transaction' ">&nbsp;</td>
+                    <td>
+                        <span ng-if="tran.sales_amount == 'null'">REDEEM</span>
+                        <span ng-if="tran.sales_amount != 'null'">{{tran.sales_amount}}</span>
+                        
+                    </td>
+                    <td>
+                        <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
+                        <span ng-if="tran.points_type != 'combo'">{{tran.points || 0}}</span>
+                    </td>
+                    <td>
+                     <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
+                       
+                        <span ng-if="tran.points_type != 'combo'">{{tran.balance}}</span>
+                    </td>
+                    <td>
+                        <span class="bold" style="font-size:8px" 
+                            route-item-location="{{tran.asset_info_id}}" item={{tran}}
+                            ng-if="tran.type == 'redeemption'">
+                            See&nbsp;info&nbsp;>
+                        </span>
+                        <span style="font-size:9px" ng-if="tran.type == 'transaction'">&nbsp;</span>
+                    </td>
                 </tr>
             </table>
             <h6 ng-if="transactions.length == 0">No recent transactions</h6>
@@ -186,8 +203,15 @@
             <td class="uppercase" style="padding-left:2px;padding-right:2px">{{tran.mall_name || 'N/A'}}</td>
             <td ng-if="tran.sales_amount == 'null' ">REDEEM</td>
             <td ng-if="tran.sales_amount != 'null' ">{{tran.sales_amount}} </td>
-            <td>{{tran.points || 0}}</td>
-            <td>{{tran.balance}}</td>
+            <td>
+               <span ng-if="tran.points_type == 'combo'">{{tran.rewards_points+' / '+tran.rebates_points+'$'}}</span>
+                <span ng-if="tran.points_type != 'combo'">{{tran.points || 0}}</span>
+            </td>
+            <td>
+                
+                 <span ng-if="tran.points_type == 'combo'">{{tran.rewards_balance+' / '+tran.rebates_balance+'$'}}</span>
+                <span ng-if="tran.points_type != 'combo'">{{tran.balance}}</span>
+            </td>
         </tr>
         <tr ng-if="transactions.length == 0">
             <td>No recent transactions</td>

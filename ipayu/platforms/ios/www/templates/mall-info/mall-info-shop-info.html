@@ -25,7 +25,7 @@
         </li>
  <li class="col-xs-4 pull-right no-padding-right">
             <button ng-click="toggleShowCountry()" id="flags-nav">
-                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}"  class="flag-hh">
                 <span>{{countryDisplay.name}}</span> 
                     <ul ng-if="countryDisplay.display"
                         class="flagHeader">
@@ -56,16 +56,15 @@
                 <div class="col-xs-8" style="padding-left: 5px">
                   <div class="container" style="border:1px solid #999999;padding: 5px">
                     <div class="col-xs-9">
-                        <div class="row">
+                        <div class="row" style="line-height: 1">
                             <span class="glyphicon glyphicon-time"> </span>
-                            <span class="shop-details-text" ng-bind="shopInfo.date_available"></span><br/>
-                            <span class="shop-details-text" ng-bind="shopInfo.time_available"></span>
+                            <span class="shop-details-text" ng-bind="shopInfo.date_available" style="color:#58ad5a"></span><br/>
+                            <span class="shop-details-text" ng-bind="shopInfo.time_available" style="    margin-left: 21px;"></span>
                         </div>
 
                         <div class="row">
-                            <span class="glyphicon glyphicon-map-marker"> </span>
-                            <span class="shop-details-text" ng-bind="shopInfo.address"></span>
-
+                            <span class="glyphicon glyphicon-map-marker" style="float:left"> </span>
+                            <div class="shop-details-text" ng-bind="shopInfo.floor + ', ' + shopInfo.address" style=" width: 86%;    display: inline;    margin-left: 4px;    float: left;"></div>
                         </div>
 
                         <div class="row">
@@ -85,8 +84,11 @@
                             <span class="shop-details-text" ng-bind="shopInfo.website_url"></span>
                         </div>
                     </div>
+                    <img src="images/see-brochure-lg.png" class="mishi-sb-lg" ng-click="download_file(shopInfo.file)">
 
-                    <img src="images/see-brochure-lg.png" class="mishi-sb-lg">
+                    <img src="images/qr.png" class="mishi-sb-lg-qr" ng-click="showShopDirectories()">
+                    <p id="get-dir-text-mishi">Get <br/> Directions</p>
+
                   </div>
                 </div>
             </div>
@@ -106,7 +108,9 @@
 
 </div>
 
-<script type="text/javascript">
-    
-   
-</script>
+
+<script type="text/ng-template" id="shopRoute" >
+    <div class="container" style="text-align: center;background:transparent;">
+        <img ng-src="{{shop_route_url}}" style="width:85%;height:auto;">
+    </div>
+</script> 

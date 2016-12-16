@@ -10,9 +10,9 @@ walletModule.controller('addShopCardCtrl', AddShopCard)
 
 MyShopCard.$inject = ['$scope', '$rootScope', 'walletData'];
 function MyShopCard($scope, $rootScope, walletData) {
-	$scope.lastUsed = walletData.getLastUserCards('shop');
-	$scope.frequent = walletData.getFrequentUserCards('shop');
-	$scope.shopCards = walletData.getUserCards('shop');
+	$scope.lastUsed = walletData.lastUserCards('shop');
+	$scope.frequent = walletData.frequentUserCards('shop');
+	$scope.shopCards = walletData.userCards('shop');
 
     $rootScope.$on('newShopCardData', function (event, data) {
         // console.log(data, 'New Shop card')
@@ -26,10 +26,10 @@ function MyShopCard($scope, $rootScope, walletData) {
 MyShopCardView.$inject = ['$scope', '$rootScope', 'walletData', 'customService'];
 function MyShopCardView($scope, $rootScope, walletData, customService) {
 
-	$scope.shopCards = customService.filterByCountry(walletData.getUserCards('shop'), $rootScope.countryDisplay.country, true);
+	$scope.shopCards = customService.filterByCountry(walletData.userCards('shop'), $rootScope.countryDisplay.country, true);
 
     $rootScope.$on('countryHasChange', function(event, country){
-        $scope.shopCards = customService.filterByCountry(walletData.getUserCards('shop'), country.country, true);
+        $scope.shopCards = customService.filterByCountry(walletData.userCards('shop'), country.country, true);
     })
 
     $rootScope.$on('newShopCardData', function (event, data) {
@@ -49,7 +49,7 @@ function ShopCardSearch($scope, $rootScope, walletData, customService, accountDa
 
 	$scope.featured_shops = get_featured();
 	$scope.unfeatured_shops = get_unfeatured();
-	$scope.categories = walletData.getCategories();
+	$scope.categories = walletData.categories();
 
 	$scope.swipeLeft = function(){
 		if(currentPage != 0){
@@ -67,7 +67,7 @@ function ShopCardSearch($scope, $rootScope, walletData, customService, accountDa
 	
 	function get_unfeatured() {
 		hasMore = false;
-		var filtered_category = customService.filterByCategory(walletData.getAssetsNonFeatured(), selectedCategory);
+		var filtered_category = customService.filterByCategory(walletData.assetsNonFeatured('shop'), selectedCategory);
 		var unfeatured_shops = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
 		var obj = customService.paginate(unfeatured_shops, 4, 4, currentPage, pageSize, true);
 		hasMore = obj.has_more;
@@ -75,7 +75,7 @@ function ShopCardSearch($scope, $rootScope, walletData, customService, accountDa
 	}
 
 	function get_featured(){
-		var filtered_category = customService.filterByCategory(walletData.getAssetsFeatured(), selectedCategory);
+		var filtered_category = customService.filterByCategory(walletData.assetsFeatured('shop'), selectedCategory);
 		var featured = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
 		return featured;
 	}
@@ -113,7 +113,7 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService, ngDial
 
 	$scope.searchData = '';
 	$scope.searchResult = 0;
-	var all_cards = walletData.getAllAvailableCards();
+	var all_cards = walletData.allAvailableCards('shop');
 	$scope.allShopCards = contruct_data(all_cards);
 
 	function contruct_data(data){
@@ -185,6 +185,9 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService, ngDial
             	},
                 border_class: function(){
                     return 'shop-modal-border';
+                },
+                type: function(){
+                    return 'shop';
                 }
             },
             overlay: true
@@ -200,16 +203,17 @@ function AllShopCardSearch($scope, $rootScope, walletData, customService, ngDial
 }
 
 
-ShopCardInfo.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog'];
-function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
+ShopCardInfo.$inject = ['$scope', '$rootScope', 'walletData', '$window', 'ngDialog', 'wallet', 'accountData'];
+function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog, wallet, accountData) {
 
-	$scope.card = walletData.getCardInfo();
+	$scope.card = walletData.cardInfo('shop');
 	$scope.transactions = $scope.card.transactions;
 	$scope.redeems = $scope.card.redeemables;
     $scope.redeem = true;
     $scope.transaction = false;
 
-    var dateNow = new Date(),
+    var ipayu_info 	= accountData.getUser(),
+        dateNow = new Date(),
     	d = dateNow.getDate(),
     	m = dateNow.getMonth() + 1,
     	y = dateNow.getFullYear();
@@ -227,7 +231,10 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
             resolve: {
 		        redeemable: function () {
 		            return item;
-		        }
+		        },
+                type: function(){
+                    return 'shop';
+                }
 		    },
             overlay: true
         });
@@ -244,21 +251,49 @@ function ShopCardInfo($scope, $rootScope, walletData, $window, ngDialog) {
         	}
         }
     })
+    
+    $rootScope.$on('updateData', function(event){
+        wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'shop'})
+            .then(function(resolve){
+                if(resolve){
+                    var cards = resolve[0].data.data.all;
+                    var card = {};
+                    for(var i = 0; i < cards.length; i++){
+                        if(cards[i].card_id == $scope.card.card_id){
+                            card = cards[i];
+                            break;
+                        }
+                    }
+                    $scope.card = card;
+                    $scope.transactions = card.transactions;
+                    $scope.redeems = card.redeemables;
+                    
+                	walletData.userCards('shop', resolve[0].data.data.all, card.card_type);
+                	walletData.frequentUserCards('shop', resolve[0].data.data.frequently, card.card_type);
+                	walletData.lastUserCards('shop', resolve[0].data.data.last_used, card.card_type);
+                    walletData.cardInfo('shop', card)
+                    setTimeout(function(){
+                        ngDialog.closeAll();
+                    }, 800)
+                }
+            })
+    })
 }
 
 
 AddShopCard.$inject = ['$scope', '$rootScope', '$state', 'ngDialog', '$state', 'walletData', 'flags', 'accountData', 'wallet', 'customService'];
 function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, flags, accountData, wallet, customService) {
 
-    $scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), $rootScope.countryDisplay.country);
+    $scope.featured = customService.filterByCountry(walletData.featuredCards('shop'), $rootScope.countryDisplay.country);
 
-	var thisCard = walletData.getCardToAdd();
+	var thisCard = walletData.cardToAdd('shop');
 	var ipayu_info = accountData.getUser();
     $scope.emitMessage = 'addShopCard';
     $scope.cardType = 'shop';
     $scope.thisCard = thisCard;
+    $scope.disableBtn = false;
 
-	if(!thisCard){
+	if(thisCard.length == 0){
 		$state.go('myshopcards')
 		return;
 	}
@@ -273,12 +308,12 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
         		}
         		wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: 'shop'})
         			.then(function(user_card){
-        				$scope.disableBtn = false;
+        				$scope.disableBtn = true;
         				if(user_card){
-        					walletData.setCardToAdd(false);
-	        				walletData.setUserCards(user_card[0].data.data.all, 'shop');
-		                	walletData.setFrequentUserCards(user_card[0].data.data.frequently, 'shop');
-		                	walletData.setLastUserCards(user_card[0].data.data.last_used, 'shop');
+        					walletData.cardToAdd('shop', []);
+	        				walletData.userCards('shop', user_card[0].data.data.all);
+		                	walletData.frequentUserCards('shop', user_card[0].data.data.frequently);
+		                	walletData.lastUserCards('shop', user_card[0].data.data.last_used);
 		                	pop_up(resolve[0].data.success, "Card Successfully added")
         				}
         				else{$rootScope.doLoading = false;}
@@ -320,6 +355,9 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
             	},
                 border_class: function(){
                     return 'shop-modal-border';
+                },
+                type: function(){
+                    return 'shop';
                 }
             },
             overlay: true
@@ -327,6 +365,6 @@ function AddShopCard($scope, $rootScope, $state, ngDialog, $state, walletData, f
 	}
 
     $rootScope.$on('countryHasChange', function(event, country){
-        $scope.featured = customService.filterByCountry(walletData.getFeaturedCards(), country.country);
+        $scope.featured = customService.filterByCountry(walletData.featuredCards('shop'), country.country);
     })
 }

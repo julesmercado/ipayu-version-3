@@ -6,7 +6,7 @@ AccountFactory.$inject = ['$q', 'accountRequest'];
 function AccountFactory($q, accountRequest) {
 
     function thenFunc(response) {
-        // console.log(response);
+         console.log(response);
         return response;
     }
 
@@ -39,6 +39,16 @@ function AccountFactory($q, accountRequest) {
         resetPassword: function(data){
             var req_reset = accountRequest.resetPassword(data);
             return $q.all([req_reset])
+                .then(thenFunc, errFunc)
+        },
+        changePassword: function(data){
+            var req_changepass = accountRequest.changePassword(data);
+            return $q.all([req_changepass])
+                .then(thenFunc, errFunc)
+        },
+        updateProfile: function(data){
+            var req_update = accountRequest.updateProfile(data);
+            return $q.all([req_update])
                 .then(thenFunc, errFunc)
         },
         getNotifications: function(data){

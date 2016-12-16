@@ -244,6 +244,7 @@ form#registration button.register {
     }
 }
 .rl-l-img{    display: block;    margin: 12px auto;    padding-top: 10px;    width: 26%;}
+.fp-login{margin-top:2px; margin-bottom: 0}
 
 .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
 .red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
@@ -255,7 +256,7 @@ form#registration button.register {
 .l-loading{margin:110px; text-align: center;}
 .l-header img { height:50px;width:50px;margin-top:20px }
 .download-img{z-index: 3}
-#flags-nav{    position: absolute;    right: 43px;   padding-bottom: 28px;top:-3px;}
+#flags-nav{    position: absolute;    right:54px;   padding-bottom: 28px;top:-3px;}
 .ui-rangeSlider-label-inner{z-index: 11 !important}
 .fading-menu{width:100%;z-index:15;margin-top:60px;overflow-y:hidden}
 .menu-name{margin-top:10px; font-size: 20px; }
@@ -263,7 +264,7 @@ form#registration button.register {
 .add-card-addon{width: 49px; font-size: 9px; position: absolute; padding: 3px; height: 36%;border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important; border:none;bottom: 10px}
 .no-cards{z-index: 9;height: 60px;    text-align: center;    padding-top: 8%;width: 100%;position: absolute;top: 0;font-family: "HelveticaBold"; color: black; text-transform: uppercase}
-.dash-user-img{height: 60px;    margin: 0 auto;    display: block;}
+.dash-user-img{height: 60px; width: 60px;   margin: 0 auto;    display: block; border-radius: 100%}
 .dash-user-img canvas{height: 60px;    margin: 0 auto;    display: block;}
 
 .page-header{border-bottom:none ;}
@@ -339,15 +340,16 @@ ul.page-menu-top { height:40px;width:100%;background-color:#DF1642;}
     ul.page-menu-top li:first-child button img:nth-of-type(2) { height:20px;width:auto;position:relative;top:-4px;left:15px }
     ul.page-menu-top li:nth-child(even) button { font-size:16px;font-family: "HelveticaBold" }
     ul.page-menu-top li:last-child  button { padding-right:4px; margin-top:10px;  }
-    ul.page-menu-top li:last-child  button img:nth-of-type(1) { height:10px;width:auto;position:relative;top:-2px; }
+    ul.page-menu-top li:last-child  button img:nth-of-type(1) { height:10px;width:auto;position:relative;top:-2px;display: inline-block; }
     ul.page-menu-top li:last-child  button img:nth-of-type(2) { height:23px;width:auto;position:relative;top:-4px }
-    ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:10px;font-family: "HelveticaLight"; }
+    ul.page-menu-top li:last-child  button span { position:relative;top:-2px;right:0px;font-size:16px;font-family: "HelveticaLight"; font-weight: 800;display: inline-block;float:left}
+.flag-hh{float:left;top: 1px !important;    margin-right: 3px;}
         .no-padding{padding:0;}
         .no-padding-right{padding-right: 0;    padding-left: 5%;}
         .header-title-wallet{color:white; text-align: center; margin-top:8px; font-size:16px;   font-family: "HelveticaLight";   font-weight:800;}
       .btn-top-with-flag{width: 50px; position: absolute;right: -10px; top: -5px;}
   .back-button-header-img{height: 20px !important}
-  img#gohomebtn {    right: 4px;}
+  img#gohomebtn {    right: 8px;}
 /*end of header*/
 /* PAGE FOOTER  */
 .footer-lang-text{margin-top:5px;color:white;font-size:7px;text-align:center}
@@ -384,7 +386,7 @@ div.page-footer { position:absolute;bottom:0;height:75px;width:100%;background-c
 .login-footer { width:100%;height:auto}
 .login-footer img.ads-img{width: 100%}
 
-.login-options{margin-bottom:30% !important}
+.login-options{margin-bottom:41% !important}
 /* END OF LOGIN CSS */
 
 /*mall search*/
@@ -847,7 +849,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 
 /*profile*/
 #profile-user-container{height: 100%; width:100%;overflow-y: scroll;}
-    .prof-pp{    height: 100px;    margin: 0 auto;    margin-top: 10px;}
+    .prof-pp{    height: 100px; width:100px;    margin: 0 auto;    margin-top: 10px;}
     .user-name-pp{ color: #df1642; font-family: "HelveticaBold"; text-align: center;margin-top:10px;}
     .item-pp-holder{    height: 30px;    width: 30px;    background-color: rgb(228,228,228);    padding: 0; margin: 15px}
         .item-pp{    height: 20px;    margin: 5px auto;    display: block;}
@@ -867,7 +869,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
     .dark-bg{height: 132px !important}
    .side-menu .fc div.col-xs-12 img{ height:90px;width:90px;margin-top:25px;}
    .status-message-menu{margin-bottom: 35px}
-    .login-options{margin-bottom:23% !important}
+    .login-options{margin-bottom:33% !important}
     .menu-logout{margin-top:auto;}
     .menu-name{margin-top:20px; font-size: 24px}
     .blue-line{margin-bottom: 50px}
@@ -886,7 +888,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
        .stamps-circle{    margin: 0px 10px;    height: 45px;    width: 45px;}
        .stamp-img{height: 160px}
 
-       .dash-user-img{height: 75px}
+       .dash-user-img{height: 75px;width: 75px}
        .dash-user-img canvas{height: 75px}
        .map-image{max-height: 300px}
        .mc-info-tab .col-xs-4 p{font-size: 11px}
@@ -923,7 +925,7 @@ ul.ul-mall-select::-webkit-scrollbar{display: none;}
 .featured-malls-mall{height: 58px;width: 58px}
 .mother-of-all-scrollables{height: 572px}
 form#registration td label{height: 40px !important;}
-
+.fp-login{margin-top:10px;}
 }
 /* IPHONE 5 */
 @media screen and (width:320px) {
@@ -1003,7 +1005,7 @@ and (max-device-width : 736px) {
 
 @media only screen and (width: 360px) {
 .dash-header-greeting{}
-   .login-options{margin-bottom:23% !important;}
+   .login-options{margin-bottom:40% !important;}
 }
 
 @media only screen and (min-width: 375px) and (max-width: 414px){
@@ -1042,15 +1044,15 @@ and (max-device-width : 736px) {
 @media screen and (min-width: 400px){
      .container-fluid .row img.login-img{margin-bottom: 4.4em;}
      .shop-search-icon-cat{height:75px; width:75px;}
-     .shop-search-categories{bottom:190px;}
+     .shop-search-categories{bottom:185px;}
      .featured-malls-mall{height: 60px; width: 60px}
      .coupon-img-container{max-height: none; padding-right: 10px; padding-left: 10px}
      #shop-magnify-cat{padding: 15px}
      .category-label-text{ font-size: 9.3px; bottom:2px;}
      #mag-img{padding:13px;}
-    .login-options{margin-bottom: 32% !important}
+    .login-options{margin-bottom: 51% !important}
     .stamps-circle{    margin: 5px 13px;    height: 50px;    width: 50px;}
-    .dash-user-img {    height: 85px;}
+    .dash-user-img {    height: 85px;width: 85px}
     .dash-user-img canvas {    height: 85px;}
     .mc-info-tab .col-xs-4 p{font-size: 12px}
     .filtered-cards > p{font-size: 12px}
@@ -1070,7 +1072,7 @@ and (max-device-width : 736px) {
      .add-this-card-img {    height: 84px;}
      .sn-num{font-size: 20px}
      .map-image {    max-height: 345px;}
-
+     .coupon-img-holder>img {    height: 100px !important;}
 }
 @media only screen and (width: 411px) {
 .dash-header-greeting{margin-bottom: 28%}
@@ -1083,7 +1085,7 @@ and (max-device-width : 736px) {
 }
 
 @media only screen and (min-width: 415px) and (max-width: 540px){
-    .dash-header-greeting{height: 200px;position: relative;}
+    .dash-header-greeting{height: 72px;position: relative;}
     .dash-header-greeting div{position: absolute;top: 0;left:0;right: 0;}
     .add-this-card-img{ height: 125px}
 }
@@ -1110,7 +1112,7 @@ and (max-device-width : 960px) {
 /* GALAXY S5 */
 @media screen and (width:360px) {
     .page-header { height: 26px; }
-    .container-fluid .row img.login-img { height: 145px; margin-top:5em ;margin-bottom: 4em; }
+    .container-fluid .row img.login-img { height: 145px; margin-top:3em ;margin-bottom: 2em; }
     .container-fluid .login-form input.login-credentials { height: 40px;font-size: 16px;  }
     .container-fluid .login-form button.login-button { height: 40px; width: 124px;font-size: 16px; }
     .container-fluid .login-options .login-options-label { font-size: 16px; }
@@ -1118,7 +1120,7 @@ and (max-device-width : 960px) {
 
 /* NEXUS 5X */
 @media screen and (min-width: 411px) {
-    .container-fluid .row img.login-img { height: 155px; margin-top: 65px; margin-bottom: 6em; }
+    .container-fluid .row img.login-img { height: 155px; margin-top: 65px; margin-bottom: 4em; }
     .container-fluid .login-form input.login-credentials { height: 50px; font-size: 18px;  }
     .container-fluid .login-form button.login-button { height: 45px; width: 130px;font-size: 17px; }
     .container-fluid .login-options .login-options-label { font-size: 17px; }
@@ -1137,7 +1139,7 @@ and (max-device-width : 960px) {
 .menu-logout .list-group .list-group-item .img.img-responsive{height: 30px !important}
 .filtered-cards > p{font-size: 15px}
 .filtered-cards .filter-option .filter-option-ic{font-size:17px;}
-.container-fluid .row img.login-img{height: 240px; margin-bottom: 6em}
+.container-fluid .row img.login-img{height: 150px; margin-bottom: 6em}
 .status-message-menu{    font-size: 20px; font-family: "HelveticaLight"}
   .mc-info-fh div.col-xs-8 .circle-dashed{width: 74%; margin:0 auto;}
   .mc-info-fh div.col-xs-4 img{height: 65px; width: auto !important}
@@ -1172,7 +1174,7 @@ and (max-device-width : 960px) {
 
 .dark-bg-shop{height: 148px !important}
 .login-options {    margin-bottom: 30% !important;}
-.shop-search-icon-cat{height:85px; width:85px;}
+.shop-search-icon-cat{height:72px; width:72px;}
 .container-fluid .login-form input.login-credentials{height: 58px;font-size:18px !important;}
 }
 
@@ -1328,6 +1330,8 @@ ul.flagHeader li{font-size: 20px}
 .img-item-ih{height: 89px}
 .ngdialog.ngdialog-theme-plain .ngdialog-content{margin-top: 0}
 #profile-user-container{padding-bottom: 100px}
+.container-fluid .row img.login-img{margin-top: 40px}
+#flags-nav{right:50px;}
 }
 @media screen and (height: 533px){
     .container-fluid .row img.login-img{margin-bottom: 3.5em}
@@ -1335,6 +1339,7 @@ ul.flagHeader li{font-size: 20px}
 
 }
 @media screen and (height: 567px){
+    .container-fluid .row img.login-img{margin-top: 50px}
     .shop-search-icon-cat {    height: 55px;    width: 55px;}
     .shop-search-categories {    bottom: 150px;}
     .shop-search-categories-2 {    bottom: 90px;}
@@ -1345,7 +1350,7 @@ ul.flagHeader li{font-size: 20px}
     .filtered-cards > p{margin-left: 1px}
     .header-lead-text {    font-size: 18px;}
     .filtered-cards .lu-cards, .filtered-cards .fu-cards, .filtered-cards .mn-cards{margin-right: -7px; margin-left: -7px}
-    .dash-user-img {    height: 75px;}
+    .dash-user-img {    height: 75px; width: 75px;}
     .container-fluid .login-form input.login-credentials{margin-bottom: 2em}
     .side-menu .fc div.col-xs-12 img{height: 90px;width: 90px;}
     .listed-alphabet {    line-height: 14px;}
@@ -1357,6 +1362,7 @@ ul.flagHeader li{font-size: 20px}
     .ad-section-add {    position: absolute;    bottom: 97px;}
     .dark-bg-shop {    height: 110px !important;}
     .img-card-view-all {    height: 65px;}
+    .login-options {    margin-bottom: 36.5% !important;}
 }
 
 @media screen and (max-height: 732px ){
@@ -1440,7 +1446,7 @@ ul.flagHeader li{font-size: 20px}
 
 @media screen and (width: 384px){
      .stamps-circle{margin: 10px 8px;}
-     .dash-user-img {    height: 70px;}
+     .dash-user-img {    height: 70px;width: 70px}
      .dash-user-img canvas{    height: 70px;}
 }
 
@@ -1448,4 +1454,5 @@ ul.flagHeader li{font-size: 20px}
 @media screen and (height: 660px){
     .shop-search-icon-cat {    height: 65px;    width: 65px;}
         .shop-search-categories {    bottom: 176px;}
+        .login-options {    margin-bottom: 30% !important;}
 }

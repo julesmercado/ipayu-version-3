@@ -17,14 +17,25 @@
         <div class="col-xs-12 text-center">
          
          	<h4 class="cpw-header">Enter a new password </h4>
-            <form name="forgotForm">
+            <form name="forgotForm" novalidate>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">
                        <img src="images/password.png">
                     </span>
 
-                    <input type="password" class="form-control" placeholder="Enter old password" aria-describedby="basic-addon1"
-                           name="answer" required>
+                    <input type="password" 
+                           class="form-control" 
+                           placeholder="Enter old password" 
+                           aria-describedby="basic-addon1"
+                           name="answer" 
+                           uib-tooltip="{{v.old_password.message}}" 
+                           tooltip-trigger="'none'" 
+                           tooltip-placement="bottom" 
+                           tooltip-is-open="v.old_password.error"
+                           ng-model="formData.old_password"
+                           ng-keyup="validate_old_password()"
+                           ng-blur="v.old_password.error = false"
+                           required>
                 </div>
 
                  <div class="input-group">
@@ -32,8 +43,35 @@
                        <img src="images/password.png">
                     </span>
 
-                    <input type="password" class="form-control" placeholder="Enter new password" aria-describedby="basic-addon1"
-                           name="answer" required>
+                    <input type="password" 
+                           class="form-control" 
+                           placeholder="Enter new password" 
+                           aria-describedby="basic-addon1"
+                           name="answer"
+                           uib-tooltip="{{v.new_password.message}}" 
+                           tooltip-trigger="'none'" 
+                           tooltip-placement="bottom" 
+                           tooltip-is-open="v.new_password.error"
+                           ng-keyup="validate_new_password(true)"
+                           ng-model="formData.new_password"
+                           ng-focus="showPassTip = true"
+                           ng-blur="onblur_newpass()"
+                           required>
+                </div>
+                <div ng-if="showPassTip" style="text-align:left;font-size:12px;">
+                    <div class="password-tip">
+                        <ul style="list-style-type:none;">
+                            <li ng-class="{'color-success' : formData.new_password.match('[a-z]') && formData.new_password.match('[A-Z]') && formData.new_password.match('[0-9]')}">
+                            Must contain atleast 1
+                                <ul style="list-style-type:none;">
+                                    <li ng-class="{'color-success' : formData.new_password.match('[a-z]')}">lower case</li>
+                                    <li ng-class="{'color-success' : formData.new_password.match('[A-Z]')}">upper case</li>
+                                    <li ng-class="{'color-success' : formData.new_password.match('[0-9]')}">number</li>
+                                </ul>
+                            </li>
+                        <li ng-class="{'color-success' : formData.new_password.length > 7}">Atleast 8 characters long</li>
+                        </ul>
+                    </div>
                 </div>
 
                  <div class="input-group" style="margin-top:10px">
@@ -41,10 +79,25 @@
                        <img src="images/password.png">
                     </span>
 
-                    <input type="password" class="form-control" placeholder="Repeat new password" aria-describedby="basic-addon1"
-                           name="answer" required>
+                    <input type="password" 
+                           class="form-control" 
+                           placeholder="Repeat new password" 
+                           aria-describedby="basic-addon1"
+                           name="answer"
+                           uib-tooltip="{{v.repeat.message}}" 
+                           tooltip-trigger="'none'" 
+                           tooltip-placement="bottom" 
+                           tooltip-is-open="v.repeat.error"
+                           ng-keyup="validate_repeat_password()"
+                           ng-model="formData.repeat"
+                           ng-blur="v.repeat.error = false"
+                           required>
                 </div>
-                <button type="submit" class="btn btn-default" ng-disabled="forgotForm.$invalid" ng-click="resetPassword()" style="margin-top:30px">
+                <button type="submit" 
+                        class="btn btn-default" 
+                        ng-disabled="forgotForm.$invalid" 
+                        ng-click="update()" 
+                        style="margin-top:30px">
                     UPDATE
                 </button>
             </form>

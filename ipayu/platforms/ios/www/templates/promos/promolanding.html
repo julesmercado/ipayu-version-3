@@ -32,8 +32,8 @@
 <div class="row">
     <div class="container mall-search-unfeatured-malls promo-landing-unfeatured-section" 
         ng-repeat="unfeat in unfeatured | limitTo:2"
-        ng-swipe-left="swipeLeft()"
-        ng-swipe-right="moreIsClicked()">
+        ng-swipe-left="next()"
+        ng-swipe-right="prev()">
         
         <div class="animated col-xs-3 col-md-3 unfeatured-malls unfeatured-shops pl-uf-p fadeIn" 
              ng-repeat="u in unfeat" >
@@ -42,7 +42,7 @@
                 <img ng-src="{{u.image}}" class="img img-responsive featured-malls-mall featured-shops-shop">
                 <p class="featured-malls-mall-name unfeatured-mall-name" ng-bind="u.name"></p>
             </div>
-            <div ng-if="f == true" ng-click="moreIsClicked()">
+            <div ng-if="u == true" ng-click="next()">
                 <img src="images/shopcard-icons/more.png" class="img img-responsive  shop-search-icon-cat" 
                     style="height: 40px;background-color: transparent; width: 40px; margin-top: 14px;">
             </div>

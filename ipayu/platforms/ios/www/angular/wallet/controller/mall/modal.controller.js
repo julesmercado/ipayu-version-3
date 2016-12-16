@@ -5,10 +5,11 @@ walletModule.controller('redeemModalCtrl', RedeemModal)
 walletModule.controller('addCardModalCtrl', AddCardModal)
 walletModule.controller('cardSuccessfullyAddedCtrl', CardSuccessfullyAdded)
 
-RedeemModal.$inject = ['$scope', '$rootScope', '$timeout', 'accountData', 'walletData', 'redeemable', 'wallet'];
-function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, redeemable, wallet) {
+RedeemModal.$inject = ['$scope', '$rootScope', '$timeout', 'accountData', 'walletData', 'redeemable', 'wallet', 'type'];
+function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, redeemable, wallet, type) {
+    console.log(redeemable, "redeemable")
 
-    $scope.card = walletData.getCardInfo();
+    $scope.card = walletData.cardInfo(type);
     var ipayu_info 	= accountData.getUser(),
     	balance 	= (redeemable.points_type == 'reward')?$scope.card.rewards_balance:$scope.card.rebates_balance;
 
@@ -77,10 +78,13 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
     function doRedeem(dataToSend) {
         wallet.redeem(dataToSend)
             .then(function(resolve){
-                $rootScope.$broadcast('updateData');
+            
                 $scope.isClick = false;
                 $scope.isRedeemed = true;
                 $scope.isLoading = false;
+            
+                $rootScope.$broadcast('updateData');
+            
             })
     }
 
@@ -122,14 +126,14 @@ function RedeemModal($scope, $rootScope, $timeout, accountData, walletData, rede
 
 }
 
-AddCardModal.$inject = ['$scope', '$state', 'ngDialog', '$rootScope', 'walletData', 'accountData', 'wallet', 'card', 'destination', 'border_class'];
-function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountData, wallet, card, destination, border_class) {
+AddCardModal.$inject = ['$scope', '$state', 'ngDialog', '$rootScope', 'walletData', 'accountData', 'wallet', 'card', 'destination', 'border_class', 'type'];
+function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountData, wallet, card, destination, border_class, type) {
     var user_info = accountData.getUser();
     $scope.border_class = border_class;
     $scope.proceed = function(){
         card.country_code = $rootScope.countryDisplay.name;
         card.country = $rootScope.searchCountry.country;
-        walletData.setCardToAdd(card);
+        walletData.cardToAdd(type, card);
         
         if(destination == 'addmallcard' || destination == 'addshopcard'){
             requestFetured();
@@ -140,16 +144,16 @@ function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountD
     }
     
     function requestFetured() {
-        var type = '';
+        var type_c = '';
         if(destination == 'addmallcard') {
-            type = 'mall';
+            type_c = 'mall';
         }
         else if (destination == 'addshopcard') {
-            type = 'shop';
+            type_c = 'shop';
         }
-        wallet.getFeaturedCards({'ipayu_id' : user_info.ipayu_id, 'type' : type})
+        wallet.getFeaturedCards({'ipayu_id' : user_info.ipayu_id, 'type' : type_c})
         .then(function(resolve){
-            walletData.setFeaturedCards(resolve[0].data.data);
+            walletData.featuredCards(type_c, resolve[0].data.data);
             state_go();
         })
     }

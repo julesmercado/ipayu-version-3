@@ -43,7 +43,7 @@ function Config($stateProvider) {
             cache: false
         })
         .state('mallEventFull', {
-            url: '/mall-events-full/',
+            url: '/mall-events-full/{mallId}',
             templateUrl: 'templates/mall-info/mall-info-events-full.html',
             controller: 'mallInfoEventsFull',
             cache: false

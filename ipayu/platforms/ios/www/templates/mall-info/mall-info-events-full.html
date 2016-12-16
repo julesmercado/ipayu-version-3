@@ -27,7 +27,7 @@
         </li>
          <li class="col-xs-4 pull-right no-padding-right" style="margin-bottom:-4px">
             <button ng-click="toggleShowCountry()" id="flags-nav">
-                <img ng-src="{{'images/flags/'+countryDisplay.flag}}">
+                <img ng-src="{{'images/flags/'+countryDisplay.flag}}"  class="flag-hh">
                 {{countryDisplay.name}}</span> 
                     <ul ng-if="countryDisplay.display"
                         class="flagHeader">
@@ -55,8 +55,8 @@
             </div>
             <img ng-src="{{mallInfo.image_banner}}" class="mall-events-mall-banner">
         </div>
-
-               <!--start of card-->
+        
+        <!--start of card-->
         <div class="animated container fadeIn">
          <p class="mall-event-single-post-title" ng-bind="info.name">Bruno Mars Concert</p>
             <span class="mall-event-single-post-posted">Posted {{time_created}} ago </span>
@@ -102,7 +102,9 @@
                                         <img src="images/rate-smile.png">
                                         <span ng-bind="info.total_reactions"></span>
                                         <ul class="reactions-box" ng-controller="reactions"> <!-- Reaction buttons container-->
-                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" ng-style="{'background-image':'url('+react.image+')'}" ng-repeat="react in reactions" ng-click="postReactions(mallInfo, react)"></li>
+                                            <li class="reaction" ng-class="react.class" data-reaction="react.name" 
+                                                ng-style="{'background-image':'url('+react.image+')'}" 
+                                                ng-repeat="react in reactions" ng-click="postReactions(info, react)"></li>
                                         </ul>
                                     </div>
                                       <div class="col-xs-4 mall-events-user-actions comments-btn" comment-modal ng-click="commentClick( )">

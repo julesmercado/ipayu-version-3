@@ -52,7 +52,7 @@
                                 uib-tooltip="{{user_info.username.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.username.showError && user_info.username.touched"
+                                tooltip-is-open="openToolTip && user_info.username.showError && user_info.username.touched && user_info.username.blur"
                                 />
                     </label>
                 </td>
@@ -72,7 +72,7 @@
                             ng-class="{'text-gray' : user_info.country.showError && user_info.answer.touched}"
                             readonly ng-click="showCountryList = (showCountryList)?false:true"
                             style="display:inline;width:30%;" 
-                            ng-disabled="user_info.username.showError || !checking"
+                            ng-disabled="user_info.username.showError || checking"
                         >
                 </label>
                         <ul ng-if="showCountryList" 
@@ -83,11 +83,22 @@
                                     font-family:condensed;
                                     font-size:100%;
                                     background:white;
-                                    padding-left:3%;">
+                                    padding-left:3%; z-index: 999">
+
                             <li ng-repeat="c in countries" style="padding:2px 0;color:#000;" ng-click="selectCountry(c.code,c.img, true)"> 
                                 <img ng-src="images/flags/{{c.img}}" style="margin:0;"> {{c.code}}
                             </li>
                         </ul>
+                </td>
+            </tr>
+            <tr ng-if="showUsernameTip">
+                <td class="password-tip">
+                    <ul>
+                        <li style="font-size:12px" ng-class="{'color-success' : user_info.username.input_value.length > 7}">at least 8 alphanumeric Characters</li>
+                        <li style="font-size:12px" ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
+                           Special Characters not allowed such as spaces @,(%&amp;./$-_)
+                        </li>
+                    </ul>
                 </td>
             </tr>
 
@@ -144,14 +155,14 @@
                                 uib-tooltip="{{user_info.email.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched"
+                                tooltip-is-open="openToolTip && user_info.email.showError && user_info.email.touched && user_info.email.blur"
                                 />
                     </label>
                 </td>
             </tr>
             <tr>
                 <td class="pink"><label for="birthday" class="i6-resize"><img src="images/age.png" /> </label></td>
-                <td class="gray">
+                <td class="gray" style="position: relative;">
                 <label for="birthday"> 
                     <input type="text" class="input" name="birthday"
                             id="birthday"
@@ -169,6 +180,8 @@
                             tooltip-is-open="openToolTip && user_info.birthday.showError && user_info.birthday.touched"
                             required style="height:100%;margin-top:0px">
                 </label>
+
+                <span class="glyphicon glyphicon-calendar" style="    position: absolute;    right: 4px;    top: 13px;"></span>
             </tr>
             <tr>
                 <td class="pink"><label for="password" class="i6-resize"><img src="images/password.png" /> </label></td>
@@ -176,7 +189,7 @@
                     <label for="password"> 
                         <input type="password" 
                                 id="password"
-                                ng-blur="showPassTip = false" 
+                                ng-blur="passwordBlur()" 
                                 ng-focus="scrollUp('password')"
                                 name="password" 
                                 ng-model="user_info.password.input_value"
@@ -186,7 +199,7 @@
                                 uib-tooltip="{{user_info.password.message}}" 
                                 tooltip-trigger="'none'" 
                                 tooltip-placement="bottom" 
-                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched"
+                                tooltip-is-open="openToolTip && user_info.password.showError && user_info.password.touched && user_info.password.blur"
                                 required
                                  />
                     </label>

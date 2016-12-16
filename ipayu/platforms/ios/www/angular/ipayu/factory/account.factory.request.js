@@ -58,6 +58,24 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
                             'data'      : $httpParamSerializerJQLike(data),
                         })
         },
+        changePassword: function (data) {
+            data.requestType = 'ChangePassword_'
+            return $http({
+                            'method'    : 'POST',
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                            'url'       : API_ROOT_URL + 'user_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                        })
+        },
+        updateProfile: function (data) {
+            data.requestType = 'UpdateProfile_'
+            return $http({
+                            'method'    : 'POST',
+                            'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                            'url'       : API_ROOT_URL + 'user_controller.php',
+                            'data'      : $httpParamSerializerJQLike(data),
+                        })
+        },
         getNotifications: function(data){
             data.requestType = 'GetCardAlerts_';
             return $http({

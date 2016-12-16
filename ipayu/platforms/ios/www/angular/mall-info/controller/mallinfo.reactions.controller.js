@@ -14,21 +14,14 @@ function ReactionsDirective( $rootScope , $scope , mallCardFactory2 , mallData ,
     } )
 
     $scope.postReactions = function(event, reaction){
-        console.log(ctr)
-        if(ctr != 0){
-            var data = mallData.setMallCard();
-            var user = accountData.getUser();
-            var date = new Date();
-            
-            mallCardFactory2.postReact(event.asset_event_id, user.ipayu_id, reaction.reaction_id, Date.parse(date))
-            .then( function( response ){
-                $rootScope.$broadcast('get_events');
-            });
-        }
-        else {
-            ctr++;
-        }
-        
+        var data = mallData.setMallCard();
+        var user = accountData.getUser();
+        var date = new Date();
+
+        mallCardFactory2.postReact(event.asset_event_id, user.ipayu_id, reaction.reaction_id, Date.parse(date))
+        .then( function( response ){
+            $rootScope.$broadcast('get_events');
+        });
     }
     
 

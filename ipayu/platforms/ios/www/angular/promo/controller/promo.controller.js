@@ -17,33 +17,30 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		hasMore = false,
 		selectedCategory = '';
     
-    $scope.myInterval = 3000;
+      $scope.myInterval = 8000;
     $scope.slides = [
         {
-          image: 'http://www.everythingcebu.com/wp-content/uploads/2014/05/Sun-Sational-Summer-Robinsons-Supermarket-Raffle-Prizes.jpg'
+          image: 'images/Web-1.gif'
         },
         {
-          image: 'https://4.bp.blogspot.com/-mMpD4MITRK8/VxH5jOM_xwI/AAAAAAAAJcM/w97m4AhxK-cGr6efSr_9J_wgE3m9qYb2gCLcB/s1600/Smart%2BUCT100.jpg'
+          image: 'images/Web-2.gif'
         },
         {
-          image: 'http://promos.watimbox.com/wp-content/uploads/2016/07/rustans.jpg'
-        },
-        {
-          image: 'http://www.contestsandpromos.com/wp-content/uploads/2011/03/east-west-greenwich-promo.jpg'
+          image: 'images/Web-3.gif'
         }
       ];
 
 	$scope.featured = get_featured();
 	$scope.unfeatured = get_unfeatured();
 	$scope.categories = promoData.allCategories();
-	$scope.swipeLeft = function(){
+	$scope.prev = function(){
 		if(currentPage != 0){
 			currentPage--;
 		}
 		$scope.unfeatured = get_unfeatured();
 	}
 
-	$scope.moreIsClicked = function(){
+	$scope.next = function(){
 		if(hasMore){
 			currentPage++;
 		}
@@ -54,7 +51,7 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		hasMore = false;
 		var filtered_category = customService.filterByCategory(promoData.allUnfeatured(), selectedCategory);
 		var unfeatured = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
-		var obj = customService.paginate(unfeatured, 4, 4, currentPage, pageSize, true);
+		var obj = customService.paginate(unfeatured, 4, 2, currentPage, pageSize, true);
 		hasMore = obj.has_more;
 		return obj.data;
 	}
@@ -169,14 +166,17 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 	if($stateParams.view){
 		$scope.viewOnly = true;
 	}
+    if($rootScope.addPromo == false && !$stateParams.view){
+        redirect()
+    }
 
-	$scope.$watch(function(){
-			return $rootScope.addPromo;
-		}, function(newvalue){
-		if(newvalue == false && !$stateParams.view){
-			redirect()
-		}
-	})
+//	$scope.$watch(function(){
+//			return $rootScope.addPromo;
+//		}, function(newvalue){
+//		if(newvalue == false && !$stateParams.view){
+////			redirect()
+//		}
+//	})
 
 	$scope.promoInfo = promoData.promoInfo();
 	$scope.promoSoloEmit = 'expiredPromo';
@@ -198,6 +198,7 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 		}
         
         ngDialog.open({
+            id: 'reservepromo',
             template: 'reservemodal.html',
             className: 'ngdialog-theme-plain profile-cutom-bg',
             controller: 'reservePromoCtrl',
@@ -209,7 +210,9 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
                     return $scope.promoInfo;
                 }
             },
-            overlay: true
+            overlay: true,
+            showClose: false,
+            closeByDocument: false
         });
         
 	}
@@ -219,12 +222,13 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
 	}
 }
 
-ReservePromo.$inject=  ['$scope', '$rootScope', 'promo', 'formData', 'thisPromo', 'customService'];
-function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customService) {
+ReservePromo.$inject=  ['$scope', '$rootScope', 'promo', 'formData', 'thisPromo', 'customService', '$timeout'];
+function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customService, $timeout) {
     
     $scope.quantity = 0;
     $scope.done = false;
     $scope.thisPromo = thisPromo;
+                    $rootScope.addPromo = false;
     
     $scope.decrement = function(){
         if($scope.quantity > 0){
@@ -252,8 +256,8 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
 			promo.reserve(formData)
 			.then(function(resolve){
 				if(resolve && resolve[0].data.success == true) {
-					$rootScope.addPromo = false;
                     $scope.done = true;
+                    $rootScope.addPromo = false;
 				}
 			})
 		}

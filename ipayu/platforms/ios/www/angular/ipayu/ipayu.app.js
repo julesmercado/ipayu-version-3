@@ -1,7 +1,7 @@
 
 
 var modules = [
-                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick',
+                'ui.router', 'ui.bootstrap', 'ngTouch', 'ngCordova', 'slick', 'naif.base64',
 
                 'monospaced.qrcode', 'barcode', 'ngDialog', 'angular-loading-bar',
 
@@ -33,11 +33,15 @@ mainModule.constant('API_ROOT_URL', 'http://bringmesmiles.com/ipayu/controller/'
 mainModule.value('storages', storage)
 mainModule.config(Config)
 
-Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state'];
-function Run(sqliteSet, accountData, $rootScope, $state) {
+Run.$inject = ['sqliteSet', 'accountData', '$rootScope', '$state', '$window'];
+function Run(sqliteSet, accountData, $rootScope, $state, $window) {
 
 
     document.addEventListener('deviceready', function () {
+
+         if($window.MobileAccessibility){
+            $window.MobileAccessibility.usePreferredTextZoom(false);
+        }
 
         function onOnline(){
             $rootScope.showOffline = false;
@@ -83,7 +87,7 @@ function Run(sqliteSet, accountData, $rootScope, $state) {
                 }
             }
             else {
-                window.history.back();
+                $window.history.back();
             }
 
             return;
