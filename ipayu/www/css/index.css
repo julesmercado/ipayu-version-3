@@ -256,7 +256,7 @@ form#registration button.register {
 .l-loading{margin:110px; text-align: center;}
 .l-header img { height:50px;width:50px;margin-top:20px }
 .download-img{z-index: 3}
-#flags-nav{    position: absolute;    right: 43px;   padding-bottom: 28px;top:-3px;}
+#flags-nav{    position: absolute;    right:54px;   padding-bottom: 28px;top:-3px;}
 .ui-rangeSlider-label-inner{z-index: 11 !important}
 .fading-menu{width:100%;z-index:15;margin-top:60px;overflow-y:hidden}
 .menu-name{margin-top:10px; font-size: 20px; }
@@ -1330,6 +1330,7 @@ ul.flagHeader li{font-size: 20px}
 .ngdialog.ngdialog-theme-plain .ngdialog-content{margin-top: 0}
 #profile-user-container{padding-bottom: 100px}
 .container-fluid .row img.login-img{margin-top: 40px}
+#flags-nav{right:50px;}
 }
 @media screen and (height: 533px){
     .container-fluid .row img.login-img{margin-bottom: 3.5em}

@@ -17,30 +17,30 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		hasMore = false,
 		selectedCategory = '';
     
-    $scope.myInterval = 3000;
+      $scope.myInterval = 8000;
     $scope.slides = [
         {
-          image: 'http://www.everythingcebu.com/wp-content/uploads/2014/05/Sun-Sational-Summer-Robinsons-Supermarket-Raffle-Prizes.jpg'
+          image: 'images/Web-1.gif'
         },
         {
-          image: 'https://4.bp.blogspot.com/-mMpD4MITRK8/VxH5jOM_xwI/AAAAAAAAJcM/w97m4AhxK-cGr6efSr_9J_wgE3m9qYb2gCLcB/s1600/Smart%2BUCT100.jpg'
+          image: 'images/Web-2.gif'
         },
         {
-          image: 'http://promos.watimbox.com/wp-content/uploads/2016/07/rustans.jpg'
+          image: 'images/Web-3.gif'
         }
       ];
 
 	$scope.featured = get_featured();
 	$scope.unfeatured = get_unfeatured();
 	$scope.categories = promoData.allCategories();
-	$scope.swipeLeft = function(){
+	$scope.prev = function(){
 		if(currentPage != 0){
 			currentPage--;
 		}
 		$scope.unfeatured = get_unfeatured();
 	}
 
-	$scope.moreIsClicked = function(){
+	$scope.next = function(){
 		if(hasMore){
 			currentPage++;
 		}
@@ -51,7 +51,7 @@ function PromoLanding($scope, $rootScope, customService, promoData) {
 		hasMore = false;
 		var filtered_category = customService.filterByCategory(promoData.allUnfeatured(), selectedCategory);
 		var unfeatured = customService.filterByCountry(filtered_category, $rootScope.countryDisplay.country);
-		var obj = customService.paginate(unfeatured, 4, 4, currentPage, pageSize, true);
+		var obj = customService.paginate(unfeatured, 4, 2, currentPage, pageSize, true);
 		hasMore = obj.has_more;
 		return obj.data;
 	}

@@ -72,7 +72,7 @@
                             ng-class="{'text-gray' : user_info.country.showError && user_info.answer.touched}"
                             readonly ng-click="showCountryList = (showCountryList)?false:true"
                             style="display:inline;width:30%;" 
-                            ng-disabled="user_info.username.showError || !checking"
+                            ng-disabled="user_info.username.showError || checking"
                         >
                 </label>
                         <ul ng-if="showCountryList" 
@@ -83,7 +83,8 @@
                                     font-family:condensed;
                                     font-size:100%;
                                     background:white;
-                                    padding-left:3%;">
+                                    padding-left:3%; z-index: 999">
+
                             <li ng-repeat="c in countries" style="padding:2px 0;color:#000;" ng-click="selectCountry(c.code,c.img, true)"> 
                                 <img ng-src="images/flags/{{c.img}}" style="margin:0;"> {{c.code}}
                             </li>
@@ -93,9 +94,9 @@
             <tr ng-if="showUsernameTip">
                 <td class="password-tip">
                     <ul>
-                        <li ng-class="{'color-success' : user_info.username.input_value.length > 7}">Atleast 8 characters long</li>
-                        <li ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
-                            Special Characters not allowed
+                        <li style="font-size:12px" ng-class="{'color-success' : user_info.username.input_value.length > 7}">at least 8 alphanumeric Characters</li>
+                        <li style="font-size:12px" ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
+                           Special Characters not allowed such as spaces @,(%&amp;./$-_)
                         </li>
                     </ul>
                 </td>
