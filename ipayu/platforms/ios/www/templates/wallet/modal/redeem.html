@@ -1,0 +1,137 @@
+
+<script type="text/ng-template" id="redeemmodal">
+
+<div class=" coupon-info-container " ng-if="!isClick && !isRedeemed" style="position:relative">
+
+
+    <div class="white-bg animated fadeIn redeemable-item-container">
+                  <div class="col-xs-12 no-padding" ng-if="!isClick && !isRedeemed">
+                       <img ng-src="{{image}}" class="img img-responsive coupon-img-container" style="margin-top:0">
+                  </div>
+                <div class="col-xs-12"  ng-if="!isClick && !isRedeemed">
+                    <span class="ci-info-price pull-right">
+                       {{ point_value +'&nbsp;'+ redeemable_type }}
+                    </span>
+                </div>
+
+                <div class="row" ng-if="!isClick && !isRedeemed">
+                    <div class="col-xs-12" ng-if="!isClick && !isRedeemed">
+                        <div class="container">
+                           <span class="rdeem-modal-it-n">  {{ item.item_name }} </span>
+                            <h5 class="redeemable-item-body-text-ngdialog" ng-if="thisCoupon.description != ''" style="width:100%" >Fine Print: </h5>
+                            <h5 class="redeemable-item-body-text-ngdialog" style="text-align:left;width:100%; "><!---->
+                                Voucher Validity: {{item.datetime_start | readabledate}} to {{item.datetime_end | readabledate}} <br>
+                               {{item.description}}
+                            </h5>
+                        </div>
+                    </div>
+                      
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="container">
+                       <div class="row">
+                             <div class="col-xs-4 col-md-4 col-lg-4" style="padding:5px 0px 0px 0px" 
+                                ng-if="!isClick && !isRedeemed">
+                                 <button type="button" ng-click="decrement()" ng-disabled="belowZero" class="pull-right">
+                                    <img src="images/dark-btn-minus.png" class="img-responsive" style="height:30px">
+                                </button>
+                             </div>
+
+                            <div class="col-xs-4 col-md-4 col-lg-4" style="padding:0px"  
+                            ng-if="!isClick && !isRedeemed">
+                                  <input type="number" ng-model="counter" class="ipt-qty-it" disabled>
+                            </div>
+
+                            <div class="col-xs-4 col-md-4 col-lg-4" style="padding:5px 0px 0px 0px" 
+                            ng-if="!isClick && !isRedeemed">
+                                <button type="button"  ng-click="increment()" ng-disabled="moreThanQuantity">
+                                    <img src="images/dark-btn-plus.png" class="img-responsive" style="height:30px">
+                                </button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+      
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                        
+                        <div class="row" style="background-color:#333333; color:white; margin:0;margin-bottom: -22px;" class="redeem-btn" ng-if="!isClick && !isRedeemed" >              
+                               <div>
+                                    <button type="button" ng-click="redeem()" class="ng-dialog-redeem-btn">
+                                        <img src="images/redeem-btn.png" >
+                                    </button>
+                                </div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+     </div>
+
+     <div class=" coupon-info-container ">
+              <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12" ng-if="isClick || isRedeemed">
+                                <div class="dashed-dialog card-info-dialog-dashed"  ng-if="isClick || isRedeemed">
+                                    <div class="container">
+                                      <div class="row">
+                                            <div class="col-xs-7 no-padding" ng-if="isClick || isRedeemed">
+                                                <img ng-src="{{ image }}" class="pull-left mci-cri" style="margin-left:10px">
+                                                <span class="pull-left">
+                                                     <span class="redeemable-card-type">
+                                                       {{ item.item_name }}
+                                                    </span>
+                                                    <span class="redeemable-points">
+                                                        {{ point_value +'&nbsp;'+ redeemable_type }}
+                                                    </span>
+                                                </span>
+                                            </div>
+
+                                             <div class="col-xs-4 col-md-4 col-lg-4" style="padding:0px" ng-if="isClick || isRedeemed">
+                                                  <input type="number" ng-model="counter" class="ipt-qty-it" disabled>
+                                            </div>
+                                      </div>
+
+
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-12 col-lg-12 text-center" ng-if="isClick || isRedeemed">
+                                                    
+                                                    <div class="container" >
+                                                        <div class="row"  ng-if="!isclick && !isRedeemed">
+                                                            <div class="col-xs-6 col-md-6 col-lg-6">
+                                                                ARE YOU SURE?
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-6 col-lg-6" >
+                                                                <button type="button" ng-click="confirmRedeem()" ng-disabled="isLoading">
+                                                                    <img src="images/dark-yes.png" class="img-responsive">
+                                                                </button>
+
+                                                                <button type="button" ng-click="cancelRedeem()">
+                                                                    <img src="images/dark-no.png" class="img-responsive">
+                                                                </button>
+                                                            </div>
+                                                        </div>    
+                                                    </div>
+
+                                                    <div class="redeem-successful" ng-if="!isclick && isRedeemed">
+                                                        <img src="images/dark-big-check.png">
+                                                        <p>
+                                                            ITEM SUCCESSFULLY<br/>REDEEMED
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+
+</script>
+
+    <!-- colors -->
+<!-- shop-modal-border -->
+<!-- coupon-stamp-modal-border --> 

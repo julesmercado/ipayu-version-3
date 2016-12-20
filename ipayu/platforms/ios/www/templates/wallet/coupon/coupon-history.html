@@ -1,0 +1,44 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header coupon-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
+<div class="container filtered-cards" style="height:100%">
+
+            <a route-mycouponcard class="coupon-history-viewAll-txt">
+               <span class="glyphicon glyphicon-triangle-left"></span> VIEW ALL
+            </a>
+
+             <center style="padding-top:12px"> <span class="history-txt"> HISTORY</span> </center>
+          <!--   <a ng-click="gotoCouponHistory()" class="history-label">HISTORY</a> -->
+
+    <div class=" view-all-cards" style="overflow-x:hidden; margin-top:15px">
+        <div class="col-xs-12 no-padding">
+
+            <div  class="row" ng-repeat="coupons in usedCoupons" >
+                <div class="col-xs-6 dark-filter-coupons" ng-repeat="coupon in coupons" ng-click="proceedCouponInfo(coupon.coupon_id)">
+                    <div class="solid-border-va">
+                        <div class="dashed-border-va">
+                            <img ng-src="{{coupon.image}}" class="img-responsive img-card-view-all">
+                        </div>
+
+                    </div>
+                     <p class="add-card-text add-coupon-text"> {{coupon.name}}</p>
+                </div>     
+            </div>
+
+            <h6 ng-if="usedCoupons.length == 0" class="text-gray no-cards" style="z-index:5;">No used coupons</h6>
+        </div>  
+    </div>
+
+</div>
+
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
+
+</div>

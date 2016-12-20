@@ -1,0 +1,84 @@
+<div id="sp-page" style="overflow:hidden;">
+    <div class="page-main-header coupon-page-main-header"></div>
+    <div id="" class="animated fading-menu"
+        ng-class="{'sp-nav-bg fadeIn' : hasBG, 'display-none' : !menuDisplayed}"
+        style="width:100%;height:100%;z-index:100;margin-top:40px;position: fixed;"
+        ng-swipe-left="toggleMenu()">
+        <menu style="width:80%;height:100%;background:#fff;"
+        class="animated"
+        ng-class="{'slideInLeft': showMenu, 'slideOutLeft' : !showMenu}" ></menu>
+    </div>
+    <coupon-header></coupon-header>
+    <div class="filtered-coupons">
+        <a route-card-history="coupon" class="history-coupons pull-right">
+            HISTORY <span class="glyphicon glyphicon-play"></span>
+        </a>
+        <p>FEATURED COUPONS</p>
+        <div class="row lu-cards my-cards custom-slider coupon-holder" style=" padding:6px;">
+            
+            <div class='cs-image-holder coupon-img-holder' ng-repeat="f in featured" ng-click="tapped(f)">
+                <p class="coupon-time dark"
+                    timer-countdown="{{f.datetime_end}}"
+                    card="f"
+                    timer-Emit="{{emit.featured}}">hh:mm:ss</p>
+                <img ng-src="{{f.image}}" class="cs-image" style="height:72px;">
+                <!-- <span style="position: absolute;
+                    background: #a5a508;
+                    color: #fff;
+                    font-size: 15px;
+                    top: 22px;
+                    right: 5px;
+                    font-family: condensed;
+                    padding: 0 5px;"
+                    ng-if="showNew(f.coupon_id, 'coupon')">New</span> -->
+            </div>
+
+            <div class='cs-image-holder' ng-if="featured.length == 0 || !featured">
+                <img src="images/mallcards/american.png" class="cs-image" style="visibility:hidden;">
+            </div>
+            
+            <h6 ng-if="featured.length == 0" class="text-gray no-cards" style="color:#fff !important;text-align:center;">
+            No featured coupons.
+            </h6>
+        </div>
+    </div>
+    <div class="row add-cards-section add-coupon-section">
+        <div class="full-height-container">
+            <div class="container container-mall-card-results coupon-list" >
+                <div class="col-xs-6 col-md-6 orange-container"
+                    ng-repeat="coupon in coupons"
+                    ng-class="{'dark-filter-coupons' : coupon.couponHasExpired}">
+                    <div ng-if="!coupon.booklet_id" class="animated flipInX"
+                        ng-click="proceedCouponInfo(coupon.coupon_id)">
+                        <p class="coupon-time dark"
+                            timer-countdown="{{coupon.datetime_end}}"
+                            card="coupon"
+                            timer-Emit="{{emit.coupon}}">hh:mm:ss</p>
+                        <div class="blue-layer white-layer">
+                            <div class="orange-inner-layer coupon-layer">
+                                <img ng-src="{{coupon.image}}" class="img img-responsive add-this-coupon-img" style="width:151px;height:94px;margin: 0 auto">
+                            </div>
+                        </div>
+                        <p class="add-card-text add-coupon-text">{{coupon.name}}</p>
+                    </div>
+                    <div ng-if="coupon.booklet_id" class="animated flipInX">
+                        <p class="coupon-time dark" style="visibility:hidden">01:02:00</p>
+                        <div class="blue-layer white-layer coupon-group-item"
+                            ng-click="proceedCouponGroup(coupon.coupons, coupon.name)">
+                            <div class="orange-inner-layer coupon-layer coupon-group-item" >
+                                <img ng-src="{{coupon.image}}" class="img img-responsive add-this-coupon-img" style="width:151px;height:94px;margin: 0 auto">
+                            </div>
+                        </div>
+                        <p class="add-card-text add-coupon-text">{{coupon.name}}</p>
+                    </div>
+                </div>
+                <h6 ng-if="coupons.length == 0" class="no-cards-ct">
+                NO NEW COUPONS. <br/> PLEASE
+                <span style="color:#337ab7;" route-card-search="coupon">ADD NEW COUPON</span>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <add-card-confirm-modal></add-card-confirm-modal>
+    <coupon-footer ng-if="!hasFocusElement"></coupon-footer>
+</div>
