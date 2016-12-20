@@ -29,9 +29,11 @@
             <span class="promo-banner-text-only" ng-if="promoInfo.price>0">ONLY</span> 
             <span class="promo-banner-price" ng-if="promoInfo.price>0">{{promoInfo.currency_type + promoInfo.price}}</span>     
             <button class="promo-pin-reserve" 
-            ng-click="reservePromo()"
             ng-disabled="promoInfo.expired == true"
-            ng-hide="viewOnly" ng-if="promoInfo.price>0">RESERVE</button>
+            ng-hide="viewOnly" ng-if="promoInfo.price>0">
+                <span ng-if="promoInfo.coupon_id" ng-click="addCoupon(promoInfo)">GET COUPON</span>
+                <span ng-if="!promoInfo.coupon_id" ng-click="reservePromo()">RESERVE</span>
+            </button>
         </div>
         <span id="tomypromos" route-my-promos></span>
         <div class="row" id="psp-shop-desc-sec">
@@ -68,3 +70,4 @@
 </div>
 
 <promo-reserve-modal></promo-reserve-modal>
+<add-card-confirm-modal></add-card-confirm-modal>

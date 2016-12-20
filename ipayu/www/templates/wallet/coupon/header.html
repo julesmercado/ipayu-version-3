@@ -1,11 +1,12 @@
 <ul class="nav nav-tabs page-menu-top coupon-nav">
     <li class="col-xs-4 no-padding">
-        <button back  ng-if="state.current.name != 'addcouponcard'">
+        <button back>
             <img src="images/back-btn.png" class="back-button-header-img">
         </button>
-        <button route-all-card-search="coupon" ng-if="state.current.name == 'addcouponcard'">
+        <!-- ng-if="state.current.name != 'addcouponcard'" -->
+        <!-- <button route-all-card-search="coupon" ng-if="state.current.name == 'addcouponcard'">
             <img src="images/back-btn.png" class="back-button-header-img">
-        </button>
+        </button> -->
         <button  ng-click="toggleMenu()">
          <img src="images/menubar.png" >
         </button>

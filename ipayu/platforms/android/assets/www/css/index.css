@@ -256,7 +256,7 @@ form#registration button.register {
 .l-loading{margin:110px; text-align: center;}
 .l-header img { height:50px;width:50px;margin-top:20px }
 .download-img{z-index: 3}
-#flags-nav{    position: absolute;    right:54px;   padding-bottom: 28px;top:-3px;}
+#flags-nav{    position: absolute;    right:54px;   padding-bottom: 28px;top:-3px; float:left}
 .ui-rangeSlider-label-inner{z-index: 11 !important}
 .fading-menu{width:100%;z-index:15;margin-top:60px;overflow-y:hidden}
 .menu-name{margin-top:10px; font-size: 20px; }

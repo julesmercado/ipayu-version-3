@@ -216,6 +216,30 @@ function PromoSolo($scope, $rootScope, promoData, customService, $state, $stateP
         });
         
 	}
+	
+	$scope.addCoupon = function ( card ) {
+        card.card_id = card.coupon_id;
+        ngDialog.open({
+            template: 'confirmAlert',
+            className: 'ngdialog-theme-plain add-card-custom',
+            controller: 'addCardModalCtrl',
+            resolve: {
+            	card: function(){
+            		return card;
+            	},
+            	destination: function(){
+            		return 'addcouponcard';
+            	},
+                border_class: function(){
+                    return 'coupon-stamp-modal-border';
+                },
+                type: function(){
+                    return 'coupon';
+                }
+            },
+            overlay: true
+        });
+	}
     
 	function redirect(){
 		angular.element(document.getElementById('tomypromos')).click();
@@ -228,7 +252,8 @@ function ReservePromo($scope, $rootScope, promo, formData, thisPromo, customServ
     $scope.quantity = 0;
     $scope.done = false;
     $scope.thisPromo = thisPromo;
-                    $rootScope.addPromo = false;
+    $rootScope.addPromo = false;
+    console.log(thisPromo, "thisPromo")
     
     $scope.decrement = function(){
         if($scope.quantity > 0){
