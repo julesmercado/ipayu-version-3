@@ -31,7 +31,7 @@
             <button class="promo-pin-reserve" 
             ng-disabled="promoInfo.expired == true"
             ng-hide="viewOnly" ng-if="promoInfo.price>0">
-                <span ng-if="promoInfo.coupon_id" ng-click="addCoupon(promoInfo)">GET COUPON</span>
+                <span ng-if="promoInfo.coupon_id" ng-click="addCoupon(promoInfo)" style="font-size:12px">GET COUPON</span>
                 <span ng-if="!promoInfo.coupon_id" ng-click="reservePromo()">RESERVE</span>
             </button>
         </div>
