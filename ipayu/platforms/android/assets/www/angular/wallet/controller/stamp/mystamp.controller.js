@@ -406,7 +406,7 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
                                 stampData.userStamps(user_card[0].data.data.allstamps);
                                 stampData.featuredStamps(user_card[0].data.data.featuredstamps);
                                 stampData.usedStamps(user_card[0].data.data.usedstamps);
-                                pop_up(resolve[0].data.success, "Card Successfully added")
+                                pop_up(resolve[0].data.success, "Stamp Successfully added")
                             }
                             else{$rootScope.doLoading = false;}
                         })

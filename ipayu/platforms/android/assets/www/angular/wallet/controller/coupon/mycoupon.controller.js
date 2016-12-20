@@ -489,7 +489,7 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
                             couponData.userCoupons(user_card[0].data.data.allcoupons);
                             couponData.featuredCoupons(user_card[0].data.data.featuredcoupons);
                             couponData.usedCoupons(user_card[0].data.data.usedcoupons);
-		                	pop_up(resolve[0].data.success, "Card Successfully added")
+		                	pop_up(resolve[0].data.success, "Coupon Successfully added")
         				}
         				else{$rootScope.doLoading = false;}
         			})

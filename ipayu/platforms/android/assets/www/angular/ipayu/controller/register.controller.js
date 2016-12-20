@@ -17,7 +17,7 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
     $scope.user_info = {
         'country'           : { 'input_value': 'PH', 'flag':'PH.png', 'showError': true, 'touched': false, 'message': '' },
         'gender'            : { 'input_value': 'Male', 'showError': true, 'touched': false, 'message': '' },
-        'username'          : { 'input_value': '', 'showError': true, 'touched': false,'message': '', 'blur': false },
+        'username'          : { 'input_value': '', 'showError': true, 'touched': false,'message': '', 'blur': false, 'patternError': true },
         'fname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
         'lname'             : { 'input_value': '', 'showError': true, 'touched': false,'message':''},
         'email'             : { 'input_value': '', 'showError': true, 'touched': false,'message':'', 'pattern': /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/, 'patternMatch': false, 'blur':true },
@@ -83,10 +83,12 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
     	$scope.user_info.username.touched = true;
         if(typeof $scope.user_info.username.input_value != 'undefined' && $scope.user_info.username.input_value != ''){
         	$scope.user_info.username.showError = false;
-
+            $scope.user_info.username.patternError = false;
+            
             if($scope.user_info.username.input_value.match($scope.password_pattern)){
             	$scope.user_info.username.showError = true;
             	$scope.user_info.username.message = 'Special characters not allowed';
+                $scope.user_info.username.patternError = true;
             	hasError = true;
             }
             else if($scope.user_info.username.input_value.length < 8){

@@ -95,8 +95,8 @@
                 <td class="password-tip">
                     <ul>
                         <li style="font-size:12px" ng-class="{'color-success' : user_info.username.input_value.length > 7}">at least 8 alphanumeric Characters</li>
-                        <li style="font-size:12px" ng-class="{'color-success' : !user_info.username.input_value.match(password_pattern)}">
-                           Special Characters not allowed such as spaces @,(%&amp;./$-_)
+                        <li style="font-size:12px" ng-class="{'color-success' : !user_info.username.patternError}">
+                           No special characters such as spaces @,&nbsp;(%&amp;>?$-)
                         </li>
                     </ul>
                 </td>
