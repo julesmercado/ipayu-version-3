@@ -6,9 +6,10 @@
             <div class="col-xs-12">
                 <div class="dashed-dialog text-center {{border_class}}">
                     <h4>
-                        APPLY THIS CARD?
+                        <span ng-if="type == 'mall' || type == 'shop'">APPLY THIS CARD?</span>
+                        <span ng-if="type == 'coupon'">APPLY THIS COUPON?</span>
+                        <span ng-if="type == 'stamp'">APPLY THIS STAMP?</span>
                     </h4>
-                    
                     <button type="button" ng-click="proceed()">
                         <img src="images/dark-ok.png" class="img-responsive">
                     </button>

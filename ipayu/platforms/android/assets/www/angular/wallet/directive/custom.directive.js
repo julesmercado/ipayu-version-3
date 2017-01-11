@@ -5,6 +5,7 @@ walletModule.directive('downloadExcel', DownloadExcel)
 walletModule.directive('addCardForm', AddCardForm)
 walletModule.directive('promoTimeRemaining', PromoTimeRemaining)
 walletModule.directive('onFinishRender', OnFinishRender)
+walletModule.directive('pspSetHeight', PspSetHeight)
 
 
 TimerDirective.$inject = ['customService'];
@@ -269,6 +270,19 @@ function OnFinishRender($timeout) {
                 $timeout(function () {
                     scope.$emit(attr.onFinishRender);
                 });
+            }
+        }
+    }
+}
+
+PspSetHeight.$inject = [];
+function PspSetHeight() {
+    return {
+        restrict: 'A',
+        scope: false,
+        link: function(scope, element, attr) {
+            if(scope.promoInfo.price == 0) {
+                element.css('max-height', '100%');
             }
         }
     }

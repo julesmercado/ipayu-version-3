@@ -130,6 +130,7 @@ AddCardModal.$inject = ['$scope', '$state', 'ngDialog', '$rootScope', 'walletDat
 function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountData, wallet, card, destination, border_class, type) {
     var user_info = accountData.getUser();
     $scope.border_class = border_class;
+    $scope.type = type;
     $scope.proceed = function(){
         card.country_code = $rootScope.countryDisplay.name;
         card.country = $rootScope.searchCountry.country;
