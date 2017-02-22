@@ -1,15 +1,16 @@
 
 
-mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializerJQLike) {
+mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializerJQLike, API_ROOT_URL) {
     var mallInfoUrl = 'http://www.ipayu.co/ipayu_cms/controller/';
     var bringmesmiles = 'http://bringmesmiles.com/ipayu/controller/mall_info_controller.php';
+    var lightbreak = 'http://lightbreak.zz.mu/ipayu/controller/mall_info_controller.php';
 	return {
 
         requestAllMallCards: function(userId){
             return $http({
                         method: 'GET',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: $rootScope.api_url + 'mall_card_controller.php',
+                        url: API_ROOT_URL + 'mall_card_controller.php',
                         params: {'ipayuId':userId, 'requestType': 'getAllMallsWithSort'}
                     });
         },
@@ -17,7 +18,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike( { 'requestType': 'GetMalls_' } )
                     });
         },
@@ -25,7 +26,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike( {'requestType': 'GetEvents_', 'asset_info_id': id} )
                     });
         },
@@ -33,7 +34,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike( {'requestType': 'GetReactions_'} )
                     });
         },
@@ -41,7 +42,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike({'requestType': 'addReaction_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'reaction_id': react_id, 'datetime_reacted': date})
                     });
         },
@@ -49,7 +50,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike( {'requestType': 'GetComments_', 'asset_event_id': asset_id} )
                     });
         },
@@ -57,7 +58,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike({'requestType': 'addComment_', 'asset_event_id': asset_id, 'ipayu_id': ipayu_id, 'description': desc, 'datetime_commented': date})
                     });
         },
@@ -65,7 +66,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike({'requestType': 'GetShopsByMall_', 'asset_info_id': asset_id})
                     });
         },
@@ -73,7 +74,7 @@ mallInfo.factory('mallRequest', function ($rootScope, $http , $httpParamSerializ
             return $http({
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                        url: bringmesmiles,
+                        url: lightbreak,
                         data: $httpParamSerializerJQLike({'requestType': 'GetCategories_'})
                     });
         }

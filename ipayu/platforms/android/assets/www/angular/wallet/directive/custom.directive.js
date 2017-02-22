@@ -100,12 +100,13 @@ function DownloadExcel(excel, accountData, wallet){
 
 
 AddCardForm.$inject = [];
-function AddCardForm(){
+function AddCardForm() {
     return {
         restrict:   'A',
         scope: false,
         controller: function($scope, flags, accountData){
             var ipayu_info = accountData.getUser();
+            $scope.dummy_image = 'http://lightbreak.zz.mu/ipayu/assets/icons/sm.png';
             
             $scope.phonePrefix = flags.getFlagByCode($scope.thisCard.country_code);
             $scope.openToolTip = false;

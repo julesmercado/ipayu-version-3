@@ -394,7 +394,7 @@ function AddStampCard($scope, $rootScope, $state, ngDialog, walletData, accountD
     $scope.$on($scope.emitMessage, function (event, cardDetails) {
         wallet.addCard(cardDetails)
         	.then(function(resolve){
-            
+                console.log(resolve, "alskjjalkjskj")
                 if(!resolve){ return }
             
         		if(resolve[0].data.success){

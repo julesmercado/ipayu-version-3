@@ -341,14 +341,14 @@ function RegisterCtrl($scope, $rootScope, flags, $filter, account, questions, $s
 
 		var registrationData = {
 			'requestType'		: "AddUser_",
-			'username'			:  $scope.user_info.username.input_value,
-			'country_code'		:  $scope.user_info.country.input_value,
-			'firstname'			:  $scope.user_info.fname.input_value,
-			'lastname'			:  $scope.user_info.lname.input_value,
-			'email'				:  $scope.user_info.email.input_value,
-			'birthday'			:  $scope.user_info.birthday.input_value,
-			'gender'			:  $scope.user_info.gender.input_value,
-			'password'			:  $scope.user_info.password.input_value,
+			'username'	:  $scope.user_info.username.input_value,
+			'country_code':  $scope.user_info.country.input_value,
+			'firstname'	:  $scope.user_info.fname.input_value,
+			'lastname'	:  $scope.user_info.lname.input_value,
+			'email'		:  $scope.user_info.email.input_value,
+			'birthday'	:  $scope.user_info.birthday.input_value,
+			'gender'		:  $scope.user_info.gender.input_value,
+			'password'	:  $scope.user_info.password.input_value,
 			'date_registered'	:  Date.parse(new Date()),
 			'question_id'		:  $scope.user_info.question.input_value,
 			'answer'			:  $scope.user_info.answer.input_value

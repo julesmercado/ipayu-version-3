@@ -14,15 +14,9 @@ function LoginCtrl($scope, $rootScope, $state, $q,
 
      $scope.myInterval = 8000;
     $scope.slides = [
-        {
-          image: 'images/Web-1.gif'
-        },
-        {
-          image: 'images/Web-2.gif'
-        },
-        {
-          image: 'images/Web-3.gif'
-        }
+        { image: 'images/Web-1.gif' },
+        { image: 'images/Web-2.gif' },
+        { image: 'images/Web-3.gif' }
       ];
 
 	function button_init() {

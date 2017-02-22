@@ -18,8 +18,8 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
         login: function (username, password) {
             var dataToSend = {
                 'requestType'   : 'Login_',
-                'username'      : username,
-                'password'      : password 
+                'username': username,
+                'password': password 
             }
             return $http({
                             'method'    : 'POST',

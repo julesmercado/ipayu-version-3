@@ -476,6 +476,7 @@ function AddCouponCard($scope, $rootScope, $state, ngDialog, walletData, account
     $scope.$on($scope.emitMessage, function (event, cardDetails) {
         wallet.addCard(cardDetails)
         	.then(function(resolve){
+                console.log(resolve)
         		if(!resolve[0].data.success){
         			pop_up(resolve[0].data.success, "Something went wrong. Please try again");
         			$scope.disableBtn = false;

@@ -3,9 +3,9 @@
 mainModule.factory('preloaderMethod', PreloaderMethod) 
 
 
-PreloaderMethod.$inject = ['preloader', '$rootScope'];
+PreloaderMethod.$inject = ['preloader', '$rootScope', '$timeout'];
 
-function PreloaderMethod (preloader, $rootScope) {
+function PreloaderMethod (preloader, $rootScope, $timeout) {
 
 	return {
 
@@ -28,7 +28,7 @@ function PreloaderMethod (preloader, $rootScope) {
 						// Loading was successful.
 						console.info( "Preload Successful" );
 						if(!continueLoading){
-							setTimeout(function() {$rootScope.doLoading = false;}, 1000);
+							$timeout(function() {$rootScope.doLoading = false;}, 1000);
 						}
 					},
 					function handleReject( imageLocation ) {
@@ -36,7 +36,7 @@ function PreloaderMethod (preloader, $rootScope) {
 						console.error( "Image Failed", imageLocation );
 						console.info( "Preload Failure" );
 						if(!continueLoading){
-							setTimeout(function() {$rootScope.doLoading = false;}, 1000);
+							$timeout(function() {$rootScope.doLoading = false;}, 1000);
 						}
 					},
 					function handleNotify( event ) {

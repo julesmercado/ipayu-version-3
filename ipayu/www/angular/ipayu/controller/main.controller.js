@@ -83,27 +83,12 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
     }
 
     $rootScope.logout = function () {
-        // sqliteSet.dropTable();
-//        localStorage.clear();
 
         for(var i in storages){
             if(storages.hasOwnProperty(i)){
                 localStorage.removeItem(storages[i]);
             }
         }
-
-//        var success_clear_cache = function(status) {
-//            alert(JSON.stringify(status), "clear cache success")
-//        }
-//
-//        var error_clear_cache = function(status) {
-//            alert(JSON.stringify(status), "clear cache error")
-//        }
-//
-//        window.cache.clear( success_clear_cache, error_clear_cache );
-//        window.cache.cleartemp();
-
-//        $state.go('login');
 
         $state.transitionTo('login', {}, {
           reload: true, inherit: false, notify: true
@@ -215,7 +200,7 @@ function MainCtrl($rootScope, $timeout, $filter, flags, ngDialog, $state, accoun
             }
             
             // for real time notification
-            if(ready_notification == true){
+            if(ready_notification == true && !$state.current.outsideState){
                 ready_notification == false;
                 account.getNotifications({'ipayu_id':ipayu_info.ipayu_id})
                 .then(function(resolve){

@@ -10,6 +10,7 @@ function Config($stateProvider, $urlRouterProvider) {
             url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'loginCtrl',
+            outsideState: true,
             cache: false
         })
         .state('register', {
@@ -21,6 +22,7 @@ function Config($stateProvider, $urlRouterProvider) {
                     return account.getQuestions();
                 }
             },
+            outsideState: true,
             cache: false
         })
         .state('forgot', {
@@ -32,6 +34,7 @@ function Config($stateProvider, $urlRouterProvider) {
                     return account.getQuestions();
                 }
             },
+            outsideState: true,
             cache: false
         })
         .state('dashboard', {
@@ -43,6 +46,7 @@ function Config($stateProvider, $urlRouterProvider) {
         .state('process', {
             url: '/process',
             controller: 'processCtrl',
+            outsideState: true,
             cache: false
         })
 
