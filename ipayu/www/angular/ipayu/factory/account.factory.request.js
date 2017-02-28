@@ -18,12 +18,12 @@ function AccountFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) 
         login: function (username, password) {
             var dataToSend = {
                 'requestType'   : 'Login_',
-                'username': username,
-                'password': password 
+                'ipayu_username': username,
+                'ipayu_password': password 
             }
             return $http({
                             'method'    : 'POST',
-                            'url'       : API_ROOT_URL + 'user_controller.php',
+                            'url'       : API_ROOT_URL + 'user_controller.php/user',
                             'data'      : $httpParamSerializerJQLike(dataToSend),
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })

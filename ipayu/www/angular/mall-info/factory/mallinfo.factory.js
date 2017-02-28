@@ -50,8 +50,8 @@ mallInfo.factory('mallCardFactory2', function ($rootScope, mallRequest, $q) {
 	                        }
 	                    )
 		},
-		postReact: function( asset_id, ipayu_id, react_id, date ){
-			var req = mallRequest.postReaction( asset_id, ipayu_id, react_id, date );
+		postReact: function( asset_id, ipayu_id, react_id, date , status ){
+			var req = mallRequest.postReaction( asset_id, ipayu_id, react_id, date , status );
 			return $q.all([req])
 	                    .then(
 	                        function(results){
@@ -72,8 +72,8 @@ mallInfo.factory('mallCardFactory2', function ($rootScope, mallRequest, $q) {
 	                        }
 	                    )
 		},
-		postComments: function( asset_id, ipayu_id, desc, date ){
-			var req = mallRequest.postComments( asset_id, ipayu_id, desc, date );
+		postComments: function( asset_id, ipayu_id, desc, date , status ){
+			var req = mallRequest.postComments( asset_id, ipayu_id, desc, date , status );
 			return $q.all([req])
 	                    .then(
 	                        function(results){

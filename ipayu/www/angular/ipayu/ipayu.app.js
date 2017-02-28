@@ -30,8 +30,8 @@ var mainModule = angular.module('app.ipayu', modules)
 
 mainModule.run(Run);
 // mainModule.constant('API_ROOT_URL', 'http://bringmesmiles.com/ipayu/controller/')
-// mainModule.constant('API_ROOT_URL', 'http://ipayu.co/ipayu_app_v3/controller/')
-mainModule.constant('API_ROOT_URL', 'http://lightbreak.zz.mu/ipayu/controller/')
+mainModule.constant('API_ROOT_URL', 'http://ipayu.co/ipayu_app_v3/controller/')
+//mainModule.constant('API_ROOT_URL', 'http://lightbreak.zz.mu/ipayu/controller/')
 mainModule.value('storages', storage)
 mainModule.config(Config)
 

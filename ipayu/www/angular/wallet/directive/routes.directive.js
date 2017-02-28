@@ -40,10 +40,11 @@ function Mycard($state, $rootScope, preloaderMethod, accountData, wallet, wallet
 	    			$rootScope.doLoading = true;
 	    			wallet.getUserCards({'ipayu_id'	: ipayu_info.ipayu_id, 'type'	: type})
 	    				.then(function (resolve) {
+	    					console.log( resolve )
 	    					if(resolve){
-		    					var u = walletData.userCards(type, resolve[0].data.data.all || []);
-		    					var f = walletData.frequentUserCards(type, resolve[0].data.data.frequently || []);
-		    					var l = walletData.lastUserCards(type, resolve[0].data.data.last_used || []);
+		    					var u = walletData.userCards(type,[]);/*resolve[0].data.data.all ||*/
+		    					var f = walletData.frequentUserCards(type, []); /*resolve[0].data.data.frequently ||*/
+		    					var l = walletData.lastUserCards(type, []); /*resolve[0].data.data.last_used || */
 								$state.go(route);
 								preloaderMethod.preloadImage([u || [], f || [], l || []]);
 	    					}

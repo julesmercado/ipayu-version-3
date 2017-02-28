@@ -62,13 +62,13 @@ function WalletFactoryRequest($http, API_ROOT_URL, $httpParamSerializerJQLike) {
         getAllCardAvailableInEstablishment: function (ipayu_id, asset_id, type) {
             var data = {
                 'ipayu_id'      : ipayu_id,
-                'asset_info_id' : asset_id,
+                'asset_id'      : asset_id, /*asset_info_id*/
                 'type'          : type,
                 'requestType'   : 'GetCardsAssets_'
             };
             return $http({
                             'method'    : 'POST',
-                            'url'       : API_ROOT_URL + 'card_controller.php',
+                            'url'       : API_ROOT_URL + 'card_controller.php/card',
                             'data'      : $httpParamSerializerJQLike(data),
                             'headers'   : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                         })

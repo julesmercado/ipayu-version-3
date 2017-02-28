@@ -152,7 +152,7 @@ function AddCardModal($scope, $state, ngDialog, $rootScope, walletData, accountD
         else if (destination == 'addshopcard') {
             type_c = 'shop';
         }
-        wallet.getFeaturedCards({'ipayu_id' : user_info.ipayu_id, 'type' : type_c})
+        wallet.getFeaturedCards({'ipayu_id' : user_info.ipayu_id, 'type' : type_c})/*'type' : type_c}*/
         .then(function(resolve){
             walletData.featuredCards(type_c, resolve[0].data.data);
             state_go();

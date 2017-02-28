@@ -21,7 +21,7 @@
             	var user = accountData.getUser();
             	var date = new Date();
                 if( $scope.commentModel ){
-                    mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) ).then( function( response ){
+                    mallCardFactory2.postComments( data.asset_event_id , user.ipayu_id , $scope.commentModel , Date.parse(date) , status ).then( function( response ){// add status to params
                         $scope.commentModel = "";
                         getComment( data );
                     } );

@@ -47,11 +47,12 @@ Profile.$inject = ['$scope', 'accountData', 'account', '$rootScope', '$timeout',
 function Profile($scope, accountData, account, $rootScope, $timeout, $filter, customService) {
     
     var userInfo = accountData.getUser();
+    console.log( userInfo )
     $scope.showImageLoading = false;
     $scope.selectedFile = {};
     $scope.birth = {
-        'year'  : userInfo.birthday.split('-')[0],
-        'month' : $filter('date')(new Date(userInfo.birthday), 'MMMM')
+        'year'  : userInfo.ipayu_birthday.split('-')[0],
+        'month' : $filter('date')(new Date(userInfo.ipayu_birthday), 'MMMM')
     };
     $scope.options = {
         'year'  : getYearOptions(),
@@ -102,11 +103,11 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
     }
     
     function getNewBirth() {
-        var copy = userInfo.birthday.split('-');
+        var copy = userInfo.ipayu_birthday.split('-');
             copy[0] = $scope.birth.year;
             copy[1] = getMonthOptions($scope.birth.month).value
             
-            $scope.userInfo.birthday = copy.join('-')
+            $scope.userInfo.ipayu_birthday = copy.join('-')
     }
     
     $scope.openFile = function(){
@@ -142,11 +143,11 @@ function Profile($scope, accountData, account, $rootScope, $timeout, $filter, cu
     $scope.updateProfile = function(is_image){
         var dataToSend = $scope.userInfo;
         if(is_image){
-            dataToSend.image = $scope.selectedFile;
+            dataToSend.ipayu_image = $scope.selectedFile;
             $scope.showImageLoading = true;
         }
         else {
-            dataToSend.image = '';
+            dataToSend.ipayu_image = '';
         }
         dataToSend.datetime_created = Date.parse(new Date());
         console.log(dataToSend, "dataTosend")

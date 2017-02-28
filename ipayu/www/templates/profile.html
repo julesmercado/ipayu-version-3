@@ -35,7 +35,7 @@
    			<img src="images/logo-white.png" class="img img-responsive prof-pp" style="height:40px">
         
     		<img ng-if="!showImageLoading"
-                 ng-src="{{userInfo.image}}" class="img img-responsive prof-pp"
+                 ng-src="{{userInfo.ipayu_image}}" class="img img-responsive prof-pp"
                  ng-click="openFile()"
                  style="border:1px solid #DF1642;border-radius:100%;">
         
@@ -49,9 +49,9 @@
                    style="display:none;"/>
 
     		<h3 class="user-name-pp"> 
-                <span ng-if="userInfo.gender == 'Male'">Mr.&nbsp;</span>
-				<span ng-if="userInfo.gender == 'Female'">Ms.&nbsp;</span>
-				{{userInfo.firstname | capitalize}}&nbsp;{{userInfo.lastname | capitalize}}
+                <span ng-if="userInfo.ipayu_gender == 'Male'">Mr.&nbsp;</span>
+				<span ng-if="userInfo.ipayu_gender == 'Female'">Ms.&nbsp;</span>
+				{{userInfo.ipayu_first_name | capitalize}}&nbsp;{{userInfo.ipayu_last_name | capitalize}}
             </h3>
     		<hr/>
     		<div class="container prof-user-cred-container">
@@ -64,10 +64,10 @@
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Ipayu ID</p>
     					<p class="item-detail-profp"
-                           ng-if="!active.username">{{userInfo.username}}</p>
+                           ng-if="!active.username">{{userInfo.ipayu_username}}</p>
                         <input type="text" class="item-detail-profp" 
                                ng-if="active.username"
-                               ng-model="userInfo.username"
+                               ng-model="userInfo.ipayu_username"
                                ng-blur="blur('username')"
                                id="username-input">
     				</div>
@@ -83,10 +83,10 @@
     				<div class="col-xs-9 no-padding" style="position:relative" ng-click="focus('phone')">
     					<p class="item-header-profp">Phone no.</p>
     					<p class="item-detail-profp"
-                           ng-if="!active.phone">{{userInfo.phone || 'N/A'}}</p>
+                           ng-if="!active.phone">{{userInfo.ipayu_mobile || 'N/A'}}</p>
                         <input type="text" class="item-detail-profp" 
                                ng-if="active.phone"
-                               ng-model="userInfo.phone"
+                               ng-model="userInfo.ipayu_mobile"
                                ng-blur="blur('phone')"
                                id="phone-input">
     				</div>
@@ -102,7 +102,7 @@
     				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('firstname')">
     					<p class="item-header-profp">First Name:</p>
     					<p class="item-detail-profp"
-                           ng-if="!active.firstname"> {{userInfo.firstname | capitalize}}</p>
+                           ng-if="!active.firstname"> {{userInfo.ipayu_first_name | capitalize}}</p>
                         <input type="text" class="item-detail-profp" 
                                ng-if="active.firstname"
                                ng-model="userInfo.firstname"
@@ -112,7 +112,7 @@
     				<div class="col-xs-3 no-padding" style="position:relative" ng-click="focus('lastname')">
     					<p class="item-header-profp">Last Name:</p>
     					<p class="item-detail-profp"
-                           ng-if="!active.lastname">{{userInfo.lastname | capitalize}}</p>
+                           ng-if="!active.lastname">{{userInfo.ipayu_last_name | capitalize}}</p>
                         <input type="text" class="item-detail-profp" 
                                ng-if="active.lastname"
                                ng-model="userInfo.lastname"
@@ -131,7 +131,7 @@
     				<div class="col-xs-9 no-padding" style="position:relative">
     					<p class="item-header-profp">Email:</p>
     					<p class="item-detail-profp"
-                           ng-if="!active.email">{{userInfo.email}}</p>
+                           ng-if="!active.email">{{userInfo.ipayu_email}}</p>
                         <input type="text" class="item-detail-profp" 
                                ng-if="active.email"
                                ng-model="userInfo.email"

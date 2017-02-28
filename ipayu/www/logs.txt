@@ -1,0 +1,31 @@
+Card Controller/Model / Get Cards All Assets
+
+nigana
+endpoint: /card_controller.php/card_controller
+params: 
+	requestType : GetCardsAllAssets_,
+	ipayu_id	: 1 or even wala 
+	card_type	: 1
+
+previous: params
+	var data = {
+        'ipayu_id'      : ipayu_id,
+        'card_type'     : card_type,
+        'requestType'   : 'GetCardsAllAssets_'
+    };
+
+*********************************************
+
+walay GetAssetBranches_
+
+*********************************************
+
+Card Controller/Model / Add To Notification
+
+{"success":false,"message":"Something went wrong.","data":null}
+
+
+Mga dapat pang buhaton
+
+Add status parameter to "reactions" controller -- for "post reactions" method
+Add status parameter to "modalComments" controller -- for "post comments" method
